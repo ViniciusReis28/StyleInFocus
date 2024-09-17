@@ -103,6 +103,9 @@ window.addEventListener('scroll', function() {
   }
 });
 
+
+
+
 let currentSlide = 0;
 const slideInterval = 3000; // Intervalo de 3 segundos para troca de slides
 
@@ -134,6 +137,15 @@ setInterval(nextSlide, slideInterval);
 // Funções para os botões
 document.querySelector('.next').addEventListener('click', nextSlide);
 document.querySelector('.prev').addEventListener('click', prevSlide);
+
+
+
+
+
+
+
+
+
 
 
 let currentIndex = 0;
