@@ -104,7 +104,9 @@ window.addEventListener('scroll', function() {
 });
 
 
-
+                                                                                //SLIDE TEXT
+                                                                                
+document.addEventListener('DOMContentLoaded', function() {
 
 let currentSlide = 0;
 const slideInterval = 3000; // Intervalo de 3 segundos para troca de slides
@@ -137,6 +139,7 @@ setInterval(nextSlide, slideInterval);
 // Funções para os botões
 document.querySelector('.next').addEventListener('click', nextSlide);
 document.querySelector('.prev').addEventListener('click', prevSlide);
+});
 
 
 
@@ -145,6 +148,7 @@ document.querySelector('.prev').addEventListener('click', prevSlide);
 
 
 
+                                                                    //CAROUSEL DESTAQUES
 
 
 
@@ -206,7 +210,7 @@ function showSlide(index) {
     document.querySelector('.slides-text').style.transform = newTransform;
 }
 
-function nextSlide() {
+function nextSlideText() {
     showSlide(currentSlide2 + 1);
 }
 
@@ -219,7 +223,7 @@ showSlide(currentSlide2);
 
 // Função para auto-slide
 function startAutoSlide() {
-  setInterval(nextSlide, 5000); // Muda de slide a cada 3 segundos
+  setInterval(nextSlideText, 5000); // Muda de slide a cada 3 segundos
 }
 
 // Iniciar o auto-slide
