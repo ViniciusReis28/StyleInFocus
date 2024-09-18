@@ -783,9 +783,15 @@ a {
   /* Adicionando a linha */
 }
 
+
+
+
+
+                                                                                /*Parte da conta do usuario*/
+
 .container {
-  margin-top: 200px;
-  margin-bottom: 200px;
+  margin-top: 160px;
+  margin-bottom: 160px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -796,13 +802,75 @@ a {
 
 .box-perfil {
   width: 80%; /* Defina a largura desejada */
-  height: 500px; /* Defina a altura desejada */
-  background-color: rgb(0, 0, 0); /* Apenas para visualização */
+  height: 800px; /* Defina a altura desejada */
+  background-color: rgb(255, 255, 255); /* Apenas para visualização */
   display: flex;
 }
 
-.teste1 {
+.perfil {
   background-color: #003cff;
-  width: 70%;
+  width: 100%;
   height: 100%;
 }
+
+.perfil-com-foto {
+  background-color: #00ffff;
+  width: 100%;
+  height: 200px;
+  display: flex;
+}
+
+.perfil-com-foto-e-email {
+  background-color: green;
+  width: 70%;
+  height: 100%;
+  display: flex;
+  font-family: "Bebas Neue", sans-serif;
+}
+
+.foto-usuario img{
+  background-color: pink;
+  height: 200px;
+  width: 220px;
+  margin-left: 80px;
+  border-radius: 50%; 
+}
+
+.dados-principais{
+  background-color: yellow;
+  width: 100%;
+  height: 100%;
+  margin-left: 40px;
+  display: flex; /* Ativa o Flexbox */
+  flex-direction: column; /* Alinha os itens verticalmente */
+  justify-content: center; /* Centraliza os itens verticalmente */
+  padding-left: 50px; /* Adiciona espaçamento interno à esquerda */
+}
+.dados-principais h1 {
+  font-size: 50px;
+}
+.dados-principais h2 {
+  font-size: 25px;
+}
+
+.botao-editar-perfil {
+  display: flex; /* Ativa o Flexbox */
+  justify-content: center; /* Centraliza o botão horizontalmente */
+  align-items: center; /* Centraliza o botão verticalmente */
+  height: 200px; /* Ajuste conforme necessário para a altura da div */
+  padding: 30px;
+  margin-left: 150px;
+}
+
+.botao-editar-perfil button {
+  background-color: rgba(0, 0, 0, 0.959);
+  color: white;
+  height: 50%;
+  width: 150px;
+  border: none;
+  border-radius: 5px; /* Remove bordas arredondadas */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
