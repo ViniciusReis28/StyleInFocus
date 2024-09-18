@@ -784,5 +784,25 @@ a {
 }
 
 .container {
-  width: 100px;
+  margin-top: 200px;
+  margin-bottom: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+
+
+.box-perfil {
+  width: 80%; /* Defina a largura desejada */
+  height: 500px; /* Defina a altura desejada */
+  background-color: rgb(0, 0, 0); /* Apenas para visualização */
+  display: flex;
+}
+
+.teste1 {
+  background-color: #003cff;
+  width: 70%;
+  height: 100%;
 }
