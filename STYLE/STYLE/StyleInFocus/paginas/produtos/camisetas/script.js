@@ -104,6 +104,7 @@ window.addEventListener('scroll', function() {
 });
 
 
+
                                                                                 //SLIDE TEXT
                                                                                 
 document.addEventListener('DOMContentLoaded', function() {
