@@ -242,6 +242,7 @@ section.slider {
   text-align: center;
   font-family: "Bebas Neue", sans-serif;
   font-size: 50px;
+  margin-top: 150PX;
 }
 
 .carousel-wrapper {
@@ -283,7 +284,9 @@ section.slider {
   color: rgb(0, 0, 0);
   box-shadow: 0 5px 15px rgba(115, 115, 115, 0);
   padding: 20px;
-  font-family: "Nunito", sans-serif;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 20px;
+
 }
 
 .carousel-item div img {
@@ -298,17 +301,39 @@ section.slider {
   font-size: 25px;
 }
 
+
 .carousel-item div button {
-  border: none;
-  border-radius: 5px;
-  background-color: #000;
-  color: white;
-  width: 100%;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 30px;
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  will-change: box-shadow,transform;
+  background: radial-gradient( 100% 100% at 100% 0%, #000000 0%, #000000 100% );
+  box-shadow: 0px 0.01em 0.01em rgba(0, 0, 0, 0.4), 0px 0.3em 0.7em -0.01em rgba(0, 0, 0, 0.3), inset 0px -0.01em 0px rgba(0, 0, 0, 0.5);
+  padding: 0 2em;
+  border-radius: 0.3em;
+  color: #fff;
   height: 50px;
-  font-size: 18px;
-  padding: 5px;
+  width: 100%;
   margin: 5px;
+  text-shadow: 0 1px 0 rgb(0 0 0 / 40%);
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
 }
+
+.carousel-item div button:hover {
+  box-shadow: 0px 0.1em 0.2em rgba(0, 162, 255, 0.4), 0px 0.4em 0.7em -0.1em rgb(45 35 66 / 30%), inset 0px -0.1em 0px #000000;
+  transform: translateY(-0.1em);
+}
+
+.carousel-item div button:active {
+  box-shadow: inset 0px 0.1em 0.6em #04ff43;
+  transform: translateY(0em);
+}
+
+
+
 
 .carousel-item div button svg {
   margin-right: 5px;
