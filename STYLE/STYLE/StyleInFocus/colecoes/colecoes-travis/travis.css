@@ -749,7 +749,7 @@ a {
   width: 100%;
   height: auto;
   margin-bottom: 30px;
-  background-color: #ffffff00;
+  background-color: #ff000000;
 }
 
 .filtros {
@@ -805,8 +805,8 @@ a {
 
 .box h1 {
   font-family: "Bebas Neue", sans-serif;
-  font-size: 25px;
-  margin: 10px 0;
+  font-size: 30px;
+  margin: 1px 0;
   align-self: flex-start;
   color: #000;
   margin-left: 17px;
@@ -900,11 +900,11 @@ a {
   z-index: 2000;
   top: 0;
   left: 0;
-  background-color: #232323;
+  background-color: #050505;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
-  font-family: "Nunito", sans-serif;
+  font-family: "Bebas Neue", sans-serif;
 }
 
 .closebtn-left {
@@ -926,7 +926,7 @@ a {
 .left-sidebar a {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 40px;
   color: #818181;
   display: block;
   transition: 0.3s;
@@ -934,7 +934,8 @@ a {
 
 .left-sidebar h1 {
   color: white;
-  margin: 5px;
+  margin: 10px;
+  
 }
 
 .left-sidebar a:hover {
@@ -955,6 +956,7 @@ a {
 }
 
 .filter-section-left h3 {
+  font-size:25px;
   color: rgb(255, 255, 255);
   cursor: pointer;
   display: flex;
@@ -1034,8 +1036,11 @@ a {
   height: 50px;
   width: 200px;
   background-color: #ffffffd6;
-  font-size: 20px;
+  font-size: 30px;
   color: rgb(0, 0, 0);
+  font-family: "Bebas Neue", sans-serif;
+  margin-top: 20px;
+
 }
 
 
