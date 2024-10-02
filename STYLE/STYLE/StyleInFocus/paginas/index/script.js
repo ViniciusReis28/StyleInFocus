@@ -264,3 +264,50 @@ function proximaimg(){
 
     document.getElementById('radio'+cont).checked = true
 }
+
+
+// Simulação de produtos disponíveis com URLs
+const products = [
+  { name: "Camiseta personalizada", url: "/produtos/camiseta-personalizada" },
+  { name: "Camiseta preta", url: "/produtos/camiseta-preta" },
+  { name: "Camiseta branca", url: "/produtos/camiseta-branca" },
+  { name: "Camiseta azul", url: "/produtos/camiseta-azul" },
+  { name: "Camiseta vermelha", url: "/produtos/camiseta-vermelha" },
+  { name: "Camiseta listrada", url: "/produtos/camiseta-listrada" },
+  { name: "Camiseta de algodão", url: "/produtos/camiseta-algodao" },
+  { name: "Camiseta de manga longa", url: "/produtos/camiseta-manga-longa" }
+];
+
+function showSuggestions() {
+  const input = document.getElementById('query').value.toLowerCase();
+  const suggestionsBox = document.getElementById('suggestions');
+  
+  // Limpa sugestões anteriores
+  suggestionsBox.innerHTML = '';
+  
+  if (input) {
+      // Filtra produtos que correspondem ao texto digitado
+      const filteredProducts = products.filter(product => product.name.toLowerCase().includes(input));
+      
+      // Se houver resultados, mostra o dropdown
+      if (filteredProducts.length > 0) {
+          suggestionsBox.style.display = 'block';
+          filteredProducts.forEach(product => {
+              const suggestionItem = document.createElement('div');
+              suggestionItem.classList.add('suggestion-item');
+              suggestionItem.textContent = product.name;
+              
+              // Adiciona um evento de clique para redirecionar para a página do produto
+              suggestionItem.onclick = () => {
+                  window.location.href = product.url;
+              };
+              
+              suggestionsBox.appendChild(suggestionItem);
+          });
+      } else {
+          suggestionsBox.style.display = 'none';
+      }
+  } else {
+      suggestionsBox.style.display = 'none';
+  }
+}

@@ -28,25 +28,7 @@
     </div>
     <button class="next" onclick="nextSlide()">&#10095;</button>
   </div>
-  <!--<div class="slider-container-text">
-    <div class="slides-text">
-      <div class="slide-text-index" id="slide1">
-        <h2>Dias dos Namorados</h2>
-        <p>Presenteie seu conjuge com um de nossos produtos</p>
-      </div>
-      <div class="slide-text-index" id="slide2">
-        <h2>SOS RS</h2>
-        <p>Todos na luta com o <strong>RIO GRANDE DO SUL</strong></p>
-      </div>
-      <div class="slide-text-index" id="slide3">
-        <h2>Japão X Style in Focus</h2>
-        <p>Drop de coleção do JAPÃO <strong>aproveite já</strong></p>
-      </div>
-    </div>
-    <button class="prev" onclick="prevSlide()">&#10094;</button>
-    <button class="next" onclick="nextSlide()">&#10095;</button>
-  </div>
--->
+  
 <section class="slider">
   <div class="slider-content">
 
@@ -139,9 +121,11 @@
             </path>
           </g>
         </svg>
-        <input id="query" class="input" type="search" placeholder="Search..." name="searchbar" />
+        <input id="query" class="input" type="search" placeholder="Search..." name="searchbar" oninput="showSuggestions()" />
       </div>
+      <div id="suggestions" class="suggestions-box"></div>
     </div>
+    
     <div class="right-section">
       <a href="#" class="cart-icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
           class="bi bi-cart3" viewBox="0 0 16 16">
