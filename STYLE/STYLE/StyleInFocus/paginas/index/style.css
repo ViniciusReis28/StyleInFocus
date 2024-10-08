@@ -618,12 +618,29 @@ a {
   margin-left: 10px;
 }
 
+.search-bar-container {
+  position: absolute;
+  top: 50%;
+  left: 87%;
+  transform: translate(-50%, -50%);
+}
+
 .group {
   display: flex;
   line-height: 28px;
   align-items: center;
   position: relative;
   margin-right: -18px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  fill: #bdbecb;
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .input {
@@ -658,22 +675,29 @@ a {
   box-shadow: 0 0 0 2.5px #2f303d;
 }
 
-.search-icon {
+.suggestions-box {
   position: absolute;
-  left: 1rem;
-  fill: #bdbecb;
-  width: 1rem;
-  height: 1rem;
-  pointer-events: none;
-  z-index: 1;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  border: 1px solid #ccc;
+  background-color: #000; /* Para combinar com a barra de pesquisa */
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  display: none; /* Escondido por padrão */
 }
 
-.search-bar-container {
-  position: absolute;
-  top: 50%;
-  left: 87%;
-  transform: translate(-50%, -50%);
+.suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+  color: #ffffff; /* Cor do texto para as sugestões */
 }
+
+.suggestion-item:hover {
+  background-color: #2f303d; /* Cor do fundo ao passar o mouse */
+}
+
 
 
 /* Drop down Produtos */
