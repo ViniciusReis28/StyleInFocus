@@ -1004,7 +1004,12 @@ a {
 
 
 @media screen and (max-width: 1222px) {
-  .botao-editar-perfil,.slider-container-text,.dis-play,.footer{
+  .botao-editar-perfil,.slider-container-text,.dis-play,
+  .Footer-bottom,.div-between,.right-section,.left-section,.search-bar-container{
     display: none;
+  }
+
+  .center-section{
+    margin-left: 10%;
   }
 }
