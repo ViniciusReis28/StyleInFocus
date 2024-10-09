@@ -837,7 +837,9 @@ a {
 .box button {
   font-family: "Bebas Neue", sans-serif;
   font-size: 30px;
-  display: inline-block;
+  display: flex; /* Usando flexbox para centralização */
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
   outline: 0;
   border: 0;
   cursor: pointer;
@@ -860,7 +862,7 @@ a {
 }
 
 .box button:active {
-  box-shadow: inset 0px 0.1em 0.6em #04ff43;
+  box-shadow: inset 0px 0.1em 0.6em #04eeff;
   transform: translateY(0em);
 }
 
@@ -1763,3 +1765,5 @@ section.slider{
   position: relative;
   z-index: 1; /* Garante que o conteúdo fique sobre o fundo estrelado */
 }
+
+
