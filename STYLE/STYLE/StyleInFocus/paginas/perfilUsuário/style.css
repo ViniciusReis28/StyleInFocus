@@ -1000,3 +1000,11 @@ a {
   font-size: 25px;
 }
 
+/*------------------responsividade---------------------*/
+
+
+@media screen and (max-width: 1222px) {
+  .botao-editar-perfil,.slider-container-text,.dis-play,.footer{
+    display: none;
+  }
+}
