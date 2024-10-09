@@ -791,212 +791,82 @@ a {
                                                                                 /*Parte da conta do usuario*/
 
 .container {
-  margin-top: 120px;
-  margin-bottom: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: auto;
-  font-family: "Bebas Neue", sans-serif;
-}
+      margin-top: 120px;
+      margin-bottom: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      font-family: "Bebas Neue", sans-serif;
+    }
+
+    .box-perfil {
+      width: 80%;
+      height: 800px;
+      display: flex;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-top: 30px;
+      border: 1px solid #ccc; /* Para visualização */
+    }
+
+    .left-panel {
+      width: 25%;
+      background-color: #f4f4f4;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      border-right: 1px solid #ccc;
+    }
+
+    .Foto-Email{
+      display: flex;
+    }
+
+    .Foto-Email img {
+      margin-right: 25px;
+    }
+
+    .email-user{
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .left-panel img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .left-panel .menu-item {
+      margin-top: 20px;
+      width: 100%;
+      text-align: center;
+      padding: 10px;
+      background-color: #ddd;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: background-color 0.3s;
+    }
+
+    .left-panel .menu-item:hover {
+      background-color: #ccc;
+    }
+
+    .right-panel {
+      width: 70%;
+      padding: 20px;
+      background-color: #ffffff;
+      display: none; /* Começa oculta */
+    }
+
+    .right-panel.active {
+      display: block;
+    }
 
 
-.box-perfil {
-  width: 80%; /* Defina a largura desejada */
-  height: auto; /* Defina a altura desejada */
-  display: flex;
-  border-radius: 20px; /* Valor ajustável para controlar o arredondamento */
-  overflow: hidden; /* Necessário para que as bordas arredondadas sejam visíveis */
-  margin-top: 30px;
-}
-
-.perfil {
-  background-color: #ffffff1f;
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-.perfil-com-foto {
-  background-color: #000000b0;
-  width: 100%;
-  height: 220px;
-  display: flex;
-}
-
-.perfil-com-foto-e-email {
-  background-color: rgba(255, 255, 255, 0);
-  width: 70%;
-  height: 100%;
-  display: flex;
-  color: rgb(255, 255, 255);
-}   
-
-.foto-usuario img{
-  height: 200px;
-  width: 200px;
-  margin-left: 80px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border-radius: 50%; 
-}
-
-.dados-principais{
-  background-color: rgba(255, 255, 255, 0);
-  width: 100%;
-  height: 100%;
-  margin-left: 40px;
-  display: flex; /* Ativa o Flexbox */
-  flex-direction: column; /* Alinha os itens verticalmente */
-  justify-content: center; /* Centraliza os itens verticalmente */
-  padding-left: 50px; /* Adiciona espaçamento interno à esquerda */
-}
-.dados-principais h1 {
-  font-size: 50px;
-}
-.dados-principais h2 {
-  font-size: 25px;
-}
-
-.botao-editar-perfil {
-  display: flex; /* Ativa o Flexbox */
-  justify-content: center; /* Centraliza o botão horizontalmente */
-  align-items: center; /* Centraliza o botão verticalmente */
-  height: 200px; /* Ajuste conforme necessário para a altura da div */
-  padding: 30px;
-  margin-left: 150px;
-}
-
-.botao-editar-perfil button {
-  background-color: rgba(216, 216, 216, 0.959);
-  color: rgba(0, 0, 0, 0.699);
-  height: 50%;
-  width: 150px;
-  font-size: 25PX;
-  border: none;
-  border-radius: 5px; 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: "Bebas Neue", sans-serif;
-}
-
-.botao-editar-perfil svg {
-  margin-right: 5px;
-}
-
-.box-informaçoes {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  height: 100%;
-  padding: 50px;
-}
-
-.linha-caixas {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin-top: 30px;
-  margin-bottom: 60px; 
-}
-
-.caixa {
-  background-color: #666666a9;
-  width: 28%; /* Ajusta a largura de cada caixa */
-  height: 120px; /* Altura das caixas */
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 20px;
-  color: rgba(0, 0, 0, 0.856);
-}
-
-.caixa svg {
-  margin-right: 10px;
-
-}
-
-.caixa h1 {
-  margin-top: 10px;
-}
-
-
-.pedidos-historico {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: auto;
-  width: 100%;
-}
-
-.historico-ultima-compra {
-  background-color: #ffffff86;
-  display: flex;
-  flex-direction: column;
-  padding: 50px;
-  width: 100%;  
-  height: auto;
-  
-}
-
-.historico-ultima-compra-detalhes {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: auto;
-  position: relative;
-}
-
-.historico-ultima-compra-detalhes h1 {
-  padding: 0px;
-  font-size: 28px;
-}
-
-.historico-ultima-compra-detalhes h3 {
-  margin-top: 5px;  
-  margin-left: 10px;
-  font-size: 20px;
-}
-
-.botoes-pedido {
-  right: 0;
-  margin-right: 60px;
-  display: flex;
-  gap: 20px;
-  position: absolute;
-}
-
-.botoes-pedido button {
-  font-family: "Bebas Neue", sans-serif;
-  font-size: 18px;
-  background-color: #000;
-  color: white;
-  border: none;
-  border-radius: 3px;
-  height: 30px;
-  width: 140px;
-}
-
-.produto-comprado {
-  margin-top: 10px;
-  display: flex;
-  height: auto;
-}
-
-.produto-comprado img {
-  height: 160px;
-}
-
-.produto-descriçao {
-  flex-direction: column;
-  padding: 15px;
-}
-
-.produto-descriçao h1 {
-  font-size: 25px;
-}
 

@@ -135,3 +135,18 @@ setInterval(nextSlide, slideInterval);
 document.querySelector('.next').addEventListener('click', nextSlide);
 document.querySelector('.prev').addEventListener('click', prevSlide);
 
+
+
+
+function mostrarConteudo(tipo) {
+  // Esconde todos os painéis
+  const panels = document.querySelectorAll('.right-panel');
+  panels.forEach(panel => panel.classList.remove('active'));
+
+  // Mostra o painel correto
+  const painelAtivo = document.getElementById(`conteudo-${tipo}`);
+  if (painelAtivo) {
+    painelAtivo.classList.add('active');
+  }
+}
+
