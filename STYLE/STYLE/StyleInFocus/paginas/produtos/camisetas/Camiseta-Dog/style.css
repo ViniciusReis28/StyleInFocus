@@ -1350,7 +1350,7 @@ section.slider{
 
 /*----------------------------------------------------CSS DA PAGINA DO PRODUTO JA NA FASE DE COMPRAR--------------------------------------------------*/
 .main-produtos {
-  margin-top: 160px;
+  margin-top: 250px;
 }
 
 .container-produtos {
@@ -1369,6 +1369,7 @@ section.slider{
 }
 
 .produtos-itens {
+  
   align-self: flex-end;
 }
 
@@ -1404,10 +1405,12 @@ section.slider{
 }
 
 .content-produtos-descriçao {
+  font-family: "Bebas Neue", sans-serif;
   max-width: 500px;
   display: flex;
   flex-direction: column;
 }
+
 
 .righ-produto h1 {
   font-size: 70px;
@@ -1421,7 +1424,7 @@ section.slider{
 
 
 .preço-valor {
-  margin-top: 180px;
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   width: fit-content;
@@ -1514,23 +1517,43 @@ section.slider{
   color: white;
 }
 
+
 .Comprar-produto button {
-  height: 45px;
-  width: 340px;
-  border-radius: 8px;
-  background-color: #000;
-  transition: background-color 0.5s ease;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 30px;
+  display: flex; /* Usando flexbox para centralização */
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  will-change: box-shadow,transform;
+  background: radial-gradient( 100% 100% at 100% 0%, #000000 0%, #000000 100% );
+  box-shadow: 0px 0.01em 0.01em rgba(0, 0, 0, 0.4), 0px 0.3em 0.7em -0.01em rgba(0, 0, 0, 0.3), inset 0px -0.01em 0px rgba(0, 0, 0, 0.5);
+  padding: 0 2em;
+  border-radius: 0.3em;
+  color: #fff;
+  height: 50px;
+  width: 98%;
+  margin: 5px;
+  text-shadow: 0 1px 0 rgb(0 0 0 / 40%);
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
 }
 
-.Comprar-produto:hover button {
-  background-color: #494949;
+.Comprar-produto button:hover {
+  box-shadow: 0px 0.1em 0.2em rgba(0, 162, 255, 0.4), 0px 0.4em 0.7em -0.1em rgb(45 35 66 / 30%), inset 0px -0.1em 0px #000000;
+  transform: translateY(-0.1em);
 }
 
-.Comprar-produto a {
-  color: white;
+.Comprar-produto button:active {
+  box-shadow: inset 0px 0.1em 0.6em #04eeff;
+  transform: translateY(0em);
 }
 
-
+.Comprar-produto button svg {
+  margin-right: 5px;
+  margin-top: 0px;
+}
 
 
 
