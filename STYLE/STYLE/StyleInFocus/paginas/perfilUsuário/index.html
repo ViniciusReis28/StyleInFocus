@@ -112,15 +112,17 @@
     <div class="box-perfil">
       <div class="left-panel">
         <div class="Foto-Email">
-          <img src="../../img/166053879.jpg" alt="Foto de Perfil">
+          <img id="fotoPerfilEmail" src="" alt="Foto de Perfil">
           <div class="email-user">
             <h1>Gabriel Pablo</h1>
             <h3>pablobocudo.lima@gmail.com</h3>
           </div>
         </div>
-        <div class="menu-item" onclick="mostrarConteudo('pedidos')">Pedidos</div>
-        <div class="menu-item" onclick="mostrarConteudo('info')">Informações da Conta</div>
-        <div class="menu-item" onclick="mostrarConteudo('protocolos')">Protocolos de Segurança</div> <!-- Novo item -->
+        <div class="menu-item" onclick="mostrarConteudo('minhaConta')">Minha Conta</div>
+        <div class="menu-item" onclick="mostrarConteudo('pedidos')">Pedidos</div> 
+        <div class="menu-item" onclick="mostrarConteudo('privacidade')">Configurações de privacidade</div>
+        <div class="menu-item" onclick="mostrarConteudo('suporte')">Suporte e ajuda</div>
+        <div class="menu-item" onclick="mostrarConteudo('pagamentos')">Métodos de pagamento</div> 
       </div>
   
       <div id="conteudo-pedidos" class="right-panel">
@@ -128,13 +130,26 @@
         <p>Aqui você pode ver seus pedidos.</p>
       </div>
     
-      <div id="conteudo-info" class="right-panel active"> <!-- Mantenha 'active' para ser a seção inicial -->
-        <h2>Informações da Conta</h2>
-        <p>Aqui estão suas informações de conta.</p>
-      </div>
+      <div id="conteudo-minhaConta" class="right-panel active"> 
+        <div class="foto-container">
+            <img id="fotoPerfil" src="" class="imagem-hover" alt="Foto de perfil">
+            <input type="file" id="inputFoto" accept="image/*" style="display: none;">
+            <div class="trocar-foto" onclick="document.getElementById('inputFoto').click();">Trocar Foto</div>
+        </div>
+    </div>
     
-      <div id="conteudo-protocolos" class="right-panel"> <!-- Nova seção -->
-        <h2>Protocolos de Segurança</h2>
+      <div id="conteudo-privacidade" class="right-panel"> 
+        <h2>Configurações de privacidade</h2>
+        <p>Aqui estão suas informações sobre protocolos de segurança.</p>
+      </div>
+
+      <div id="conteudo-suporte" class="right-panel"> 
+        <h2>Suporte e ajuda</h2>
+        <p>Aqui estão suas informações sobre protocolos de segurança.</p>
+      </div>
+
+      <div id="conteudo-pagamentos" class="right-panel"> 
+        <h2>Métodos de pagamento</h2>
         <p>Aqui estão suas informações sobre protocolos de segurança.</p>
       </div>
     </div>

@@ -150,3 +150,27 @@ function mostrarConteudo(tipo) {
   }
 }
 
+const inputFoto = document.getElementById('inputFoto');
+const fotoPerfil = document.getElementById('fotoPerfil');
+
+window.onload = function() {
+  const fotoArmazenada = localStorage.getItem('fotoPerfil');
+  if (fotoArmazenada) {
+      fotoPerfil.src = fotoArmazenada; // Atualiza a imagem do perfil
+      fotoPerfilEmail.src = fotoArmazenada; // Atualiza a imagem do email
+  }
+};
+
+inputFoto.addEventListener('change', function() {
+    const file = this.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            fotoPerfil.src = event.target.result; 
+            fotoPerfilEmail.src = event.target.result;
+            localStorage.setItem('fotoPerfil', event.target.result);
+        }
+        reader.readAsDataURL(file); // Lê a imagem como URL
+    }
+});
+
