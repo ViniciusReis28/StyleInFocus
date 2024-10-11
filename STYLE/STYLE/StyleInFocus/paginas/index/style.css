@@ -44,7 +44,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  z-index: 10; /* Certifica-se de que o texto fique acima da imagem */
+  z-index: 10;
+  /* Certifica-se de que o texto fique acima da imagem */
 }
 
 .slide-link2 {
@@ -55,6 +56,7 @@
   padding: 10px 20px;
   border-radius: 5px;
 }
+
 .slide-text2 {
   font-family: "Bebas Neue", sans-serif;
   position: absolute;
@@ -62,12 +64,14 @@
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  z-index: 10; /* Certifica-se de que o texto fique acima da imagem */
+  z-index: 10;
+  /* Certifica-se de que o texto fique acima da imagem */
 }
 
 .slide-link {
   font-size: 70px;
-  color: white; /* Altere a cor conforme necessário */
+  color: white;
+  /* Altere a cor conforme necessário */
   text-decoration: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -127,11 +131,15 @@ section.slider {
 .nav-manual,
 .nav-auto {
   position: absolute;
-  bottom: -90px; /* Posiciona 10px acima da parte inferior do contêiner */
-  right: 10px; /* Posiciona 10px à esquerda do lado direito do contêiner */
+  bottom: -90px;
+  /* Posiciona 10px acima da parte inferior do contêiner */
+  right: 10px;
+  /* Posiciona 10px à esquerda do lado direito do contêiner */
   display: flex;
-  justify-content: flex-end; /* Alinha à direita */
-  gap: 5px; /* Espaçamento entre os botões */
+  justify-content: flex-end;
+  /* Alinha à direita */
+  gap: 5px;
+  /* Espaçamento entre os botões */
 }
 
 /* Estilo dos botões manuais e automáticos */
@@ -309,8 +317,8 @@ section.slider {
   outline: 0;
   border: 0;
   cursor: pointer;
-  will-change: box-shadow,transform;
-  background: radial-gradient( 100% 100% at 100% 0%, #000000 0%, #000000 100% );
+  will-change: box-shadow, transform;
+  background: radial-gradient(100% 100% at 100% 0%, #000000 0%, #000000 100%);
   box-shadow: 0px 0.01em 0.01em rgba(0, 0, 0, 0.4), 0px 0.3em 0.7em -0.01em rgba(0, 0, 0, 0.3), inset 0px -0.01em 0px rgba(0, 0, 0, 0.5);
   padding: 0 2em;
   border-radius: 0.3em;
@@ -419,21 +427,27 @@ section.slider {
   top: 0;
   left: 0;
   width: 100%;
-  height: 40px; /* Ajuste conforme o tamanho necessário para os slides */
+  height: 40px;
+  /* Ajuste conforme o tamanho necessário para os slides */
   background: #050505;
-  overflow: hidden; /* Oculta slides fora da área visível */
+  overflow: hidden;
+  /* Oculta slides fora da área visível */
   display: flex;
   align-items: center;
-  z-index: 2; /* Coloca o slider acima da imagem */
+  z-index: 2;
+  /* Coloca o slider acima da imagem */
 }
 
 /* Slides */
 .slides-text {
   display: flex;
-  flex-direction: column; /* Organiza slides verticalmente */
-  transition: transform 0.5s ease-in-out; /* Suaviza a transição */
+  flex-direction: column;
+  /* Organiza slides verticalmente */
+  transition: transform 0.5s ease-in-out;
+  /* Suaviza a transição */
   width: 100%;
-  height: 80%; /* Garante que os slides preencham o contêiner */
+  height: 80%;
+  /* Garante que os slides preencham o contêiner */
 }
 
 /* Estilo individual dos slides */
@@ -441,16 +455,19 @@ section.slider {
   width: 100%;
   box-sizing: border-box;
   text-align: center;
-  height: 100px; /* Ajuste conforme necessário */
-  flex-shrink: 0; /* Impede que o slide encolha */
+  height: 100px;
+  /* Ajuste conforme necessário */
+  flex-shrink: 0;
+  /* Impede que o slide encolha */
 }
 
 .slide-text-index h2,
 .slide-text-index p {
-  
+
   font-family: "Bebas Neue", sans-serif;
   font-size: 24px;
-  margin: 0; /* Remove margens */
+  margin: 0;
+  /* Remove margens */
 }
 
 /* Botões de navegação */
@@ -464,7 +481,8 @@ section.slider {
   font-size: 24px;
   cursor: pointer;
   padding: 600px;
-  z-index: 3; /* Garante que os botões estejam acima do conteúdo do slider */
+  z-index: 3;
+  /* Garante que os botões estejam acima do conteúdo do slider */
 
   /* Ajusta o padding para ficar apenas ao redor do texto */
 }
@@ -487,8 +505,8 @@ section.slider {
   z-index: 9999px;
 }
 
-                                                              /* BARRA DE NAVEGAÇÃO DO SITE */
-nav {
+/* BARRA DE NAVEGAÇÃO DO SITE */
+nav { 
   height: 100px;
   font-family: "Bebas Neue", sans-serif;
   display: flex;
@@ -505,45 +523,58 @@ nav {
   transition: background-color 0.3s, color 0.3s
 }
 
+
 nav.scrolled .center-section a::after,
 nav.scrolled .right-section a::after {
-  background-color: rgb(0, 0, 0); /* Muda a cor da borda inferior para preto */
+  background-color: rgb(0, 0, 0);
+  /* Muda a cor da borda inferior para preto */
 }
 
 nav.scrolled {
-  top: 0; /* Fixa o nav no topo quando rola para baixo */
-  background-color: white !important; /* Cor de fundo após rolar */
-  color: black !important; /* Cor do texto após rolar */
+  top: 0;
+  /* Fixa o nav no topo quando rola para baixo */
+  background-color: white !important;
+  /* Cor de fundo após rolar */
+  color: black !important;
+  /* Cor do texto após rolar */
 }
+
 nav.scrolled a {
   font-size: 25px;
-  color: black !important; /* Cor dos links após rolar */
+  color: black !important;
+  /* Cor dos links após rolar */
 }
 
 nav.scrolled .dropdown-menu a {
-  font-size: 18px; /* Ajuste o tamanho da fonte quando rolado */
-  color: gray; /* Ajuste a cor do texto quando rolado */
+  font-size: 18px;
+  /* Ajuste o tamanho da fonte quando rolado */
+  color: gray;
+  /* Ajuste a cor do texto quando rolado */
 }
 
-                                                                        /*HOVERS NAV*/
+/*HOVERS NAV*/
 nav:hover {
   background-color: #ffffff;
 }
+
 nav:hover a {
   color: #000000;
 }
 
 
 
-nav:hover .center-section .dropdown > a::after,
+nav:hover .center-section .dropdown>a::after,
 nav:hover .right-section a::after {
-  background-color: rgb(0, 0, 0); /* Muda a cor da borda inferior para preto */
-  
+  background-color: rgb(0, 0, 0);
+  /* Muda a cor da borda inferior para preto */
+
 }
 
 nav:hover #logo {
-  content: url('../../img/logopreta.png'); /* Substitui a imagem quando o mouse passa no <nav> */
-  transition: all 0.3s ease; /* Transição suave */
+  content: url('../../img/logopreta.png');
+  /* Substitui a imagem quando o mouse passa no <nav> */
+  transition: all 0.3s ease;
+  /* Transição suave */
 }
 
 
@@ -562,7 +593,7 @@ a {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -23px;
+  bottom: -21px;
   /* Ajuste essa distância para alterar o espaço abaixo do texto */
   width: 0;
   height: 3px;
@@ -570,11 +601,11 @@ a {
   transition: width 0.3s ease;
 }
 
-.center-section .dropdown > a::after{
+.center-section .dropdown>a::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -25px;
+  bottom: -4px;
   /* Ajuste essa distância para alterar o espaço abaixo do texto */
   width: 0;
   height: 3px;
@@ -611,7 +642,17 @@ a {
 }
 
 .center-section li {
-  margin: 0 25px;
+  margin: 0 15px; /* Espaçamento horizontal entre os itens */
+  position: relative; /* Para os dropdowns */
+
+}
+
+
+.center-section a {
+  display: flex; /* Isso permite que o link ocupe toda a área do item da lista */
+  align-items: center; /* Centraliza o texto verticalmente */
+  padding: 30px 15px; /* Ampla área de clique */
+  
 }
 
 .right-section a {
@@ -681,56 +722,80 @@ a {
   left: 0;
   width: 100%;
   border: 1px solid #ccc;
-  background-color: #000; /* Para combinar com a barra de pesquisa */
+  background-color: #000;
+  /* Para combinar com a barra de pesquisa */
   max-height: 200px;
   overflow-y: auto;
   z-index: 1000;
-  display: none; /* Escondido por padrão */
+  display: none;
+  /* Escondido por padrão */
 }
 
 .suggestion-item {
   padding: 10px;
   cursor: pointer;
-  color: #ffffff; /* Cor do texto para as sugestões */
+  color: #ffffff;
+  /* Cor do texto para as sugestões */
 }
 
 .suggestion-item:hover {
-  background-color: #2f303d; /* Cor do fundo ao passar o mouse */
+  background-color: #2f303d;
+  /* Cor do fundo ao passar o mouse */
 }
 
 
 
-/* Drop down Produtos */
+/* Estilo para os itens do dropdown */
 .dropdown {
   position: relative;
 }
 
 .dropdown-menu {
-
-  display: none; /* Inicialmente oculto */
-  position: absolute; /* Posiciona o menu dropdown em relação ao item */
-  width: 100%; /* Define a largura como 100% da largura do item dropdown */
-  left: 0; /* Alinha o menu dropdown com a borda esquerda do item dropdown */
-  top: 68px; /* Posiciona o menu logo abaixo do item dropdown */
-  background-color: #ffffff; /* Define o fundo do menu dropdown */
-  z-index: 1000; /* Garante que o menu fique acima de outros elementos */
+  display: none;
+  /* Inicialmente oculto */
+  position: absolute;
+  /* Posiciona o menu dropdown em relação ao item */
+  width: 100%;
+  /* Define a largura como 100% da largura do item dropdown */
+  left: 0;
+  /* Alinha o menu dropdown com a borda esquerda do item dropdown */
+  top: 97px;
+  /* Ajusta a posição abaixo do nav */
+  background-color: #ffffff;
+  /* Fundo do menu dropdown */
+  z-index: 1000;
+  /* Garante que o menu fique acima de outros elementos */
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  /* Adiciona sombra para um efeito de destaque */
 }
 
+/* Links dentro do dropdown */
 .dropdown-menu a {
-  font-size: 20px;
-  padding: 5px 10px;
-  text-decoration: none;
+  padding: 10px 15px;
+  font-size: 18px;
   color: black;
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Suave transição */
+}
+
+/* Efeito hover ao passar o mouse sobre os links do dropdown */
+.dropdown-menu a:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Cor de fundo ao passar o mouse */
+  color: #7a7a7a; /* Cor do texto ao passar o mouse */
+}
+
+
+.dropdown:hover .dropdown-menu {
+  display: block; /* Exibe o dropdown ao passar o mouse */
 }
 
 .dropdown-items {
   display: flex;
+  flex-direction: column;
+  /* Mantém os itens do dropdown empilhados */
 }
-
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
-
 
 /* banner Principal */
 .bannerzinho {

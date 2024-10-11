@@ -12,11 +12,30 @@
 </head>
 
 <body>
-
+  <div id="preloader">
+    <img
+      src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWp3dGsxa2VwdHYydzFjaGZieG9zZXVtMWpyejZyY2cwOHM3cDNreCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l3nWhI38IWDofyDrW/giphy.webp"
+      alt="Loading...">
+  </div>
+  <div class="overlay"></div>
+  <div class="slider-container-text">
+    <button class="prev" onclick="prevSlide()">&#10094;</button>
+    <div class="slides-text">
+      <div class="slide-text-index" id="slide1">
+        <h2>NOVAS COLEÇÕES!</h2>
+      </div>
+      <div class="slide-text-index" id="slide2">
+        <h2>PARCERIA COM TRAVIS!</h2>
+      </div>
+    </div>
+    <button class="next" onclick="nextSlide()">&#10095;</button>
+  </div>
   <!-- ////////////////////////////Nav Bar///////////// -->
   <nav>
     <div class="left-section">
-      <a href="../../../paginas/index/index.html"><img src="../../../img/logopreta.png" style="height: 100px; width: 100px; margin: 5px;"></a>
+      <a href="../../index/index.html">
+      <img src="../../../img/logopreta.png" id="logo" style="height: 90px; width: 90px; margin: 5px; margin-top: 20px;">
+      </a>
     </div>
     <div class="center-section">
       <ul>
@@ -24,14 +43,14 @@
           <a href="">Coleções</a>
           <div class="dropdown-menu">
             <a href="../../../colecoes/colecoes-travis/travis.html">Travis Scott</a>
-            <a href=""></a>
-            <a href=""></a>
+            <a href="">Opium</a>
+            <a href="">Japão</a>
           </div>
         </li>
         <li class="dropdown">
           <a href="">Masculino</a>
           <div class="dropdown-menu">
-            <a href="masculino-produtos-camisas.html">Camisa</a>
+            <a href="../../paginas/produtos/camisetas/masculino-produtos-camisas.html">Camisa</a>
             <a href="">Moletom</a>
             <a href="">Calça</a>
           </div>
@@ -45,15 +64,15 @@
           </div>
         </li>
         <li class="dropdown">
-          <a href="">Acessorios</a>
-          <div class="dropdown-menu">
-            <a href="">Bone</a>
-            <a href="">Toca</a>
-            <a href="">Chaveiro</a>
-          </div>
+            <a href="">Acessorios</a>
+            <div class="dropdown-menu">
+              <a href="">Camisa</a>
+              <a href="">Cropped</a>
+              <a href="">Calça</a>
+            </div>
         </li>
-        <li>
-          <a href="">Personalização</a>
+        <li class="dropdown">
+           <a href="../../Personalizar/Personalizar.html">Personalização</a>
         </li>
       </ul>
     </div>

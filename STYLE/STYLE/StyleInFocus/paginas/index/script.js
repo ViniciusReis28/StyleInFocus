@@ -311,3 +311,11 @@ function showSuggestions() {
       suggestionsBox.style.display = 'none';
   }
 }
+
+
+
+
+
+                              //CARRINHO//    
+
+

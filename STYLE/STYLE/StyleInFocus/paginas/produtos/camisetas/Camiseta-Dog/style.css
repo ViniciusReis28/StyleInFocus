@@ -464,7 +464,7 @@ section.slider {
   z-index: 9999px;
 }
 
-                                                              /* BARRA DE NAVEGAÇÃO DO SITE */
+                                                                            /* BARRA DE NAVEGAÇÃO DO SITE */
 nav {
   height: 100px;
   font-family: "Bebas Neue", sans-serif;
@@ -481,7 +481,6 @@ nav {
   transition: top 0.3s; /* Transição suave para a mudança de posição */
   transition: background-color 0.3s, color 0.3s;
   box-shadow: 2px 2px 5px rgba(2, 2, 2, 0.281);
-  
   
 }
 
@@ -542,7 +541,7 @@ a {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -23px;
+  bottom: -21px;
   /* Ajuste essa distância para alterar o espaço abaixo do texto */
   width: 0;
   height: 3px;
@@ -550,18 +549,17 @@ a {
   transition: width 0.3s ease;
 }
 
-.center-section .dropdown > a::after{
+.center-section .dropdown>a::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -25px;
+  bottom: -4px;
   /* Ajuste essa distância para alterar o espaço abaixo do texto */
   width: 0;
   height: 3px;
   background-color: rgb(0, 0, 0);
   transition: width 0.3s ease;
 }
-
 
 
 .center-section a:hover::after,
@@ -591,7 +589,17 @@ a {
 }
 
 .center-section li {
-  margin: 0 25px;
+  margin: 0 15px; /* Espaçamento horizontal entre os itens */
+  position: relative; /* Para os dropdowns */
+
+}
+
+
+.center-section a {
+  display: flex; /* Isso permite que o link ocupe toda a área do item da lista */
+  align-items: center; /* Centraliza o texto verticalmente */
+  padding: 30px 15px; /* Ampla área de clique */
+  
 }
 
 .right-section a {
@@ -656,36 +664,58 @@ a {
 }
 
 
-/* Drop down Produtos */
+/* Estilo para os itens do dropdown */
 .dropdown {
   position: relative;
 }
 
 .dropdown-menu {
-
-  display: none; /* Inicialmente oculto */
-  position: absolute; /* Posiciona o menu dropdown em relação ao item */
-  width: 100%; /* Define a largura como 100% da largura do item dropdown */
-  left: 0; /* Alinha o menu dropdown com a borda esquerda do item dropdown */
-  top: 68px; /* Posiciona o menu logo abaixo do item dropdown */
-  background-color: #ffffff; /* Define o fundo do menu dropdown */
-  z-index: 1000; /* Garante que o menu fique acima de outros elementos */
+  display: none;
+  /* Inicialmente oculto */
+  position: absolute;
+  /* Posiciona o menu dropdown em relação ao item */
+  width: 100%;
+  /* Define a largura como 100% da largura do item dropdown */
+  left: 0;
+  /* Alinha o menu dropdown com a borda esquerda do item dropdown */
+  top: 97px;
+  /* Ajusta a posição abaixo do nav */
+  background-color: #ffffff;
+  /* Fundo do menu dropdown */
+  z-index: 1000;
+  /* Garante que o menu fique acima de outros elementos */
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  /* Adiciona sombra para um efeito de destaque */
 }
 
+/* Links dentro do dropdown */
 .dropdown-menu a {
-  font-size: 20px;
-  padding: 5px 10px;
-  text-decoration: none;
+  padding: 10px 15px;
+  font-size: 18px;
   color: black;
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Suave transição */
+}
+
+/* Efeito hover ao passar o mouse sobre os links do dropdown */
+.dropdown-menu a:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Cor de fundo ao passar o mouse */
+  color: #7a7a7a; /* Cor do texto ao passar o mouse */
+}
+
+
+.dropdown:hover .dropdown-menu {
+  display: block; /* Exibe o dropdown ao passar o mouse */
 }
 
 .dropdown-items {
   display: flex;
+  flex-direction: column;
+  /* Mantém os itens do dropdown empilhados */
 }
 
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
 
 
 /* banner Principal */
@@ -1350,7 +1380,7 @@ section.slider{
 
 /*----------------------------------------------------CSS DA PAGINA DO PRODUTO JA NA FASE DE COMPRAR--------------------------------------------------*/
 .main-produtos {
-  margin-top: 160px;
+  margin-top: 250px;
 }
 
 .container-produtos {
@@ -1369,6 +1399,7 @@ section.slider{
 }
 
 .produtos-itens {
+  
   align-self: flex-end;
 }
 
@@ -1404,10 +1435,12 @@ section.slider{
 }
 
 .content-produtos-descriçao {
+  font-family: "Bebas Neue", sans-serif;
   max-width: 500px;
   display: flex;
   flex-direction: column;
 }
+
 
 .righ-produto h1 {
   font-size: 70px;
@@ -1421,7 +1454,7 @@ section.slider{
 
 
 .preço-valor {
-  margin-top: 180px;
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   width: fit-content;
@@ -1514,23 +1547,43 @@ section.slider{
   color: white;
 }
 
+
 .Comprar-produto button {
-  height: 45px;
-  width: 340px;
-  border-radius: 8px;
-  background-color: #000;
-  transition: background-color 0.5s ease;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 30px;
+  display: flex; /* Usando flexbox para centralização */
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  will-change: box-shadow,transform;
+  background: radial-gradient( 100% 100% at 100% 0%, #000000 0%, #000000 100% );
+  box-shadow: 0px 0.01em 0.01em rgba(0, 0, 0, 0.4), 0px 0.3em 0.7em -0.01em rgba(0, 0, 0, 0.3), inset 0px -0.01em 0px rgba(0, 0, 0, 0.5);
+  padding: 0 2em;
+  border-radius: 0.3em;
+  color: #fff;
+  height: 50px;
+  width: 98%;
+  margin: 5px;
+  text-shadow: 0 1px 0 rgb(0 0 0 / 40%);
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
 }
 
-.Comprar-produto:hover button {
-  background-color: #494949;
+.Comprar-produto button:hover {
+  box-shadow: 0px 0.1em 0.2em rgba(0, 162, 255, 0.4), 0px 0.4em 0.7em -0.1em rgb(45 35 66 / 30%), inset 0px -0.1em 0px #000000;
+  transform: translateY(-0.1em);
 }
 
-.Comprar-produto a {
-  color: white;
+.Comprar-produto button:active {
+  box-shadow: inset 0px 0.1em 0.6em #04eeff;
+  transform: translateY(0em);
 }
 
-
+.Comprar-produto button svg {
+  margin-right: 5px;
+  margin-top: 0px;
+}
 
 
 

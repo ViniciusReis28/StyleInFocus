@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Freeman&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
 
 
 /* Reset básico */
@@ -305,63 +307,87 @@ section.slider{
 
 /*--------------------------------------------------------SLIDE DO INDEX TEXT---------------------------------------------------*/
 
-.slider-container-text {
-  position: relative;
-  margin-top: 10px;
+/* Sobreposição preta para o efeito de escurecimento */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 60px;
-  overflow: hidden;
-  background: #ffffff;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  /* Preto com alta opacidade */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 1;
+  /* Coloca a sobreposição acima da imagem */
 }
 
+/* Contêiner do slider */
+.slider-container-text {
+  position: absolute;
+  color: rgb(255, 255, 255);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px; /* Ajuste conforme o tamanho necessário para os slides */
+  background: #050505;
+  overflow: hidden; /* Oculta slides fora da área visível */
+  display: flex;
+  align-items: center;
+  z-index: 2; /* Coloca o slider acima da imagem */
+}
+
+/* Slides */
 .slides-text {
   display: flex;
-  transition: transform 0.5s ease-in-out;
+  flex-direction: column; /* Organiza slides verticalmente */
+  transition: transform 0.5s ease-in-out; /* Suaviza a transição */
+  width: 100%;
+  height: 80%; /* Garante que os slides preencham o contêiner */
 }
 
+/* Estilo individual dos slides */
 .slide-text-index {
-  min-width: 100%;
+  width: 100%;
   box-sizing: border-box;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.244);
-  padding: 5px;
   text-align: center;
+  height: 100px; /* Ajuste conforme necessário */
+  flex-shrink: 0; /* Impede que o slide encolha */
 }
 
-.slide-text-index h2 {
-  font-family: "Nunito", sans-serif;
-  font-size: 18px;
-  margin-top: 0;
-}
-
+.slide-text-index h2,
 .slide-text-index p {
-  font-family: "Nunito", sans-serif;
-
+  
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 24px;
+  margin: 0; /* Remove margens */
 }
 
+/* Botões de navegação */
 .slider-container-text button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   border: none;
-  background-color: #00000000;
-  font-size: 18px;
-  padding: 500px;
+  background-color: transparent;
+  /* Torna o fundo do botão transparente */
+  font-size: 24px;
   cursor: pointer;
-}
+  padding: 600px;
+  z-index: 3; /* Garante que os botões estejam acima do conteúdo do slider */
 
-.slider-container-text button:hover {
-  color: #000;
+  /* Ajusta o padding para ficar apenas ao redor do texto */
 }
 
 .prev {
+  color: rgb(255, 255, 255);
   left: 10px;
 }
 
 .next {
+  color: rgb(255, 255, 255);
   right: 10px;
 }
-
-
 
 
 
@@ -373,176 +399,257 @@ section.slider{
   z-index: 9999px;
 }
 
-/*BARRA DE NAVEGAÇAO DO SITE */
-nav {
-  height: 120px;
-  font-family: "Freeman", sans-serif;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-  position: relative;
-  box-shadow: 0 2px 0px rgba(0, 0, 0, 0.3);
-  border-radius: 5px;
-}
-
-a {
-  text-decoration: none;
-  color: black;
-  font-size: 22px;
-  padding: 10px 15px;
-  /* Adiciona padding para aumentar a área de clique */
-  border-radius: 5px;
-  /* Adiciona cantos arredondados */
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.center-section a,
-.right-section a {
-  padding: 10px 15px;
-  /* Adiciona padding para aumentar a área de clique */
-  border-radius: 5px;
-  /* Adiciona cantos arredondados */
-}
-
-.center-section a:hover,
-.right-section a:hover {
-  color: white;
-  /* Cor do texto ao passar o mouse */
-  background-color: #000;
-  /* Cor de fundo ao passar o mouse */
-}
-
-.left-section,
-.center-section,
-.right-section {
-  display: flex;
-  align-items: center;
-}
-
-.center-section ul {
-  display: flex;
-  list-style: none;
-  /* Remove os pontos */
-  padding: 0;
-  margin: 0;
-}
-
-.center-section li {
-  margin: 0 25px;
-  /* Espaçamento entre os itens */
-}
-
-.right-section a {
-  margin-left: 10px;
-  /* Espaçamento entre os ícones na direita */
-}
-
-.group {
-  display: flex;
-  line-height: 28px;
-  align-items: center;
-  position: relative;
-  margin-right: -18px;
-}
-
-.input {
-  font-family: "Montserrat", sans-serif;
-  width: 80%;
-  height: 35px;
-  padding-left: 2.5rem;
-  box-shadow: 0 0 0 1.5px #313131, 0 0 25px -17px #000;
-  border: 0;
-  border-radius: 12px;
-  background-color: #000000;
-  outline: none;
-  color: #ffffff;
-  transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  cursor: text;
-  z-index: 0;
-}
-
-.input::placeholder {
-  color: #bdbecb;
-}
-
-.input:hover {
-  box-shadow: 0 0 0 2.5px #2f303d, 0px 0px 25px -15px #000;
-}
-
-.input:active {
-  transform: scale(0.95);
-}
-
-.input:focus {
-  box-shadow: 0 0 0 2.5px #2f303d;
-}
-
-.search-icon {
-  position: absolute;
-  left: 1rem;
-  fill: #bdbecb;
-  width: 1rem;
-  height: 1rem;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.search-bar-container {
-  position: absolute;
-  /* Allows positioning it anywhere inside the nav */
-  top: 50%;
-  /* Adjust as necessary */
-  left: 87%;
-  /* Adjust as necessary */
-  transform: translate(-50%, -50%);
-  /* Centering */
-}
-
-/*Drop down Produtos*/
-
-.dropdown {
-  position: relative;
-  /* Essencial para o posicionamento absoluto do submenu */
-}
-
-.dropdown-menu {
-  position: absolute;
-  left: 40px;
-  top: 100%;
-  /* Posiciona abaixo do elemento pai */
-  transform: translateX(-35%);
-  background-color: rgb(245, 245, 245);
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  display: none;
-  padding: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  margin-top: 12px;
-}
-
-.dropdown-menu a {
-
-  padding: 5px 10px;
-  text-decoration: none;
-  color: black;
-}
-
-.dropdown-items {
-  display: flex;
-  /* Configura os links para ficarem lado a lado */
-}
-
-.dropdown:hover .dropdown-menu {
-  display: block;
-  /* Exibe o menu ao passar o mouse */
-}
-
-.dropdown-menu a:hover {
-  background-color: #000000;
-  color: white;
-}
+     /* BARRA DE NAVEGAÇÃO DO SITE */
+     nav {
+      height: 100px;
+      font-family: "Bebas Neue", sans-serif;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      position: fixed; /* Torna a navbar fixa */
+      top: 40px; /* Deslocamento inicial */
+      left: 0; /* Alinha a navbar na esquerda da página */
+      width: 100%; /* Faz a navbar ocupar toda a largura da página */
+      z-index: 1000; /* Garante que a navbar fique acima de outros elementos */
+      background-color: rgb(255, 255, 255); /* Cor de fundo opaca */
+      transition: top 0.3s; /* Transição suave para a mudança de posição */
+      transition: background-color 0.3s, color 0.3s;
+      box-shadow: 2px 2px 5px rgba(2, 2, 2, 0.281);
+      
+    }
+    
+    nav.scrolled .center-section a::after,
+    nav.scrolled .right-section a::after {
+      background-color: rgb(0, 0, 0); /* Muda a cor da borda inferior para preto */
+    }
+    
+    nav.scrolled {
+      top: 0; /* Fixa o nav no topo quando rola para baixo */
+      background-color: white !important; /* Cor de fundo após rolar */
+      color: black !important; /* Cor do texto após rolar */
+    }
+    nav.scrolled a {
+      font-size: 25px;
+      color: black !important; /* Cor dos links após rolar */
+    }
+    
+    nav.scrolled .dropdown-menu a {
+      font-size: 18px; /* Ajuste o tamanho da fonte quando rolado */
+      color: gray; /* Ajuste a cor do texto quando rolado */
+    }
+    
+                                                                            /*HOVERS NAV*/
+    nav:hover {
+      background-color: #ffffff;
+    }
+    nav:hover a {
+      color: #000000;
+    }
+    
+    
+    
+    nav:hover .center-section .dropdown > a::after,
+    nav:hover .right-section a::after {
+      background-color: rgb(0, 0, 0); /* Muda a cor da borda inferior para preto */
+      
+    }
+    
+    nav:hover #logo {
+      content: url('../../../img/logopreta.png'); /* Substitui a imagem quando o mouse passa no <nav> */
+      transition: all 0.3s ease; /* Transição suave */
+    }
+    
+    
+    a {
+      text-decoration: none;
+      color: rgb(0, 0, 0);
+      font-size: 25px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+      position: relative;
+    }
+    
+    
+    .right-section a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -21px;
+      /* Ajuste essa distância para alterar o espaço abaixo do texto */
+      width: 0;
+      height: 3px;
+      background-color: rgb(0, 0, 0);
+      transition: width 0.3s ease;
+    }
+    
+    .center-section .dropdown>a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      /* Ajuste essa distância para alterar o espaço abaixo do texto */
+      width: 0;
+      height: 3px;
+      background-color: rgb(0, 0, 0);
+      transition: width 0.3s ease;
+    }
+    
+    
+    .center-section a:hover::after,
+    .right-section a:hover::after {
+      width: 100%;
+    }
+    
+    .center-section a,
+    .right-section a {
+      padding: 10px 15px;
+      border-radius: 5px;
+    }
+    
+    
+    .left-section,
+    .center-section,
+    .right-section {
+      display: flex;
+      align-items: center;
+    }
+    
+    .center-section ul {
+      display: flex;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .center-section li {
+      margin: 0 15px; /* Espaçamento horizontal entre os itens */
+      position: relative; /* Para os dropdowns */
+    
+    }
+    
+    
+    .center-section a {
+      display: flex; /* Isso permite que o link ocupe toda a área do item da lista */
+      align-items: center; /* Centraliza o texto verticalmente */
+      padding: 30px 15px; /* Ampla área de clique */
+      
+    }
+    
+    .right-section a {
+      margin-left: 10px;
+    }
+    
+    .group {
+      display: flex;
+      line-height: 28px;
+      align-items: center;
+      position: relative;
+      margin-right: -18px;
+    }
+    
+    .input {
+      font-family: "Montserrat", sans-serif;
+      width: 80%;
+      height: 35px;
+      padding-left: 2.5rem;
+      box-shadow: 0 0 0 1.5px #313131, 0 0 25px -17px #000;
+      border: 0;
+      border-radius: 12px;
+      background-color: #000000;
+      outline: none;
+      color: #ffffff;
+      transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+      cursor: text;
+      z-index: 0;
+    }
+    
+    .input::placeholder {
+      color: #bdbecb;
+    }
+    
+    .input:hover {
+      box-shadow: 0 0 0 2.5px #2f303d, 0px 0px 25px -15px #000;
+    }
+    
+    .input:active {
+      transform: scale(0.95);
+    }
+    
+    .input:focus {
+      box-shadow: 0 0 0 2.5px #2f303d;
+    }
+    
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      fill: #bdbecb;
+      width: 1rem;
+      height: 1rem;
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    .search-bar-container {
+      position: absolute;
+      top: 50%;
+      left: 87%;
+      transform: translate(-50%, -50%);
+    }
+    
+    
+    /* Estilo para os itens do dropdown */
+    .dropdown {
+      position: relative;
+    }
+    
+    .dropdown-menu {
+      display: none;
+      /* Inicialmente oculto */
+      position: absolute;
+      /* Posiciona o menu dropdown em relação ao item */
+      width: 100%;
+      /* Define a largura como 100% da largura do item dropdown */
+      left: 0;
+      /* Alinha o menu dropdown com a borda esquerda do item dropdown */
+      top: 97px;
+      /* Ajusta a posição abaixo do nav */
+      background-color: #ffffff;
+      /* Fundo do menu dropdown */
+      z-index: 1000;
+      /* Garante que o menu fique acima de outros elementos */
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+      /* Adiciona sombra para um efeito de destaque */
+    }
+    
+    /* Links dentro do dropdown */
+    .dropdown-menu a {
+      padding: 10px 15px;
+      font-size: 18px;
+      color: black;
+      display: block;
+      width: 100%;
+      text-decoration: none;
+      transition: background-color 0.3s ease, color 0.3s ease; /* Suave transição */
+    }
+    
+    /* Efeito hover ao passar o mouse sobre os links do dropdown */
+    .dropdown-menu a:hover {
+      background-color: rgba(0, 0, 0, 0.1); /* Cor de fundo ao passar o mouse */
+      color: #7a7a7a; /* Cor do texto ao passar o mouse */
+    }
+    
+    
+    .dropdown:hover .dropdown-menu {
+      display: block; /* Exibe o dropdown ao passar o mouse */
+    }
+    
+    .dropdown-items {
+      display: flex;
+      flex-direction: column;
+      /* Mantém os itens do dropdown empilhados */
+    }
 
 
 

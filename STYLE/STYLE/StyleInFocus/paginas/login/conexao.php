@@ -1,8 +1,8 @@
 <?php
 $localhost = "localhost";
-$usuario = "root";
-$senha = "prof@etec";
-$db = "bdStyle";
+$usuario = "u940333450_info2023g1";
+$senha = "M4C4C0-L0Ko";
+$db = "u940333450_bdstyleinfocus";
 
 // Conexão ao banco de dados
 $conexao = new mysqli($localhost, $usuario, $senha, $db);
