@@ -138,6 +138,18 @@ document.querySelector('.prev').addEventListener('click', prevSlide);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+                                             //Parte da Paginga de perfil 
 function mostrarConteudo(tipo) {
   // Esconde todos os painéis
   const panels = document.querySelectorAll('.right-panel');
@@ -149,7 +161,7 @@ function mostrarConteudo(tipo) {
     painelAtivo.classList.add('active');
   }
 }
-
+//Parte de trocar a foto de usuario da Pagina de Perfil
 const inputFoto = document.getElementById('inputFoto');
 const fotoPerfil = document.getElementById('fotoPerfil');
 
@@ -173,4 +185,72 @@ inputFoto.addEventListener('change', function() {
         reader.readAsDataURL(file); // Lê a imagem como URL
     }
 });
+
+
+
+
+
+
+
+function editarCampo(campo) {
+  var textElement = document.getElementById(campo + 'Text');
+  var valorAtual = textElement.textContent;
+
+  // Substitui o texto atual por um campo de input
+  textElement.innerHTML = `<input type='text' id='input-${campo}' value='${valorAtual}' />`;
+
+  // Adiciona o listener para o evento de tecla (Enter)
+  var inputElement = document.getElementById('input-' + campo);
+  inputElement.focus(); // Coloca o foco no input automaticamente
+  inputElement.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+          salvarCampo(campo);
+      }
+  });
+}
+
+function salvarCampo(campo) {
+  var inputElement = document.getElementById('input-' + campo);
+  var novoValor = inputElement.value.trim(); // Remove espaços em branco
+
+  // Verifica se o campo está vazio
+  if (novoValor === "") {
+      alert("O campo não pode ficar vazio. Por favor, insira um valor."); // Mensagem de erro
+      // Volta o campo de input para o valor anterior
+      var textElement = document.getElementById(campo + 'Text');
+      inputElement.value = textElement.textContent; // Restaura o valor anterior
+      return; // Interrompe a função
+  }
+
+  // Substitui o input pelo novo valor de texto
+  var textElement = document.getElementById(campo + 'Text');
+  textElement.textContent = novoValor;
+
+  // Atualiza o nome ou email dependendo do campo editado
+  if (campo === 'nome') {
+      atualizarNome(novoValor);
+  } else if (campo === 'email') {
+      atualizarEmail(novoValor);
+  }
+}
+function atualizarNome(novoNome) {
+  // Seleciona todos os elementos com a classe "nomeUsuario"
+  var nomes = document.querySelectorAll('.nomeUsuario');
+
+  // Atualiza o texto de cada elemento
+  nomes.forEach(function(nome) {
+      nome.textContent = novoNome;
+  });
+}
+
+function atualizarEmail(novoEmail) {
+  // Seleciona todos os elementos com a classe "emailUsuario"
+  var emails = document.querySelectorAll('.emailUsuario');
+
+  // Atualiza o texto de cada elemento
+  emails.forEach(function(email) {
+      email.textContent = novoEmail;
+  });
+}
+
 

@@ -114,8 +114,8 @@
         <div class="Foto-Email">
           <img id="fotoPerfilEmail" src="../../img/icone-de-perfil-de-avatar-padrao-imagem-de-usuario-de-midia-social-icone-de-avatar-cinza-silhueta-de-perfil-em-branco-ilustracao-vetorial_561158-3408.avif">
           <div class="email-user">
-            <h1>Gabriel Pablo</h1>
-            <h3>pablobocudo.lima@gmail.com</h3>
+            <h1 class="nomeUsuario">Gabriel Pablo</h1>
+            <h3 class="emailUsuario">pablobocudo.lima@gmail.com</h3>
           </div>
         </div>
         <div class="menu-item" onclick="mostrarConteudo('minhaConta')">Minha Conta</div>
@@ -136,6 +136,26 @@
               <img id="fotoPerfil" src="../../img/icone-de-perfil-de-avatar-padrao-imagem-de-usuario-de-midia-social-icone-de-avatar-cinza-silhueta-de-perfil-em-branco-ilustracao-vetorial_561158-3408.avif" class="imagem-hover">
               <input type="file" id="inputFoto" accept="image/*" style="display: none;">
               <div class="trocar-foto" onclick="document.getElementById('inputFoto').click();">Trocar Foto</div>
+            </div>
+            <div class="informacoes-conta-nome">
+              <h1 class="nomeUsuario">Gabriel Pablo</h1>
+            </div>
+          </div>
+          <div class="container-minhaConta">
+            <div class="minhaConta-section" data-section="nome">
+              <label for="nome">Nome</label>
+              <div class="input-line" id="nomeText">Gabriel Pablo</div>
+              <button class="editar-botao" onclick="editarCampo('nome')">Editar</button>
+            </div>
+            <div class="minhaConta-section" data-section="email">
+              <label for="email">Email</label>
+              <div class="input-line" id="emailText">pablobocudo.lima@gmail.com</div>
+              <button class="editar-botao" onclick="editarCampo('email')">Editar</button>
+            </div>
+            <div class="minhaConta-section" data-section="telefone">
+              <label for="telefone">Telefone</label>
+              <div class="input-line" id="telefoneText">(11) 98765-4321</div>
+              <button class="editar-botao" onclick="editarCampo('telefone')">Editar</button>
             </div>
           </div>
         </div>

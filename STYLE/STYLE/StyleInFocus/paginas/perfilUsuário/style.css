@@ -837,35 +837,48 @@ a {
   display: block;
 }
 
+
+
+
+
+
+
+
+
+                      /*CODIGO CSS DA PAGINA DO PERFIL USUARIO DA INFORMAÇOES DA CONTA*/
+
+
+
 .banner {
   position: relative;
   width: 100%;
   height: 170px; /* Altura do banner */
   background-color: black; /* Cor de fundo preta */
-  display: flex;
-  align-items: center; /* Centraliza o conteúdo verticalmente */
+  display: flex; /* Para alinhar a foto e o texto lado a lado */
+  align-items: center; /* Centraliza verticalmente o conteúdo */
+  padding-left: 65px; /* Espaçamento do conteúdo em relação à esquerda */
 }
 
 .foto-container {
   position: relative;
-  margin-left: 65px; /* Espaço da imagem para a esquerda */
-  margin-top: 100px; /* Sobe a imagem para que fique sobre o banner */
+  margin-right: 20px; /* Espaço entre a imagem e o texto */
+  margin-top: 100px;
 }
 
 .imagem-hover {
-  height: 200px;
-  width: 200px;
+  height: 210px;
+  width: 210px;
   object-fit: cover;
   transition: transform 0.3s;
   border-radius: 50%; /* Deixa a imagem circular */
-  border: 5px solid white;
+  border: 6px solid white;
   cursor: pointer;
 }
 
 .trocar-foto {
   position: absolute;
-  height: 195px;
-  width: 195px;
+  height: 200px;
+  width: 200px;
   top: 0;
   left: 0;
   right: 0;
@@ -883,6 +896,64 @@ a {
 
 .foto-container:hover .trocar-foto {
   opacity: 1;
+}
+
+.informacoes-conta-nome {
+  color: white; /* Cor do texto branca */
+}
+
+.informacoes-conta-nome h1 {
+  font-size: 44px;
+  margin: 0; /* Remove margem padrão */
+  margin-top: 30px;
+}
+
+.container-minhaConta {
+  display: flex;
+  flex-direction: column;
+  margin-top: 45px;
+  gap: 20px;
+  padding: 50px;
+}
+
+.minhaConta-section {
+  padding: 15px;
+  font-size: 26px;
+  position: relative;
+}
+
+.input-box {
+  font-size: 18px;
+  border-bottom: 2px solid #ccc; /* Apenas uma linha embaixo */
+  padding-bottom: 5px; /* Espaço entre o texto e a linha */
+}
+
+.editar-botao {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.editar-botao:hover {
+  background-color: #0056b3;
+}
+
+input[type="text"] {
+  font-size: 18px;
+  border: none;
+  border-bottom: 2px solid #007bff; /* Estilo da linha inferior quando em modo de edição */
+  padding: 5px;
+  outline: none;
+  width: 70%; /* Largura do input */
 }
 
 
