@@ -1,10 +1,8 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Freeman&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Freeman&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap");
 
 body {
   background-color: rgb(224, 224, 224);
@@ -19,11 +17,9 @@ body {
 
 /*LOGIN MT FODA*/
 .bemvindo {
-
   font-family: "Freeman", sans-serif;
   font-size: 30px;
   padding-bottom: 10px;
-
 }
 
 .bemvindo2 {
@@ -34,7 +30,6 @@ body {
 }
 
 .login-container2 {
-  
   justify-content: center;
   background-color: #ffffff;
   border-radius: 10px;
@@ -43,150 +38,157 @@ body {
   width: 400px;
   margin: auto;
   margin-top: 200px;
-  
-  }
-  
-  .flex {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-    .input-login {
-      width: 100%;
-      max-width: 220px;
-      height: 45px;
-      padding: 12px;
-      border-radius: 12px;
-      border: 2px solid rgb(15, 15, 15);
-      outline: none;
-      transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-      box-shadow: 0px 0px 20px -18px;
-      margin-bottom: 20px;
-    }
-    
-    .input-login:hover {
-      border: 3px solid rgb(39, 39, 39);
-      box-shadow: 0px 0px 20px -17px;
-    }
-    
-    .input-login:active {
-      transform: scale(0.95);
-    }
-    
-    .input-login:focus {
-      border: 3px solid rgb(0, 0, 0);
-    }
-    
-  .signup-link {
-    font-family: "Freeman", sans-serif;
-    color: #6B7280;
-    text-align: center;
-    padding-top: 20px;
-  }
-  
-  .signup-link a {
-    margin-left: -15px;
-    font-size: 17px;
-    color: #000;
-    text-decoration: underline;
-  }
-
-
-  .sif {
-    font-family: "Freeman", sans-serif;
-    color: #000000;
-    display: flex;
-    justify-content: center;
-    padding-top: 25px;
-    font-size: 90px;
-  }
-  .linkada{
-    font-family: "Freeman", sans-serif;
-    color: #000000;
-    display: flex;
-    justify-content: center;
-    padding-top: 20px;
-    font-size: 20px;
-  }
-  .linkzin {
-    font-family: "Freeman", sans-serif;
-    color: #3d3d3d;
-    text-align: center;
-    padding-top: 25px;
-    font-size: 20px;
-  }
-  
-  
-  .glow-on-hover {
-    font-family: "Freeman", sans-serif;
-    font-size: 20px;
-    width: 220px;
-    height: 50px;
-    border: none;
-    outline: none;
-    color: #fff;
-    background: #111;
-    cursor: pointer;
-    position: relative;
-    z-index: 0;
-    border-radius: 10px;
-  }
-  
-  .glow-on-hover:before {
-    
-    content: '';
-    background: linear-gradient(45deg, #003cff, #002fff, #0051ff, #0077ff, #00a2ff, #00aeff, #00ffff, #00ffff, #003cff);
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    background-size: 400%;
-    z-index: -1;
-    filter: blur(5px);
-    width: calc(100% + 4px);
-    height: calc(100% + 4px);
-    animation: glowing 20s linear infinite;
-    opacity: 0;
-    transition: opacity .3s ease-in-out;
-    border-radius: 10px;
-  }
-  
-  .glow-on-hover:active {
-    color: #ffffff
-  }
-  
-  .glow-on-hover:active:after {
-    background: transparent;
-  }
-  
-  .glow-on-hover:hover:before {
-    opacity: 1;
-  }
-  
-  .glow-on-hover:after {
-    z-index: -1;
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #111;
-    left: 0;
-    top: 0;
-    border-radius: 10px;
-  }
-  
-  @keyframes glowing {
-    0% {
-      background-position: 0 0;
-    }
-  
-    50% {
-      background-position: 400% 0;
-    }
-  
-    100% {
-      background-position: 0 0;
 }
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.input-login {
+  width: 100%;
+  max-width: 220px;
+  height: 45px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 2px solid rgb(15, 15, 15);
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  box-shadow: 0px 0px 20px -18px;
+  margin-bottom: 20px;
+}
+
+.input-login:hover {
+  border: 3px solid rgb(39, 39, 39);
+  box-shadow: 0px 0px 20px -17px;
+}
+
+.input-login:active {
+  transform: scale(0.95);
+}
+
+.input-login:focus {
+  border: 3px solid rgb(0, 0, 0);
+}
+
+.signup-link {
+  font-family: "Freeman", sans-serif;
+  color: #6b7280;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.signup-link a {
+  margin-left: -15px;
+  font-size: 17px;
+  color: #000;
+  text-decoration: underline;
+}
+
+.sif {
+  font-family: "Freeman", sans-serif;
+  color: #000000;
+  display: flex;
+  justify-content: center;
+  padding-top: 25px;
+  font-size: 90px;
+}
+.linkada {
+  font-family: "Freeman", sans-serif;
+  color: #000000;
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  font-size: 20px;
+}
+.linkzin {
+  font-family: "Freeman", sans-serif;
+  color: #3d3d3d;
+  text-align: center;
+  padding-top: 25px;
+  font-size: 20px;
+}
+
+.glow-on-hover {
+  font-family: "Freeman", sans-serif;
+  font-size: 20px;
+  width: 220px;
+  height: 50px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+}
+
+.glow-on-hover:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #003cff,
+    #002fff,
+    #0051ff,
+    #0077ff,
+    #00a2ff,
+    #00aeff,
+    #00ffff,
+    #00ffff,
+    #003cff
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+.glow-on-hover:active {
+  color: #ffffff;
+}
+
+.glow-on-hover:active:after {
+  background: transparent;
+}
+
+.glow-on-hover:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 400% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
 }
 
 .buttongo {
@@ -207,7 +209,7 @@ body {
   color: rgb(65, 63, 63);
   background-color: #fff;
   cursor: pointer;
-  transition: all .6s ease;
+  transition: all 0.6s ease;
 }
 
 .buttongo svg {
@@ -217,7 +219,6 @@ body {
 .buttongo:hover {
   transform: scale(1.02);
 }
-
 
 /*----------------------------------------------TELA DE CARREGAMENTO---------------------------------------------------*/
 
@@ -235,8 +236,6 @@ body {
   display: none;
   /* Inicialmente escondido */
 }
-
-
 
 /*--------------------------------------------------------SLIDE DO INDEX TEXT---------------------------------------------------*/
 
@@ -290,7 +289,6 @@ body {
 
 .slide-text-index h2,
 .slide-text-index p {
-  
   font-family: "Bebas Neue", sans-serif;
   font-size: 24px;
   margin: 0; /* Remove margens */
@@ -330,7 +328,7 @@ body {
   z-index: 9999px;
 }
 
-                                                              /* BARRA DE NAVEGAÇÃO DO SITE */
+/* BARRA DE NAVEGAÇÃO DO SITE */
 nav {
   height: 100px;
   font-family: "Bebas Neue", sans-serif;
@@ -347,8 +345,6 @@ nav {
   transition: top 0.3s; /* Transição suave para a mudança de posição */
   transition: background-color 0.3s, color 0.3s;
   box-shadow: 2px 2px 5px rgba(2, 2, 2, 0.281);
-  
-  
 }
 
 nav.scrolled .center-section a::after,
@@ -371,7 +367,7 @@ nav.scrolled .dropdown-menu a {
   color: gray; /* Ajuste a cor do texto quando rolado */
 }
 
-                                                                        /*HOVERS NAV*/
+/*HOVERS NAV*/
 nav:hover {
   background-color: #ffffff;
 }
@@ -379,19 +375,15 @@ nav:hover a {
   color: #000000;
 }
 
-
-
 nav:hover .center-section .dropdown > a::after,
 nav:hover .right-section a::after {
   background-color: rgb(0, 0, 0); /* Muda a cor da borda inferior para preto */
-  
 }
 
 nav:hover #logo {
-  content: url('../../img/logopreta.png'); /* Substitui a imagem quando o mouse passa no <nav> */
+  content: url("../../img/logopreta.png"); /* Substitui a imagem quando o mouse passa no <nav> */
   transition: all 0.3s ease; /* Transição suave */
 }
-
 
 a {
   text-decoration: none;
@@ -402,7 +394,6 @@ a {
   transition: background-color 0.3s, color 0.3s;
   position: relative;
 }
-
 
 .right-section a::after {
   content: "";
@@ -416,7 +407,7 @@ a {
   transition: width 0.3s ease;
 }
 
-.center-section .dropdown > a::after{
+.center-section .dropdown > a::after {
   content: "";
   position: absolute;
   left: 0;
@@ -428,8 +419,6 @@ a {
   transition: width 0.3s ease;
 }
 
-
-
 .center-section a:hover::after,
 .right-section a:hover::after {
   width: 100%;
@@ -440,7 +429,6 @@ a {
   padding: 10px 15px;
   border-radius: 5px;
 }
-
 
 .left-section,
 .center-section,
@@ -521,14 +509,12 @@ a {
   transform: translate(-50%, -50%);
 }
 
-
 /* Drop down Produtos */
 .dropdown {
   position: relative;
 }
 
 .dropdown-menu {
-
   display: none; /* Inicialmente oculto */
   position: absolute; /* Posiciona o menu dropdown em relação ao item */
   width: 100%; /* Define a largura como 100% da largura do item dropdown */
@@ -553,7 +539,6 @@ a {
   display: block;
 }
 
-
 /* banner Principal */
 .bannerzinho {
   display: grid;
@@ -573,12 +558,6 @@ a {
   height: 40px;
   margin: auto;
 }
-
-
-
-
-
-
 
 /* SIDEBAR DA BARRA DE NAVEGAÇÃO DO SITE */
 .sidebar {
@@ -617,7 +596,6 @@ a {
   font-size: 38px;
 }
 
-
 /* Overlay for the sidebar */
 .overlay {
   height: 100%;
@@ -630,10 +608,6 @@ a {
   transition: 0.5s;
   z-index: 1999;
 }
-
-
-
-
 
 /*FOOTER FIM DA PAGINA*/
 
@@ -662,7 +636,6 @@ a {
   position: relative;
   /* Permite usar posicionamento absoluto dentro dela */
 }
-
 
 .Footer-main {
   width: 90%;
@@ -719,7 +692,7 @@ a {
 }
 
 .sub-coluna h3 {
-  margin-bottom: 15px
+  margin-bottom: 15px;
 }
 
 .sub-coluna:last-child {
@@ -784,11 +757,7 @@ a {
   /* Adicionando a linha */
 }
 
-
-
-
-
-                                                                                /*Parte da conta do usuario*/
+/*Parte da conta do usuario*/
 
 .container {
   margin-top: 120px;
@@ -797,206 +766,195 @@ a {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: auto;
   font-family: "Bebas Neue", sans-serif;
 }
-
 
 .box-perfil {
-  width: 80%; /* Defina a largura desejada */
-  height: auto; /* Defina a altura desejada */
-  display: flex;
-  border-radius: 20px; /* Valor ajustável para controlar o arredondamento */
-  overflow: hidden; /* Necessário para que as bordas arredondadas sejam visíveis */
-  margin-top: 30px;
-}
-
-.perfil {
-  background-color: #ffffff1f;
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-.perfil-com-foto {
-  background-color: #000000b0;
-  width: 100%;
-  height: 220px;
-  display: flex;
-}
-
-.perfil-com-foto-e-email {
-  background-color: rgba(255, 255, 255, 0);
   width: 70%;
-  height: 100%;
+  height: 800px;
   display: flex;
-  color: rgb(255, 255, 255);
-}   
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 30px;
+  border: 1px solid #ccc; /* Para visualização */
+}
 
-.foto-usuario img{
+.left-panel {
+  width: 30%;
+  background-color: #f4f4f4;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  border-right: 1px solid #ccc;
+}
+
+.Foto-Email {
+  display: flex;
+}
+
+.Foto-Email img {
+  margin-right: 25px;
+}
+
+.email-user {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.left-panel img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.left-panel .menu-item {
+  margin-top: 20px;
+  width: 100%;
+  text-align: center;
+  font-size: 26px;
+  padding: 10px;
+  background-color: #ddd;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+
+.left-panel .menu-item:hover {
+  background-color: #ccc;
+}
+
+.right-panel {
+  width: 70%;
+  background-color: #ffffff;
+  display: none; /* Começa oculta */
+}
+
+.right-panel.active {
+  display: block;
+}
+
+
+
+
+
+
+
+
+
+                      /*CODIGO CSS DA PAGINA DO PERFIL USUARIO DA INFORMAÇOES DA CONTA*/
+
+
+
+.banner {
+  position: relative;
+  width: 100%;
+  height: 170px; /* Altura do banner */
+  background-color: black; /* Cor de fundo preta */
+  display: flex; /* Para alinhar a foto e o texto lado a lado */
+  align-items: center; /* Centraliza verticalmente o conteúdo */
+  padding-left: 65px; /* Espaçamento do conteúdo em relação à esquerda */
+}
+
+.foto-container {
+  position: relative;
+  margin-right: 20px; /* Espaço entre a imagem e o texto */
+  margin-top: 100px;
+}
+
+.imagem-hover {
+  height: 210px;
+  width: 210px;
+  object-fit: cover;
+  transition: transform 0.3s;
+  border-radius: 50%; /* Deixa a imagem circular */
+  border: 6px solid white;
+  cursor: pointer;
+}
+
+.trocar-foto {
+  position: absolute;
   height: 200px;
   width: 200px;
-  margin-left: 80px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border-radius: 50%; 
-}
-
-.dados-principais{
-  background-color: rgba(255, 255, 255, 0);
-  width: 100%;
-  height: 100%;
-  margin-left: 40px;
-  display: flex; /* Ativa o Flexbox */
-  flex-direction: column; /* Alinha os itens verticalmente */
-  justify-content: center; /* Centraliza os itens verticalmente */
-  padding-left: 50px; /* Adiciona espaçamento interno à esquerda */
-}
-.dados-principais h1 {
-  font-size: 50px;
-}
-.dados-principais h2 {
-  font-size: 25px;
-}
-
-.botao-editar-perfil {
-  display: flex; /* Ativa o Flexbox */
-  justify-content: center; /* Centraliza o botão horizontalmente */
-  align-items: center; /* Centraliza o botão verticalmente */
-  height: 200px; /* Ajuste conforme necessário para a altura da div */
-  padding: 30px;
-  margin-left: 150px;
-}
-
-.botao-editar-perfil button {
-  background-color: rgba(216, 216, 216, 0.959);
-  color: rgba(0, 0, 0, 0.699);
-  height: 50%;
-  width: 150px;
-  font-size: 25PX;
-  border: none;
-  border-radius: 5px; 
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.315);
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Bebas Neue", sans-serif;
+  opacity: 0;
+  transition: opacity 0.6s;
+  cursor: pointer;
 }
 
-.botao-editar-perfil svg {
-  margin-right: 5px;
+.foto-container:hover .trocar-foto {
+  opacity: 1;
 }
 
-.box-informaçoes {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  height: 100%;
-  padding: 50px;
+.informacoes-conta-nome {
+  color: white; /* Cor do texto branca */
 }
 
-.linha-caixas {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
+.informacoes-conta-nome h1 {
+  font-size: 44px;
+  margin: 0; /* Remove margem padrão */
   margin-top: 30px;
-  margin-bottom: 60px; 
 }
 
-.caixa {
-  background-color: #666666a9;
-  width: 28%; /* Ajusta a largura de cada caixa */
-  height: 120px; /* Altura das caixas */
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 20px;
-  color: rgba(0, 0, 0, 0.856);
-}
-
-.caixa svg {
-  margin-right: 10px;
-
-}
-
-.caixa h1 {
-  margin-top: 10px;
-}
-
-
-.pedidos-historico {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: auto;
-  width: 100%;
-}
-
-.historico-ultima-compra {
-  background-color: #ffffff86;
+.container-minhaConta {
   display: flex;
   flex-direction: column;
+  margin-top: 45px;
+  gap: 20px;
   padding: 50px;
-  width: 100%;  
-  height: auto;
-  
 }
 
-.historico-ultima-compra-detalhes {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: auto;
+.minhaConta-section {
+  padding: 15px;
+  font-size: 26px;
   position: relative;
 }
 
-.historico-ultima-compra-detalhes h1 {
-  padding: 0px;
-  font-size: 28px;
-}
-
-.historico-ultima-compra-detalhes h3 {
-  margin-top: 5px;  
-  margin-left: 10px;
-  font-size: 20px;
-}
-
-.botoes-pedido {
-  right: 0;
-  margin-right: 60px;
-  display: flex;
-  gap: 20px;
-  position: absolute;
-}
-
-.botoes-pedido button {
-  font-family: "Bebas Neue", sans-serif;
+.input-box {
   font-size: 18px;
-  background-color: #000;
+  border-bottom: 2px solid #ccc; /* Apenas uma linha embaixo */
+  padding-bottom: 5px; /* Espaço entre o texto e a linha */
+}
+
+.editar-botao {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 3px;
-  height: 30px;
-  width: 140px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.produto-comprado {
-  margin-top: 10px;
-  display: flex;
-  height: auto;
+.editar-botao:hover {
+  background-color: #0056b3;
 }
 
-.produto-comprado img {
-  height: 160px;
+input[type="text"] {
+  font-size: 18px;
+  border: none;
+  border-bottom: 2px solid #007bff; /* Estilo da linha inferior quando em modo de edição */
+  padding: 5px;
+  outline: none;
+  width: 70%; /* Largura do input */
 }
 
-.produto-descriçao {
-  flex-direction: column;
-  padding: 15px;
-}
 
-.produto-descriçao h1 {
-  font-size: 25px;
-}
 
