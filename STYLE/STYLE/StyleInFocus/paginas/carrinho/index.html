@@ -1,38 +1,141 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loja de Roupas - Style in Focus</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Carrinho de Compras</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Loja Style in Focus</h1>
 
-    <div class="product-container">
-        <div class="product">
-            <h3>Camiseta Preta</h3>
-            <p>Preço: R$50,00</p>
-            <button class="add-to-cart" data-name="Camiseta Preta" data-price="50">Adicionar ao Carrinho</button>
+    <div class="container">
+        <h1>Carrinho de Compras</h1>
+
+        <!-- Lista de Itens no Carrinho -->
+        <div id="cart-items" class="cart-items">
+            <!-- Itens serão carregados aqui dinamicamente -->
         </div>
-        <div class="product">
-            <h3>Camiseta Branca</h3>
-            <p>Preço: R$45,00</p>
-            <button class="add-to-cart" data-name="Camiseta Branca" data-price="45">Adicionar ao Carrinho</button>
+
+        <!-- Total e Frete -->
+        <div id="cart-summary" class="cart-summary">
+            <div>
+                <span>Total:</span>
+                <span id="total-price">R$ 0,00</span>
+            </div>
+            <div>
+                <span>Frete:</span>
+                <span id="frete-price">R$ 0,00</span>
+            </div>
+            <div>
+                <span>Total Final:</span>
+                <span id="final-price">R$ 0,00</span>
+            </div>
         </div>
-        <div class="product">
-            <h3>Calça Jeans</h3>
-            <p>Preço: R$100,00</p>
-            <button class="add-to-cart" data-name="Calça Jeans" data-price="100">Adicionar ao Carrinho</button>
+
+        <!-- Botão de Finalizar Compra -->
+        <button id="checkout-btn" class="checkout-btn" disabled>Finalizar Compra</button>
+    </div>
+
+    <!-- Modal de Confirmação de Remoção -->
+    <div id="remove-modal" class="modal">
+        <div class="modal-content">
+            <p>Tem certeza que deseja remover este item?</p>
+            <button id="confirm-remove">Sim</button>
+            <button id="cancel-remove">Cancelar</button>
         </div>
     </div>
 
-    <h2>Carrinho</h2>
-    <div id="cart-container">
-        <p>Carrinho está vazio</p>
-    </div>
-    <h3>Total: R$<span id="total">0</span></h3>
+    <script>
+        // Função para carregar os itens do carrinho
+        function carregarCarrinho() {
+            const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+            const cartItemsContainer = document.getElementById('cart-items');
+            let total = 0;
 
-    <script src="script.js"></script>
+            // Limpa o carrinho atual
+            cartItemsContainer.innerHTML = '';
+
+            // Cria os elementos para cada produto no carrinho
+            carrinho.forEach((item, index) => {
+                const itemElement = document.createElement('div');
+                itemElement.classList.add('cart-item');
+                itemElement.innerHTML = `
+                    <img src="${item.imagem}" alt="${item.nome}">
+                    <div class="item-info">
+                        <h3>${item.nome}</h3>
+                        <p>R$ ${item.preco.toFixed(2)}</p>
+                        <div class="quantity-controls">
+                            <button onclick="alterarQuantidade(${index}, -1)">-</button>
+                            <span id="quantidade-${index}">${item.quantidade}</span>
+                            <button onclick="alterarQuantidade(${index}, 1)">+</button>
+                        </div>
+                    </div>
+                    <button onclick="removerItem(${index})">Remover</button>
+                `;
+                cartItemsContainer.appendChild(itemElement);
+                total += item.preco * item.quantidade;
+            });
+
+            // Calcular e exibir o total e frete
+            const frete = total > 200 ? 0 : 15; // Frete grátis acima de R$ 200
+            const totalFinal = total + frete;
+
+            document.getElementById('total-price').innerText = `R$ ${total.toFixed(2)}`;
+            document.getElementById('frete-price').innerText = `R$ ${frete.toFixed(2)}`;
+            document.getElementById('final-price').innerText = `R$ ${totalFinal.toFixed(2)}`;
+
+            // Habilitar ou desabilitar o botão de checkout
+            document.getElementById('checkout-btn').disabled = carrinho.length === 0;
+        }
+
+        // Função para alterar a quantidade do item no carrinho
+        function alterarQuantidade(index, delta) {
+            const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+            const item = carrinho[index];
+
+            // Atualiza a quantidade
+            item.quantidade += delta;
+
+            // Evita quantidade negativa
+            if (item.quantidade < 1) {
+                item.quantidade = 1;
+            }
+
+            // Atualiza o carrinho no localStorage
+            localStorage.setItem('carrinho', JSON.stringify(carrinho));
+
+            // Atualiza a quantidade na tela
+            document.getElementById(`quantidade-${index}`).innerText = item.quantidade;
+
+            // Recalcula o carrinho
+            carregarCarrinho();
+        }
+
+        // Função para remover item do carrinho
+        function removerItem(index) {
+            const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+            carrinho.splice(index, 1); // Remove o item pelo índice
+            localStorage.setItem('carrinho', JSON.stringify(carrinho)); // Atualiza o carrinho no localStorage
+            carregarCarrinho(); // Recarrega o carrinho
+        }
+
+        // Inicializa o carrinho ao carregar a página
+        window.onload = carregarCarrinho;
+
+        // Modal de confirmação de remoção (opcional)
+        let itemToRemove = null;
+
+        document.getElementById('remove-modal').style.display = 'none';
+        document.getElementById('confirm-remove').onclick = () => {
+            if (itemToRemove !== null) {
+                removerItem(itemToRemove);
+            }
+            document.getElementById('remove-modal').style.display = 'none';
+        };
+        document.getElementById('cancel-remove').onclick = () => {
+            document.getElementById('remove-modal').style.display = 'none';
+        };
+    </script>
+
 </body>
 </html>
