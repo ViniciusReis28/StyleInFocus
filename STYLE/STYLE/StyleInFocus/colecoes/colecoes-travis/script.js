@@ -252,6 +252,10 @@ document.getElementById("profile-icon").onclick = function () {
     });
   });
   
+
+                                                    //CARRINHO
+                                              
+
   function adicionarAoCarrinho(nome, preco, imagem) {
     // Cria um objeto para o produto, com quantidade inicial 1
     const produto = {
@@ -279,5 +283,4 @@ document.getElementById("profile-icon").onclick = function () {
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
 
     // Redireciona para a página do carrinho
-    window.location.href = "../../paginas/carrinho/index.html"; // Modifique para o caminho correto
 }

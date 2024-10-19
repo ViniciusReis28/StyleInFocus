@@ -85,25 +85,7 @@ window.addEventListener('scroll', function() {
   }
 });
 
-window.addEventListener('scroll', function() {
-  const nav = document.querySelector('nav');
-  if (window.scrollY > 50) { // Ajuste o valor conforme necessário
-    nav.classList.add('scrolled'); // Adiciona a classe quando rola para baixo
-  } else {
-    nav.classList.remove('scrolled'); // Remove a classe quando rola para cima
-  }
-});
-
-window.addEventListener('scroll', function() {
-  const nav = document.querySelector('nav');
-  if (window.scrollY > 50) { // Ajuste o valor conforme necessário
-    nav.classList.add('scrolled'); // Adiciona a classe quando rola para baixo
-  } else {
-    nav.classList.remove('scrolled'); // Remove a classe quando rola para cima
-  }
-});
-
-
+  
                                                                                 //SLIDE TEXT
                                                                                 
 document.addEventListener('DOMContentLoaded', function() {
