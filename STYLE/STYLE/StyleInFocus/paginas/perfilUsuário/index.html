@@ -141,22 +141,26 @@
               <h1 class="nomeUsuario">Gabriel Pablo</h1>
             </div>
           </div>
-          <div class="container-minhaConta">
-            <div class="minhaConta-section" data-section="nome">
-              <label for="nome">Nome</label>
-              <div class="input-line" id="nomeText">Gabriel Pablo</div>
-              <button class="editar-botao" onclick="editarCampo('nome')">Editar</button>
+          <div class="minhaConta-section" data-section="nome">
+            <label for="nome">Nome</label>
+            <div class="input-line" id="nomeText">
+              <input type="text" id="nome" value="Gabriel Pablo" disabled>
             </div>
-            <div class="minhaConta-section" data-section="email">
-              <label for="email">Email</label>
-              <div class="input-line" id="emailText">pablobocudo.lima@gmail.com</div>
-              <button class="editar-botao" onclick="editarCampo('email')">Editar</button>
+            <button class="editar-botao" onclick="editarCampo('nome')">Editar</button>
+          </div>
+          <div class="minhaConta-section" data-section="email">
+            <label for="email">Email</label>
+            <div class="input-line" id="emailText">
+              <input type="text" id="email" value="pablobocudo.lima@gmail.com" disabled>
             </div>
-            <div class="minhaConta-section" data-section="telefone">
-              <label for="telefone">Telefone</label>
-              <div class="input-line" id="telefoneText">(11) 98765-4321</div>
-              <button class="editar-botao" onclick="editarCampo('telefone')">Editar</button>
+            <button class="editar-botao" onclick="editarCampo('email')">Editar</button>
+          </div>
+          <div class="minhaConta-section" data-section="telefone">
+            <label for="telefone">Telefone</label>
+            <div class="input-line" id="telefoneText">
+              <input type="text" id="telefone" value="(11) 98765-4321" disabled>
             </div>
+            <button class="editar-botao" onclick="editarCampo('telefone')">Editar</button>
           </div>
         </div>
 
