@@ -36,14 +36,16 @@ body {
     background-color: #fff;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    margin-top: 160px;
-    margin-bottom: 120px;
+    margin-top: 50px;
+    margin-bottom: 70px;
     border-radius: 9px ;
 }
 
 h1 {
     text-align: center;
-    margin-bottom: 20px;
+    margin-top: -100px;
+    margin-bottom: 60px;
+    font-size:55px;
 }
 
 .cart-items {
@@ -214,14 +216,14 @@ justify-content: space-between;
 align-items: center;
 padding: 0 20px;
 position: fixed; /* Torna a navbar fixa */
-top: 40px; /* Deslocamento inicial */
+top: 0px; /* Deslocamento inicial */
 left: 0; /* Alinha a navbar na esquerda da página */
 width: 100%; /* Faz a navbar ocupar toda a largura da página */
 z-index: 1000; /* Garante que a navbar fique acima de outros elementos */
 background-color: #050505; /* Cor de fundo opaca */
 transition: top 0.3s; /* Transição suave para a mudança de posição */
 transition: background-color 0.3s, color 0.3s;
-box-shadow: 2px 2px 5px rgba(2, 2, 2, 0.281);
+box-shadow: 2px 2px 5px rgba(2, 2, 2, 0.596);
 
 }
 
@@ -246,23 +248,17 @@ color: gray; /* Ajuste a cor do texto quando rolado */
 }
 
           /*HOVERS NAV*/
-nav:hover {
-background-color: #ffffff;
-}
-nav:hover a {
-color: #000000;
-}
 
 
 
 nav:hover .center-section .dropdown > a::after,
 nav:hover .right-section a::after {
-background-color: rgb(0, 0, 0); /* Muda a cor da borda inferior para preto */
+background-color: rgb(255, 255, 255); /* Muda a cor da borda inferior para preto */
 
 }
 
 nav:hover #logo {
-content: url('../../img/logopreta.png'); /* Substitui a imagem quando o mouse passa no <nav> */
+content: url('../../img/logobranca.png'); /* Substitui a imagem quando o mouse passa no <nav> */
 transition: all 0.3s ease; /* Transição suave */
 }
 
@@ -286,7 +282,7 @@ bottom: -21px;
 /* Ajuste essa distância para alterar o espaço abaixo do texto */
 width: 0;
 height: 3px;
-background-color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);
 transition: width 0.3s ease;
 }
 
@@ -312,6 +308,7 @@ width: 100%;
 .right-section a {
 padding: 10px 15px;
 border-radius: 5px;
+
 }
 
 
@@ -320,6 +317,7 @@ border-radius: 5px;
 .right-section {
 display: flex;
 align-items: center;
+
 }
 
 .center-section ul {
@@ -345,6 +343,7 @@ padding: 30px 15px; /* Ampla área de clique */
 
 .right-section a {
 margin-left: 10px;
+
 }
 
 
@@ -528,7 +527,8 @@ flex-direction: column;
 }
 
 .footer-certificates img {
-    max-height: 50px;
+    max-height: 5000px;
+    width: 400px;
 }
 
 .footer-links {
@@ -552,4 +552,57 @@ flex-direction: column;
 
 .footer-info strong {
     color: #00aaff; /* cor do logo da Magalu */
+}
+
+.progress-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 800px; /* Largura máxima da barra de progresso */
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+
+
+
+.step {
+  display: flex;
+  align-items: center;
+  position: relative;
+  text-align: center;
+  margin-top: 130px;
+  
+}
+
+
+
+.step:first-child::before {
+  display: none; /* Remove a linha antes da primeira etapa */
+}
+
+.circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #d3d3d3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: white;
+}
+
+.step.completed .circle {
+  background-color: #000; /* Cor de destaque para a etapa atual */
+}
+
+.step.completed span {
+  font-weight: bold;
+}
+
+.step span {
+  margin-left: 10px;
+  font-size: 14px;
+  color: #888;
 }
