@@ -142,25 +142,27 @@
             </div>
           </div>
           <div class="minhaConta-section" data-section="nome">
-            <label for="nome">Nome</label>
-            <div class="input-line" id="nomeText">
-              <input type="text" id="nome" value="Gabriel Pablo" disabled>
-            </div>
-            <button class="editar-botao" onclick="editarCampo('nome')">Editar</button>
-          </div>
-          <div class="minhaConta-section" data-section="email">
-            <label for="email">Email</label>
-            <div class="input-line" id="emailText">
-              <input type="text" id="email" value="pablobocudo.lima@gmail.com" disabled>
-            </div>
-            <button class="editar-botao" onclick="editarCampo('email')">Editar</button>
-          </div>
-          <div class="minhaConta-section" data-section="telefone">
-            <label for="telefone">Telefone</label>
-            <div class="input-line" id="telefoneText">
-              <input type="text" id="telefone" value="(11) 98765-4321" disabled>
-            </div>
-            <button class="editar-botao" onclick="editarCampo('telefone')">Editar</button>
+            <form id="editarPerfil" method="POST" action="atualizar_perfil.php">
+              <label for="nome">Nome</label>
+              <div class="input-line" id="nomeText">
+                <input type="text" id="nome" name="nome" value="Gabriel Pablo" disabled>
+              </div>
+              <button type="button" class="editar-botao" onclick="editarCampo('nome')">Editar</button>
+          
+              <label for="email">Email</label>
+              <div class="input-line" id="emailText">
+                <input type="text" id="email" name="email" value="pablobocudo.lima@gmail.com" disabled>
+              </div>
+              <button type="button" class="editar-botao" onclick="editarCampo('email')">Editar</button>
+          
+              <label for="telefone">Telefone</label>
+              <div class="input-line" id="telefoneText">
+                <input type="text" id="telefone" name="telefone" value="(11) 98765-4321" disabled>
+              </div>
+              <button type="button" class="editar-botao" onclick="editarCampo('telefone')">Editar</button>
+          
+              <button type="submit" class="salvar-botao">Salvar Alterações</button>
+            </form>
           </div>
         </div>
 

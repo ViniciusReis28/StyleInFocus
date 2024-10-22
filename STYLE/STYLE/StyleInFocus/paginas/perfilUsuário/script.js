@@ -254,3 +254,7 @@ function atualizarEmail(novoEmail) {
 }
 
 
+function editarCampo(campo) {
+  document.getElementById(campo).disabled = false;
+  document.getElementById(campo).focus();
+}
