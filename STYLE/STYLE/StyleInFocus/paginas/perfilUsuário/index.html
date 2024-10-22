@@ -2,41 +2,41 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil Do Usuario</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="../../img/logopreta.png" type="image">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil Do Usuario</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="../../img/logopreta.png" type="image">
 </head>
 
 <body>
-    <div id="preloader">
-        <img
-          src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWp3dGsxa2VwdHYydzFjaGZieG9zZXVtMWpyejZyY2cwOHM3cDNreCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l3nWhI38IWDofyDrW/giphy.webp"
-          alt="Loading...">
+  <div id="preloader">
+    <img
+      src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWp3dGsxa2VwdHYydzFjaGZieG9zZXVtMWpyejZyY2cwOHM3cDNreCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l3nWhI38IWDofyDrW/giphy.webp"
+      alt="Loading...">
+  </div>
+  <div class="overlay"></div>
+  <div class="slider-container-text">
+    <button class="prev" onclick="prevSlide()">&#10094;</button>
+    <div class="slides-text">
+      <div class="slide-text-index" id="slide1">
+        <h2>NOVAS COLEÇÕES!</h2>
       </div>
-      <div class="overlay"></div>
-      <div class="slider-container-text">
-        <button class="prev" onclick="prevSlide()">&#10094;</button>
-        <div class="slides-text">
-          <div class="slide-text-index" id="slide1">
-            <h2>NOVAS COLEÇÕES!</h2>
-          </div>
-          <div class="slide-text-index" id="slide2">
-            <h2>PARCERIA COM TRAVIS!</h2>
-          </div>
-        </div>
-        <button class="next" onclick="nextSlide()">&#10095;</button>
+      <div class="slide-text-index" id="slide2">
+        <h2>PARCERIA COM TRAVIS!</h2>
       </div>
     </div>
     <button class="next" onclick="nextSlide()">&#10095;</button>
   </div>
- 
+  </div>
+  <button class="next" onclick="nextSlide()">&#10095;</button>
+  </div>
+
 
   <nav>
     <div class="left-section">
       <a href="../index/index.html">
-       <img  src="../../img/logopreta.png" id="logo" style="height: 90px; width: 90px; margin: 5px; margin-top: 10px;">
+        <img src="../../img/logopreta.png" id="logo" style="height: 90px; width: 90px; margin: 5px; margin-top: 10px;">
       </a>
     </div>
     <div class="center-section">
@@ -74,7 +74,7 @@
           </div>
         </li>
         <li class="dropdown">
-           <a href="../../paginas/Personalizar/Personalizar.html">Personalização</a>
+          <a href="../../paginas/Personalizar/Personalizar.html">Personalização</a>
         </li>
       </ul>
     </div>
@@ -107,78 +107,88 @@
         </svg></a>
     </div>
   </nav>
- 
+
   <div class="container">
     <div class="box-perfil">
       <div class="left-panel">
         <div class="Foto-Email">
-          <img id="fotoPerfilEmail" src="../../img/icone-de-perfil-de-avatar-padrao-imagem-de-usuario-de-midia-social-icone-de-avatar-cinza-silhueta-de-perfil-em-branco-ilustracao-vetorial_561158-3408.avif">
+          <img id="fotoPerfilEmail"
+            src="../../img/icone-de-perfil-de-avatar-padrao-imagem-de-usuario-de-midia-social-icone-de-avatar-cinza-silhueta-de-perfil-em-branco-ilustracao-vetorial_561158-3408.avif">
           <div class="email-user">
             <h1 class="nomeUsuario">Gabriel Pablo</h1>
             <h3 class="emailUsuario">pablobocudo.lima@gmail.com</h3>
           </div>
         </div>
         <div class="menu-item" onclick="mostrarConteudo('minhaConta')">Minha Conta</div>
-        <div class="menu-item" onclick="mostrarConteudo('pedidos')">Pedidos</div> 
+        <div class="menu-item" onclick="mostrarConteudo('pedidos')">Pedidos</div>
         <div class="menu-item" onclick="mostrarConteudo('privacidade')">Configurações de privacidade</div>
         <div class="menu-item" onclick="mostrarConteudo('suporte')">Suporte e ajuda</div>
-        <div class="menu-item" onclick="mostrarConteudo('pagamentos')">Métodos de pagamento</div> 
+        <div class="menu-item" onclick="mostrarConteudo('pagamentos')">Métodos de pagamento</div>
       </div>
-  
+
       <div id="conteudo-pedidos" class="right-panel">
         <h2>Pedidos</h2>
         <p>Aqui você pode ver seus pedidos.</p>
       </div>
-        
-        <div id="conteudo-minhaConta" class="right-panel active">
-          <div class="banner">
-            <div class="foto-container">
-              <img id="fotoPerfil" src="../../img/icone-de-perfil-de-avatar-padrao-imagem-de-usuario-de-midia-social-icone-de-avatar-cinza-silhueta-de-perfil-em-branco-ilustracao-vetorial_561158-3408.avif" class="imagem-hover">
-              <input type="file" id="inputFoto" accept="image/*" style="display: none;">
-              <div class="trocar-foto" onclick="document.getElementById('inputFoto').click();">Trocar Foto</div>
-            </div>
-            <div class="informacoes-conta-nome">
-              <h1 class="nomeUsuario">Gabriel Pablo</h1>
-            </div>
+
+      <div id="conteudo-minhaConta" class="right-panel active">
+        <div class="banner">
+          <div class="foto-container">
+            <img id="fotoPerfil"
+              src="../../img/icone-de-perfil-de-avatar-padrao-imagem-de-usuario-de-midia-social-icone-de-avatar-cinza-silhueta-de-perfil-em-branco-ilustracao-vetorial_561158-3408.avif"
+              class="imagem-hover">
+            <input type="file" id="inputFoto" accept="image/*" style="display: none;">
+            <div class="trocar-foto" onclick="document.getElementById('inputFoto').click();">Trocar Foto</div>
           </div>
-          <div class="minhaConta-section" data-section="nome">
-            <form id="editarPerfil" method="POST" action="atualizar_perfil.php">
-              <label for="nome">Nome</label>
-              <div class="input-line" id="nomeText">
-                <input type="text" id="nome" name="nome" value="Gabriel Pablo" disabled>
-              </div>
-              <button type="button" class="editar-botao" onclick="editarCampo('nome')">Editar</button>
-          
-              <label for="email">Email</label>
-              <div class="input-line" id="emailText">
-                <input type="text" id="email" name="email" value="pablobocudo.lima@gmail.com" disabled>
-              </div>
-              <button type="button" class="editar-botao" onclick="editarCampo('email')">Editar</button>
-          
-              <label for="telefone">Telefone</label>
-              <div class="input-line" id="telefoneText">
-                <input type="text" id="telefone" name="telefone" value="(11) 98765-4321" disabled>
-              </div>
-              <button type="button" class="editar-botao" onclick="editarCampo('telefone')">Editar</button>
-          
-              <button type="submit" class="salvar-botao">Salvar Alterações</button>
-            </form>
+          <div class="informacoes-conta-nome">
+            <h1 class="nomeUsuario">Gabriel Pablo</h1>
           </div>
         </div>
+        <div class="minhaConta-section" data-section="nome">
+          <form id="editarPerfil" method="POST" action="atualizar_perfil.php">
 
-      
-      
-      <div id="conteudo-privacidade" class="right-panel"> 
+            <label for="nome">Nome</label>
+            <div class="input-line" id="nomeText">
+              <input type="text" id="nome" name="username" value="Gabriel Pablo"> 
+            </div>
+
+            <label for="email">Email</label>
+            <div class="input-line" id="emailText">
+              <input type="text" id="email" name="email" value="pablobocudo.lima@gmail.com">
+            </div>
+
+            <label for="senha">Senha</label>
+            <div class="input-line" id="senhaText">
+              <input type="password" id="senha" name="password" value=""> 
+            </div>
+
+            <label for="senhaAtual">Senha Atual</label>
+            <div class="input-line" id="senhaAtualText">
+              <input type="password" id="senhaAtual" name="senhaAtual" placeholder="Digite sua senha atual" required>
+            </div>
+
+            <div id="password-error" style="color: #ff0000; font-size: 12px; font-family: Freeman, sans-serif;"></div>
+
+
+            <button type="submit" class="salvar-botao">Salvar Alterações</button>
+          </form>
+        </div>
+
+      </div>
+
+
+
+      <div id="conteudo-privacidade" class="right-panel">
         <h2>Configurações de privacidade</h2>
         <p>Aqui estão suas informações sobre protocolos de segurança.</p>
       </div>
 
-      <div id="conteudo-suporte" class="right-panel"> 
+      <div id="conteudo-suporte" class="right-panel">
         <h2>Suporte e ajuda</h2>
         <p>Aqui estão suas informações sobre protocolos de segurança.</p>
       </div>
 
-      <div id="conteudo-pagamentos" class="right-panel"> 
+      <div id="conteudo-pagamentos" class="right-panel">
         <h2>Métodos de pagamento</h2>
         <p>Aqui estão suas informações sobre protocolos de segurança.</p>
       </div>
@@ -226,18 +236,26 @@
           </div>
           <div class="sub-coluna">
             <h3>Formas de pagamento</h3>
-            <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-credit-card-fill" viewBox="0 0 16 16">
-              <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1"/>
-            </svg></a>
-            <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-credit-card-2-front-fill" viewBox="0 0 16 16">
-              <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm0 3a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z"/>
-            </svg></a>
-            <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-paypal" viewBox="0 0 16 16">
-              <path d="M14.06 3.713c.12-1.071-.093-1.832-.702-2.526C12.628.356 11.312 0 9.626 0H4.734a.7.7 0 0 0-.691.59L2.005 13.509a.42.42 0 0 0 .415.486h2.756l-.202 1.28a.628.628 0 0 0 .62.726H8.14c.429 0 .793-.31.862-.731l.025-.13.48-3.043.03-.164.001-.007a.35.35 0 0 1 .348-.297h.38c1.266 0 2.425-.256 3.345-.91q.57-.403.993-1.005a4.94 4.94 0 0 0 .88-2.195c.242-1.246.13-2.356-.57-3.154a2.7 2.7 0 0 0-.76-.59l-.094-.061ZM6.543 8.82a.7.7 0 0 1 .321-.079H8.3c2.82 0 5.027-1.144 5.672-4.456l.003-.016q.326.186.548.438c.546.623.679 1.535.45 2.71-.272 1.397-.866 2.307-1.663 2.874-.802.57-1.842.815-3.043.815h-.38a.87.87 0 0 0-.863.734l-.03.164-.48 3.043-.024.13-.001.004a.35.35 0 0 1-.348.296H5.595a.106.106 0 0 1-.105-.123l.208-1.32z"/>
-            </svg></a>
-            <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-currency-bitcoin" viewBox="0 0 16 16">
-              <path d="M5.5 13v1.25c0 .138.112.25.25.25h1a.25.25 0 0 0 .25-.25V13h.5v1.25c0 .138.112.25.25.25h1a.25.25 0 0 0 .25-.25V13h.084c1.992 0 3.416-1.033 3.416-2.82 0-1.502-1.007-2.323-2.186-2.44v-.088c.97-.242 1.683-.974 1.683-2.19C11.997 3.93 10.847 3 9.092 3H9V1.75a.25.25 0 0 0-.25-.25h-1a.25.25 0 0 0-.25.25V3h-.573V1.75a.25.25 0 0 0-.25-.25H5.75a.25.25 0 0 0-.25.25V3l-1.998.011a.25.25 0 0 0-.25.25v.989c0 .137.11.25.248.25l.755-.005a.75.75 0 0 1 .745.75v5.505a.75.75 0 0 1-.75.75l-.748.011a.25.25 0 0 0-.25.25v1c0 .138.112.25.25.25zm1.427-8.513h1.719c.906 0 1.438.498 1.438 1.312 0 .871-.575 1.362-1.877 1.362h-1.28zm0 4.051h1.84c1.137 0 1.756.58 1.756 1.524 0 .953-.626 1.45-2.158 1.45H6.927z"/>
-            </svg></a>
+            <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor"
+                class="bi bi-credit-card-fill" viewBox="0 0 16 16">
+                <path
+                  d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1" />
+              </svg></a>
+            <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor"
+                class="bi bi-credit-card-2-front-fill" viewBox="0 0 16 16">
+                <path
+                  d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm0 3a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z" />
+              </svg></a>
+            <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor"
+                class="bi bi-paypal" viewBox="0 0 16 16">
+                <path
+                  d="M14.06 3.713c.12-1.071-.093-1.832-.702-2.526C12.628.356 11.312 0 9.626 0H4.734a.7.7 0 0 0-.691.59L2.005 13.509a.42.42 0 0 0 .415.486h2.756l-.202 1.28a.628.628 0 0 0 .62.726H8.14c.429 0 .793-.31.862-.731l.025-.13.48-3.043.03-.164.001-.007a.35.35 0 0 1 .348-.297h.38c1.266 0 2.425-.256 3.345-.91q.57-.403.993-1.005a4.94 4.94 0 0 0 .88-2.195c.242-1.246.13-2.356-.57-3.154a2.7 2.7 0 0 0-.76-.59l-.094-.061ZM6.543 8.82a.7.7 0 0 1 .321-.079H8.3c2.82 0 5.027-1.144 5.672-4.456l.003-.016q.326.186.548.438c.546.623.679 1.535.45 2.71-.272 1.397-.866 2.307-1.663 2.874-.802.57-1.842.815-3.043.815h-.38a.87.87 0 0 0-.863.734l-.03.164-.48 3.043-.024.13-.001.004a.35.35 0 0 1-.348.296H5.595a.106.106 0 0 1-.105-.123l.208-1.32z" />
+              </svg></a>
+            <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor"
+                class="bi bi-currency-bitcoin" viewBox="0 0 16 16">
+                <path
+                  d="M5.5 13v1.25c0 .138.112.25.25.25h1a.25.25 0 0 0 .25-.25V13h.5v1.25c0 .138.112.25.25.25h1a.25.25 0 0 0 .25-.25V13h.084c1.992 0 3.416-1.033 3.416-2.82 0-1.502-1.007-2.323-2.186-2.44v-.088c.97-.242 1.683-.974 1.683-2.19C11.997 3.93 10.847 3 9.092 3H9V1.75a.25.25 0 0 0-.25-.25h-1a.25.25 0 0 0-.25.25V3h-.573V1.75a.25.25 0 0 0-.25-.25H5.75a.25.25 0 0 0-.25.25V3l-1.998.011a.25.25 0 0 0-.25.25v.989c0 .137.11.25.248.25l.755-.005a.75.75 0 0 1 .745.75v5.505a.75.75 0 0 1-.75.75l-.748.011a.25.25 0 0 0-.25.25v1c0 .138.112.25.25.25zm1.427-8.513h1.719c.906 0 1.438.498 1.438 1.312 0 .871-.575 1.362-1.877 1.362h-1.28zm0 4.051h1.84c1.137 0 1.756.58 1.756 1.524 0 .953-.626 1.45-2.158 1.45H6.927z" />
+              </svg></a>
           </div>
         </div>
       </div>
@@ -260,15 +278,16 @@
 
   <div id="sidebar" class="sidebar">
     <a href="#" class="close-btn">&times;</a>
-    <a href="../../paginas/login/login.html" id="profile-icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
-        fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+    <a href="../../paginas/login/login.html" id="profile-icon"><svg xmlns="http://www.w3.org/2000/svg" width="40"
+        height="40" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"></path>
         <path fill-rule="evenodd"
           d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1">
         </path>
       </svg></a>
-    <a href="../perfilUsuário/index.html">Minha Conta<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor"
-        class="bi bi-house-door-fill" viewBox="0 0 16 16" style="margin-left: 10px; margin-top: 1px;">
+    <a href="../perfilUsuário/index.html">Minha Conta<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23"
+        fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16"
+        style="margin-left: 10px; margin-top: 1px;">
         <path
           d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5" />
       </svg></a>
@@ -301,19 +320,19 @@
         <path
           d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z" />
       </svg></a>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br> 
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <hr>
   </div>
   <div id="overlay" class="overlay"></div>
@@ -324,7 +343,7 @@
   </div>
 
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>
