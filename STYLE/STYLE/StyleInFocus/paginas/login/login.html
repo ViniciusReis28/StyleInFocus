@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../../paginas/login/login.css">
+  <link rel="stylesheet" href="login.css">
 
   
 
@@ -44,7 +44,7 @@
 
           <div id="general-error" class="error-messages"></div> <!-- Div para mensagens de erro gerais -->
 
-          <form id="login-form" action="../../paginas/login/login.php" method="post">
+          <form id="login-form" action="login.php" method="post">
             <div>
                 <div id="email-error" style="color: #ff0000; font-size: 12px; font-family: Freeman, sans-serif;"></div>
                 <input class="input-login" name="email" type="email" placeholder="Digite seu email:">
@@ -67,7 +67,7 @@
               </button>
               <p class="signup-link">
                   Sem conta?
-                  <a href="../../paginas/login/register.html">Cadastre-se</a>
+                  <a href="register.html">Cadastre-se</a>
               </p>
               
           </form>
@@ -83,7 +83,7 @@ document.getElementById('login-form').addEventListener('submit', function(event)
   var form = event.target;
   var formData = new FormData(form);
 
-  fetch('../../paginas/login/login.php', {
+  fetch('login.php', {
       method: 'POST',
       body: formData
   })
@@ -94,7 +94,7 @@ document.getElementById('login-form').addEventListener('submit', function(event)
       document.getElementById('password-error').textContent = '';
 
       if (data.success) {
-          window.location.href = '../../paginas/login/userLogado.html'; // Redireciona em caso de sucesso
+          window.location.href = 'userLogado.html'; // Redireciona em caso de sucesso
       } else {
           if (data.errors.email) {
               document.getElementById('email-error').textContent = data.errors.email;
