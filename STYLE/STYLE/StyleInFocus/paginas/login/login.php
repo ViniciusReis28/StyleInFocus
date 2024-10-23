@@ -1,7 +1,6 @@
 <?php
 session_start(); // Inicia a sessão
-
-require_once 'conexao.php';
+require_once 'conexao.php'; // Inclui a conexão com o banco de dados
 
 $errors = [
     'email' => '',
@@ -43,9 +42,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     // Login bem-sucedido
                     $_SESSION['user_id'] = $user['user_id'];
                     $_SESSION['email'] = $user['email'];
-                    $redirect_url = "userLogado.html"; // URL da página para onde quer redirecionar
-                    echo json_encode(['success' => true, 'redirect' => $redirect_url]);            
-                   exit();
+                    $_SESSION['username'] = $user['username']; // Supondo que você tenha um campo 'username' na tabela
+
+                    // Redireciona para a página inicial (index) ou para a página desejada
+                    $redirect_url = "userLogado.html"; // Altere conforme necessário
+                    echo json_encode(['success' => true, 'redirect' => $redirect_url]);
+                    exit();
                 } else {
                     // Senha incorreta
                     $errors['password'] = "Senha incorreta.";
@@ -64,5 +66,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conexao->close();
 }
 
+// Se houver erros, exibe-os
 echo json_encode(['success' => false, 'errors' => $errors]);
 ?>

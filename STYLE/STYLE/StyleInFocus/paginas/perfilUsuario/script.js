@@ -188,48 +188,64 @@ inputFoto.addEventListener('change', function() {
 
 // Atualiza o nome ou email diretamente
 function atualizarNome(novoNome) {
+  // Atualiza todos os elementos com a classe nomeUsuario
   var nomes = document.querySelectorAll('.nomeUsuario');
   nomes.forEach(function(nome) {
       nome.textContent = novoNome;
   });
+  // Atualiza o display específico se necessário
+  document.getElementById('nomeUsuarioDisplay').textContent = novoNome;
 }
 
 function atualizarEmail(novoEmail) {
+  // Atualiza todos os elementos com a classe emailUsuario
   var emails = document.querySelectorAll('.emailUsuario');
   emails.forEach(function(email) {
       email.textContent = novoEmail;
   });
+  // Atualiza o display específico se necessário
+  document.getElementById('emailUsuarioDisplay').textContent = novoEmail;
 }
+
 
 document.getElementById('editarPerfil').addEventListener('submit', function(event) {
   event.preventDefault(); // Impede o envio padrão do formulário
 
-  var senhaAtual = document.getElementById('senhaAtual').value;
-  var novaSenha = document.getElementById('novaSenha').value;
-
-  if (!senhaAtual || !novaSenha) {
-    document.getElementById('password-error').textContent = 'Todos os campos são obrigatórios.';
-    return;
-  }
-
-  // Se os campos estiverem preenchidos, envia o formulário via AJAX
   var form = event.target;
   var formData = new FormData(form);
 
-  fetch('../../paginas/atualizar_perfil.php', {
+  fetch('update.php', { // Certifique-se de que o caminho está correto
       method: 'POST',
       body: formData
   })
-  .then(response => response.json())
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Erro na resposta da rede: ' + response.statusText);
+      }
+      return response.json();
+  })
   .then(data => {
       // Limpa mensagens de erro anteriores
       document.getElementById('password-error').textContent = '';
 
       if (data.success) {
-          window.location.href = '../../paginas/login/userLogado.html'; // Redireciona em caso de sucesso
+          alert('Alterações salvas com sucesso!'); // Mensagem de sucesso
+
+          // Atualiza nome e email no perfil
+          const novoNome = document.getElementById('nome').value;
+          const novoEmail = document.getElementById('email').value;
+
+          atualizarNome(novoNome); // Chama a função para atualizar o nome
+          atualizarEmail(novoEmail); // Chama a função para atualizar o email
+          
+          // Você pode adicionar redirecionamento aqui, se necessário
       } else {
+          // Exibir erros
           if (data.errors.password) {
               document.getElementById('password-error').textContent = data.errors.password;
+          }
+          if (data.errors.email) {
+              alert(data.errors.email); // Exibe mensagem de erro de e-mail
           }
       }
   })

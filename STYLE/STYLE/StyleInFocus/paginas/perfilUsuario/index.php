@@ -1,3 +1,26 @@
+<?php
+session_start(); // Inicia a sessão
+require_once 'conexao.php'; // Inclui a conexão com o banco de dados
+
+// Verifica se o usuário está logado
+if (!isset($_SESSION['user_id'])) {
+    header("Location: /../login/login.php"); // Redireciona para a página de login se não estiver logado
+    exit();
+}
+
+// Obtém os dados do usuário a partir da sessão
+$userId = $_SESSION['user_id'];
+$sql = "SELECT username, email FROM users WHERE user_id = ?";
+$stmt = $conexao->prepare($sql);
+$stmt->bind_param("i", $userId);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+
+$username = htmlspecialchars($user['username']);
+$email = htmlspecialchars($user['email']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -114,10 +137,10 @@
         <div class="Foto-Email">
           <img id="fotoPerfilEmail"
             src="../../img/icone-de-perfil-de-avatar-padrao-imagem-de-usuario-de-midia-social-icone-de-avatar-cinza-silhueta-de-perfil-em-branco-ilustracao-vetorial_561158-3408.avif">
-          <div class="email-user">
-            <h1 class="nomeUsuario">Gabriel Pablo</h1>
-            <h3 class="emailUsuario">pablobocudo.lima@gmail.com</h3>
-          </div>
+            <div class="email-user">
+                    <h1 class="nomeUsuario" id="nomeUsuarioDisplay"><?php echo htmlspecialchars($username); ?></h1>
+                    <h3 class="emailUsuario" id="emailUsuarioDisplay"><?php echo htmlspecialchars($email); ?></h3>
+                </div>
         </div>
         <div class="menu-item" onclick="mostrarConteudo('minhaConta')">Minha Conta</div>
         <div class="menu-item" onclick="mostrarConteudo('pedidos')">Pedidos</div>
@@ -141,39 +164,36 @@
             <div class="trocar-foto" onclick="document.getElementById('inputFoto').click();">Trocar Foto</div>
           </div>
           <div class="informacoes-conta-nome">
-            <h1 class="nomeUsuario">Gabriel Pablo</h1>
+          <h1 class="nomeUsuario" id="nomeUsuarioDisplay"><?php echo htmlspecialchars($username); ?></h1>
           </div>
         </div>
         <div class="minhaConta-section" data-section="nome">
-          <form id="editarPerfil" method="POST" action="atualizar_perfil.php">
-
+        <form id="editarPerfil" method="POST" action="update.php">
             <label for="nome">Nome</label>
             <div class="input-line" id="nomeText">
-              <input type="text" id="nome" name="username" value="Gabriel Pablo"> 
+                <input class="input-login" type="text" id="nome" name="username" value="<?php echo $username; ?>"> 
             </div>
 
             <label for="email">Email</label>
             <div class="input-line" id="emailText">
-              <input type="text" id="email" name="email" value="pablobocudo.lima@gmail.com">
+                <input class="input-login" type="text" id="email" name="email" value="<?php echo $email; ?>">
             </div>
 
-            <label for="senha">Senha</label>
+            <label for="senha">Nova Senha</label>
             <div class="input-line" id="senhaText">
-              <input type="password" id="senha" name="password" value=""> 
+                <input class="input-login" type="password" id="senha" name="novaSenha"> 
             </div>
 
             <label for="senhaAtual">Senha Atual</label>
             <div class="input-line" id="senhaAtualText">
-              <input type="password" id="senhaAtual" name="senhaAtual" placeholder="Digite sua senha atual" required>
+                <input class="input-login" type="password" id="senhaAtual" name="senhaAtual" placeholder="Digite sua senha atual" required>
             </div>
 
             <div id="password-error" style="color: #ff0000; font-size: 12px; font-family: Freeman, sans-serif;"></div>
 
-
-            <button type="submit" class="salvar-botao">Salvar Alterações</button>
-          </form>
-        </div>
-
+            <button type="submit"  id="btnSalvar" class="glow-on-hover">Salvar Alterações</button>
+            </form>
+    </div>
       </div>
 
 
