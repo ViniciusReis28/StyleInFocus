@@ -1,6 +1,6 @@
 <?php
-session_start(); // Inicia a sessão
-require_once 'conexao.php'; // Inclui a conexão com o banco de dados
+session_start();
+require_once 'conexao.php';
 
 $errors = ['email' => '', 'password' => '', 'general' => ''];
 
@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST['email']);
     $senhaAtual = trim($_POST['senhaAtual']);
     $novaSenha = trim($_POST['novaSenha']);
-    $userId = $_SESSION['user_id']; // Obtém o ID do usuário da sessão
+    $userId = $_SESSION['user_id'];
 
     // Validação
     if (empty($username)) {
@@ -22,9 +22,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors['password'] = "O campo de senha atual é obrigatório.";
     }
 
+    // Processar a imagem
+    if (isset($_FILES['foto'])) {
+        $foto = $_FILES['foto'];
+        if ($foto['error'] === 0) {
+            // Define o diretório onde a imagem será salva
+            $uploadDir = 'uploads/';
+            $fotoNome = $uploadDir . basename($foto['name']);
+            move_uploaded_file($foto['tmp_name'], $fotoNome);
+        }
+    }
+
     // Verifica se existem erros
     if (empty(array_filter($errors))) {
-        // Verifica se a senha atual está correta
         $sql = "SELECT password FROM users WHERE user_id = ?";
         $stmt = $conexao->prepare($sql);
         $stmt->bind_param("i", $userId);
@@ -34,10 +44,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result->num_rows > 0) {
             $user = $result->fetch_assoc();
             if (password_verify($senhaAtual, $user['password'])) {
-                // Atualiza o nome e o email
-                $sqlUpdate = "UPDATE users SET username = ?, email = ? WHERE user_id = ?";
+                // Atualiza o nome, o email e a foto
+                $sqlUpdate = "UPDATE users SET username = ?, email = ?, foto = ? WHERE user_id = ?";
                 $stmtUpdate = $conexao->prepare($sqlUpdate);
-                $stmtUpdate->bind_param("ssi", $username, $email, $userId);
+                $stmtUpdate->bind_param("sssi", $username, $email, $fotoNome, $userId);
                 $stmtUpdate->execute();
 
                 // Atualiza a senha se nova senha for fornecida

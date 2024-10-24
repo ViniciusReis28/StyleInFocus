@@ -259,22 +259,25 @@ function carregarDadosUsuario() {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', 'dados.php', true);
   xhr.onload = function () {
-    if (xhr.status === 200) {
-      const response = JSON.parse(xhr.responseText);
-      if (response.error) {
-        alert(response.error);
-      } else {
-        // Insere os dados do usuário nos campos de formulário
-        document.getElementById('nome').value = response.username;
-        document.getElementById('email').value = response.email;
+      if (xhr.status === 200) {
+          const response = JSON.parse(xhr.responseText);
+          if (response.error) {
+              alert(response.error);
+          } else {
+              // Insere os dados do usuário nos campos de formulário
+              document.getElementById('nome').value = response.username;
+              document.getElementById('email').value = response.email;
 
-        // Atualiza os elementos <h1> e <h3> com os dados do usuário
-        document.getElementById('nomeUsuarioDisplay').textContent = response.username;
-        document.getElementById('emailUsuarioDisplay').textContent = response.email;
+              // Atualiza os elementos <h1> e <h3> com os dados do usuário
+              document.getElementById('nomeUsuarioDisplay').textContent = response.username;
+              document.getElementById('emailUsuarioDisplay').textContent = response.email;
+
+              // Atualiza a imagem de perfil
+              document.getElementById('fotoPerfil').src = response.foto;
+          }
+      } else {
+          alert('Erro ao carregar os dados do usuário.');
       }
-    } else {
-      alert('Erro ao carregar os dados do usuário.');
-    }
   };
   xhr.send();
 }
