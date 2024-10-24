@@ -251,3 +251,33 @@ document.getElementById('editarPerfil').addEventListener('submit', function(even
   })
   .catch(error => console.error('Erro:', error));
 });
+
+
+
+// Faz a chamada AJAX para obter os dados do usuário
+function carregarDadosUsuario() {
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', 'dados.php', true);
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      const response = JSON.parse(xhr.responseText);
+      if (response.error) {
+        alert(response.error);
+      } else {
+        // Insere os dados do usuário nos campos de formulário
+        document.getElementById('nome').value = response.username;
+        document.getElementById('email').value = response.email;
+
+        // Atualiza os elementos <h1> e <h3> com os dados do usuário
+        document.getElementById('nomeUsuarioDisplay').textContent = response.username;
+        document.getElementById('emailUsuarioDisplay').textContent = response.email;
+      }
+    } else {
+      alert('Erro ao carregar os dados do usuário.');
+    }
+  };
+  xhr.send();
+}
+
+// Chama a função ao carregar a página
+window.onload = carregarDadosUsuario;

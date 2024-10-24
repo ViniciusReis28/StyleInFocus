@@ -1,26 +1,3 @@
-<?php
-session_start(); // Inicia a sessão
-require_once 'conexao.php'; // Inclui a conexão com o banco de dados
-
-// Verifica se o usuário está logado
-if (!isset($_SESSION['user_id'])) {
-    header("Location: /../login/login.php"); // Redireciona para a página de login se não estiver logado
-    exit();
-}
-
-// Obtém os dados do usuário a partir da sessão
-$userId = $_SESSION['user_id'];
-$sql = "SELECT username, email FROM users WHERE user_id = ?";
-$stmt = $conexao->prepare($sql);
-$stmt->bind_param("i", $userId);
-$stmt->execute();
-$result = $stmt->get_result();
-$user = $result->fetch_assoc();
-
-$username = htmlspecialchars($user['username']);
-$email = htmlspecialchars($user['email']);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -138,9 +115,9 @@ $email = htmlspecialchars($user['email']);
           <img id="fotoPerfilEmail"
             src="../../img/icone-de-perfil-de-avatar-padrao-imagem-de-usuario-de-midia-social-icone-de-avatar-cinza-silhueta-de-perfil-em-branco-ilustracao-vetorial_561158-3408.avif">
             <div class="email-user">
-                    <h1 class="nomeUsuario" id="nomeUsuarioDisplay"><?php echo htmlspecialchars($username); ?></h1>
-                    <h3 class="emailUsuario" id="emailUsuarioDisplay"><?php echo htmlspecialchars($email); ?></h3>
-                </div>
+              <h1 class="nomeUsuario" id="nomeUsuarioDisplay"></h1>
+              <h3 class="emailUsuario" id="emailUsuarioDisplay"></h3>
+            </div>
         </div>
         <div class="menu-item" onclick="mostrarConteudo('minhaConta')">Minha Conta</div>
         <div class="menu-item" onclick="mostrarConteudo('pedidos')">Pedidos</div>
@@ -163,34 +140,42 @@ $email = htmlspecialchars($user['email']);
             <input type="file" id="inputFoto" accept="image/*" style="display: none;">
             <div class="trocar-foto" onclick="document.getElementById('inputFoto').click();">Trocar Foto</div>
           </div>
+          
           <div class="informacoes-conta-nome">
-          <h1 class="nomeUsuario" id="nomeUsuarioDisplay"><?php echo htmlspecialchars($username); ?></h1>
+            <h1 class="nomeUsuario" id="nomeUsuarioDisplay"></h1>
           </div>
+
         </div>
         <div class="minhaConta-section" data-section="nome">
         <form id="editarPerfil" method="POST" action="update.php">
-            <label for="nome">Nome</label>
-            <div class="input-line" id="nomeText">
-                <input class="input-login" type="text" id="nome" name="username" value="<?php echo $username; ?>"> 
+
+            <div class="form__group field" id="nomeText">
+              <input class="form__field" type="text" id="nome" name="username"  placeholder="" value="">
+              <label for="name" class="form__label">Usuário:</label>
+            </div>
+      
+
+            
+            <div class="form__group field" id="emailText">
+              <input class="form__field" type="text" id="email" name="email"  placeholder="" value="" >
+              <label for="email" class="form__label">E-mail:</label>
             </div>
 
-            <label for="email">Email</label>
-            <div class="input-line" id="emailText">
-                <input class="input-login" type="text" id="email" name="email" value="<?php echo $email; ?>">
+            <div class="form__group field" id="senhaText">
+              <input class="form__field" type="password" id="senha" name="novaSenha" placeholder="">
+              <label for="senha" class="form__label">Nova Senha:</label> 
             </div>
 
-            <label for="senha">Nova Senha</label>
-            <div class="input-line" id="senhaText">
-                <input class="input-login" type="password" id="senha" name="novaSenha"> 
-            </div>
-
-            <label for="senhaAtual">Senha Atual</label>
-            <div class="input-line" id="senhaAtualText">
-                <input class="input-login" type="password" id="senhaAtual" name="senhaAtual" placeholder="Digite sua senha atual" required>
+            
+            <div class="form__group field" id="senhaAtualText">
+                <input class="form__field" type="password" id="senhaAtual" name="senhaAtual" placeholder="" required>
+                <label for="senhaAtual" class="form__label">Senha Atual:</label>
             </div>
 
             <div id="password-error" style="color: #ff0000; font-size: 12px; font-family: Freeman, sans-serif;"></div>
 
+            <br>
+            
             <button type="submit"  id="btnSalvar" class="glow-on-hover">Salvar Alterações</button>
             </form>
     </div>

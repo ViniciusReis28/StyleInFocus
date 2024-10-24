@@ -111,8 +111,8 @@ body {
 }
 
 .glow-on-hover {
-  font-family: "Freeman", sans-serif;
-  font-size: 20px;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 25px;
   width: 220px;
   height: 50px;
   border: none;
@@ -920,4 +920,69 @@ a {
   padding: 60px;
   font-size: 26px;
   position: relative;
+}
+
+
+/* From Uiverse.io by mrhyddenn */ 
+.form__group {
+  position: relative;
+  padding: 20px 0 0;
+  width: 100%;
+  max-width: 180px;
+}
+
+.form__field {
+  font-family: inherit;
+  width: 400px;
+  border: none;
+  border-bottom: 2px solid #505050;
+  outline: 0;
+  font-size: 22px;
+  color: #000000;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
+.form__field::placeholder {
+  color: transparent;
+}
+
+.form__field:placeholder-shown ~ .form__label {
+  font-size: 25px;
+  cursor: text;
+  top: 20px;
+}
+
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 17px;
+  color: #414141;
+  pointer-events: none;
+}
+
+.form__field:focus {
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, #116399, #38caef);
+  border-image-slice: 1;
+}
+
+.form__field:focus ~ .form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 20px;
+  color: #38caef;
+  font-weight: 700;
+}
+
+/* reset input */
+.form__field:required, .form__field:invalid {
+  box-shadow: none;
 }
