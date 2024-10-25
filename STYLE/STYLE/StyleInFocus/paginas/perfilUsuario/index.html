@@ -125,7 +125,7 @@
         <div class="menu-item" onclick="mostrarConteudo('suporte')">Suporte e ajuda</div>
         <div class="menu-item" onclick="mostrarConteudo('pagamentos')">Métodos de pagamento</div>
       </div>
-
+        
       <div id="conteudo-pedidos" class="right-panel">
         <h2>Pedidos</h2>
         <p>Aqui você pode ver seus pedidos.</p>
@@ -135,10 +135,13 @@
         <div class="banner">
           <form id="editarPerfil" method="POST" action="update.php" enctype="multipart/form-data">
             <div class="foto-container">
-                <img id="fotoPerfil"
-                    src="../../img/icone-de-perfil-de-avatar-padrao-imagem-de-usuario-de-midia-social-icone-de-avatar-cinza-silhueta-de-perfil-em-branco-ilustracao-vetorial_561158-3408.avif"
-                    class="imagem-hover">
-                <input type="file" id="inputFoto" name="fotoPerfil" accept="image/*" style="display: none;" required>
+                <!-- Imagem de perfil com src padrão -->
+                <img id="fotoPerfil" 
+                     src="../../img/usuarioDefault.jpg" 
+                     class="imagem-hover">
+                <!-- Campo de upload de imagem oculto -->
+                <input type="file" id="inputFoto" name="foto" accept="image/*" style="display: none;">
+                <!-- Botão para trocar a foto -->
                 <div class="trocar-foto" onclick="document.getElementById('inputFoto').click();">Trocar Foto</div>
             </div>
           
@@ -154,7 +157,6 @@
               <label for="name" class="form__label">Usuário:</label>
             </div>
       
-
             
             <div class="form__group field" id="emailText">
               <input class="form__field" type="text" id="email" name="email"  placeholder="" value="" >

@@ -140,14 +140,6 @@ document.querySelector('.prev').addEventListener('click', prevSlide);
 
 
 
-
-
-
-
-
-
-
-
 // Parte da Paginga de perfil 
 function mostrarConteudo(tipo) {
   // Esconde todos os painéis
@@ -186,11 +178,11 @@ inputFoto.addEventListener('change', function() {
     }
 });
 
-// Atualiza o nome ou email diretamente
+
+
 function atualizarNome(novoNome) {
   // Atualiza todos os elementos com a classe nomeUsuario
-  var nomes = document.querySelectorAll('.nomeUsuario');
-  nomes.forEach(function(nome) {
+  document.querySelectorAll('.nomeUsuario').forEach(nome => {
       nome.textContent = novoNome;
   });
   // Atualiza o display específico se necessário
@@ -199,20 +191,26 @@ function atualizarNome(novoNome) {
 
 function atualizarEmail(novoEmail) {
   // Atualiza todos os elementos com a classe emailUsuario
-  var emails = document.querySelectorAll('.emailUsuario');
-  emails.forEach(function(email) {
+  document.querySelectorAll('.emailUsuario').forEach(email => {
       email.textContent = novoEmail;
   });
   // Atualiza o display específico se necessário
   document.getElementById('emailUsuarioDisplay').textContent = novoEmail;
 }
 
+function atualizarFotoPerfil(novaFotoUrl) {
+  const fotoPerfil = document.getElementById('fotoPerfil');
+  if (novaFotoUrl) {
+      // Cache-buster para forçar o navegador a buscar a nova imagem
+      fotoPerfil.src = novaFotoUrl + '?t=' + new Date().getTime();
+  }
+}
 
 document.getElementById('editarPerfil').addEventListener('submit', function(event) {
   event.preventDefault(); // Impede o envio padrão do formulário
 
-  var form = event.target;
-  var formData = new FormData(form);
+  const form = event.target;
+  const formData = new FormData(form);
 
   fetch('update.php', { // Certifique-se de que o caminho está correto
       method: 'POST',
@@ -234,18 +232,23 @@ document.getElementById('editarPerfil').addEventListener('submit', function(even
           // Atualiza nome e email no perfil
           const novoNome = document.getElementById('nome').value;
           const novoEmail = document.getElementById('email').value;
-
           atualizarNome(novoNome); // Chama a função para atualizar o nome
           atualizarEmail(novoEmail); // Chama a função para atualizar o email
-          
-          // Você pode adicionar redirecionamento aqui, se necessário
-      } else {
-          // Exibir erros
-          if (data.errors.password) {
-              document.getElementById('password-error').textContent = data.errors.password;
+
+          // Atualiza a foto de perfil, se fornecida
+          if (data.novaFotoUrl) {
+              atualizarFotoPerfil(data.novaFotoUrl);
           }
-          if (data.errors.email) {
-              alert(data.errors.email); // Exibe mensagem de erro de e-mail
+
+      } else {
+          // Exibir mensagens de erro
+          if (data.errors) {
+              if (data.errors.password) {
+                  document.getElementById('password-error').textContent = data.errors.password;
+              }
+              if (data.errors.email) {
+                  alert(data.errors.email); // Exibe mensagem de erro de e-mail
+              }
           }
       }
   })
@@ -254,29 +257,23 @@ document.getElementById('editarPerfil').addEventListener('submit', function(even
 
 
 
+
 // Faz a chamada AJAX para obter os dados do usuário
-function carregarDadosUsuario() {
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', 'dados.php', true);
-  xhr.onload = function () {
-      if (xhr.status === 200) {
-          const response = JSON.parse(xhr.responseText);
-          if (response.success) {
-              // Insere os dados do usuário nos campos de formulário
-              document.getElementById('nome').value = response.username;
-              document.getElementById('email').value = response.email;
-
-              // Atualiza a imagem de perfil
-              document.getElementById('fotoPerfil').src = response.foto || '../../img/icone-de-perfil-de-avatar-padrao-imagem-de-usuario-de-midia-social-icone-de-avatar-cinza-silhueta-de-perfil-em-branco-ilustracao-vetorial_561158-3408.avif';
+document.addEventListener("DOMContentLoaded", function() {
+  fetch("dados.php")
+      .then(response => response.json())
+      .then(data => {
+          if (data.success) {
+              document.getElementById("nomeUsuarioDisplay").textContent = data.username;
+              document.getElementById("nome").value = data.username;
+              document.getElementById("email").value = data.email;
+              
+              // Atualiza a foto de perfil, se existir
+              const fotoPerfil = document.getElementById("fotoPerfil");
+              fotoPerfil.src = data.foto_perfil ? data.foto_perfil : "../../img/usuarioDefault.jpg";
           } else {
-              alert(response.message);
+              console.error(data.message);
           }
-      } else {
-          alert('Erro ao carregar os dados do usuário.');
-      }
-  };
-  xhr.send();
-}
-
-// Chama a função ao carregar a página
-window.onload = carregarDadosUsuario;
+      })
+      .catch(error => console.error('Erro ao carregar dados do usuário:', error));
+});
