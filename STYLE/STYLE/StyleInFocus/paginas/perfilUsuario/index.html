@@ -113,7 +113,7 @@
       <div class="left-panel">
         <div class="Foto-Email">
           <img id="fotoPerfilEmail"
-            src="../../img/icone-de-perfil-de-avatar-padrao-imagem-de-usuario-de-midia-social-icone-de-avatar-cinza-silhueta-de-perfil-em-branco-ilustracao-vetorial_561158-3408.avif">
+            src="../../img/usuarioDefault.jpg">
             <div class="email-user">
               <h1 class="nomeUsuario" id="nomeUsuarioDisplay"></h1>
               <h3 class="emailUsuario" id="emailUsuarioDisplay"></h3>
@@ -133,13 +133,14 @@
 
       <div id="conteudo-minhaConta" class="right-panel active">
         <div class="banner">
-          <div class="foto-container">
-            <img id="fotoPerfil"
-                src="../../img/icone-de-perfil-de-avatar-padrao-imagem-de-usuario-de-midia-social-icone-de-avatar-cinza-silhueta-de-perfil-em-branco-ilustracao-vetorial_561158-3408.avif"
-                class="imagem-hover">
-            <input type="file" id="inputFoto" name="fotoPerfil" accept="image/*" style="display: none;" required>
-            <div class="trocar-foto" onclick="document.getElementById('inputFoto').click();">Trocar Foto</div>
-        </div>
+          <form id="editarPerfil" method="POST" action="update.php" enctype="multipart/form-data">
+            <div class="foto-container">
+                <img id="fotoPerfil"
+                    src="../../img/icone-de-perfil-de-avatar-padrao-imagem-de-usuario-de-midia-social-icone-de-avatar-cinza-silhueta-de-perfil-em-branco-ilustracao-vetorial_561158-3408.avif"
+                    class="imagem-hover">
+                <input type="file" id="inputFoto" name="fotoPerfil" accept="image/*" style="display: none;" required>
+                <div class="trocar-foto" onclick="document.getElementById('inputFoto').click();">Trocar Foto</div>
+            </div>
           
           <div class="informacoes-conta-nome">
             <h1 class="nomeUsuario" id="nomeUsuarioDisplay"></h1>
@@ -147,8 +148,7 @@
 
         </div>
         <div class="minhaConta-section" data-section="nome">
-        <form id="editarPerfil" method="POST" action="update.php">
-
+ 
             <div class="form__group field" id="nomeText">
               <input class="form__field" type="text" id="nome" name="username"  placeholder="" value="">
               <label for="name" class="form__label">Usuário:</label>

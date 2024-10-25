@@ -23,13 +23,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Processar a imagem
-    if (isset($_FILES['foto'])) {
-        $foto = $_FILES['foto'];
-        if ($foto['error'] === 0) {
-            // Define o diretório onde a imagem será salva
-            $uploadDir = 'uploads/';
-            $fotoNome = $uploadDir . basename($foto['name']);
-            move_uploaded_file($foto['tmp_name'], $fotoNome);
+    $fotoNome = null; // Variável para armazenar o nome da foto
+    if (isset($_FILES['fotoPerfil']) && $_FILES['fotoPerfil']['error'] === 0) {
+        $foto = $_FILES['fotoPerfil'];
+        // Define o diretório onde a imagem será salva
+        $uploadDir = 'uploads/';
+        $fotoNome = $uploadDir . basename($foto['name']);
+        
+        // Mova o arquivo para o diretório de uploads
+        if (!move_uploaded_file($foto['tmp_name'], $fotoNome)) {
+            $errors['general'] = "Erro ao salvar a foto.";
         }
     }
 
@@ -44,10 +47,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result->num_rows > 0) {
             $user = $result->fetch_assoc();
             if (password_verify($senhaAtual, $user['password'])) {
-                // Atualiza o nome, o email e a foto
-                $sqlUpdate = "UPDATE users SET username = ?, email = ?, foto = ? WHERE user_id = ?";
+                // Atualiza o nome e o email
+                $sqlUpdate = "UPDATE users SET username = ?, email = ?" . ($fotoNome ? ", foto = ?" : "") . " WHERE user_id = ?";
                 $stmtUpdate = $conexao->prepare($sqlUpdate);
-                $stmtUpdate->bind_param("sssi", $username, $email, $fotoNome, $userId);
+                
+                if ($fotoNome) {
+                    $stmtUpdate->bind_param("sssi", $username, $email, $fotoNome, $userId);
+                } else {
+                    $stmtUpdate->bind_param("ssi", $username, $email, $userId);
+                }
                 $stmtUpdate->execute();
 
                 // Atualiza a senha se nova senha for fornecida
@@ -67,8 +75,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    $conexao->close();
+    echo json_encode(['success' => false, 'errors' => $errors]);
 }
 
-echo json_encode(['success' => false, 'errors' => $errors]);
+$conexao->close();
 ?>

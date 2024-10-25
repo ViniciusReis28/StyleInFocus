@@ -261,19 +261,15 @@ function carregarDadosUsuario() {
   xhr.onload = function () {
       if (xhr.status === 200) {
           const response = JSON.parse(xhr.responseText);
-          if (response.error) {
-              alert(response.error);
-          } else {
+          if (response.success) {
               // Insere os dados do usuário nos campos de formulário
               document.getElementById('nome').value = response.username;
               document.getElementById('email').value = response.email;
 
-              // Atualiza os elementos <h1> e <h3> com os dados do usuário
-              document.getElementById('nomeUsuarioDisplay').textContent = response.username;
-              document.getElementById('emailUsuarioDisplay').textContent = response.email;
-
               // Atualiza a imagem de perfil
-              document.getElementById('fotoPerfil').src = response.foto;
+              document.getElementById('fotoPerfil').src = response.foto || '../../img/icone-de-perfil-de-avatar-padrao-imagem-de-usuario-de-midia-social-icone-de-avatar-cinza-silhueta-de-perfil-em-branco-ilustracao-vetorial_561158-3408.avif';
+          } else {
+              alert(response.message);
           }
       } else {
           alert('Erro ao carregar os dados do usuário.');
