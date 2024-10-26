@@ -253,16 +253,22 @@ function atualizarEmail(novoEmail) {
   });
 }
 ///////////////////////////////PEDIDOS//////////////////////////////
-function openTab(tabId) {
-  // Remove a classe "active" de todas as abas e conteúdos
-  document.querySelectorAll('.tab-button').forEach(button => {
-      button.classList.remove('active');
-  });
-  document.querySelectorAll('.tab-content').forEach(content => {
-      content.style.display = 'none';
+function openTab(tabName) {
+  // Esconde todos os conteúdos de aba
+  var tabContents = document.querySelectorAll('.tab-content');
+  tabContents.forEach(function(tab) {
+      tab.style.display = 'none';
+      tab.classList.remove('active');
   });
 
-  // Adiciona a classe "active" ao botão e conteúdo selecionados
-  document.querySelector(`.tab-button[onclick="openTab('${tabId}')"]`).classList.add('active');
-  document.getElementById(tabId).style.display = 'block';
+  // Remove a classe 'active' de todos os botões
+  var tabButtons = document.querySelectorAll('.tab-button');
+  tabButtons.forEach(function(button) {
+      button.classList.remove('active');
+  });
+
+  // Mostra o conteúdo da aba correspondente e adiciona a classe 'active' ao botão
+  document.getElementById(tabName).style.display = 'block';
+  document.getElementById(tabName).classList.add('active');
+  event.currentTarget.classList.add('active');
 }
