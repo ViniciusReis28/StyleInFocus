@@ -254,26 +254,3 @@ document.getElementById('editarPerfil').addEventListener('submit', function(even
   })
   .catch(error => console.error('Erro:', error));
 });
-
-
-
-
-// Faz a chamada AJAX para obter os dados do usuário
-document.addEventListener("DOMContentLoaded", function() {
-  fetch("dados.php")
-      .then(response => response.json())
-      .then(data => {
-          if (data.success) {
-              document.getElementById("nomeUsuarioDisplay").textContent = data.username;
-              document.getElementById("nome").value = data.username;
-              document.getElementById("email").value = data.email;
-              
-              // Atualiza a foto de perfil, se existir
-              const fotoPerfil = document.getElementById("fotoPerfil");
-              fotoPerfil.src = data.foto_perfil ? data.foto_perfil : "../../img/usuarioDefault.jpg";
-          } else {
-              console.error(data.message);
-          }
-      })
-      .catch(error => console.error('Erro ao carregar dados do usuário:', error));
-});

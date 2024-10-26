@@ -1,70 +1,66 @@
 <?php
 session_start();
-require_once 'conexao.php';
+include 'db.php';
 
-if (!isset($_SESSION['user_id'])) {
-    die("Usuário não autenticado");
+$user_id = $_SESSION['user_id'] ?? null;
+if (!$user_id) {
+    header("Location: login.php");
+    exit();
 }
 
-$userId = $_SESSION['user_id'];
-$username = $_POST['username'];
-$email = $_POST['email'];
-$novaSenha = $_POST['novaSenha'];
-$senhaAtual = $_POST['senhaAtual'];
-
-// Verifique a senha atual antes de atualizar
-$sql = "SELECT password FROM users WHERE user_id = ?";
-$stmt = $conexao->prepare($sql);
-$stmt->bind_param("i", $userId);
-$stmt->execute();
-$result = $stmt->get_result();
-$user = $result->fetch_assoc();
-
-if (!$user || !password_verify($senhaAtual, $user['password'])) {
-    die(json_encode(['success' => false, 'errors' => ['password' => 'Senha atual incorreta.']]));
+// Carregar dados do usuário
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $stmt = $conn->prepare("SELECT username, email, profile_image FROM users WHERE user_id = :user_id");
+    $stmt->bindParam(':user_id', $user_id);
+    $stmt->execute();
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-// Se a nova senha estiver preenchida, atualize-a
-if (!empty($novaSenha)) {
-    $novaSenhaHash = password_hash($novaSenha, PASSWORD_DEFAULT);
-    $sql = "UPDATE users SET username = ?, email = ?, password = ? WHERE user_id = ?";
-    $stmt = $conexao->prepare($sql);
-    $stmt->bind_param("sssi", $username, $email, $novaSenhaHash, $userId);
-} else {
-    $sql = "UPDATE users SET username = ?, email = ? WHERE user_id = ?";
-    $stmt = $conexao->prepare($sql);
-    $stmt->bind_param("ssi", $username, $email, $userId);
-}
+// Atualizar dados do usuário
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $senhaAtual = $_POST['senhaAtual'];
+    $novaSenha = !empty($_POST['novaSenha']) ? password_hash($_POST['novaSenha'], PASSWORD_BCRYPT) : null;
 
-// Executar a atualização
-if ($stmt->execute()) {
-    // Processar o upload da foto de perfil
-    if (isset($_FILES['foto']) && $_FILES['foto']['error'] == 0) {
-        $foto = $_FILES['foto'];
-        $fotoPath = 'perfilUsuario/uploads/' . basename($foto['name']);
-        
-        // Mover o arquivo para o diretório de uploads
-        if (move_uploaded_file($foto['tmp_name'], $fotoPath)) {
-            // Atualiza o caminho da foto no banco de dados
-            $sqlFoto = "UPDATE users SET foto_perfil = ? WHERE user_id = ?";
-            $stmtFoto = $conexao->prepare($sqlFoto);
-            $stmtFoto->bind_param("si", $fotoPath, $userId);
-            $stmtFoto->execute();
+    // Verificar senha atual
+    $stmt = $conn->prepare("SELECT password FROM users WHERE user_id = :user_id");
+    $stmt->bindParam(':user_id', $user_id);
+    $stmt->execute();
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!password_verify($senhaAtual, $user['password'])) {
+        echo "Senha atual incorreta!";
+        exit();
+    }
+
+    // Atualizar imagem de perfil
+    $profile_image = $user['profile_image'];
+    if (!empty($_FILES['foto']['name'])) {
+        $imagePath = 'uploads/' . basename($_FILES['foto']['name']);
+        if (move_uploaded_file($_FILES['foto']['tmp_name'], $imagePath)) {
+            $profile_image = $imagePath;
         }
     }
 
-    // Responder ao cliente
-    $response = [
-        'success' => true,
-        'message' => "Informações atualizadas com sucesso!"
-    ];
-    echo json_encode($response);
-} else {
-    // Resposta de erro
-    $response = [
-        'success' => false,
-        'message' => "Erro ao atualizar informações."
-    ];
-    echo json_encode($response);
+    // Atualizar informações no banco
+    $query = "UPDATE users SET username = :username, email = :email, profile_image = :profile_image";
+    if ($novaSenha) {
+        $query .= ", password = :password";
+    }
+    $query .= " WHERE user_id = :user_id";
+
+    $stmt = $conn->prepare($query);
+    $stmt->bindParam(':username', $username);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':profile_image', $profile_image);
+    if ($novaSenha) {
+        $stmt->bindParam(':password', $novaSenha);
+    }
+    $stmt->bindParam(':user_id', $user_id);
+    $stmt->execute();
+
+    echo "Informações atualizadas com sucesso!";
+    header("Location: edit_profile.php"); // Redireciona para recarregar os dados
 }
 ?>
