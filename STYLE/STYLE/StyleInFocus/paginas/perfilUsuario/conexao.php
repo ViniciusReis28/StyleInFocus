@@ -1,7 +1,7 @@
 <?php
 $localhost = "localhost";
 $usuario = "root";
-$senha = "prof@etec";
+$senha = "";
 $db = "login";
 
 // Conexão ao banco de dados

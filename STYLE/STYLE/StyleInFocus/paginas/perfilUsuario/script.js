@@ -158,11 +158,8 @@ const inputFoto = document.getElementById('inputFoto');
 const fotoPerfil = document.getElementById('fotoPerfil');
 
 window.onload = function() {
-  const fotoArmazenada = localStorage.getItem('fotoPerfil');
-  if (fotoArmazenada) {
-      fotoPerfil.src = fotoArmazenada; 
-      fotoPerfilEmail.src = fotoArmazenada; 
-  }
+    // Carregar a imagem diretamente do PHP
+    // Não use localStorage para a imagem
 };
 
 inputFoto.addEventListener('change', function() {
@@ -170,9 +167,8 @@ inputFoto.addEventListener('change', function() {
     if (file) {
         const reader = new FileReader();
         reader.onload = function(event) {
+            // Atualiza a imagem diretamente sem armazenar no localStorage
             fotoPerfil.src = event.target.result; 
-            fotoPerfilEmail.src = event.target.result;
-            localStorage.setItem('fotoPerfil', event.target.result);
         }
         reader.readAsDataURL(file); 
     }
@@ -206,51 +202,3 @@ function atualizarFotoPerfil(novaFotoUrl) {
   }
 }
 
-document.getElementById('editarPerfil').addEventListener('submit', function(event) {
-  event.preventDefault(); // Impede o envio padrão do formulário
-
-  const form = event.target;
-  const formData = new FormData(form);
-
-  fetch('update.php', { // Certifique-se de que o caminho está correto
-      method: 'POST',
-      body: formData
-  })
-  .then(response => {
-      if (!response.ok) {
-          throw new Error('Erro na resposta da rede: ' + response.statusText);
-      }
-      return response.json();
-  })
-  .then(data => {
-      // Limpa mensagens de erro anteriores
-      document.getElementById('password-error').textContent = '';
-
-      if (data.success) {
-          alert('Alterações salvas com sucesso!'); // Mensagem de sucesso
-
-          // Atualiza nome e email no perfil
-          const novoNome = document.getElementById('nome').value;
-          const novoEmail = document.getElementById('email').value;
-          atualizarNome(novoNome); // Chama a função para atualizar o nome
-          atualizarEmail(novoEmail); // Chama a função para atualizar o email
-
-          // Atualiza a foto de perfil, se fornecida
-          if (data.novaFotoUrl) {
-              atualizarFotoPerfil(data.novaFotoUrl);
-          }
-
-      } else {
-          // Exibir mensagens de erro
-          if (data.errors) {
-              if (data.errors.password) {
-                  document.getElementById('password-error').textContent = data.errors.password;
-              }
-              if (data.errors.email) {
-                  alert(data.errors.email); // Exibe mensagem de erro de e-mail
-              }
-          }
-      }
-  })
-  .catch(error => console.error('Erro:', error));
-});

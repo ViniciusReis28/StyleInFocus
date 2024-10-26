@@ -1,18 +1,80 @@
 <?php
 session_start();
-include 'conexao.php';
+include 'conexao.php'; // Inclua o arquivo de conexão MySQLi
 
-if (!isset($_SESSION['user_id'])) {
-    header("Location: ../../login.php");
+// Verifica se o usuário está logado
+$user_id = $_SESSION['user_id'] ?? null;
+if (!$user_id) {
+    echo json_encode(['success' => false, 'error' => 'Usuário não está logado.']);
     exit();
 }
 
-$user_id = $_SESSION['user_id'];
-$stmt = $conn->prepare("SELECT username, email, profile_image FROM users WHERE user_id = :user_id");
-$stmt->bindParam(':user_id', $user_id);
-$stmt->execute();
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
+// Carregar dados do usuário
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $stmt = $conexao->prepare("SELECT username, email, profile_image FROM users WHERE user_id = ?");
+    $stmt->bind_param("i", $user_id); // 'i' indica que o parâmetro é um inteiro
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
+
+    // Verifique se o usuário foi encontrado
+    if (!$user) {
+        echo json_encode(['success' => false, 'error' => 'Usuário não encontrado.']);
+        exit();
+    }
+
+    $username = htmlspecialchars($user['username']);
+    $email = htmlspecialchars($user['email']);
+    $profile_image = isset($user['profile_image']) ? htmlspecialchars($user['profile_image']) : 'caminho/default.jpg'; // Caminho padrão
+}
+
+// Atualizar dados do usuário
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // O resto do seu código para atualizar os dados
+}
 ?>
+
+
+
+<script>
+document.getElementById('editarPerfil').addEventListener('submit', function(event) {
+    event.preventDefault(); // Impede o envio padrão do formulário
+
+    var form = event.target;
+    var formData = new FormData(form);
+
+    fetch('update.php', { // Altere para a URL do seu script PHP que processa a atualização
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Limpa mensagens de erro anteriores
+        document.getElementById('general-error').textContent = '';
+        document.getElementById('password-error').textContent = '';
+
+        if (data.success) {
+            // Se a operação for bem-sucedida, redirecione ou faça outra ação
+            window.location.href = 'minha_conta.php'; // Redireciona após sucesso
+        } else {
+            // Exibe erros
+            if (data.errors) {
+                if (data.errors.password) {
+                    document.getElementById('password-error').textContent = data.errors.password;
+                }
+                if (data.errors.general) {
+                    document.getElementById('general-error').textContent = data.errors.general;
+                }
+            }
+        }
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        document.getElementById('general-error').textContent = 'Erro ao atualizar informações. Tente novamente.';
+    });
+});
+</script>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -132,9 +194,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
              alt="Imagem de Perfil">
 
         <div class="email-user">
-            <!-- Nome de Usuário -->
             <h1 class="nomeUsuario" id="nomeUsuarioDisplay"><?php echo htmlspecialchars($user['username']); ?></h1>
-            <!-- E-mail do Usuário -->
             <h3 class="emailUsuario" id="emailUsuarioDisplay"><?php echo htmlspecialchars($user['email']); ?></h3>
         </div>
     </div>
@@ -152,44 +212,42 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
       <div id="conteudo-minhaConta" class="right-panel active">
         <div class="banner">
-        <form id="editarPerfil" method="POST" action="update.php" enctype="multipart/form-data">
-        <div class="foto-container">
-            <img id="fotoPerfil" 
-                 src="<?php echo $user['profile_image'] ?? '../../img/usuarioDefault.jpg'; ?>" 
-                 class="imagem-hover">
-            <input type="file" id="inputFoto" name="foto" accept="image/*" style="display: none;">
-            <div class="trocar-foto" onclick="document.getElementById('inputFoto').click();">Trocar Foto</div>
-        </div>
-      
-        <div class="informacoes-conta-nome">
-            <h1 class="nomeUsuario" id="nomeUsuarioDisplay"><?php echo htmlspecialchars($user['username']); ?></h1>
-        </div>
+     <form id="editarPerfil" method="POST" action="update.php" enctype="multipart/form-data">
+     <div class="foto-container">
+     <img id="fotoPerfil" src="<?php echo htmlspecialchars($profile_image) . '?v=' . time(); ?>" class="imagem-hover" alt="Foto de perfil">
+     <input type="file" id="inputFoto" name="foto" accept="image/*" style="display: none;">
+        <div class="trocar-foto" onclick="document.getElementById('inputFoto').click();">Trocar Foto</div>
+    </div>
+</div>
 
-        <div class="minhaConta-section" data-section="nome">
-            <div class="form__group field" id="nomeText">
-                <input class="form__field" type="text" id="nome" name="username" value="<?php echo htmlspecialchars($user['username']); ?>" required>
-                <label for="name" class="form__label">Usuário:</label>
-            </div>
-          
-            <div class="form__group field" id="emailText">
-                <input class="form__field" type="text" id="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" required>
-                <label for="email" class="form__label">E-mail:</label>
-            </div>
+        
+<div class="minhaConta-section" data-section="nome">
+    <div class="form__group field" id="nomeText">
+        <input class="form__field" type="text" id="nome" name="username" value="<?php echo $username; ?>" placeholder="">
+        <label for="name" class="form__label">Usuário:</label>
+    </div>
 
-            <div class="form__group field" id="senhaText">
-                <input class="form__field" type="password" id="senha" name="novaSenha" placeholder="">
-                <label for="senha" class="form__label">Nova Senha:</label> 
-            </div>
+    <div class="form__group field" id="emailText">
+        <input class="form__field" type="text" id="email" name="email" value="<?php echo $email; ?>" placeholder="">
+        <label for="email" class="form__label">E-mail:</label>
+    </div>
 
-            <div class="form__group field" id="senhaAtualText">
-                <input class="form__field" type="password" id="senhaAtual" name="senhaAtual" required>
-                <label for="senhaAtual" class="form__label">Senha Atual:</label>
-            </div>
+    <div class="form__group field">
+        <input class="form__field" type="password" id="senhaAtual" name="senhaAtual" placeholder="" required>
+        <label for="senhaAtual" class="form__label">Senha Atual:</label>
+        <div id="password-error" style="color: #ff0000; font-size: 12px;"></div>
+    </div>
 
-            <div id="password-error" style="color: #ff0000; font-size: 12px; font-family: Freeman, sans-serif;"></div>
+    <div class="form__group field">
+        <input class="form__field" type="password" id="novaSenha" name="novaSenha" placeholder="">
+        <label for="novaSenha" class="form__label">Nova Senha:</label>
+    </div>
 
-            <br>
-            <button type="submit" id="btnSalvar" class="glow-on-hover">Salvar Alterações</button>
+    <div id="general-error" style="color: #ff0000; font-size: 12px;"></div>
+
+    <button type="submit" id="btnSalvar" class="glow-on-hover">Salvar Alterações</button>
+</div>
+
     </form>
     </div>
       </div>
