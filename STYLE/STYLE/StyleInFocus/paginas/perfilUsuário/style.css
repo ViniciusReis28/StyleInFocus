@@ -960,6 +960,12 @@ input[type="text"] {
 
 
 .tabs {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+
   display: flex;
   justify-content: space-between;  /* Distribui igualmente as abas */
   width: 100%;  /* Faz com que as abas ocupem toda a largura */
@@ -977,44 +983,118 @@ input[type="text"] {
 }
 
 .tab-button.active {
-  background-color: #007bff;  /* Cor para o botão ativo */
+  background-color: #000000;  /* Cor para o botão ativo */
   color: white;  /* Texto branco para o botão ativo */
 }
 
 .tab-content {
-  display: none;  /* Esconde todas as abas por padrão */
-  width: 100%;  /* Faz com que o conteúdo ocupe toda a largura */
-  max-width: 800px;  /* Limita a largura máxima */
+  height: 80vh; /* Define altura expandida para a área rolável */
+  overflow-y: auto;
+  padding-right: 10px; /* Para melhorar a aparência do scroll */
+
 }
 
 .tab-content.active {
   display: block;  /* Exibe o conteúdo da aba ativa */
 }
 
+
+/* Estilo para cada pedido */
 .pedido {
   display: flex;
-  flex-direction: column; /* Alinha os itens em coluna */
-  align-items: center; /* Centraliza horizontalmente */
-  border: 1px solid #ddd; /* Borda sutil */
-  border-radius: 8px; /* Bordas arredondadas */
-  padding: 15px; /* Espaçamento interno */
-  margin: 10px; /* Espaçamento entre produtos */
-  transition: box-shadow 0.3s; /* Efeito de transição suave */
-  background-color: #fff; /* Fundo branco para produtos */
-  width: 100%; /* Largura total */
-  max-width: 300px; /* Largura máxima dos produtos */
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 800px;
+  background-color: #f9f9f9;
+  margin: 15px 0;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
 }
 
-.info {
-  margin-left: 10px;  /* Espaço entre a imagem e a informação */
-}
 .pedido:hover {
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra ao passar o mouse */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* Imagem do produto alinhada à esquerda */
 .pedido img {
-  width: 100%; /* A imagem ocupa toda a largura do pedido */
-  height: 200px; /* Define uma altura fixa para as imagens */
-  object-fit: cover; /* Corta a imagem para manter a proporção e preencher a área */
-  border-radius: 8px 8px 0 0; /* Bordas arredondadas na parte superior */
+  width: 200px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Área das informações do produto (lado direito) */
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  width: 100%;
+  padding-left: 20px;
+}
+
+/* Nome do produto */
+.nome-produto {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Preço */
+.preco {
+  font-size: 16px;
+  font-weight: bold;
+  color: #4CAF50;
+}
+
+.preco, .preco-total {
+  font-size: 14px;
+  color: #666;
+  margin: 5px 0;
+}
+
+.quantidade-container {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.botao-alterar {
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  background-color: #ddd;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 5px;
+  transition: background-color 0.3s;
+}
+
+
+.botao-alterar:hover {
+  background-color: #bbb;
+}
+
+.quantidade {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 10px;
+}
+
+/* Estiliza o botão de ação */
+.botao {
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.botao:hover {
+  background-color: #555;
 }

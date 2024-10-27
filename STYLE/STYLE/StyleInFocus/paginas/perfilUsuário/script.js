@@ -272,3 +272,18 @@ function openTab(tabName) {
   document.getElementById(tabName).classList.add('active');
   event.currentTarget.classList.add('active');
 }
+
+function alterarQuantidade(button, change) {
+  const pedido = button.closest('.pedido');
+  const quantidadeElem = pedido.querySelector('.quantidade');
+  const precoUnitario = parseFloat(pedido.querySelector('.preco-unitario').innerText);
+  const precoFinalElem = pedido.querySelector('.preco-final');
+
+  let quantidade = parseInt(quantidadeElem.innerText);
+  quantidade = Math.max(1, quantidade + change);  // Impede quantidade menor que 1
+  quantidadeElem.innerText = quantidade;
+
+  // Atualiza o preço total
+  const precoTotal = (quantidade * precoUnitario).toFixed(2);
+  precoFinalElem.innerText = precoTotal;
+}
