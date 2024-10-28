@@ -287,3 +287,71 @@ function alterarQuantidade(button, change) {
   const precoTotal = (quantidade * precoUnitario).toFixed(2);
   precoFinalElem.innerText = precoTotal;
 }
+
+////////////////////PARTE METODOS DE PAGAMENTOS//////////////////////////////
+
+document.addEventListener("DOMContentLoaded", exibirCartoesSalvos);
+
+function adicionarCartao(event) {
+    event.preventDefault();
+
+    const nomeCartao = document.getElementById("nome-cartao").value;
+    const numeroCartao = document.getElementById("numero-cartao").value;
+    const validadeCartao = document.getElementById("validade-cartao").value;
+
+    let cartoes = JSON.parse(localStorage.getItem("cartoes")) || [];
+
+    // Verificar se o cartão já está registrado
+    const cartaoExistente = cartoes.find(cartao => cartao.numero === numeroCartao);
+
+    if (cartaoExistente) {
+        alert("Este cartão já está registrado.");
+        return;
+    }
+
+    // Adicionar novo cartão
+    const cartao = {
+        nome: nomeCartao,
+        numero: numeroCartao,
+        validade: validadeCartao,
+    };
+
+    cartoes.push(cartao);
+    localStorage.setItem("cartoes", JSON.stringify(cartoes));
+
+    exibirCartoesSalvos();
+    document.querySelector(".formulario-cartao").reset();
+}
+
+function exibirCartoesSalvos() {
+    const listaCartoes = document.getElementById("lista-cartoes");
+    listaCartoes.innerHTML = "";
+
+    let cartoes = JSON.parse(localStorage.getItem("cartoes")) || [];
+    cartoes.forEach((cartao, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+            <div class="cartao-info">
+                <span class="cartao-numero">${cartao.numero.replace(/\d{12}(\d{4})/, "**** **** **** $1")}</span>
+                <span>${cartao.nome}</span><br>
+                <span>Validade: ${cartao.validade}</span>
+            </div>
+            <span class="remover-cartao" onclick="confirmarRemocaoCartao(${index})">Remover</span>
+        `;
+        listaCartoes.appendChild(li);
+    });
+}
+
+function confirmarRemocaoCartao(index) {
+    const confirmacao = confirm("Tem certeza que deseja remover este cartão?");
+    if (confirmacao) {
+        removerCartao(index);
+    }
+}
+
+function removerCartao(index) {
+    let cartoes = JSON.parse(localStorage.getItem("cartoes")) || [];
+    cartoes.splice(index, 1);
+    localStorage.setItem("cartoes", JSON.stringify(cartoes));
+    exibirCartoesSalvos();
+}

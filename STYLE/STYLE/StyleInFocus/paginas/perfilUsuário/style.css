@@ -1098,3 +1098,116 @@ input[type="text"] {
 .botao:hover {
   background-color: #555;
 }
+
+/* ////////////////////////////////////METODO DE PAGAMENT0//////////////////////////// */
+.container-cartao-credito {
+  background-color: #f0f0f0;
+  padding: 20px;
+  max-width: 400px;
+  margin: 20px auto;
+  border-radius: 10px;
+}
+
+.titulo-cartao {
+  text-align: center;
+  color: #333;
+  font-weight: bold;
+}
+
+.formulario-cartao .campo-cartao {
+  margin-bottom: 15px;
+}
+
+.formulario-cartao label {
+  font-weight: bold;
+  color: #333;
+}
+
+.grupo-input {
+  position: relative;
+}
+
+.icone-cartao {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 8px 10px 8px 30px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  color: #333;
+}
+
+.campos-inline {
+  display: flex;
+  gap: 10px;
+}
+
+.botao-cartao {
+  width: 100%;
+  padding: 10px;
+  background-color: #000000;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.botao-cartao:hover {
+  background-color: #202020;
+}
+
+.cartoes-salvos {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+.cartoes-salvos h3 {
+  text-align: center;
+  color: #333;
+  font-weight: bold;
+}
+
+#lista-cartoes {
+  list-style: none;
+  padding: 0;
+}
+
+#lista-cartoes li {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cartao-info {
+  font-size: 14px;
+  color: #555;
+}
+
+.cartao-numero {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.remover-cartao {
+  color: #ff4d4d;
+  font-size: 14px;
+  cursor: pointer;
+}
