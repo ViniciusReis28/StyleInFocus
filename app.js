@@ -4,8 +4,7 @@ const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 const authRouter = require('./paginas/login/auth');
 const pool = require('./config/db');
-const path = require('path'); // Adicione esta linha
-
+const path = require('path');
 
 const app = express();
 const PORT = 3000;
@@ -19,101 +18,76 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
 }));
-app.get('/perfilUsuario/script.js', (req, res) => {
-    console.log('Requisição recebida para script.js');
-    res.sendFile(path.join(__dirname, 'paginas', 'perfilUsuario', 'script.js'));
-});
-// Servir arquivos estáticos da pasta public
-app.use(express.static(path.join(__dirname, 'paginas')));
+
+// Configuração para servir arquivos estáticos
+app.use(express.static(path.join(__dirname, 'paginas'))); // Altere para o diretório correto
+
 app.use('/auth', authRouter);
 
-// Rota para obter dados do perfil
-app.get('/api/profile', (req, res) => {
-    const userId = req.session.userId;
-
-    if (!userId) {
-        return res.status(401).json({ success: false, error: 'Usuário não autenticado.' });
-    }
-
-    pool.query('SELECT username, email, profile_image FROM users WHERE user_id = $1', [userId], (error, results) => {
-        if (error || results.rows.length === 0) {
-            return res.status(404).json({ success: false, error: 'Usuário não encontrado.' });
-        }
-
-        const user = results.rows[0];
-        res.json({ success: true, user });
-    });
-});
-
-
-// Rota para atualizar perfil
-app.post('/api/profile', (req, res) => {
-    const userId = req.session.userId;
-    if (!userId) {
-        return res.status(401).json({ success: false, error: 'Usuário não autenticado.' });
-    }
-
-    const { username, email } = req.body;
-    let profileImage = '';
-
-    // Verifica se há um arquivo para upload
-    if (req.files && req.files.inputFoto) {
-        const fotoPerfil = req.files.inputFoto;
-        profileImage = '/perfilUsuario/uploads/' + fotoPerfil.name; // Ajuste para o caminho correto
-
-        // Mover o arquivo para a pasta uploads
-        fotoPerfil.mv(path.join(__dirname, 'paginas', 'perfilUsuario', 'uploads', fotoPerfil.name), (err) => {
-            if (err) {
-                return res.status(500).json({ success: false, error: 'Erro ao salvar imagem.' });
-            }
-        });
-    } else {
-        // Caso não tenha uma nova imagem, mantenha a imagem atual do banco de dados
-        profileImage = './perfilUsuario/uploads/usuarioDefault.jpg';
-    }
-
-    // Atualiza o banco de dados com os dados fornecidos
-    pool.query(
-        'UPDATE users SET username = $1, email = $2, profile_image = $3 WHERE user_id = $4',
-        [username, email, profileImage, userId],
-        (error, results) => {
-            if (error) {
-                return res.status(500).json({ success: false, error: 'Erro ao atualizar perfil.' });
-            } else {
-                return res.json({ 
-                    success: true, 
-                    message: "Perfil atualizado com sucesso!", 
-                    user: { username, email, profile_image: profileImage }, 
-                    redirect: 'userEdited.html' 
-                });
-            }
-        }
-    );
-});
-
-// Rota para servir o arquivo profile.html
-app.get('/profile', (req, res) => {
-    res.sendFile(path.join(__dirname, 'paginas', 'perfilUsuario', 'profile.html'));
-});
-// Outras rotas de páginas
-app.get('/userEdited.html', (req, res) => {
-    res.sendFile(__dirname + '/paginas/perfilUsuario/userEdited.html');
-});
-
+// Rotas
 app.get('/register', (req, res) => {
-    res.sendFile(__dirname + '/paginas/login/register.html');
+    res.sendFile(path.join(__dirname, '/paginas/login/register.html'));
 });
 
 app.get('/login', (req, res) => {
-    res.sendFile(__dirname + '/paginas/login/login.html');
+    res.sendFile(path.join(__dirname, '/paginas/login/login.html'));
 });
 
+// Rota para a página do usuário logado
+// Rota para a página do usuário logado
 app.get('/userLogado.html', (req, res) => {
-    res.sendFile(__dirname + '/paginas/login/userLogado.html');
+    // Verifica se o usuário está logado
+    if (!req.session.userId) {
+        return res.redirect('/login'); // Redireciona para login se não estiver autenticado
+    }
+
+    // Envia o arquivo userLogado.html diretamente
+    res.sendFile(path.join(__dirname, '/paginas/login/userLogado.html'));
 });
+
 
 app.get('/userCadastrado.html', (req, res) => {
-    res.sendFile(__dirname + '/paginas/login/userCadastrado.html');
+    res.sendFile(path.join(__dirname, '/paginas/login/userCadastrado.html'));
+});
+
+// Rota para a página de perfil
+// Rota para a página de perfil
+app.get('/profile', (req, res) => {
+    if (!req.session.userId) {
+        return res.redirect('/login'); 
+    }
+    // Envia o arquivo profile.html diretamente
+    res.sendFile(path.join(__dirname, '/paginas/login/profile.html'));
+});
+app.get('/api/user', async (req, res) => {
+    // Verifica se o usuário está autenticado
+    if (!req.session.userId) {
+        return res.status(401).json({ message: "Não autenticado." });
+    }
+
+    try {
+        const userId = req.session.userId;
+        const user = await new Promise((resolve, reject) => {
+            pool.query('SELECT username, email FROM users WHERE user_id = $1', [userId], (error, results) => {
+                if (error) return reject(error);
+                resolve(results.rows[0]);
+            });
+        });
+
+        if (!user) {
+            return res.status(404).json({ message: "Usuário não encontrado." });
+        }
+
+        // Retorna os dados do usuário como JSON
+        res.json(user);
+    } catch (error) {
+        console.error('Erro ao buscar usuário:', error);
+        res.status(500).json({ message: "Erro ao buscar informações do usuário." });
+    }
+});
+// Tratamento de erro 404
+app.use((req, res) => {
+    res.status(404).send("Página não encontrada");
 });
 
 // Iniciar o servidor
