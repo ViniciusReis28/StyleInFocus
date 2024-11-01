@@ -8,7 +8,7 @@ const router = express.Router();
 // Configuração do multer para upload de arquivos
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, './perfilUsuario/uploads/'); // Caminho para salvar as imagens
+        cb(null, '/login/uploads/'); // Caminho para salvar as imagens
     },
     filename: (req, file, cb) => {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
