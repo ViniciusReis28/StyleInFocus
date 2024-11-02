@@ -263,28 +263,25 @@ function showSuggestions() {
   }
 }
 
-window.onload = function() {
-  fetch('/api/profile')
-      .then(response => {
-          if (!response.ok) {
-              throw new Error('Usuário não autenticado');
-          }
-          return response.json();
-      })
-      .then(data => {
-          if (data.success) {
-              // Esconde o SVG e mostra a imagem do perfil
-              document.getElementById('profile-svg').style.display = 'none';
-              const profileImage = document.getElementById('profile-image');
-              profileImage.src = data.user.profile_image || '../perfilUsuario/uploads/usuarioDefault.jpg';
-              profileImage.style.display = 'block'; // Mostra a imagem
-          }
-      })
-      .catch(error => {
-          console.error('Erro ao carregar dados do perfil:', error);
-          // Mostra o SVG se o usuário não estiver autenticado
-          document.getElementById('profile-svg').style.display = 'block';
-          document.getElementById('profile-image').style.display = 'none';
-      });
-};
+   // Função para verificar se a imagem de perfil está disponível
+   function loadProfileImage() {
+    fetch('/auth/check-session')
+        .then(response => response.json())
+        .then(data => {
+            if (data.isAuthenticated) {
+                // Verifica se há uma imagem de perfil
+                if (data.profileImagePath) {
+                    const profileImage = document.getElementById("profile-image");
+                    const profileSvg = document.getElementById("profile-svg");
 
+                    profileImage.src = data.profileImagePath;
+                    profileImage.style.display = "block"; // Exibe a imagem
+                    profileSvg.style.display = "none"; // Esconde o SVG
+                }
+            }
+        })
+        .catch(error => console.error("Erro ao carregar a imagem de perfil:", error));
+}
+
+// Carregar a imagem do perfil ao carregar a página
+window.onload = loadProfileImage;

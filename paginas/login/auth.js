@@ -5,6 +5,8 @@ const path = require('path');
 const pool = require('../../config/db'); // Certifique-se de que o caminho está correto
 const router = express.Router();
 
+
+
 // Configuração do multer para upload de arquivos
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -79,12 +81,21 @@ router.post('/login', (req, res) => {
         if (match) {
             req.session.userId = user.user_id; // Armazena o ID do usuário na sessão
             req.session.profileImage = user.profile_image; // Armazena a imagem do perfil na sessão
-            return res.json({ success: true, message: "Login bem-sucedido!", redirect: '/userLogado.html' });
+
+            const profileImagePath = user.profile_image ? `/login/uploads/${user.profile_image}` : '../login/uploads/usuarioDefault.jpg';
+            
+            return res.json({ 
+                success: true, 
+                message: "Login bem-sucedido!", 
+                redirect: '/userLogado.html', 
+                profileImagePath 
+            });
         } else {
             return res.status(401).json({ success: false, errors: { password: 'Senha incorreta.' } });
         }
     });
 });
+
 
 // Rota de atualização do perfil
 router.post('/update', async (req, res) => {
@@ -133,4 +144,16 @@ router.post('/update', async (req, res) => {
     }
 });
 
+
+router.get('/check-session', (req, res) => {
+    if (req.session.userId) {
+        const profileImagePath = req.session.profileImage 
+            ? `/login/uploads/${req.session.profileImage}` 
+            : '/login/uploads/usuarioDefault.jpg';
+        
+        return res.json({ isAuthenticated: true, profileImagePath });
+    } else {
+        return res.json({ isAuthenticated: false });
+    }
+});
 module.exports = router;

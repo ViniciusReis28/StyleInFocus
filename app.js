@@ -61,6 +61,7 @@ app.get('/profile', (req, res) => {
     // Envia o arquivo profile.html diretamente
     res.sendFile(path.join(__dirname, '/paginas/login/profile.html'));
 });
+
 app.get('/api/user', async (req, res) => {
     // Verifica se o usuário está autenticado
     if (!req.session.userId) {
