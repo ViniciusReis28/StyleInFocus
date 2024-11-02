@@ -19,6 +19,8 @@ app.use(session({
     saveUninitialized: false,
 }));
 
+app.use('/uploads', express.static(path.join(__dirname, 'paginas/login/uploads')));
+
 // Configuração para servir arquivos estáticos
 app.use(express.static(path.join(__dirname, 'paginas'))); // Altere para o diretório correto
 
@@ -68,7 +70,7 @@ app.get('/api/user', async (req, res) => {
     try {
         const userId = req.session.userId;
         const user = await new Promise((resolve, reject) => {
-            pool.query('SELECT username, email FROM users WHERE user_id = $1', [userId], (error, results) => {
+            pool.query('SELECT username, email, profile_image FROM users WHERE user_id = $1', [userId], (error, results) => {
                 if (error) return reject(error);
                 resolve(results.rows[0]);
             });

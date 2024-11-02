@@ -8,11 +8,11 @@ const router = express.Router();
 // Configuração do multer para upload de arquivos
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, '/login/uploads/'); // Caminho para salvar as imagens
+        cb(null, path.join(__dirname, '../../paginas/login/uploads'));
     },
     filename: (req, file, cb) => {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        cb(null, uniqueSuffix + path.extname(file.originalname)); // Mantém o nome original do arquivo com sufixo único
+        cb(null, uniqueSuffix + path.extname(file.originalname));
     }
 });
 
@@ -43,7 +43,7 @@ router.post('/register', upload.single('profileImage'), async (req, res) => {
         // Criptografa a senha do usuário
         const hashedPassword = await bcrypt.hash(password, 10);
         
-        const profileImage = req.file ? req.file.filename : null; // Obtém o nome do arquivo da imagem, se enviado
+        const profileImage = req.file ? 'uploads/' + req.file.filename : null;
 
         await new Promise((resolve, reject) => {
             pool.query(

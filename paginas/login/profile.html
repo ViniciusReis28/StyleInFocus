@@ -189,7 +189,7 @@
                 })
                 .then(data => {
                     const defaultImage = '/login/uploads/usuarioDefault.jpg'; // Caminho da imagem padrão
-        
+
                     // Preenche os campos com os dados do usuário
                     document.getElementById('username').value = data.username; // Preenche o campo nome
                     document.getElementById('email').value = data.email;       // Preenche o campo e-mail
@@ -198,8 +198,10 @@
                     document.getElementById('emailUsuarioDisplay').textContent = data.email;       // Preenche o campo e-mail
 
                     // Define a imagem do perfil ou a padrão se não houver
-                    document.getElementById('fotoPerfilEmail').src = data.profile_image || defaultImage;
-                    document.getElementById('fotoPerfil').src = data.profile_image || defaultImage;
+                    const profileImage = data.profile_image ? `/uploads/${data.profile_image}` : defaultImage;
+                    document.getElementById('fotoPerfilEmail').src = profileImage;
+                    document.getElementById('fotoPerfil').src = profileImage;
+
                 })
                 .catch(error => {
                     console.error(error);
