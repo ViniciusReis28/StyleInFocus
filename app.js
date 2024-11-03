@@ -53,7 +53,6 @@ app.get('/userCadastrado.html', (req, res) => {
 });
 
 // Rota para a página de perfil
-// Rota para a página de perfil
 app.get('/profile', (req, res) => {
     if (!req.session.userId) {
         return res.redirect('/login'); 

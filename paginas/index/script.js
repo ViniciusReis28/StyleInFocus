@@ -263,25 +263,92 @@ function showSuggestions() {
   }
 }
 
-   // Função para verificar se a imagem de perfil está disponível
-   function loadProfileImage() {
-    fetch('/auth/check-session')
-        .then(response => response.json())
-        .then(data => {
-            if (data.isAuthenticated) {
-                // Verifica se há uma imagem de perfil
-                if (data.profileImagePath) {
-                    const profileImage = document.getElementById("profile-image");
-                    const profileSvg = document.getElementById("profile-svg");
+// Função para verificar se a imagem de perfil está disponível
+function loadUserProfile() {
+  fetch('/auth/check-session')
+      .then(response => response.json())
+      .then(data => {
+          const profileImage = document.getElementById("profile-image");
+          const profileSvg = document.getElementById("profile-svg");
+          const profileTextDiv = document.querySelector(".profile-text");
 
-                    profileImage.src = data.profileImagePath;
-                    profileImage.style.display = "block"; // Exibe a imagem
-                    profileSvg.style.display = "none"; // Esconde o SVG
-                }
-            }
-        })
-        .catch(error => console.error("Erro ao carregar a imagem de perfil:", error));
+          // Verifica se o usuário está autenticado
+          if (data.isAuthenticated) {
+              // Atualiza a imagem de perfil
+              if (data.profileImagePath && data.profileImagePath !== "/login/uploads/usuarioDefault.jpg") {
+                  profileImage.src = data.profileImagePath;
+                  profileImage.style.display = "block";
+                  profileSvg.style.display = "none";
+              } else {
+                  profileImage.style.display = "none";
+                  profileSvg.style.display = "block";
+              }
+
+              // Atualiza o texto de perfil para mostrar o nome do usuário e o link "Minha Conta"
+              profileTextDiv.innerHTML = `
+                  <a class="text-login" >${data.username}</a>
+                  <br>
+                  <a class="text-login" href="/profile" class="profile-link">MINHA CONTA</a>
+              `;
+
+              // Salva os dados no Local Storage
+              localStorage.setItem('username', data.username);
+              localStorage.setItem('profileImagePath', data.profileImagePath);
+          } else {
+              // Caso o usuário não esteja logado, exibe as opções padrão de "Entre" e "Cadastre-se"
+              profileTextDiv.innerHTML = `
+                  <a class="text-login" href="../login/login.html" class="profile-link">ENTRE</a>
+                  <a class="text-login">OU</a>
+                  <br>
+                  <a class="text-login" href="../login/register.html" class="profile-link">CADASTRE-SE</a>
+              `;
+
+              // Limpa os dados do Local Storage, se não estiver logado
+              localStorage.removeItem('username');
+              localStorage.removeItem('profileImagePath');
+          }
+      })
+      .catch(error => console.error("Erro ao carregar o perfil do usuário:", error));
 }
 
-// Carregar a imagem do perfil ao carregar a página
-window.onload = loadProfileImage;
+// Função para carregar os dados do Local Storage ao carregar a página
+function loadProfileFromLocalStorage() {
+  const username = localStorage.getItem('username');
+  const profileImagePath = localStorage.getItem('profileImagePath');
+  const profileImage = document.getElementById("profile-image");
+  const profileSvg = document.getElementById("profile-svg");
+  const profileTextDiv = document.querySelector(".profile-text");
+
+  if (username) {
+      // Atualiza a imagem de perfil se houver
+      if (profileImagePath && profileImagePath !== "/login/uploads/usuarioDefault.jpg") {
+          profileImage.src = profileImagePath;
+          profileImage.style.display = "block";
+          profileSvg.style.display = "none";
+      } else {
+          profileImage.style.display = "none";
+          profileSvg.style.display = "block";
+      }
+
+      // Atualiza o texto de perfil
+      profileTextDiv.innerHTML = `
+          <a class="text-login" >${username}</a>
+          <br>
+          <a class="text-login" href="/profile" class="profile-link">MINHA CONTA</a>
+      `;
+  } else {
+      // Se não houver dados, exibe as opções padrão
+      profileTextDiv.innerHTML = `
+          <a class="text-login" href="../login/login.html" class="profile-link">ENTRE</a>
+          <a class="text-login">OU</a>
+          <br>
+          <a class="text-login" href="../login/register.html" class="profile-link">CADASTRE-SE</a>
+      `;
+  }
+}
+
+// Carregar o perfil do usuário ao carregar a página
+window.onload = function() {
+  loadProfileFromLocalStorage(); // Primeiro, tenta carregar do Local Storage
+  loadUserProfile(); // Depois, faz a chamada para verificar a sessão
+};

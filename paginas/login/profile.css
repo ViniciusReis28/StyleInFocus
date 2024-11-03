@@ -799,6 +799,15 @@ body {
   /* Adicionando a linha */
 }
 
+
+
+
+
+
+
+
+
+
 /*Parte da conta do usuario*/
 
 .container {
@@ -881,16 +890,6 @@ body {
 
 
 
-
-
-
-
-
-
-                      /*CODIGO CSS DA PAGINA DO PERFIL USUARIO DA INFORMAÇOES DA CONTA*/
-
-
-
 .banner {
   position: relative;
   width: 100%;
@@ -950,31 +949,34 @@ body {
   margin-top: 30px;
 }
 
-.container-minhaConta {
-  display: flex;
-  flex-direction: column;
-  margin-top: 45px;
-  gap: 20px;
-  padding: 50px;
+.minhaConta-container {
+  margin-left: 85px;
+  display: flex; /* Ativa o flexbox */
+  margin-top: 80px; /* Espaço acima do contêiner */
+  gap: 20px; /* Reduzido o espaçamento entre as seções */
 }
 
 .minhaConta-section {
-  padding: 75px;
-  font-size: 26px;
-  position: relative;
+  
+  display: flex;
+  flex-direction: column; /* Para empilhar os campos verticalmente */
+  padding: 20px; /* Ajuste conforme necessário */
+  font-size: 26px; /* Tamanho da fonte */
+  position: relative; /* Para posicionamento relativo */
+  width: 40%; /* Aumenta a largura das seções para ocupar mais espaço */
 }
 
-
+/* Para cada input no formulário */
 .form__group {
+  margin-bottom: 20px; /* Espaçamento entre os campos de entrada */
   position: relative;
   padding: 20px 0 0;
-  width: 100%;
-  max-width: 180px;
+  width: 100%; /* Garante que o input ocupe a largura total */
 }
 
 .form__field {
   font-family: inherit;
-  width: 350px;
+  width: 310px;
   border: none;
   border-bottom: 2px solid #505050;
   outline: 0;
@@ -1001,7 +1003,7 @@ body {
   display: block;
   transition: 0.2s;
   font-size: 17px;
-  color: #414141;
+  color: #868686;
   pointer-events: none;
 }
 
@@ -1019,7 +1021,7 @@ body {
   display: block;
   transition: 0.2s;
   font-size: 20px;
-  color: #38caef;
+  color: #007bce;
   font-weight: 700;
 }
 

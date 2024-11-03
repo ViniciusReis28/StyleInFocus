@@ -7,6 +7,7 @@
   <title>Perfil Do Usuario</title>
   <link rel="stylesheet" href="login/profile.css">
   <link rel="shortcut icon" href="../../img/logopreta.png" type="image">
+
 </head>
 
 <body>
@@ -140,7 +141,10 @@
               </div>
             </div>
       
-            <div class="minhaConta-section" data-section="nome">
+
+            <div class="minhaConta-container">
+
+            <div class="minhaConta-section user-info">
               <div class="form__group field" id="nomeText">
                 <input class="form__field" type="text" id="username" name="username" value="Nome do Usuário" placeholder="" required>
                 <label for="name" class="form__label">Usuário:</label>
@@ -150,7 +154,9 @@
                 <input class="form__field" type="email" id="email" name="email" value="email@exemplo.com" placeholder="" required>
                 <label for="email" class="form__label">E-mail:</label>
             </div>
-            
+            </div>
+            <div class="minhaConta-section password-info">
+
             <div class="form__group field">
                 <input class="form__field" type="password" id="senhaAtual" name="senhaAtual" placeholder="" required>
                 <label for="senhaAtual" class="form__label">Senha Atual:</label>
@@ -166,9 +172,9 @@
                 <input class="form__field" type="password" id="confirmacaoNovaSenha" name="confirmacaoNovaSenha" placeholder="Confirme a Nova Senha" required>
                 <label for="confirmacaoNovaSenha" class="form__label">Confirme a Senha:</label>
             </div>
-      
+           
               <div id="general-error" style="color: #ff0000; font-size: 12px;"></div>
-      
+              
               <button type="submit" id="btnSalvar" class="glow-on-hover">Salvar Alterações</button>
             </div>
           </form>
