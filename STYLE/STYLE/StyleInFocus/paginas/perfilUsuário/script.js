@@ -355,3 +355,22 @@ function removerCartao(index) {
     localStorage.setItem("cartoes", JSON.stringify(cartoes));
     exibirCartoesSalvos();
 }
+
+function toggleResposta(id) {
+  const resposta = document.getElementById(`resposta${id}-suporte`);
+  const item = resposta.parentElement;
+  
+  // Alterna a exibição e a classe de item ativo
+  if (resposta.style.display === "block") {
+      resposta.style.display = "none";
+      item.classList.remove("active");
+  } else {
+      resposta.style.display = "block";
+      item.classList.add("active");
+  }
+}
+
+function irParaMaisInformacoes(event, url) {
+  event.stopPropagation(); // Evita que o clique no botão feche a resposta
+  window.location.href = url;
+}

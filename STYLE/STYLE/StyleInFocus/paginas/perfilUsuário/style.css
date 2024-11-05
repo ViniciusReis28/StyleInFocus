@@ -1211,3 +1211,121 @@ input[type="text"] {
   font-size: 14px;
   cursor: pointer;
 }
+
+
+
+/* ////////////////////////////////////SUPORTE //////////////////////////// */
+
+
+.container-duvidas-suporte {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.titulo-duvidas-suporte {
+  color: #333;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+.duvida-item-suporte {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #ddd;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.duvida-item-suporte:hover {
+  background-color: #b9b9b9;
+}
+
+.pergunta-duvida-suporte {
+  color: #000;
+  font-size: 20px;
+  margin: 0;
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+}
+
+.pergunta-duvida-suporte::after {
+  content: '▼';
+  font-size: 14px;
+  margin-left: 10px;
+  transition: transform 0.3s;
+}
+
+.duvida-item-suporte.active .pergunta-duvida-suporte::after {
+  transform: rotate(-180deg);
+}
+
+.resposta-duvida-suporte {
+  color: #555;
+  font-size: 16px;
+  margin-top: 10px;
+  padding-left: 20px;
+  display: none;
+  animation: slideDown-suporte 0.3s ease-out;
+}
+
+/* Estilo do botão */
+.button-suporte {
+  height: 50px;
+  width: 200px;
+  position: relative;
+  background-color: transparent;
+  cursor: pointer;
+  border: 2px solid #252525;
+  overflow: hidden;
+  border-radius: 30px;
+  color: #333;
+  transition: all 0.5s ease-in-out;
+}
+
+.btn-txt-suporte {
+  z-index: 1;
+  font-weight: 800;
+  letter-spacing: 4px;
+}
+
+.button-suporte::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: all 0.5s ease-in-out;
+  background-color: #333;
+  border-radius: 30px;
+  visibility: hidden;
+  height: 10px;
+  width: 10px;
+  z-index: -1;
+}
+
+.button-suporte:hover {
+  color: #fff;
+  border: none;
+}
+
+.button-suporte:hover::after {
+  visibility: visible;
+  transform: scale(100) translateX(4px);
+}
+
+@keyframes slideDown-suporte {
+  from {
+      opacity: 0;
+      transform: translateY(-10px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
