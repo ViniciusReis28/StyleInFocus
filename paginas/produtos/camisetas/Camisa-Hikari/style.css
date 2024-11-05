@@ -581,6 +581,18 @@ a {
   align-items: center;
 }
 
+/* Garante que a center-section fique centralizada */
+.center-section {
+  left: 165px;
+  position: relative;
+  z-index: 1; /* Mantém acima de outros conteúdos, se necessário */
+}
+
+/* Right-section posicionada à direita */
+.right-section {
+  display: flex;
+  z-index: 2;
+}
 .center-section ul {
   display: flex;
   list-style: none;
@@ -603,7 +615,16 @@ a {
 }
 
 .right-section a {
-  margin-left: 10px;
+  margin-left: 0px;
+  left: 250px;
+}
+
+
+.search-bar-container {
+  position: absolute;
+  top: 50%;
+  left: 83%;
+  transform: translate(-50%, -50%);
 }
 
 .group {
@@ -612,6 +633,45 @@ a {
   align-items: center;
   position: relative;
   margin-right: -18px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  fill: #bdbecb;
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+.profile-text {
+  margin-left: 5px;
+  color: #ffffff; /* Change to match the color in your image */
+  font-weight: bold;
+}
+
+.profile-link::after {
+  content: none;
+}
+
+/* Estilo geral do link na seção de perfil */
+.profile-text .text-login {
+  position: relative;
+  padding: 5px;
+  border-radius: 5px;
+  color: #000000;
+  font-size: 20px; /* Adjust size as needed */
+  text-decoration: none;
+  
+}
+.profile-text .text-login:hover {
+  text-decoration: underline;
+}
+.text-login:hover {
+  color: #000000;
+  text-decoration: none;
 }
 
 .input {
@@ -645,24 +705,6 @@ a {
 .input:focus {
   box-shadow: 0 0 0 2.5px #2f303d;
 }
-
-.search-icon {
-  position: absolute;
-  left: 1rem;
-  fill: #bdbecb;
-  width: 1rem;
-  height: 1rem;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.search-bar-container {
-  position: absolute;
-  top: 50%;
-  left: 87%;
-  transform: translate(-50%, -50%);
-}
-
 
 /* Estilo para os itens do dropdown */
 .dropdown {

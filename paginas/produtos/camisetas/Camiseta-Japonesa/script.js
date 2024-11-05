@@ -1,35 +1,4 @@
-document.getElementById("profile-icon").onclick = function () {
-  document.getElementById("sidebar").style.width = "350px";
-  document.getElementById("overlay").style.width = "100%";
-};
 
-document.querySelector(".close-btn").onclick = function () {
-  document.getElementById("sidebar").style.width = "0";
-  document.getElementById("overlay").style.width = "0";
-};
-
-document.getElementById("overlay").onclick = function () {
-  document.getElementById("sidebar").style.width = "0";
-  document.getElementById("overlay").style.width = "0";
-};
-
-
-function openLeftSidebar() {
-  document.getElementById("leftSidebar").style.width = "380px";
-}
-
-function closeLeftSidebar() {
-  document.getElementById("leftSidebar").style.width = "0";
-}
-
-// Fechar o sidebar ao clicar fora dele
-document.addEventListener('click', function(event) {
-  var sidebar = document.getElementById('leftSidebar');
-  var btn = document.querySelector('.btn-filtrar');
-  if (sidebar.style.width === "380px" && !sidebar.contains(event.target) && event.target !== btn) {
-      closeLeftSidebar();
-  }
-});
 
 function toggleDropdown(dropdownId) {
   const dropdown = document.getElementById(dropdownId);

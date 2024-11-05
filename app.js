@@ -26,6 +26,8 @@ app.use(express.static(path.join(__dirname, 'paginas'))); // Altere para o diret
 
 app.use('/auth', authRouter);
 
+
+
 // Rotas
 app.get('/register', (req, res) => {
     res.sendFile(path.join(__dirname, '/paginas/login/register.html'));
@@ -35,14 +37,19 @@ app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '/paginas/login/login.html'));
 });
 
-// Rota para a página do usuário logado
-// Rota para a página do usuário logado
+app.get('/index', (req, res) => {
+    res.sendFile(path.join(__dirname, '/paginas/index/index.html'));
+});
+
+app.get('/index', (req, res) => {
+    res.sendFile(path.join(__dirname, '/paginas/index/index.html'));
+});
+
 app.get('/userLogado.html', (req, res) => {
     // Verifica se o usuário está logado
     if (!req.session.userId) {
         return res.redirect('/login'); // Redireciona para login se não estiver autenticado
     }
-
     // Envia o arquivo userLogado.html diretamente
     res.sendFile(path.join(__dirname, '/paginas/login/userLogado.html'));
 });
