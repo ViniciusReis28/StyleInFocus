@@ -958,3 +958,21 @@ input[type="text"] {
 
 
 
+/*/-/-/-/-/-/-/-/-/-/-/Responsividade/-/-/-/-/-/-/-/-/-/-/*/
+
+
+@media screen and (max-width: 800px) {
+  .center-section,.search-bar-container{
+    display: none;
+  }
+
+  .box-perfil{
+    flex-direction: column;
+  }
+  .left-panel,.right-panel{
+    width: 100%;
+  }
+  .box-perfil{
+    height: 100%;
+  }
+}
