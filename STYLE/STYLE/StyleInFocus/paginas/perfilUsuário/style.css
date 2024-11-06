@@ -1104,7 +1104,7 @@ input[type="text"] {
   background-color: #f0f0f0;
   padding: 20px;
   max-width: 400px;
-  margin: 20px auto;
+  margin: 40px auto;
   border-radius: 10px;
 }
 
@@ -1317,6 +1317,30 @@ input[type="text"] {
 .button-suporte:hover::after {
   visibility: visible;
   transform: scale(100) translateX(4px);
+}
+
+
+/* ///////////////////////////////SUPPORTE ////////////////////////////// */
+.banner-suporte{
+  display: flex;
+  height: 150px; /* Altura do banner */
+  align-items: left; /* Centralizar o conteúdo verticalmente */
+  justify-content: flex-start; /* Centralizar o conteúdo horizontalmente */
+  
+  
+  background-color: #000000; /* Cor de fundo da navbar */
+    display: flex; /* Usar flexbox para alinhamento */
+    align-items: center; /* Centralizar o conteúdo verticalmente */
+    /* gap: 10px; Espaçamento entre os itens */
+   
+}
+
+.img-drizzle{
+  width: auto;
+  height: 100%;
+  max-height: 100%;
+  border-radius: 100%;
+  object-fit: cover;
 }
 
 @keyframes slideDown-suporte {
