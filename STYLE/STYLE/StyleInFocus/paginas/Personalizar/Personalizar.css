@@ -600,3 +600,9 @@ img {
 #show-icons-btn:hover {
   background-color: #555;
 }
+
+@media screen and (max-width:800px){
+  .login-wrapper{
+    flex-direction: column;
+  }
+}
