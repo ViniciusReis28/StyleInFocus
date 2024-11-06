@@ -61,7 +61,7 @@ img {
   box-shadow: 0px 0px 10px rgb(252, 252, 252);
   padding: 40px; /* Ajuste o padding conforme necessário */
   width: 800px;
-  height: 600px; /* Altura fixa */
+  height: 700px; /* Altura fixa */
   margin: auto;
   margin-top: 200px;
   overflow: hidden; /* Garante que o conteúdo não ultrapasse o tamanho do container */
@@ -76,7 +76,7 @@ img {
   box-shadow: 0px 0px 10px rgb(252, 252, 252);
   padding: 40px; /* Ajuste o padding conforme necessário */
   width: 800px;
-  height: 600px; /* Altura fixa */
+  height: 700px; /* Altura fixa */
   margin: auto;
   margin-top: 200px;
   overflow: hidden; /* Garante que o conteúdo não ultrapasse o tamanho do container */
@@ -613,7 +613,7 @@ img {
   display: flex;
   flex-direction: column; /* Coloca os botões em coluna */
   gap: 10px;
-  align-items: flex-start; /* Alinha os botões à esquerda */
+  align-items: center; /* Alinha os botões à esquerda */
   margin-top: 20px; /* Ajuste para distância dos botões */
 }
 .position-btn {
@@ -623,7 +623,7 @@ img {
   color: white;
   border: none;
   border-radius: 5px;
-  width: 100%; /* Faz o botão ocupar toda a largura da coluna */
+  width: 50%; /* Faz o botão ocupar toda a largura da coluna */
 }
 
 .position-btn:hover {
@@ -632,8 +632,87 @@ img {
 
 .shirt-container {
   display: flex;
-  gap: 20px; /* Espaçamento entre o texto e o card */
-  align-items: flex-start; /* Alinha os itens no topo */
-  justify-content: center; /* Centraliza o card horizontalmente */
-  width: 81%; /* Garante que o contêiner ocupe toda a largura disponível */
+  gap: 20px;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%; /* Remove o 81% ou ajuste para ocupar toda a largura */
+}
+
+
+
+.upload-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+.upload-label {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.upload-label:hover {
+  background-color: #45a049;
+}
+
+.upload-input {
+  display: none; /* Esconde o input padrão */
+}
+
+.file-name {
+  margin-top: 10px;
+  color: #333;
+  font-size: 14px;
+  font-style: italic;
+  text-align: center;
+}
+
+.upload-image:hover .file-name {
+  color: #4CAF50;
+}
+
+/* Feedback visual quando o arquivo for selecionado */
+.upload-input:focus + .file-name {
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+#custom-image {
+  
+}
+#custom-image.round { border-radius: 50%; }
+#custom-image.square { border-radius: 0; }
+#custom-image.rounded { border-radius: 15px; }
+#custom-image.triangle {
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+
+.shape-options {
+  display: flex;
+  flex-direction: column; /* Coloca os botões em coluna */
+  gap: 10px;
+  align-items: center; /* Alinha os botões à esquerda */
+  margin-top: 20px; /* Ajuste para distância dos botões */
+}
+
+.shape-btn {
+  padding: 8px 12px;
+  cursor: pointer;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  width: 50%; /* Faz o botão ocupar toda a largura da coluna */
+}
+
+.shape-btn:hover {
+  background-color: #555;
 }
