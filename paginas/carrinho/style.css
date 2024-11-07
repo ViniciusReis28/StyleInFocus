@@ -1,0 +1,614 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    display: none;
+    /* Inicialmente escondido */
+  }
+  
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Bebas Neue", sans-serif;
+    background-color: #f9f9f9;
+    flex-direction: column;
+    }
+
+
+
+.container {
+    flex: 1; /* Faz com que o main ocupe o espaço necessário para empurrar o footer */
+    padding-bottom: 100px; /* Espaço reservado para o footer, para que ele não sobreponha o conteúdo */
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-top: 50px;
+    margin-bottom: 70px;
+    border-radius: 9px ;
+}
+
+h1 {
+    text-align: center;
+    margin-top: -100px;
+    margin-bottom: 60px;
+    font-size:55px;
+}
+
+.cart-items {
+    margin-bottom: 20px;
+}
+
+.cart-item {
+    font-size: 21px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-item img {
+    width: 120px;  
+    height: 140px; 
+    object-fit: cover; 
+    border-radius: 8px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-right: 15px; 
+}
+
+.cart-item .item-info {
+    flex: 1;
+}
+
+.cart-item .item-info h3 {
+    margin-bottom: 5px;
+}
+
+.cart-summary {
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.button-cart  {
+    padding: 10px 20px;
+    font-size: 21px;
+    cursor: pointer;
+    border: none;
+    background-color: #283ba7;
+    color: #fff;
+    margin-top: 20px;
+    font-family: "Bebas Neue", sans-serif;
+
+}
+
+.button-cart:disabled {
+    background-color: #ccc;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.modal-content button {
+    margin-top: 10px;
+    background-color: #dc3545;
+}
+
+/*--------------------------------------------------------SLIDE DO INDEX TEXT---------------------------------------------------*/
+
+/* Sobreposição preta para o efeito de escurecimento */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    /* Preto com alta opacidade */
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: 1;
+    /* Coloca a sobreposição acima da imagem */
+  }
+  
+  /* Contêiner do slider */
+  .slider-container-text {
+    position: absolute;
+    color: rgb(255, 255, 255);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px; /* Ajuste conforme o tamanho necessário para os slides */
+    background: #050505;
+    overflow: hidden; /* Oculta slides fora da área visível */
+    display: flex;
+    align-items: center;
+    z-index: 2; /* Coloca o slider acima da imagem */
+  }
+  
+  /* Slides */
+  .slides-text {
+    display: flex;
+    flex-direction: column; /* Organiza slides verticalmente */
+    transition: transform 0.5s ease-in-out; /* Suaviza a transição */
+    width: 100%;
+    height: 80%; /* Garante que os slides preencham o contêiner */
+  }
+  
+  /* Estilo individual dos slides */
+  .slide-text-index {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    height: 100px; /* Ajuste conforme necessário */
+    flex-shrink: 0; /* Impede que o slide encolha */
+  }
+  
+  .slide-text-index h2,
+  .slide-text-index p {
+    
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 24px;
+    margin: 0; /* Remove margens */
+  }
+  
+  /* Botões de navegação */
+  .slider-container-text button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background-color: transparent;
+    /* Torna o fundo do botão transparente */
+    font-size: 24px;
+    cursor: pointer;
+    padding: 600px;
+    z-index: 3; /* Garante que os botões estejam acima do conteúdo do slider */
+  
+    /* Ajusta o padding para ficar apenas ao redor do texto */
+  }
+  
+  .prev {
+    color: rgb(255, 255, 255);
+    left: 10px;
+  }
+  
+  .next {
+    color: rgb(255, 255, 255);
+    right: 10px;
+  }
+
+/* BARRA DE NAVEGAÇÃO DO SITE */
+nav {
+height: 100px;
+font-family: "Bebas Neue", sans-serif;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 20px;
+position: fixed; /* Torna a navbar fixa */
+top: 0px; /* Deslocamento inicial */
+left: 0; /* Alinha a navbar na esquerda da página */
+width: 100%; /* Faz a navbar ocupar toda a largura da página */
+z-index: 1000; /* Garante que a navbar fique acima de outros elementos */
+background-color: #050505; /* Cor de fundo opaca */
+transition: top 0.3s; /* Transição suave para a mudança de posição */
+transition: background-color 0.3s, color 0.3s;
+box-shadow: 2px 2px 5px rgba(2, 2, 2, 0.596);
+
+}
+
+nav.scrolled .center-section a::after,
+nav.scrolled .right-section a::after {
+background-color: rgb(0, 0, 0); /* Muda a cor da borda inferior para preto */
+}
+
+nav.scrolled {
+top: 0; /* Fixa o nav no topo quando rola para baixo */
+background-color: white !important; /* Cor de fundo após rolar */
+color: black !important; /* Cor do texto após rolar */
+}
+nav.scrolled a {
+font-size: 25px;
+color: black !important; /* Cor dos links após rolar */
+}
+
+nav.scrolled .dropdown-menu a {
+font-size: 18px; /* Ajuste o tamanho da fonte quando rolado */
+color: gray; /* Ajuste a cor do texto quando rolado */
+}
+
+          /*HOVERS NAV*/
+
+
+
+nav:hover .center-section .dropdown > a::after,
+nav:hover .right-section a::after {
+background-color: rgb(255, 255, 255); /* Muda a cor da borda inferior para preto */
+
+}
+
+nav:hover #logo {
+content: url('../../img/logobranca.png'); /* Substitui a imagem quando o mouse passa no <nav> */
+transition: all 0.3s ease; /* Transição suave */
+}
+
+
+a {
+text-decoration: none;
+color: rgb(255, 255, 255);
+font-size: 25px;
+padding: 10px 15px;
+border-radius: 5px;
+transition: background-color 0.3s, color 0.3s;
+position: relative;
+}
+
+
+.right-section a::after {
+content: "";
+position: absolute;
+left: 0;
+bottom: -21px;
+/* Ajuste essa distância para alterar o espaço abaixo do texto */
+width: 0;
+height: 3px;
+background-color: rgb(255, 255, 255);
+transition: width 0.3s ease;
+}
+
+.center-section .dropdown>a::after {
+content: "";
+position: absolute;
+left: 0;
+bottom: -4px;
+/* Ajuste essa distância para alterar o espaço abaixo do texto */
+width: 0;
+height: 3px;
+background-color: rgb(0, 0, 0);
+transition: width 0.3s ease;
+}
+
+
+.center-section a:hover::after,
+.right-section a:hover::after {
+width: 100%;
+}
+
+.center-section a,
+.right-section a {
+padding: 10px 15px;
+border-radius: 5px;
+
+}
+
+
+.left-section,
+.center-section,
+.right-section {
+display: flex;
+align-items: center;
+
+}
+
+.center-section ul {
+display: flex;
+list-style: none;
+padding: 0;
+margin: 0;
+}
+
+.center-section li {
+margin: 0 15px; /* Espaçamento horizontal entre os itens */
+position: relative; /* Para os dropdowns */
+
+}
+
+
+.center-section a {
+display: flex; /* Isso permite que o link ocupe toda a área do item da lista */
+align-items: center; /* Centraliza o texto verticalmente */
+padding: 30px 15px; /* Ampla área de clique */
+
+}
+
+.right-section a {
+margin-left: 10px;
+
+}
+
+
+.group {
+display: flex;
+line-height: 28px;
+align-items: center;
+position: relative;
+margin-right: -18px;
+}
+
+.input {
+font-family: "Montserrat", sans-serif;
+width: 80%;
+height: 35px;
+padding-left: 2.5rem;
+box-shadow: 0 0 0 1.5px #313131, 0 0 25px -17px #000;
+border: 0;
+border-radius: 12px;
+background-color: #000000;
+outline: none;
+color: #ffffff;
+transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+cursor: text;
+z-index: 0;
+}
+
+.input::placeholder {
+color: #bdbecb;
+}
+
+.input:hover {
+box-shadow: 0 0 0 2.5px #2f303d, 0px 0px 25px -15px #000;
+}
+
+.input:active {
+transform: scale(0.95);
+}
+
+.input:focus {
+box-shadow: 0 0 0 2.5px #2f303d;
+}
+
+.search-icon {
+position: absolute;
+left: 1rem;
+fill: #bdbecb;
+width: 1rem;
+height: 1rem;
+pointer-events: none;
+z-index: 1;
+}
+
+.search-bar-container {
+position: absolute;
+top: 50%;
+left: 87%;
+transform: translate(-50%, -50%);
+}
+
+
+/* Estilo para os itens do dropdown */
+.dropdown {
+position: relative;
+}
+
+.dropdown-menu {
+display: none;
+/* Inicialmente oculto */
+position: absolute;
+/* Posiciona o menu dropdown em relação ao item */
+width: 100%;
+/* Define a largura como 100% da largura do item dropdown */
+left: 0;
+/* Alinha o menu dropdown com a borda esquerda do item dropdown */
+top: 97px;
+/* Ajusta a posição abaixo do nav */
+background-color: #ffffff;
+/* Fundo do menu dropdown */
+z-index: 1000;
+/* Garante que o menu fique acima de outros elementos */
+box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+/* Adiciona sombra para um efeito de destaque */
+}
+
+/* Links dentro do dropdown */
+.dropdown-menu a {
+padding: 10px 15px;
+font-size: 18px;
+color: black;
+display: block;
+width: 100%;
+text-decoration: none;
+transition: background-color 0.3s ease, color 0.3s ease; /* Suave transição */
+}
+
+/* Efeito hover ao passar o mouse sobre os links do dropdown */
+.dropdown-menu a:hover {
+background-color: rgba(0, 0, 0, 0.1); /* Cor de fundo ao passar o mouse */
+color: #7a7a7a; /* Cor do texto ao passar o mouse */
+}
+
+
+.dropdown:hover .dropdown-menu {
+display: block; /* Exibe o dropdown ao passar o mouse */
+}
+
+.dropdown-items {
+display: flex;
+flex-direction: column;
+/* Mantém os itens do dropdown empilhados */
+}
+
+/* SIDEBAR DA BARRA DE NAVEGAÇÃO DO SITE */
+.sidebar {
+    height: 100%;
+    width: 0px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #000000;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    z-index: 2000;
+  }
+  
+  .sidebar a {
+    text-align: right;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #ffffff;
+    display: block;
+    transition: 0.3s;
+    font-family: "Freeman", sans-serif;
+    margin-right: 10px;
+  }
+  
+  .sidebar a:hover {
+    color: #b6b6b6;
+  }
+  
+  .sidebar .close-btn {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    font-size: 38px;
+  }
+  
+  
+  /* Overlay for the sidebar */
+  .overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.11);
+    overflow-x: hidden;
+    transition: 0.5s;
+    z-index: 1999;
+  }
+
+
+
+  footer {
+    background-color: #050505;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+    
+  }
+
+.footer-certificates {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.footer-certificates img {
+    max-height: 5000px;
+    width: 400px;
+}
+
+.footer-links {
+    margin-bottom: 20px;
+}
+
+.footer-links a {
+    color: #fff;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-info {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.footer-info strong {
+    color: #00aaff; /* cor do logo da Magalu */
+}
+
+.progress-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 800px; /* Largura máxima da barra de progresso */
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+
+
+
+.step {
+  display: flex;
+  align-items: center;
+  position: relative;
+  text-align: center;
+  margin-top: 130px;
+  
+}
+
+
+
+.step:first-child::before {
+  display: none; /* Remove a linha antes da primeira etapa */
+}
+
+.circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #d3d3d3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: white;
+}
+
+.step.completed .circle {
+  background-color: #000; /* Cor de destaque para a etapa atual */
+}
+
+.step.completed span {
+  font-weight: bold;
+}
+
+.step span {
+  margin-left: 10px;
+  font-size: 14px;
+  color: #888;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+}
+
