@@ -1597,3 +1597,15 @@ section.slider{
   font-size: 12px;
   color: rgb(0, 0, 0);
 }
+
+/*-------------------respopnsividade------------------------*/
+
+@media screen and (max-width: 1222px){
+
+
+  .slider-container-text,.center-section,.search-bar-container,.div-between,.Footer-bottom{
+    display: none;
+  }
+
+
+}
