@@ -1267,7 +1267,8 @@ input[type="text"] {
 }
 
 .resposta-duvida-suporte {
-  color: #555;
+  color: rgb(8, 8, 8);
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-size: 16px;
   margin-top: 10px;
   padding-left: 20px;
