@@ -62,23 +62,17 @@
               <button class="shirt-btn turquoise"
                 data-image="../../img-produtos/camisasLisas/camisaTurqueza.png"></button>
             </div>
-            <div class="icon-options" id="icon-options" style="display: none;">
-              <button class="icon-btn" data-icon="../../img-icon/iconVermelho.png"> <img
-                  src="../../img-icon/iconVermelho.png" class="icon-img"></button>
-              <button class="icon-btn" data-icon="../../img-icon/iconAzul.png"> <img src="../../img-icon/iconAzul.png"
-                  class="icon-img"></button>
-              <button class="icon-btn" data-icon="../../img-icon/iconAmarelo.png"> <img
-                  src="../../img-icon/iconAmarelo.png" class="icon-img"></button>
-              <button class="icon-btn" data-icon="../../img-icon/iconRosa.png"> <img src="../../img-icon/iconRosa.png"
-                  class="icon-img"></button>
-              <button class="icon-btn" data-icon="../../img-icon/iconRoxo.png"> <img src="../../img-icon/iconRoxo.png"
-                  class="icon-img"></button>
-              <button class="icon-btn" data-icon="../../img-icon/iconVerde.png"> <img src="../../img-icon/iconVerde.png"
-                  class="icon-img"></button>
+
+            <div class="icon-options" id="icon-options">
+              
+              <button class="icon-btn" data-icon="../../img-icon/iconVermelho.png"> <img src="../../img-icon/iconVermelho.png" class="icon-img"></button>
+              <button class="icon-btn" data-icon="../../img-icon/iconAzul.png"> <img src="../../img-icon/iconAzul.png" class="icon-img"></button>
+              <button class="icon-btn" data-icon="../../img-icon/iconAmarelo.png"> <img src="../../img-icon/iconAmarelo.png" class="icon-img"></button>
+              <button class="icon-btn" data-icon="../../img-icon/iconRosa.png"> <img src="../../img-icon/iconRosa.png" class="icon-img"></button>
+              <button class="icon-btn" data-icon="../../img-icon/iconRoxo.png"> <img src="../../img-icon/iconRoxo.png" class="icon-img"></button>
+              <button class="icon-btn" data-icon="../../img-icon/iconVerde.png"> <img src="../../img-icon/iconVerde.png" class="icon-img"></button>
+
               <button class="clear-btn">Limpar</button>
-            </div>
-            <div class="icon-toggle">
-              <button id="show-icons-btn">Ícones</button>
             </div>
 
             <div class="upload-image">
@@ -86,12 +80,12 @@
               <input type="file" id="image-upload" accept="image/*">
             </div>
 
-            
             <div class="position-options">
               <button class="position-btn" data-position="center-center">Centro</button>
               <button class="position-btn" data-position="small-right">Peito Esquerdo</button>
               <button class="position-btn" data-position="small-left">Peito Direito</button>
             </div>
+            <div class="options-container">
             <div class="shape-options">
               <button class="shape-btn" data-shape="round"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle" viewBox="0 0 16 16">
                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
@@ -107,7 +101,7 @@
               </svg></button>
            </div>
           </div>
-
+</div>
           <div class="login-container3" style="margin-top: 80px;">
             <div class="textInicial">
               <p class="bemvindo">AQUI ESTÁ SUA CAMISA!</p>
@@ -209,13 +203,7 @@ shapeButtons.forEach(button => {
             const iconUrl = button.getAttribute('data-icon');
             shirtIcon.setAttribute('src', iconUrl);
             shirtIcon.classList.remove('hidden');
-            iconOptions.style.display = 'none';
           });
-        });
-
-        // Exibir os ícones quando o botão "Ícones" for clicado
-        showIconsBtn.addEventListener('click', () => {
-          iconOptions.style.display = 'block';
         });
 
         // Limpar a imagem do ícone

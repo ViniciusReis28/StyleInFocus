@@ -609,13 +609,29 @@ img {
   background-color: #555;
 }
 
+.options-container {
+  display: flex;
+  gap: 20px; /* Espaçamento entre as divs */
+  justify-content: center; /* Centraliza o contêiner */
+  width: 100%;
+}
+
 .position-options {
   display: flex;
-  flex-direction: column; /* Coloca os botões em coluna */
+  flex-direction: column; /* Mantém os botões em coluna */
   gap: 10px;
-  align-items: center; /* Alinha os botões à esquerda */
-  margin-top: 20px; /* Ajuste para distância dos botões */
+  align-items: center;
+  margin-top: 20px;
 }
+
+.shape-options {
+  display: flex;
+  flex-direction: row; /* Coloca os botões em linha */
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
 .position-btn {
   padding: 8px 12px;
   cursor: pointer;
@@ -623,7 +639,18 @@ img {
   color: white;
   border: none;
   border-radius: 5px;
-  width: 50%; /* Faz o botão ocupar toda a largura da coluna */
+  width: 300px; /* Faz o botão ocupar toda a largura da coluna */
+}
+
+.shape-btn{
+  padding: 8px 12px;
+  cursor: pointer;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  width: 100%
+  ; /* Faz o botão ocupar toda a largura da coluna */
 }
 
 .position-btn:hover {
@@ -695,23 +722,6 @@ img {
 }
 
 
-.shape-options {
-  display: flex;
-  flex-direction: column; /* Coloca os botões em coluna */
-  gap: 10px;
-  align-items: center; /* Alinha os botões à esquerda */
-  margin-top: 20px; /* Ajuste para distância dos botões */
-}
-
-.shape-btn {
-  padding: 8px 12px;
-  cursor: pointer;
-  background-color: #333;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  width: 50%; /* Faz o botão ocupar toda a largura da coluna */
-}
 
 .shape-btn:hover {
   background-color: #555;
