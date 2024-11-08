@@ -473,10 +473,11 @@ img {
 
 .icon-options {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  /* Alinha os botões à esquerda */
   gap: 10px;
   padding: 10px;
+  
 }
 
 .color-options {
@@ -484,8 +485,47 @@ img {
   justify-content: center;
   /* Alinha os botões à esquerda */
   gap: 10px;
+  
   padding: 10px;
 
+}
+
+.carousel {
+  width: 100%; /* ou qualquer valor fixo, ex: 500px */
+  height: 150px; /* Se quiser ajustar a altura, se for um carrossel vertical */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden; /* Garante que nada vai sair do contêiner */
+}
+
+.carousel-btn {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 30px;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1; /* Garante que os botões fiquem acima dos ícones */
+}
+
+.carousel-btn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-track {
+  transition: transform 0.3s ease-in-out; /* Animação suave ao mover */
+}
+
+.carousel-btn.prev-btn {
+  position: absolute;
+  left: 0;
+}
+
+.carousel-btn.next-btn {
+  position: absolute;
+  right: 0;
 }
 
 .shirt-btn {
@@ -548,12 +588,21 @@ img {
 
 .icon-btn {
   padding-bottom: 40px;
-  background-color: rgb(185, 185, 185);
+  background-color: rgb(211, 211, 211);
   width: 60px;
   height: 82px;
   border: 2px solid black;
   border-radius: 5px;
   cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.3s ease, background-color 0.3s ease;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
+.icon-btn:hover {
+  transform: scale(1.1);
+  background-color: #aaaaaa;
+  box-shadow: 4px 6px 12px rgba(0, 0, 0, 0.5);
+
 }
 
 .clear-btn {
@@ -726,3 +775,5 @@ img {
 .shape-btn:hover {
   background-color: #555;
 }
+
+

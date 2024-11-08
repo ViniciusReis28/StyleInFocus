@@ -63,18 +63,25 @@
                 data-image="../../img-produtos/camisasLisas/camisaTurqueza.png"></button>
             </div>
 
-            <div class="icon-options" id="icon-options">
-              
-              <button class="icon-btn" data-icon="../../img-icon/iconVermelho.png"> <img src="../../img-icon/iconVermelho.png" class="icon-img"></button>
-              <button class="icon-btn" data-icon="../../img-icon/iconAzul.png"> <img src="../../img-icon/iconAzul.png" class="icon-img"></button>
-              <button class="icon-btn" data-icon="../../img-icon/iconAmarelo.png"> <img src="../../img-icon/iconAmarelo.png" class="icon-img"></button>
-              <button class="icon-btn" data-icon="../../img-icon/iconRosa.png"> <img src="../../img-icon/iconRosa.png" class="icon-img"></button>
-              <button class="icon-btn" data-icon="../../img-icon/iconRoxo.png"> <img src="../../img-icon/iconRoxo.png" class="icon-img"></button>
-              <button class="icon-btn" data-icon="../../img-icon/iconVerde.png"> <img src="../../img-icon/iconVerde.png" class="icon-img"></button>
-
-              <button class="clear-btn">Limpar</button>
+            <div class="carousel">
+              <button class="carousel-btn prev-btn">&lt;</button>
+              <div class="icon-options" id="icon-options">
+                <div class="carousel-track">
+                  <button class="icon-btn" data-icon="../../img-icon/iconVermelho.png"><img src="../../img-icon/iconVermelho.png" class="icon-img"></button>
+                  <button class="icon-btn" data-icon="../../img-icon/iconAzul.png"><img src="../../img-icon/iconAzul.png" class="icon-img"></button>
+                  <button class="icon-btn" data-icon="../../img-icon/iconAmarelo.png"><img src="../../img-icon/iconAmarelo.png" class="icon-img"></button>
+                  <button class="icon-btn" data-icon="../../img-icon/iconRosa.png"><img src="../../img-icon/iconRosa.png" class="icon-img"></button>
+                  <button class="icon-btn" data-icon="../../img-icon/iconRoxo.png"><img src="../../img-icon/iconRoxo.png" class="icon-img"></button>
+                  <button class="icon-btn" data-icon="../../img-icon/iconVerde.png"><img src="../../img-icon/iconVerde.png" class="icon-img"></button>
+                </div>
+              </div>
+              <button class="carousel-btn next-btn">&gt;</button>
             </div>
+            
 
+
+
+            <button class="clear-btn">Limpar</button>
             <div class="upload-image">
               <p class="bemvindo">COLOQUE UMA IMAGEM!</p>
               <input type="file" id="image-upload" accept="image/*">
@@ -127,6 +134,38 @@
     </div>
 
     <script>
+
+document.addEventListener('DOMContentLoaded', () => {
+  const track = document.querySelector('.carousel-track');
+  const prevBtn = document.querySelector('.prev-btn');
+  const nextBtn = document.querySelector('.next-btn');
+  const iconButtons = document.querySelectorAll('.icon-btn');
+  const slideWidth = iconButtons[0].offsetWidth + 10; // largura do botão + espaçamento
+  let currentSlide = 0;
+
+  function updateCarousel() {
+    track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+  }
+
+  prevBtn.addEventListener('click', () => {
+    if (currentSlide < iconButtons.length - 1) {
+      currentSlide++;
+      updateCarousel();
+    }
+  });
+
+  nextBtn.addEventListener('click', () => {
+    // Verificando se o carrossel chegou no limite final
+    if (currentSlide > 0) {
+      currentSlide--;
+      updateCarousel();
+    }
+  });
+});
+
+
+
+
       document.addEventListener('DOMContentLoaded', () => {
         const shirtImg = document.getElementById('shirt-img');
         const shirtIcon = document.getElementById('shirt-icon');
@@ -139,6 +178,7 @@
         const showIconsBtn = document.getElementById('show-icons-btn');
         const iconOptions = document.getElementById('icon-options');
         const positionButtons = document.querySelectorAll('.position-btn');
+        const shirtDisplay = document.getElementById('shirt-display'); // Seção da camisa
 
         // Mudar a imagem da camisa e o background dos círculos ao clicar em uma cor
         shirtButtons.forEach(button => {
@@ -195,6 +235,17 @@ shapeButtons.forEach(button => {
         break;
     }
   });
+});
+
+iconButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const iconSrc = button.getAttribute('data-icon');
+        shirtDisplay.src = iconSrc; // Ajuste para sua implementação
+        
+        // Adiciona estilo ativo
+        iconButtons.forEach(btn => btn.classList.remove('active-icon'));
+        button.classList.add('active-icon');
+    });
 });
 
         // Adicionar o ícone à camisa
