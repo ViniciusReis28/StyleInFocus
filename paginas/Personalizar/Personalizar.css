@@ -515,6 +515,9 @@ img {
 }
 
 .carousel-track {
+  flex-wrap: nowrap; /* Impede a quebra de linha */
+  display: flex;
+
   transition: transform 0.3s ease-in-out; /* Animação suave ao mover */
 }
 
