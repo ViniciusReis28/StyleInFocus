@@ -3,8 +3,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
-
-
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&display=swap');
 
 
 /* Reset básico */
@@ -243,162 +243,6 @@ section.slider {
 
 
 
-
-
-/*------------------------------------------------------------------SLIDE DA TELA INDEX DO PRODUTOS DESTAQUES ------------------------------------------------------------*/
-.h1-destaques {
-  text-align: center;
-  font-family: "Bebas Neue", sans-serif;
-  font-size: 50px;
-  margin-top: 150PX;
-}
-
-.carousel-wrapper {
-  position: relative;
-  width: 90%;
-  margin: auto;
-  display: flex;
-  align-items: center;
-}
-
-.carousel-container {
-  width: 100%;
-  height: 800px;
-  overflow: hidden;
-  flex-grow: 1;
-}
-
-.carousel {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
-
-.carousel-item {
-  min-width: 33.33%;
-  /* Cada item terá 1/3 da largura do container para mostrar 3 de cada vez */
-  box-sizing: border-box;
-  margin-bottom: 30px;
-}
-
-.carousel-item div {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  flex-direction: column;
-  width: 90%;
-  height: auto;
-  color: rgb(0, 0, 0);
-  box-shadow: 0 5px 15px rgba(115, 115, 115, 0);
-  padding: 20px;
-  font-family: "Bebas Neue", sans-serif;
-  font-size: 20px;
-
-}
-
-.carousel-item div img {
-  border-radius: 5px;
-  width: 420px;
-  height: 380px;
-  object-fit: cover;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.preçodoProduto-slide {
-  font-size: 25px;
-}
-
-
-.carousel-item div button {
-  font-family: "Bebas Neue", sans-serif;
-  font-size: 30px;
-  display: inline-block;
-  outline: 0;
-  border: 0;
-  cursor: pointer;
-  will-change: box-shadow, transform;
-  background: radial-gradient(100% 100% at 100% 0%, #000000 0%, #000000 100%);
-  box-shadow: 0px 0.01em 0.01em rgba(0, 0, 0, 0.4), 0px 0.3em 0.7em -0.01em rgba(0, 0, 0, 0.3), inset 0px -0.01em 0px rgba(0, 0, 0, 0.5);
-  padding: 0 2em;
-  border-radius: 0.3em;
-  color: #fff;
-  height: 50px;
-  width: 100%;
-  margin: 5px;
-  text-shadow: 0 1px 0 rgb(0 0 0 / 40%);
-  transition: box-shadow 0.15s ease, transform 0.15s ease;
-}
-
-.carousel-item div button:hover {
-  box-shadow: 0px 0.1em 0.2em rgba(0, 162, 255, 0.4), 0px 0.4em 0.7em -0.1em rgb(45 35 66 / 30%), inset 0px -0.1em 0px #000000;
-  transform: translateY(-0.1em);
-}
-
-.carousel-item div button:active {
-  box-shadow: inset 0px 0.1em 0.6em #04ff43;
-  transform: translateY(0em);
-}
-
-
-
-
-.carousel-item div button svg {
-  margin-right: 5px;
-  margin-top: 0px;
-}
-
-.carousel-button {
-  background-color: rgba(255, 255, 255, 0);
-  color: rgb(0, 0, 0);
-  font-size: 45px;
-  border: none;
-  cursor: pointer;
-  padding: 10px;
-  z-index: 1;
-}
-
-.btn-icone {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-}
-
-.carousel-button:hover {
-  color: #9a9a9a;
-}
-
-.carousel-button#prev {
-  margin-right: 20px;
-  /* Espaçamento entre o botão e o carrossel */
-}
-
-.carousel-button#next {
-  margin-left: 20px;
-  /* Espaçamento entre o botão e o carrossel */
-}
-
-
-.image-hover {
-  border-radius: 5px;
-  position: absolute;
-  top: 15px;
-  left: 5;
-  margin: 5px;
-  width: 40%;
-  height: 380px;
-  object-fit: cover;
-  opacity: 0;
-}
-
-.carousel-item div:hover .image-hover {
-  opacity: 1;
-}
-
-.carousel-item div:hover .image-default {
-  opacity: 0;
-}
 
 
 
@@ -1460,10 +1304,18 @@ a {
 
 /* Imagem do Produto */
 .spaceblock {
+    font-family: "Archivo", sans-serif;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 60%;
+    gap: 15px;
+}
+
+.descriçao {
+  display: flex;
+  flex-direction: column;
 }
 
 .spaceblock img {
@@ -1472,52 +1324,49 @@ a {
     height: auto;
 }
 
+.descriçao h3 {
+  font-size: 25px;
+}
+
+.descriçao h2 {
+  color: #313131;
+}
+
+.descriçao p {
+  font-size: 20px;
+}
+
 /* Detalhes do Produto */
 .space {
     font-family: "Bebas Neue", sans-serif;
     padding: 30px;
-    width: 50%;
-}
-
-h1, h2, p {
-    margin-bottom: 20px;
-    color: #333;
+    width: 40%;
+    height: auto;
 }
 
 .produto-nome {
+    margin-bottom: 10px;
     font-size: 3em;
     font-weight: bold;
     color: #222;
 }
 
-.produto-tamanho,
-.produto-cor {
-    font-size: 1.2em;
-}
-
-.produto-preco {
-    font-size: 1.5em;
-    color: #e74c3c;
-    font-weight: bold;
-}
-
-/* Estilos dos tamanhos */
-.produto-tamanho {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 10px;
+.preco {
+    font-size: 2.5em;
+    color: #1f1f1f;
 }
 
 .tamanhos-container {
   display: flex;
+  flex-wrap: wrap; /* Permite que os botões se movam para a linha seguinte */
   gap: 10px;
-  margin-top: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .tamanho-btn {
-  width: 50px;
-  height: 50px;
+  width: calc(45% - 5px); /* Cada botão ocupa 50% do espaço, menos metade do gap */
+  height: 55px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1526,11 +1375,43 @@ h1, h2, p {
   cursor: pointer;
   border-radius: 5px;
   font-weight: bold;
+  font-size: 16px; /* Tamanho da fonte ajustado */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.tamanho-btn:hover {
+  background-color: #e0e0e0; /* Cor suave para o efeito hover */
 }
 
 .tamanho-btn.active {
-  background-color: #4CAF50;
+  background-color: #383737;
   color: #fff;
+}
+
+.tamanho-btn.active:hover {
+  background-color: #333; /* Cor para quando o botão estiver ativo e o mouse estiver sobre ele */
+}
+
+
+
+
+
+
+
+
+
+
+/*Botoes*/
+.botoes {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.botoes button {
+  width: 200px;
+  height: 50px;
 }
 
 /* Botão de comprar */
@@ -1538,13 +1419,286 @@ h1, h2, p {
     padding: 15px;
     font-size: 1.2em;
     color: white;
-    background-color: #007bff;
+    background-color: #292929;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .comprar-btn:hover {
-    background-color: #0056b3;
+    background-color: #363636;
+}
+
+.quantidade-container {
+  height: 45px;
+  width: 120px;
+  display: flex;
+  align-items: center;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.4s ease-in-out, background-color 0.4s ease-in-out;
+}
+
+.quantidade-container:hover {
+   border-color: #000;
+}
+
+.quantidade-btn {
+  background-color: #ffffff;
+  border: none;
+  padding: 5px 15px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+
+.quantidade-btn:hover {
+  background-color: #edededbb;
+}
+
+#quantidade-input {
+  width: 36px;
+  text-align: center;
+  border: none;
+  font-size: 18px;
+  pointer-events: none; /* Impede que o usuário edite diretamente */
+  background-color: #fff;
+}
+
+
+
+
+
+
+
+
+
+/*Frete*/
+
+.frete {
+  flex-direction: column;
+  display: flex;
+}
+
+.freteReceber {
+  display: flex;
+  flex-direction: row;
+  margin-top: 40px;
+  gap: 15px; /* Espaço entre o input e o botão */
+}
+
+.freteReceber input {
+  padding: 10px 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  width: 200px;
+  transition: border-color 0.3s ease;
+}
+
+.freteReceber input:focus {
+  outline: none;
+  border-color: #757575; /* Cor do foco */
+}
+
+.freteReceber button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  background-color: #00000000;
+  border: 2px solid transparent; /* Borda transparente inicialmente */
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+}
+
+.freteReceber button:hover {
+  transform: scale(0.95); /* Move o botão para cima */
+  border-color: #000; /* Borda preta */
+}
+
+.resultadoFrete {
+  margin-top: 40px;
+  width: 350px;
+}
+
+.frete-container {
+  margin-top: 10px; /* Adiciona um espaçamento entre as caixas */
+  background-color: #f9f9f9; /* Cor de fundo */
+  border: 1px solid #ddd; /* Borda sutil */
+  border-radius: 8px; /* Bordas arredondadas */
+  width: 350px; /* Largura fixa para as caixas */
+  height: 65px;
+}
+
+.repostaDb-frete {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 65px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;  
+  background-color: #ffffff00;
+}
+
+.repostaDb-frete a {
+  color: #000;
+}
+
+.teste {
+  display: flex;
+  width: 100%;
+  background-color: #00000000;
+  height: 100%;
+}
+
+.infoTransporte {
+  font-family: "Quicksand", sans-serif;
+  font-size: 13px;
+  flex-direction: column;
+  margin-top: 5px;
+}
+
+.precoFrete {
+  font-weight: bold;
+  padding: 20px 15px;
+  margin-left: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Estilo para a modal */
+.modal {
+  display: none; /* Inicialmente invisível */
+  position: fixed;
+  z-index: 1; /* Fica sobre os outros elementos */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo transparente */
+  overflow: auto;
+  padding-top: 60px;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+}
+
+.fechar-modal {
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}
+
+.fechar-modal:hover,
+.fechar-modal:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+
+
+
+.comentarios {
+  margin-top: 20px;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+}
+
+#comentario-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+
+#lista-comentarios {
+  margin-top: 20px;
+}
+
+.comentario-item {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Estilo para a notificação */
+.notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #323232;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s, visibility 0.5s;
+  z-index: 3000;
+}
+
+/* Estilo para notificação visível */
+.notification.show {
+  opacity: 1;
+  visibility: visible;
 }

@@ -299,19 +299,19 @@ function carregarCarrinho() {
   const carrinhoItens = document.getElementById("carrinho-itens");
   const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
 
-  // Para armazenar os produtos únicos e contar quantos iguais existem
+  // Para armazenar os produtos únicos e somar quantidades quando necessário
   const produtosAgrupados = {};
 
-  // Agrupando produtos iguais
+  // Agrupando produtos iguais e respeitando a quantidade salva
   carrinho.forEach((produto) => {
     const key = `${produto.id}-${produto.tamanho}`; // Chave única baseada no ID e Tamanho
 
     if (produtosAgrupados[key]) {
-      // Se o produto já existe, incrementa a quantidade
-      produtosAgrupados[key].quantidade += 1;
+      // Se o produto já existe, incrementa a quantidade com base no valor salvo
+      produtosAgrupados[key].quantidade += produto.quantidade;
     } else {
       // Se não existe, adiciona ao agrupamento
-      produtosAgrupados[key] = { ...produto, quantidade: 1 };
+      produtosAgrupados[key] = { ...produto };
     }
   });
 
@@ -326,16 +326,14 @@ function carregarCarrinho() {
     itemDiv.classList.add("carrinho-item");
 
     itemDiv.innerHTML = `
-  <img src="${produto.img}" alt="${produto.nome}" />
-  <div>
-    <h3>${produto.nome}</h3>
-    <p>Tamanho: ${produto.tamanho}</p>
-    <p>Quantidade: <span class="carrinho-quantidade">${
-      produto.quantidade
-    }</span></p>
-    <p>Preço: R$ ${(produto.preco * produto.quantidade).toFixed(2)}</p>
-  </div>
-`;
+      <img src="${produto.img}" alt="${produto.nome}" />
+      <div>
+        <h3>${produto.nome}</h3>
+        <p>Tamanho: ${produto.tamanho}</p>
+        <p>Quantidade: <span class="carrinho-quantidade">${produto.quantidade}</span></p>
+        <p>Preço: R$ ${(produto.preco * produto.quantidade).toFixed(2)}</p>
+      </div>
+    `;
 
     carrinhoItens.appendChild(itemDiv);
   }

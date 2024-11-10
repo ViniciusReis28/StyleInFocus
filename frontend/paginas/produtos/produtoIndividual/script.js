@@ -99,6 +99,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+
+
+
+
+
+
+
 const urlParams = new URLSearchParams(window.location.search);
 const produtoId = urlParams.get("id");
 
@@ -110,8 +117,8 @@ if (produtoId) {
       // Preenche os dados na página
       document.querySelector(".produto-imagem").src = data.img;
       document.querySelector(".produto-nome").textContent = data.nome;
+      document.querySelector(".produto-name").textContent = data.nome;
       document.querySelector(".produto-descricao").textContent = data.descricao;
-      document.querySelector(".produto-cor").textContent = `Cor: ${data.cor}`;
       document.querySelector(".preco").textContent = `R$ ${data.preco}`;
 
       // Criação dos botões de tamanho
@@ -146,6 +153,10 @@ if (produtoId) {
           return;
         }
 
+        // Captura a quantidade escolhida pelo usuário
+        const quantidadeInput = document.getElementById("quantidade-input");
+        const quantidade = parseInt(quantidadeInput.value);
+
         // Dados do produto para armazenar
         const produtoCarrinho = {
           id: data.id,
@@ -155,6 +166,7 @@ if (produtoId) {
           preco: data.preco,
           img: data.img,
           tamanho: tamanhoSelecionado,
+          quantidade: quantidade, // Adiciona a quantidade ao objeto
         };
 
         // Armazena no localStorage
@@ -162,8 +174,8 @@ if (produtoId) {
         carrinho.push(produtoCarrinho);
         localStorage.setItem("carrinho", JSON.stringify(carrinho));
 
-        // Redireciona para a página de carrinho
-        window.location.href = "../../../paginas/carrinho/carrinho.html";
+        // Exibe um alerta de confirmação
+        alert("Produto adicionado ao carrinho com sucesso!");
       });
     })
     .catch((error) => {
@@ -171,4 +183,224 @@ if (produtoId) {
       alert("Produto não encontrado ou erro na requisição.");
     });
 }
+
+
+
+
+
+
+
+
+
+
+
+const incrementarBtn = document.getElementById("incrementar-btn");
+const decrementarBtn = document.getElementById("decrementar-btn");
+const quantidadeInput = document.getElementById("quantidade-input");
+
+incrementarBtn.addEventListener("click", () => {
+  let quantidade = parseInt(quantidadeInput.value);
+  quantidadeInput.value = quantidade + 1;
+});
+
+decrementarBtn.addEventListener("click", () => {
+  let quantidade = parseInt(quantidadeInput.value);
+  if (quantidade > 1) {
+    quantidadeInput.value = quantidade - 1;
+  }
+});
+
+// Captura o botão de calcular frete e o input de CEP
+const calcularFreteBtn = document.getElementById("calcular-frete-btn");
+const cepDestinoInput = document.getElementById("cep-destino");
+const resultadoFrete = document.getElementById("resultadoFrete");
+
+// Função para enviar o CEP e calcular o frete
+calcularFreteBtn.addEventListener("click", async () => {
+  const cepDestino = cepDestinoInput.value.trim();
+
+  if (cepDestino.length !== 8) {
+    alert("Porfavor Insira um CEP para fazer o calculo");
+    return;
+  }
+
+  try {
+    // Envia a requisição para o back-end
+    const response = await fetch("http://localhost:3000/frete/calcular-frete", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ cepDestino }),
+    });
+
+    const data = await response.json();
+    console.log(data); // Verifique o que está sendo retornado
+
+    if (data.error) {
+      resultadoFrete.textContent = `Erro: ${data.error}`;
+    } else {
+      // Exibe até 3 opções de frete, considerando a estrutura correta dos dados
+      if (data.length > 0) {
+        let htmlContent = "";
+
+        // Limita a 3 opções de frete e filtra os dados para exibir apenas aqueles que têm preço e prazo
+        data.slice(0, 3).forEach((service) => {
+          if (service.price && service.time) {
+            // Verifica se as informações essenciais estão presentes
+
+            let precoFormatado = service.price.toString().replace(".", ",");
+
+            htmlContent += `
+              <div class="frete-container">
+                <div class="repostaDb-frete">
+                    <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="currentColor" class="bi bi-truck" viewBox="0 0 16 16">
+                      <path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5zm1.294 7.456A2 2 0 0 1 4.732 11h5.536a2 2 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456M12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/>
+                    </svg></a>
+                    <div class="teste">
+                      <div class="infoTransporte">
+                        <p>${service.company}</p>
+                        <p>${service.name}</p>
+                        <p>Prazo da Entrega - ${service.time} dias uteis</p>
+                      </div>
+                      <div class="precoFrete">
+                        R$${precoFormatado}
+                      </div>
+                    </div>
+                </div>
+              </div>
+            `;
+          }
+        });
+
+        // Exibe as opções de frete
+        resultadoFrete.innerHTML = htmlContent;
+      } else {
+        resultadoFrete.textContent = "Nenhum serviço disponível para este CEP.";
+      }
+    }
+  } catch (error) {
+    resultadoFrete.textContent =
+      "Erro ao calcular o frete. Tente novamente mais tarde.";
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Função para carregar os comentários do produto
+function carregarComentarios() {
+  fetch(`http://localhost:3000/api/roupas/${produtoId}/comentarios`)
+    .then((response) => response.json())
+    .then((comentarios) => {
+      const listaComentarios = document.getElementById("lista-comentarios");
+      listaComentarios.innerHTML = ""; // Limpa os comentários atuais
+
+      if (comentarios.length === 0) {
+        listaComentarios.innerHTML = "<p>Seja o primeiro a comentar!</p>";
+        return;
+      }
+
+      // Exibir os comentários
+      comentarios.forEach((comentario) => {
+        const divComentario = document.createElement("div");
+        divComentario.classList.add("comentario-item");
+
+        // Formatando a data
+        const dataCriacao = new Date(comentario.data_criacao); // Criando o objeto Date
+        const dataFormatada = dataCriacao.toLocaleString("pt-BR", {
+          year: "numeric",// Ano completo (ex: "2024")
+          month: "long", // Mês por extenso (ex: "novembro")
+          day: "numeric", // Dia do mês (ex: "10")
+        });
+
+        // Atualizando o conteúdo com a data formatada
+        divComentario.innerHTML = `
+          <strong>${comentario.nome}</strong>
+          <p>${comentario.comentario}</p>
+          <small>${dataFormatada}</small> <!-- Data formatada aqui -->
+        `;
+        listaComentarios.appendChild(divComentario);
+      });
+    })
+    .catch((error) => {
+      console.error("Erro ao carregar comentários:", error);
+    });
+}
+
+// Carregar os comentários ao abrir a página
+carregarComentarios();
+
+
+
+
+// Função para abrir a modal
+document.getElementById("btn-fazer-avaliacao").addEventListener("click", () => {
+  document.getElementById("modal-comentario").style.display = "flex"; // Exibe a modal
+});
+
+// Função para fechar a modal
+document.getElementById("fechar-modal").addEventListener("click", () => {
+  document.getElementById("modal-comentario").style.display = "none"; // Oculta a modal
+});
+
+// Função para enviar o comentário
+document.getElementById("comentario-form").addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const nome = document.getElementById("nome").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const textoComentario = document.getElementById("comentario-texto").value.trim();
+
+  if (!nome || !email || !textoComentario) {
+    alert("Preencha todos os campos!");
+    return;
+  }
+
+  const novoComentario = {
+    produtoId,
+    nome,
+    email,
+    comentario: textoComentario,
+  };
+
+  // Enviar comentário ao backend
+  fetch(`http://localhost:3000/api/roupas/${produtoId}/comentarios`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(novoComentario),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      alert("Comentário enviado com sucesso!");
+      carregarComentarios(); // Recarregar lista de comentários
+      document.getElementById("comentario-form").reset(); // Limpar formulário
+      document.getElementById("modal-comentario").style.display = "none"; // Fechar a modal
+    })
+    .catch((error) => {
+      console.error("Erro ao enviar comentário:", error);
+      alert("Erro ao enviar comentário. Tente novamente mais tarde.");
+    });
+});
+
+
+
 
