@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Freeman&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=REM:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
 
 
 /* Reset básico */
@@ -23,16 +25,16 @@ img {
 /*Login*/
 .bemvindo3 {
 
-  font-family: "Freeman", sans-serif;
-  font-size: 45px;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 50px;
   padding-top: 20px;
   color: rgb(0, 0, 0);
   text-align: center;
 }
 
 .bemvindo4 {
-  font-family: "Freeman", sans-serif;
-  font-size: 20px;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 25px;
   padding-bottom: 20px;
   color: rgb(0, 0, 0);
   text-align: center;
@@ -40,15 +42,15 @@ img {
 
 .bemvindo {
 
-  font-family: "Freeman", sans-serif;
-  font-size: 30px;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 35px;
   padding-bottom: 10px;
 
 }
 
 .bemvindo2 {
-  font-family: "Freeman", sans-serif;
-  font-size: 20px;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 24px;
   padding-bottom: 20px;
   color: rgb(56, 56, 56);
 }
@@ -63,7 +65,7 @@ img {
   width: 800px;
   height: 700px; /* Altura fixa */
   margin: auto;
-  margin-top: 200px;
+  margin-top: 180px;
   overflow: hidden; /* Garante que o conteúdo não ultrapasse o tamanho do container */
 }
 
@@ -78,7 +80,7 @@ img {
   width: 800px;
   height: 700px; /* Altura fixa */
   margin: auto;
-  margin-top: 200px;
+  margin-top: 180px;
   overflow: hidden; /* Garante que o conteúdo não ultrapasse o tamanho do container */
 }
 
@@ -156,81 +158,6 @@ img {
   text-align: center;
   padding-top: 25px;
   font-size: 20px;
-}
-
-
-/* button */
-.glow-on-hover {
-  font-family: "Freeman", sans-serif;
-  font-size: 20px;
-  width: 220px;
-  height: 50px;
-  border: none;
-  outline: none;
-  color: #fff;
-  background: #111;
-  cursor: pointer;
-  position: relative;
-  z-index: 0;
-  border-radius: 10px;
-}
-
-
-
-.glow-on-hover:before {
-
-  content: '';
-  background: linear-gradient(45deg, #003cff, #002fff, #0051ff, #0077ff, #00a2ff, #00aeff, #00ffff, #00ffff, #003cff);
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  background-size: 400%;
-  z-index: -1;
-  filter: blur(5px);
-  width: calc(100% + 4px);
-  height: calc(100% + 4px);
-  animation: glowing 20s linear infinite;
-  opacity: 0;
-  transition: opacity .3s ease-in-out;
-  border-radius: 10px;
-}
-
-.glow-on-hover:active {
-  color: #ffffff
-}
-
-.glow-on-hover:active:after {
-  background: transparent;
-}
-
-.glow-on-hover:hover:before {
-  opacity: 1;
-}
-
-.glow-on-hover:after {
-  z-index: -1;
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #111;
-  left: 0;
-  top: 0;
-  border-radius: 10px;
-}
-
-@keyframes glowing {
-  0% {
-    background-position: 0 0;
-  }
-
-  50% {
-    background-position: 400% 0;
-  }
-
-  100% {
-    background-position: 0 0;
-  }
 }
 
 
@@ -490,14 +417,26 @@ img {
 
 }
 
+.carousel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;  /* Aqui, aplicamos o overflow ao container */
+  margin-top: -20px;
+
+}
+
 .carousel {
-  width: 100%; /* ou qualquer valor fixo, ex: 500px */
-  height: 150px; /* Se quiser ajustar a altura, se for um carrossel vertical */
+  width: 80%; /* Garante que o carrossel ocupe toda a largura disponível */
+  max-width: 100%;
+  height: 150px; /* Ajuste conforme necessário */
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* Alinha os ícones à esquerda */
   position: relative;
-  overflow: hidden; /* Garante que nada vai sair do contêiner */
+  overflow: hidden; /* Impede que qualquer conteúdo ultrapasse o limite */
+  margin: 0 auto;
 }
 
 .carousel-btn {
@@ -507,7 +446,10 @@ img {
   font-size: 30px;
   padding: 10px;
   cursor: pointer;
-  z-index: 1; /* Garante que os botões fiquem acima dos ícones */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
 }
 
 .carousel-btn:hover {
@@ -515,21 +457,22 @@ img {
 }
 
 .carousel-track {
-  flex-wrap: nowrap; /* Impede a quebra de linha */
   display: flex;
-
-  transition: transform 0.3s ease-in-out; /* Animação suave ao mover */
+  align-items: center; /* Alinha os ícones verticalmente */
+  gap: 10px; /* Espaçamento entre os ícones */
+  transition: transform 0.3s ease-in-out;
 }
 
-.carousel-btn.prev-btn {
-  position: absolute;
-  left: 0;
+
+
+.prev-btn {
+  left: 0px; /* Fora do carrossel à esquerda */
 }
 
-.carousel-btn.next-btn {
-  position: absolute;
-  right: 0;
+.next-btn {
+  right: 0px; /* Fora do carrossel à direita */
 }
+
 
 .shirt-btn {
   width: 40px;
@@ -538,7 +481,14 @@ img {
   border-radius: 8px;
   cursor: pointer;
   display: inline-block;
+  transition: transform 0.2s, box-shadow 0.3s ease, background-color 0.3s ease;
+
 }
+
+.shirt-btn:hover {
+  transform: scale(1.1); /* Aumenta o tamanho do ícone */
+}
+
 
 .shirt-btn.preta {
   background-color: rgb(26, 26, 26);
@@ -589,35 +539,84 @@ img {
   height: 50px;
 }
 
-.icon-btn {
-  padding-bottom: 40px;
-  background-color: rgb(211, 211, 211);
-  width: 60px;
-  height: 82px;
-  border: 2px solid black;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.3s ease, background-color 0.3s ease;
-  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+.carousel-track .icon-btn {
+    min-width: 61px; /* Tamanho fixo para cada ícone */
+    height: 82px;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.3s ease, background-color 0.3s ease;
+    background-color: rgb(226, 226, 226);
+    padding-bottom: 40px;
+    position: relative;
+    z-index: 0;
   }
 
-.icon-btn:hover {
-  transform: scale(1.1);
-  background-color: #aaaaaa;
-  box-shadow: 4px 6px 12px rgba(0, 0, 0, 0.5);
+  /* Efeito de brilho nos ícones */
+  .icon-btn:before {
+    content: '';
+    background: linear-gradient(45deg, #8c00ff, #0004ff, #00f7ff, #00ff6a, #fffb00, #ff9100, #ff0800, #ff0095, #003cff);
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 5px;
+    
+  }
+  
+  .icon-btn:hover {
+    transform: scale(1.1); /* Aumenta o tamanho do ícone */
+  }
 
-}
+  .icon-btn:active:after {
+    background: transparent;
+  }
+  
+  .icon-btn:hover:before {
+    opacity: 1;
+    
+  }
+  
+  .icon-btn:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(226, 226, 226);
+    left: 0;
+    top: 0;
+    border-radius: 5px;
+  }
 
-.clear-btn {
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  background-color: #2b2b2b;
-  border: 2px solid black;
-  border-radius: 5px;
-  color: #ffffff;
-}
+  /* Aplica o brilho ao passar o mouse */
+  .icon-btn:hover:before {
+    opacity: 1;
+  }
+  
+  /* Controla a animação do glow */
+  @keyframes glowing {
+    0% {
+      background-position: 0 0;
+    }
+  
+    50% {
+      background-position: 400% 0;
+    }
+  
+    100% {
+      background-position: 0 0;
+    }
+  }
+
+
 
 
 .login-wrapper {
@@ -648,18 +647,7 @@ img {
     flex: 1;
   }
 
-#show-icons-btn {
-  padding: 10px 20px;
-  margin-top: 20px;
-  background-color: #444;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
 
-#show-icons-btn:hover {
-  background-color: #555;
-}
 
 .options-container {
   display: flex;
@@ -701,8 +689,7 @@ img {
   color: white;
   border: none;
   border-radius: 5px;
-  width: 100%
-  ; /* Faz o botão ocupar toda a largura da coluna */
+  width: 100%;
 }
 
 .position-btn:hover {
@@ -720,52 +707,38 @@ img {
 
 
 .upload-image {
+  
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
-  font-family: 'Arial', sans-serif;
+  gap: 10px;
 }
 
 .upload-label {
-  background-color: #4CAF50;
-  color: white;
+  margin-top: -20px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #111;
   border-radius: 5px;
   cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s;
 }
 
 .upload-label:hover {
-  background-color: #45a049;
+  background-color: #333;
 }
 
-.upload-input {
-  display: none; /* Esconde o input padrão */
+.upload-label svg {
+  fill: #fff;
 }
 
-.file-name {
-  margin-top: 10px;
-  color: #333;
-  font-size: 14px;
-  font-style: italic;
-  text-align: center;
-}
 
-.upload-image:hover .file-name {
-  color: #4CAF50;
-}
 
-/* Feedback visual quando o arquivo for selecionado */
-.upload-input:focus + .file-name {
-  color: #4CAF50;
-  font-weight: bold;
-}
-
-#custom-image {
-  
-}
 #custom-image.round { border-radius: 50%; }
 #custom-image.square { border-radius: 0; }
 #custom-image.rounded { border-radius: 15px; }
@@ -775,8 +748,290 @@ img {
 
 
 
-.shape-btn:hover {
-  background-color: #555;
+                                                        /* POSIÇÕES BUTTONS */
+
+.glow-on-hover {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 22px;
+  width: 300px; /* Faz o botão ocupar toda a largura da coluna */
+  height: 35px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+}
+
+.glow-on-hover:before {
+    
+  content: '';
+  background: linear-gradient(45deg, #73ff00, #00ff4c, #68e7ac, #00ff22, #a7e99e, #01ff2b, #5eff00, #00ff37, #26ff93);
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 10px;
+}
+
+.glow-on-hover:active {
+  color: #ffffff
+}
+
+.glow-on-hover:active:after {
+  background: transparent;
+}
+
+.glow-on-hover:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 400% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+}
 }
 
 
+
+                                                                      /* SHAPE BUTTONS */
+
+.glow-on-hover-shape {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 20px;
+  width: 100%;
+  outline: none;
+  border: none;
+  color: #fff;
+  background: #111;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.glow-on-hover-shape:before {
+    
+  content: '';
+  background: linear-gradient(45deg, #73ff00, #00ff4c, #68e7ac, #00ff22, #a7e99e, #01ff2b, #5eff00, #00ff37, #26ff93);
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 8px;
+}
+
+.glow-on-hover-shape:active {
+  color: #ffffff
+}
+
+.glow-on-hover-shape:active:after {
+  background: transparent;
+}
+
+.glow-on-hover-shape:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover-shape:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  left: 0;
+  top: 0;
+  border-radius: 8px;
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 400% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+}
+}
+
+
+
+
+/*BACKGORUND DEFAULT*/
+
+.glow-on-hover-shape[data-shape="default"]:after {
+  
+  background-color: #585858; /* Cor de fundo personalizada para o botão default */
+}
+.glow-on-hover-shape[data-shape="default"]:before {
+    
+  background: linear-gradient(45deg, #ff0000, #ff0000, #e76868, #ff0000, #ff0000, #ff0101, #ff0000, #ff0000, #ff2626);
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 8px;
+}
+
+.glow-on-hover-shape:active {
+  color: #ffffff
+}
+
+.glow-on-hover-shape:active:after {
+  background: transparent;
+}
+
+.glow-on-hover-shape:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover-shape:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  left: 0;
+  top: 0;
+  border-radius: 8px;
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 400% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+}
+}
+
+
+                                                                    /* CLEAR BUTTON */
+.glow-on-hover-clear {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 24px;
+  width: 200px; /* Faz o botão ocupar toda a largura da coluna */
+  height: 35px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  margin-top: -30px;
+  margin-bottom: 20px;
+
+}
+
+.glow-on-hover-clear:before {
+    
+  content: '';
+  background: linear-gradient(45deg, #003cff, #002fff, #0051ff, #0077ff, #00a2ff, #00aeff, #00ffff, #00ffff, #003cff);
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 10px;
+}
+
+.glow-on-hover-clear:active {
+  color: #ffffff
+}
+
+.glow-on-hover-clear:active:after {
+  background: transparent;
+}
+
+.glow-on-hover-clear:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover-clear:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 400% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+}
+}
