@@ -42,6 +42,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const customImage = document.getElementById('custom-image'); // Definir customImage dentro do evento
+  
+    // Função para limpar a imagem personalizada
+    function clearCustomImage() {
+      customImage.setAttribute('src', ''); // Limpa a URL da imagem
+      customImage.classList.add('hidden'); // Torna a imagem invisível
+      clearButton.classList.add('hidden'); // Esconde o botão de limpar
+
+      disableDrag(); // Desativa a função de arrastar (se houver)
+    }
+  
+    const clearButton = document.querySelector('.glow-on-hover-image-clear');
+    clearButton.addEventListener('click', clearCustomImage);
+  
+    // Resto do código...
+  });
+  
+
+  
+  document.getElementById('image-upload').addEventListener('change', function () {
+    if (this.files && this.files.length > 0) {
+      document.querySelector('.glow-on-hover-image-clear').classList.remove('hidden');
+      document.querySelector('.position-options').classList.remove('hidden');
+      
+    }
+  });
+  
   
         document.addEventListener('DOMContentLoaded', () => {
           const shirtImg = document.getElementById('shirt-img');
@@ -52,8 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
           const iconButtons = document.querySelectorAll('.icon-btn');
           const clearButton = document.querySelector('.glow-on-hover-clear');
           const circles = document.querySelectorAll('.circles li');
-          const showIconsBtn = document.getElementById('show-icons-btn');
-          const iconOptions = document.getElementById('icon-options');
           const positionButtons = document.querySelectorAll('.glow-on-hover');
           const shirtDisplay = document.getElementById('shirt-display'); // Seção da camisa
   

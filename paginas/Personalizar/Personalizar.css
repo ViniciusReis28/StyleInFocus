@@ -705,37 +705,77 @@ img {
 }
 
 
-
-.upload-image {
-  
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-
 .upload-label {
-  margin-top: -20px;
-
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
-  font-size: 16px;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 20px;
+  width: 10%;
+  outline: none;
+  border: none;
   color: #fff;
-  background-color: #111;
-  border-radius: 5px;
+  background: #111;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  padding: 8px 12px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  display: block;
 }
 
-.upload-label:hover {
-  background-color: #333;
+.upload-label:before {
+  content: '';
+  background: linear-gradient(45deg, #2bff00, #15ff00, #54fc06, #78da64, #00ff2a, #01ff2b, #5eff00, #00ff37, #26ff93);
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 8px;
 }
 
-.upload-label svg {
-  fill: #fff;
+.upload-label:active {
+  color: #ffffff;
 }
+
+.upload-label:active:after {
+  background: transparent;
+}
+
+.upload-label:hover:before {
+  opacity: 1;
+}
+
+.upload-label:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  left: 0;
+  top: 0;
+  border-radius: 8px;
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 400% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
+
 
 
 
@@ -745,6 +785,91 @@ img {
 #custom-image.triangle {
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
+
+
+
+.upload-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+  margin-top: -10px;
+  justify-content: center;
+}
+
+                                /*LIMPAR IMAGEM BUTTON */
+
+.glow-on-hover-image-clear {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 20px;
+  width: 10%;
+  outline: none;
+  border: none;
+  color: #fff;
+  background: #111;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.glow-on-hover-image-clear:before {
+    
+  content: '';
+  background: linear-gradient(45deg, #ff0000, #ff0000, #570f0a, #ff0000, #ff4e4e, #ff4949, #ff0000, #ff0000, #ff2626);
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 8px;
+}
+
+.glow-on-hover-image-clear:active {
+  color: #ffffff
+}
+
+.glow-on-hover-image-clear:active:after {
+  background: transparent;
+}
+
+.glow-on-hover-image-clear:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover-image-clear:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #5c5c5c;
+  left: 0;
+  top: 0;
+  border-radius: 8px;
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 400% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+}
+}
+
+
 
 
 
@@ -768,7 +893,7 @@ img {
 .glow-on-hover:before {
     
   content: '';
-  background: linear-gradient(45deg, #73ff00, #00ff4c, #68e7ac, #00ff22, #a7e99e, #01ff2b, #5eff00, #00ff37, #26ff93);
+  background: linear-gradient(45deg, #2bff00, #15ff00, #54fc06, #78da64, #00ff2a, #01ff2b, #5eff00, #00ff37, #26ff93);
   position: absolute;
   top: -2px;
   left: -2px;
