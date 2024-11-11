@@ -26,7 +26,7 @@ function closeLeftSidebar() {
 document.addEventListener('click', function(event) {
   var sidebar = document.getElementById('leftSidebar');
   var btn = document.querySelector('.btn-filtrar');
-  if (sidebar.style.width === "380px" && !sidebar.contains(event.target) && event.target !== btn) {
+  if (sidebar.width === "380px" && !sidebar.contains(event.target) && event.target !== btn) {
       closeLeftSidebar();
   }
 });
