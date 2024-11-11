@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&display=swap');
 
 
 body {
@@ -239,137 +240,6 @@ section.slider {
 
 
 
-/*------------------------------------------------------------------SLIDE DA TELA INDEX DO PRODUTOS DESTAQUES ------------------------------------------------------------*/
-.h1-destaques {
-  text-align: center;
-  font-family: "Bebas Neue", sans-serif;
-  font-size: 50px;
-}
-
-.carousel-wrapper {
-  position: relative;
-  width: 90%;
-  margin: auto;
-  display: flex;
-  align-items: center;
-}
-
-.carousel-container {
-  width: 100%;
-  height: 800px;
-  overflow: hidden;
-  flex-grow: 1;
-}
-
-.carousel {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
-
-.carousel-item {
-  min-width: 33.33%;
-  /* Cada item terá 1/3 da largura do container para mostrar 3 de cada vez */
-  box-sizing: border-box;
-  margin-bottom: 30px;
-}
-
-.carousel-item div {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  flex-direction: column;
-  width: 90%;
-  height: auto;
-  color: rgb(0, 0, 0);
-  box-shadow: 0 5px 15px rgba(115, 115, 115, 0);
-  padding: 20px;
-  font-family: "Nunito", sans-serif;
-}
-
-.carousel-item div img {
-  border-radius: 5px;
-  width: 420px;
-  height: 380px;
-  object-fit: cover;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.preçodoProduto-slide {
-  font-size: 25px;
-}
-
-.carousel-item div button {
-  border: none;
-  border-radius: 5px;
-  background-color: #000;
-  color: white;
-  width: 100%;
-  height: 50px;
-  font-size: 18px;
-  padding: 5px;
-  margin: 5px;
-}
-
-.carousel-item div button svg {
-  margin-right: 5px;
-  margin-top: 0px;
-}
-
-.carousel-button {
-  background-color: rgba(255, 255, 255, 0);
-  color: rgb(0, 0, 0);
-  font-size: 45px;
-  border: none;
-  cursor: pointer;
-  padding: 10px;
-  z-index: 1;
-}
-
-.btn-icone {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-}
-
-.carousel-button:hover {
-  color: #9a9a9a;
-}
-
-.carousel-button#prev {
-  margin-right: 20px;
-  /* Espaçamento entre o botão e o carrossel */
-}
-
-.carousel-button#next {
-  margin-left: 20px;
-  /* Espaçamento entre o botão e o carrossel */
-}
-
-
-.image-hover {
-  border-radius: 5px;
-  position: absolute;
-  top: 15px;
-  left: 5;
-  margin: 5px;
-  width: 40%;
-  height: 380px;
-  object-fit: cover;
-  opacity: 0;
-}
-
-.carousel-item div:hover .image-hover {
-  opacity: 1;
-}
-
-.carousel-item div:hover .image-default {
-  opacity: 0;
-}
-
-
 
 
 /*--------------------------------------------------------SLIDE DO INDEX TEXT---------------------------------------------------*/
@@ -456,13 +326,7 @@ section.slider {
   right: 10px;
 }
 
-/*ICONE WATS*/
-.whats {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  z-index: 9999px;
-}
+
 
                                                               /* BARRA DE NAVEGAÇÃO DO SITE */
 nav {
@@ -843,9 +707,10 @@ a {
 }
 
 .box {
-  background-color: white;
+  font-family: "Bebas Neue", sans-serif;
+  background-color: rgba(255, 255, 255, 0.692);
   border-radius: 10px;
-  box-shadow: 0 0px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0);
   border: #000;
   padding: 20px;
   flex: 1 1 calc(33.333% - 25px);
@@ -859,35 +724,35 @@ a {
 
 .box img {
   width: 100%;
-  /* Ajuste conforme necessário */
   margin: auto;
-  /* Centraliza a imagem horizontalmente */
   border-radius: 8px;
 }
 
 .box h1 {
-  font-family: "Bebas Neue", sans-serif;
-  font-size: 30px;
-  margin: 1px 0;
+  font-size: 35px;
   align-self: flex-start;
   color: #000;
-  margin-left: 17px;
+  margin-left: 5px;
+  
+}
 
-  /* Alinha o texto à esquerda */
+.box h2 {
+  align-self: flex-start;
+  font-size: 32px;
+  color: #000;
+  margin-left: 10px;
 }
 
 .box h3 {
   align-self: flex-start;
-  font-family: "Bebas Neue", sans-serif;
-  font-size: 25px;
-  color: #000;
-  margin-left: 17px;
-
+  font-size: 20px;
+  color: #5a5a5a;
+  margin-left: 10px;
 }
 
 
 .box p {
-  font-family: "Bebas Neue", sans-serif;
+  
   font-size: 14px;
   color: #888;
   align-self: flex-start;
@@ -919,8 +784,7 @@ a {
 }
 
 .box button:hover {
-  box-shadow: 0px 0.1em 0.2em rgba(0, 162, 255, 0.4), 0px 0.4em 0.7em -0.1em rgb(45 35 66 / 30%), inset 0px -0.1em 0px #000000;
-  transform: translateY(-0.1em);
+  transform: scale(1.01);
 }
 
 .box button:active {

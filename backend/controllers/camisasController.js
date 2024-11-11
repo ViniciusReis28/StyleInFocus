@@ -34,6 +34,9 @@ const getCamisaById = async (req, res) => {
     }
 };
 
+
+
+
 module.exports = {
     getCamisas,
     addCamisa,

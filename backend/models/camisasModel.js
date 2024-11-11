@@ -17,6 +17,8 @@ const getCamisaById = async (id) => {
     return result.rows[0];  // Retorna apenas uma camisa, ou undefined se não encontrada
 };
 
+
+
 module.exports = {
     getAllCamisas,
     addCamisa,

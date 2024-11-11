@@ -1296,8 +1296,7 @@ a {
     display: flex;
     justify-content: space-between;
     margin-top: 100px;
-    width: 80%;
-    max-width: 1200px;
+    width: 70%;
     border-radius: 10px;
     gap: 100px;
 }
@@ -1354,6 +1353,11 @@ a {
 .preco {
     font-size: 2.5em;
     color: #1f1f1f;
+}
+
+.precoComDesconto {
+  font-size: 1.5em;
+  color: #1f1f1f;
 }
 
 .tamanhos-container {
@@ -1633,6 +1637,10 @@ a {
   text-decoration: none;
   cursor: pointer;
 }
+
+
+
+
 
 
 

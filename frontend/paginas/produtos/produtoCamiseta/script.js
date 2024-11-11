@@ -1,43 +1,50 @@
 
-  // FETCH DAS BOX BANCO DE DADOS
+// FETCH DAS BOX BANCO DE DADOS
 
-  fetch('http://localhost:3000/camisas')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Erro na resposta da rede');
-        }
-        return response.json();
-    })
-    .then(data => {
-        // Acessa diretamente os dados das camisas
-        const camisas = data;  // Aqui você pega os dados das camisas
+fetch('http://localhost:3000/camisas')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Erro na resposta da rede');
+    }
+    return response.json();
+  })
+  .then(data => {
+    const camisas = data;
 
-        console.log('Camisas recebidas do banco:', camisas);
+    // Seleciona a div onde as camisas serão exibidas
+    const container = document.getElementById('produtos-camisas');
 
-        // Seleciona a div onde as camisas serão exibidas
-        const container = document.getElementById('produtos-camisas');
+    // Para cada camisa, exibe o conteúdo
+    camisas.forEach(camisa => {
+      // Converte o preço de texto para número
+      const precoOriginal = parseFloat(camisa.preco);
 
-        // Para exibir cada camisa de forma mais detalhada
-        camisas.forEach(camisa => {
-            // Cria um elemento div para cada camisa
-            const camisaDiv = document.createElement('div');
-            camisaDiv.classList.add('box'); // Adiciona uma classe para estilização
+      // Calcula o preço com desconto de 20% (Pix)
+      const precoComDesconto = precoOriginal * 0.90;
 
-            // Adiciona o conteúdo da camisa ao elemento div
-            camisaDiv.innerHTML = `
-                <h3>${camisa.nome}</h3>
-                <p>Descrição: ${camisa.descricao}</p>
-                <p>Cor: ${camisa.cor}</p>
-                <p>Data Adicionado: ${new Date(camisa.data_adicionado).toLocaleDateString()}</p>
-                <img src="${camisa.img}" alt="${camisa.nome}" class="camisa-img" />
-                <button onclick="window.location.href = '../produtoIndividual/paginaProdutoCamisa.html?id=${camisa.id}'">Comprar</button>
-            `;
+      // Formata os preços para o formato brasileiro (com vírgula)
+      const precoComDescontoFormatado = precoComDesconto.toLocaleString('pt-BR',{ style: 'currency', currency: 'BRL' });
 
-            // Adiciona a div da camisa ao container
-            container.appendChild(camisaDiv);
-        });
-    })
-    .catch(error => console.error('Erro ao buscar dados:', error));
+      // Cria a div para a camisa
+      const camisaDiv = document.createElement('div');
+      camisaDiv.classList.add('box');
+
+      // Adiciona o conteúdo da camisa
+      camisaDiv.innerHTML = `
+          <img src="${camisa.img}" alt="${camisa.nome}" class="camisa-img" />
+          <h1>${camisa.nome}</h1>
+          <h2>R$ ${camisa.preco}</h2>
+          <h3>${precoComDescontoFormatado} no PIX</h3>
+          <button onclick="window.location.href = '../produtoIndividual/paginaProdutoCamisa.html?id=${camisa.id}'">Comprar</button>
+      `;
+
+      // Adiciona a div ao container
+      container.appendChild(camisaDiv);
+    });
+  })
+  .catch(error => console.error('Erro ao buscar dados:', error));
+
+
 
 
 

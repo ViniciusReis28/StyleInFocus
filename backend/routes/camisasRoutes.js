@@ -6,4 +6,5 @@ router.get('/', camisasController.getCamisas);
 router.post('/add', camisasController.addCamisa);
 router.get('/:id', camisasController.getCamisaById); 
 
+
 module.exports = router;

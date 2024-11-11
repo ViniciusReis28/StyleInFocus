@@ -114,12 +114,26 @@ if (produtoId) {
   fetch(`http://localhost:3000/camisas/${produtoId}`)
     .then((response) => response.json())
     .then((data) => {
+
+
+      const precoOriginal = parseFloat(data.preco);
+
+      
+      const precoComDesconto = precoOriginal * 0.90;
+
+      // Formata os preços para o formato brasileiro (com vírgula)
+      
+      const precoComDescontoFormatado = precoComDesconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+      console.log(precoComDescontoFormatado)
       // Preenche os dados na página
       document.querySelector(".produto-imagem").src = data.img;
       document.querySelector(".produto-nome").textContent = data.nome;
       document.querySelector(".produto-name").textContent = data.nome;
       document.querySelector(".produto-descricao").textContent = data.descricao;
       document.querySelector(".preco").textContent = `R$ ${data.preco}`;
+
+      document.querySelector(".precoComDesconto").textContent = `${precoComDescontoFormatado} no PIX`;
 
       // Criação dos botões de tamanho
       const tamanhosContainer = document.getElementById("tamanhos-container");
