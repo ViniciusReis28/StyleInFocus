@@ -17,12 +17,5 @@ router.post('/forgot-password', authController.forgotPassword);
 // Rota POST para redefinir a senha
 router.post('/reset-password', authController.resetPassword);
 
-router.get('/register', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/paginas/login/register.html'));
-});
-
-router.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/paginas/login/login.html'));
-});
 
 module.exports = router;

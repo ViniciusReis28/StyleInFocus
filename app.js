@@ -3,11 +3,12 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 const path = require('path');
-const authMiddleware = require('./middlewares/authMiddleware'); // Importe o middleware
-const authController = require('./controllers/authController'); // Importe o controlador de autenticação
+const authController = require('./backend/controllers/authController'); // Importe o controlador de autenticação
 
 const app = express();
 const PORT = 3000;
+
+app.use(express.static(path.join(__dirname, 'frontend')));
 
 app.use(express.json()); // Middleware para parsing de JSON
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -24,10 +25,9 @@ app.use('/uploads', express.static(path.join(__dirname, 'paginas/login/uploads')
 app.use(express.static(path.join(__dirname, 'paginas')));
 
 // Importar rotas
-const authRoutes = require('./routes/authRoutes');
+const authRoutes = require('./backend/routes/authRoutes');
 app.use('/auth', authRoutes);
 
-// Rota GET para servir a página de login
 app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend/paginas/login/login.html'));
 });
