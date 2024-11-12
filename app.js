@@ -45,6 +45,15 @@ app.get('/index', (req, res) => {
     res.sendFile(path.join(__dirname, '/paginas/index/index.html'));
 });
 
+app.get('/forgot-password', (req, res) => {
+    res.sendFile(path.join(__dirname, '/paginas/login/forgot-password.html'));
+});
+
+app.get('/reset-password', (req, res) => {
+    res.sendFile(path.join(__dirname, '/paginas/login/reset-password.html'));
+});
+
+
 app.get('/userLogado.html', (req, res) => {
     // Verifica se o usuário está logado
     if (!req.session.userId) {

@@ -4,6 +4,9 @@ const multer = require('multer');
 const path = require('path');
 const pool = require('../../config/db'); // Certifique-se de que o caminho está correto
 const router = express.Router();
+const crypto = require('crypto');
+const nodemailer = require('nodemailer');
+
 
 // Configuração do multer para upload de arquivos
 const storage = multer.diskStorage({
@@ -134,6 +137,84 @@ router.get('/check-session', (req, res) => {
         });
     } else {
         return res.json({ isAuthenticated: false });
+    }
+});
+
+
+
+
+// Rota para processar o e-mail de recuperação de senha
+router.post('/forgot-password', async (req, res) => {
+    const { email } = req.body;
+    
+    try {
+        // Verificar se o e-mail existe no banco de dados
+        const result = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+        
+        if (result.rows.length === 0) {
+            return res.status(400).send('E-mail não encontrado');
+        }
+
+        // Gerar um token único para recuperação de senha
+        const token = crypto.randomBytes(20).toString('hex');
+
+        // Salvar o token no banco de dados com tempo de expiração (1 hora)
+        const expiration = new Date(Date.now() + 3600000); // 1 hora
+        await pool.query('UPDATE users SET reset_token = $1, reset_token_expiration = $2 WHERE email = $3', [token, expiration, email]);
+
+        // Enviar o link de recuperação de senha por e-mail
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'styleinfocuscontact@gmail.com', // Substitua com seu e-mail
+                pass: 'eihb vqrf byzw qzyt', // Substitua com sua senha
+            },
+        });
+
+        const resetLink = `http://localhost:3000/reset-password?token=${token}`;
+        const mailOptions = {
+            to: email,
+            subject: 'Recuperação de Senha',
+            text: `Você solicitou a recuperação de senha. Clique no link abaixo para redefinir sua senha: \n\n${resetLink}`,
+        };
+
+        await transporter.sendMail(mailOptions);
+
+        res.send('E-mail enviado com instruções para recuperação de senha');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Erro ao processar a solicitação');
+    }
+});
+
+
+// Rota para exibir a página de redefinir senha
+router.get('/reset-password', (req, res) => {
+    res.sendFile('reset-password.html', { root: './paginas/login' });
+});
+
+// Rota para processar a nova senha
+router.post('/reset-password', async (req, res) => {
+    const { token, newPassword } = req.body;
+
+    try {
+        // Verificar o token
+        const result = await pool.query('SELECT * FROM users WHERE reset_token = $1 AND reset_token_expiration > $2', [token, new Date()]);
+        
+        if (result.rows.length === 0) {
+            return res.status(400).send('Token inválido ou expirado');
+        }
+
+        // Hash da nova senha
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+        // Atualizar a senha e limpar o token de recuperação
+        await pool.query('UPDATE users SET password = $1, reset_token = NULL, reset_token_expiration = NULL WHERE reset_token = $2', [hashedPassword, token]);
+
+        res.send('Senha alterada com sucesso');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Erro ao processar a solicitação');
     }
 });
 
