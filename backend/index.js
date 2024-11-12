@@ -12,14 +12,13 @@ require('dotenv').config();
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
-app.use(express.static(path.join(__dirname, 'public')));
-
 
 
 app.use('/camisas', camisasRoutes);  // Usando as rotas de camisas
 app.use('/users', usersRoutes);  // Usando as rotas de usuários
 app.use('/frete', freteRoutes);
 app.use('/api/roupas', comentarioRouter);
+app.use(express.static(path.join(__dirname, '../frontend')));
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/paginas/index/index.html'));
