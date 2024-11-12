@@ -1295,10 +1295,10 @@ a {
 .block {
     display: flex;
     justify-content: space-between;
-    margin-top: 100px;
+    margin-top: 80px;
     width: 70%;
     border-radius: 10px;
-    gap: 100px;
+    gap: 40px;
 }
 
 /* Imagem do Produto */
@@ -1315,11 +1315,12 @@ a {
 .descriçao {
   display: flex;
   flex-direction: column;
+  margin-top: 40px;
 }
 
 .spaceblock img {
     border-radius: 5px;
-    width: 100%;
+    width: 90%;
     height: auto;
 }
 
@@ -1411,10 +1412,11 @@ a {
   align-items: center;
   gap: 25px;
   margin-top: 40px;
+  margin-bottom: 20px;
 }
 
 .botoes button {
-  width: 200px;
+  width: 220px;
   height: 50px;
 }
 
@@ -1473,10 +1475,33 @@ a {
   background-color: #fff;
 }
 
+.salvarFovoritas-btn {
+    width: 365px;
+    height: 50px;
+    padding: 15px;
+    font-size: 1.0em;
+    color: rgb(0, 0, 0);
+    background-color: #00000000;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.8s;
+    margin-bottom: 25px;
+}
+
+.salvarFovoritas-btn:hover {
+  background-color: #000000d0;
+  color: white;
+  border: #000000d0;
+}
 
 
 
 
+.mini-text {
+  font-family: "Archivo", sans-serif;
+  font-size: 15px;
+}
 
 
 
@@ -1588,9 +1613,8 @@ a {
 
 
 .comentarios {
-  margin-top: 20px;
+  margin-top: 100px;
   padding: 10px;
-  border-top: 1px solid #ddd;
 }
 
 .comentarios h3 {
