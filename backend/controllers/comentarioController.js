@@ -4,10 +4,10 @@ const ComentarioController = {
     // Adicionar um comentário
     adicionarComentario: async (req, res) => {
         const { roupaId } = req.params; // Pega o ID da roupa da URL
-        const { nome, email, comentario } = req.body; // Pega os dados do corpo da requisição
+        const { nome, email, comentario, titulocomentario, recomenda} = req.body; // Pega os dados do corpo da requisição
 
         try {
-            const novoComentario = await ComentarioModel.adicionarComentario(roupaId, nome, email, comentario);
+            const novoComentario = await ComentarioModel.adicionarComentario(roupaId, nome, email, comentario, titulocomentario, recomenda);
             res.status(201).json({ message: "Comentário adicionado com sucesso", comentario: novoComentario });
         } catch (error) {
             console.error("Erro ao adicionar comentário:", error);

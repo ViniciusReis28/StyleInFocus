@@ -271,7 +271,7 @@ calcularFreteBtn.addEventListener("click", async () => {
                     <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="currentColor" class="bi bi-truck" viewBox="0 0 16 16">
                       <path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5zm1.294 7.456A2 2 0 0 1 4.732 11h5.536a2 2 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456M12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/>
                     </svg></a>
-                    <div class="teste">
+                    <div class="box-infotransporte">
                       <div class="infoTransporte">
                         <p>${service.company}</p>
                         <p>${service.name}</p>
@@ -348,6 +348,8 @@ function carregarComentarios() {
         divComentario.innerHTML = `
           <strong>${comentario.nome}</strong>
           <p>${comentario.comentario}</p>
+          <p>${comentario.titulocomentario}</p>
+          <p>${comentario.recomenda}</p>
           <small>${dataFormatada}</small> <!-- Data formatada aqui -->
         `;
         listaComentarios.appendChild(divComentario);
@@ -364,6 +366,16 @@ carregarComentarios();
 
 
 
+
+
+
+
+
+
+
+
+
+
 // Função para abrir a modal
 document.getElementById("btn-fazer-avaliacao").addEventListener("click", () => {
   document.getElementById("modal-comentario").style.display = "flex"; // Exibe a modal
@@ -374,14 +386,37 @@ document.getElementById("fechar-modal").addEventListener("click", () => {
   document.getElementById("modal-comentario").style.display = "none"; // Oculta a modal
 });
 
+
+// Função para exibir a mensagem de sucesso e depois fechar o modal e a mensagem
+function mostrarMensagemSucesso() {
+  const mensagem = document.getElementById("mensagem-sucesso");
+  const modal = document.getElementById("modal-comentario");
+
+  // Exibe a mensagem de sucesso
+  mensagem.classList.add("mostrar");
+
+  // Espera 3 segundos antes de fechar o modal
+  setTimeout(() => {
+    modal.style.display = "none"; // Fecha o modal após 3 segundos
+  }, 6000); // 3000ms = 3 segundos
+
+  // Espera mais 3 segundos para remover a mensagem
+  setTimeout(() => {
+    mensagem.classList.remove("mostrar"); // Remove a classe para esconder a mensagem
+  }, 5000); // 5000ms = 5 segundos
+}
+
+
+
 // Função para enviar o comentário
 document.getElementById("comentario-form").addEventListener("submit", (event) => {
   event.preventDefault();
 
+  const titulocomentario = document.getElementById("titulocomentario").value.trim();
   const nome = document.getElementById("nome").value.trim();
   const email = document.getElementById("email").value.trim();
   const textoComentario = document.getElementById("comentario-texto").value.trim();
-
+  const recomenda = document.querySelector('input[name="recomenda"]:checked')?.value;
   if (!nome || !email || !textoComentario) {
     alert("Preencha todos os campos!");
     return;
@@ -392,6 +427,8 @@ document.getElementById("comentario-form").addEventListener("submit", (event) =>
     nome,
     email,
     comentario: textoComentario,
+    titulocomentario,
+    recomenda
   };
 
   // Enviar comentário ao backend
@@ -404,7 +441,7 @@ document.getElementById("comentario-form").addEventListener("submit", (event) =>
   })
     .then((response) => response.json())
     .then((data) => {
-      alert("Comentário enviado com sucesso!");
+      mostrarMensagemSucesso("Comentário enviado com sucesso!");
       carregarComentarios(); // Recarregar lista de comentários
       document.getElementById("comentario-form").reset(); // Limpar formulário
       document.getElementById("modal-comentario").style.display = "none"; // Fechar a modal
@@ -414,6 +451,61 @@ document.getElementById("comentario-form").addEventListener("submit", (event) =>
       alert("Erro ao enviar comentário. Tente novamente mais tarde.");
     });
 });
+
+
+
+//funçao de mostrar mais ou menos comentarios 
+document.getElementById('btn-ver-mais').addEventListener('click', function() {
+  let comentariosOcultos = document.querySelectorAll('#lista-comentarios .comentario-item:nth-child(n+4)');
+  const botao = document.getElementById('btn-ver-mais');
+
+  // Verifica se os comentários extras estão visíveis
+  if (comentariosOcultos[0].style.display === 'none' || comentariosOcultos[0].style.display === '') {
+      // Exibe os comentários ocultos
+      comentariosOcultos.forEach(comentario => {
+          comentario.style.display = 'block'; // Exibe os comentários ocultos
+      });
+      botao.innerHTML = 'Ver Menos <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/></svg>'; // Muda o texto do botão e adiciona o ícone
+  } else {
+      // Esconde os comentários extras novamente
+      comentariosOcultos.forEach(comentario => {
+          comentario.style.display = 'none'; // Esconde os comentários extras
+      });
+      botao.innerHTML = 'Ver Mais <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>'; // Muda o texto do botão e adiciona o ícone
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Função para exibir a mensagem de sucesso
+function mostrarMensagemSucesso() {
+  const mensagem = document.getElementById("mensagem-sucesso");
+  mensagem.classList.add("mostrar");
+
+  // Fechar a mensagem após 3 segundos
+  setTimeout(() => {
+    mensagem.classList.remove("mostrar");
+  }, 4000); // 3000ms = 3 segundos
+}
 
 
 
