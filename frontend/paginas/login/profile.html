@@ -119,7 +119,7 @@
         <div class="box-perfil">
           <div class="left-panel">
             <div class="Foto-Email">
-              <img id="fotoPerfilEmail" src="/login/uploads/usuarioDefault.jpg" alt="Imagem de Perfil">
+              <img id="fotoPerfilEmail" src="/paginas/login/uploads/usuarioDefault.jpg" alt="Imagem de Perfil">
       
               <div class="email-user">
                 <h1 class="nomeUsuario" id="nomeUsuarioDisplay">Nome do Usuário</h1>
@@ -144,7 +144,7 @@
 
         <form id="editarPerfil" method="POST" action="/auth/update" enctype="multipart/form-data">
                 <div class="foto-container">
-                  <img id="fotoPerfil" src="/login/uploads/usuarioDefault.jpg" class="imagem-hover" alt="Foto de perfil">
+                  <img id="fotoPerfil" src="/paginas/login/uploads/usuarioDefault.jpg" class="imagem-hover" alt="Foto de perfil">
                   <input type="file" id="inputFoto" name="inputFoto" accept="image/*" style="display: none;">
                   <div class="trocar-foto" onclick="document.getElementById('inputFoto').click();">Trocar Foto</div>
               </div>
@@ -203,7 +203,7 @@
                     return response.json();
                 })
                 .then(data => {
-                    const defaultImage = '/login/uploads/usuarioDefault.jpg'; // Caminho da imagem padrão
+                    const defaultImage = '/paginas/login/uploads/usuarioDefault.jpg'; // Caminho da imagem padrão
 
                     // Preenche os campos com os dados do usuário
                     document.getElementById('username').value = data.username; // Preenche o campo nome
@@ -222,7 +222,7 @@
                     console.error(error);
                     alert("Erro ao carregar os dados do usuário.");
                     // Usa a imagem padrão em caso de erro
-                    document.getElementById('fotoPerfil').src = '/login/uploads/usuarioDefault.jpg';
+                    document.getElementById('fotoPerfil').src = '/paginas/login/uploads/usuarioDefault.jpg';
                 });
         
             // Pré-visualização da imagem de perfil
@@ -343,7 +343,7 @@
     </a>
   </div>
 
-<script src="/login/script.js"></script>
+<script src="/paginas/login/script.js"></script>
 </body>
 
 </html>

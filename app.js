@@ -12,6 +12,12 @@ const PORT = 3000;
 app.use(express.static(path.join(__dirname, 'frontend')));
 app.use('/uploads', express.static(path.join(__dirname, 'frontend/paginas/login/uploads')));
 
+
+
+
+const userRoutes = require('./backend/routes/userRoutes'); // Ajuste o caminho conforme necessário
+app.use(userRoutes);
+
 // Middlewares
 app.use(express.json()); // Parsing de JSON
 app.use(bodyParser.urlencoded({ extended: true }));

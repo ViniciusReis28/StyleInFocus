@@ -7,6 +7,7 @@ router.post('/register', authController.register);
 
 // Rota POST para login de usuário
 router.post('/login', authController.login);
+router.post('/auth/login', authController.login);
 
 // Rota POST para atualizar informações do usuário
 router.post('/update', authController.update);

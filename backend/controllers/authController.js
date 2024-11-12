@@ -29,29 +29,29 @@ const authController = {
             res.status(500).json({ success: false, message: "Erro ao cadastrar." });
         }
     },
+
     login: async (req, res) => {
         const { email, password } = req.body;
     
         try {
             const user = await User.findByEmail(email);
             if (user.rows.length === 0) {
-                return res.status(400).json({ message: "Usuário não encontrado." });
+                return res.status(400).json({ success: false, errors: { email: "Usuário não encontrado." } });
             }
     
             const isPasswordMatch = await bcrypt.compare(password, user.rows[0].password);
             if (!isPasswordMatch) {
-                return res.status(400).json({ message: "Senha incorreta." });
+                return res.status(400).json({ success: false, errors: { password: "Senha incorreta." } });
             }
     
-            req.session.userId = user.rows[0].user_id;
-            
-            // Redireciona o usuário para a página inicial após login bem-sucedido
-            res.redirect('/paginas/login/register.html'); // Modifique para a rota desejada
+            req.session.userId = user.user_id;
+            res.json({ success: true, redirect: '/paginas/login/userLogado.html' });
         } catch (error) {
             console.error('Erro ao fazer login:', error);
-            res.status(500).json({ message: "Erro no login." });
+            res.status(500).json({ success: false, message: "Erro no login." });
         }
     },
+    
     
 
     update: async (req, res) => {
