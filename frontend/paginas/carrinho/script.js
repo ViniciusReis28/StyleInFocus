@@ -339,6 +339,12 @@ function carregarCarrinho() {
   }
 }
 
+
+
+
+
+
+
 // Função para finalizar compra (simplesmente limpando o carrinho por enquanto)
 function finalizarCompra() {
   showNotification("Compra finalizada! Limpando o carrinho...");
