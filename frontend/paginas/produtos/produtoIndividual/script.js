@@ -346,11 +346,15 @@ function carregarComentarios() {
 
         // Atualizando o conteúdo com a data formatada
         divComentario.innerHTML = `
-          <strong>${comentario.nome}</strong>
-          <p>${comentario.comentario}</p>
-          <p>${comentario.titulocomentario}</p>
-          <p>${comentario.recomenda}</p>
-          <small>${dataFormatada}</small> <!-- Data formatada aqui -->
+          <div class="container-comentarios">
+            <h3>${comentario.titulocomentario}</h3>
+            <div class="nome-data-comentario">
+              <p>${comentario.nome} - </p>
+              <p>${dataFormatada}</p>
+            </div>
+            <p>"${comentario.comentario}"</p>
+            <p>Recomendaria esse item? <strong>${comentario.recomenda}</strong></p>
+          </div>
         `;
         listaComentarios.appendChild(divComentario);
       });
