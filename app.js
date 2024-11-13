@@ -13,21 +13,20 @@ app.use(express.static(path.join(__dirname, 'frontend')));
 app.use('/uploads', express.static(path.join(__dirname, 'frontend/paginas/login/uploads')));
 
 
-
-
 const userRoutes = require('./backend/routes/userRoutes'); // Ajuste o caminho conforme necessário
 app.use(userRoutes);
 
-// Middlewares
-app.use(express.json()); // Parsing de JSON
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(fileUpload());
 app.use(session({
     secret: 'seu_segredo',
     resave: false,
     saveUninitialized: false,
+    cookie: { secure: false } // Se estiver usando HTTP, defina como false, em HTTPS defina como true.
 }));
+
+app.use(express.json()); // Parsing de JSON
+app.use(bodyParser.urlencoded({ extended: true })); // Parsing de dados URL-encoded
+app.use(fileUpload()); // Manipulação de uploads de arquivos
+
 
 // Importar e usar as rotas de autenticação
 const authRoutes = require('./backend/routes/authRoutes');
@@ -37,6 +36,7 @@ app.use('/auth', authRoutes);
 app.use((req, res) => {
     res.status(404).send("Página não encontrada");
 });
+
 
 app.post('/register', authController.register);
 app.post('/login', authController.login);

@@ -66,3 +66,5 @@ exports.getUser = async (req, res) => {
         return res.status(500).json({ success: false, message: 'Erro ao buscar usuário.' });
     }
 };
+    
+
