@@ -1295,31 +1295,32 @@ a {
 .block {
     display: flex;
     justify-content: space-between;
-    margin-top: 100px;
+    margin-top: 80px;
     width: 70%;
     border-radius: 10px;
-    gap: 100px;
+    gap: 40px;
 }
 
 /* Imagem do Produto */
 .spaceblock {
     font-family: "Archivo", sans-serif;
-    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 60%;
     gap: 15px;
+    height: auto;
 }
 
 .descriçao {
   display: flex;
   flex-direction: column;
+  margin-top: 40px;
 }
 
 .spaceblock img {
     border-radius: 5px;
-    width: 100%;
+    width: 90%;
     height: auto;
 }
 
@@ -1411,10 +1412,11 @@ a {
   align-items: center;
   gap: 25px;
   margin-top: 40px;
+  margin-bottom: 20px;
 }
 
 .botoes button {
-  width: 200px;
+  width: 220px;
   height: 50px;
 }
 
@@ -1473,10 +1475,35 @@ a {
   background-color: #fff;
 }
 
+.salvarFovoritas-btn {
+    width: 365px;
+    height: 50px;
+    padding: 15px;
+    font-size: 1.0em;
+    color: rgb(0, 0, 0);
+    background-color: #00000000;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.8s;
+    margin-bottom: 25px;
+}
+
+.salvarFovoritas-btn:hover {
+  background-color: #000000d0;
+  color: white;
+  border: #000000d0;
+}
 
 
 
 
+.mini-text {
+  color: #4b4b4b;
+  margin-right: 100px;
+  font-family: "Archivo", sans-serif;
+  font-size: 13px;
+}
 
 
 
@@ -1554,7 +1581,7 @@ a {
   color: #000;
 }
 
-.teste {
+.box-infotransporte {
   display: flex;
   width: 100%;
   background-color: #00000000;
@@ -1584,89 +1611,143 @@ a {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Estilo para a modal */
-.modal {
-  display: none; /* Inicialmente invisível */
-  position: fixed;
-  z-index: 1; /* Fica sobre os outros elementos */
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Fundo transparente */
-  overflow: auto;
-  padding-top: 60px;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  background-color: #fff;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  max-width: 500px;
-}
-
-.fechar-modal {
-  color: #aaa;
-  font-size: 28px;
-  font-weight: bold;
-  position: absolute;
-  right: 20px;
-  top: 10px;
-}
-
-.fechar-modal:hover,
-.fechar-modal:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-
-
-
-
-
-
+/*AVALIAÇOES*/
 
 
 .comentarios {
-  margin-top: 20px;
+  margin-top: 75px;
   padding: 10px;
-  border-top: 1px solid #ddd;
 }
 
+.comentarios h3 {
+  font-size: 28px;
+}
 #comentario-form {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-
-
 #lista-comentarios {
+  display: flex;
+  flex-direction: column;
   margin-top: 20px;
+  gap: 25px;
+}
+#lista-comentarios .comentario-item:nth-child(n+4) {
+  display: none; /* Esconde comentários após o terceiro */
 }
 
 .comentario-item {
   padding: 10px;
-  border-bottom: 1px solid #ddd;
+  width: 360px;
+}
+
+.container-comentarios {
+  display: flex;
+  flex-direction: column;
+  font-family: "Archivo", sans-serif;
+  color: #000000dc;
+  gap: 10px;
+}
+
+.container-comentarios h3 {
+  font-size: 17px;
+}
+
+.nome-data-comentario {
+  display: flex;
+}
+
+.nome-data-comentario p {
+  font-size: 15px;
+}
+
+.btn-Comentarios {
+  display: flex;
+  gap: 20px;
+}
+
+#btn-ver-mais {
+  height: 45px;
+  width: 160px;
+  background-color: #ffffff00;
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+  margin-top: 20px;
+  transition: background-color 0.8s;
+}
+
+#btn-ver-mais:hover {
+  background-color: #161616;
+  color: white;
+}
+
+#btn-fazer-avaliacao {
+  height: 45px;
+  width: 160px;
+  background-color: #181717;
+  font-size: 16px;
+  color: rgb(255, 255, 255);
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+  margin-top: 20px;
+  transition: background-color 0.8s;
+}
+
+
+
+
+
+
+
+/* Estilo para o modal */
+.modal {
+  display: none; /* O modal está oculto inicialmente */
+  position: fixed;
+  z-index: 1; /* Fica acima do conteúdo */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
+}
+
+/* Estilo para o conteúdo do modal */
+.modal-content {
+  background-color: white;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 40%; /* Largura do modal */
+  position: relative; /* Isso permite posicionar o botão no topo direito */
+}
+
+/* Estilo do botão X */
+.fechar-modal {
+  color: #000000;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 10px; /* Ajuste a posição se necessário */
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Estilo ao passar o mouse sobre o botão */
+.fechar-modal:hover,
+.fechar-modal:focus {
+  color: #333; /* Cor mais escura para destaque */
+  text-decoration: none;
 }
 
 
@@ -1686,27 +1767,26 @@ a {
 
 
 
-
-
-/* Estilo para a notificação */
-.notification {
+/* Estilo da mensagem de sucesso */
+.mensagem-sucesso {
+  display: none; /* Inicialmente oculta */
   position: fixed;
-  bottom: 20px;
+  top: 80%;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #323232;
-  color: #fff;
+  font-family: "Archivo", sans-serif;
+  background-color: #000000;
+  color: white;
   padding: 10px 20px;
   border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Garante que fique acima de outros elementos */
   opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.5s, visibility 0.5s;
-  z-index: 3000;
+  transition: opacity 0.5s ease;
 }
 
-/* Estilo para notificação visível */
-.notification.show {
+.mensagem-sucesso.mostrar {
+  display: block;
   opacity: 1;
-  visibility: visible;
 }
