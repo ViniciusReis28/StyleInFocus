@@ -111,6 +111,11 @@ document.querySelector('.next').addEventListener('click', nextSlide);
 document.querySelector('.prev').addEventListener('click', prevSlide);
 });
 
+
+
+
+
+
 // Função para verificar se a imagem de perfil está disponível
 function loadUserProfile() {
   fetch('/auth/check-session')

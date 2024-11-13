@@ -98,7 +98,7 @@
               </path>
             </svg></a>
             <a href="#" id="profile-icon">
-              <img id="profile-image" src="/login/uploads/usuarioDefault.jpg" alt="Foto de Perfil" style="display: none; width: 30px; height: 30px; border-radius: 50%;">
+              <img id="profile-image" src="/uploads/usuarioDefault.jpg" alt="Foto de Perfil" style="display: none; width: 30px; height: 30px; border-radius: 50%;">
               <svg id="profile-svg" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"></path>
                   <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"></path>
@@ -193,40 +193,59 @@
       </div>
     
       <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Faz uma requisição para obter os dados do usuário
-            fetch('/api/user')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Erro ao carregar os dados do usuário');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    const defaultImage = '/paginas/login/uploads/usuarioDefault.jpg'; // Caminho da imagem padrão
+      fetch('/auth/check-session')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Usuário não autenticado');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.authenticated) {
+            carregarPerfilUsuario(); // Função para carregar os dados do usuário
+        } else {
+            window.location.href = 'login.html'; // Redireciona para a página de login se não autenticado
+        }
+    })
+    .catch(error => {
+        console.error('Erro ao verificar a sessão:', error);
+        window.location.href = 'login.html'; // Caso ocorra erro (não autenticado), redireciona
+    });
 
-                    // Preenche os campos com os dados do usuário
-                    document.getElementById('username').value = data.username; // Preenche o campo nome
-                    document.getElementById('email').value = data.email;       // Preenche o campo e-mail
+// Função para carregar o perfil do usuário
+function carregarPerfilUsuario() {
+    fetch('/api/user')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro ao carregar os dados do usuário');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const defaultImage = '/paginas/login/uploads/usuarioDefault.jpg'; // Caminho da imagem padrão
+
+            // Preenche os campos com os dados do usuário
+            document.getElementById('username').value = data.username || "";
+            document.getElementById('email').value = data.email || "";
+
+            document.getElementById('nomeUsuarioDisplay').textContent = data.username || "Usuário";
+            document.getElementById('emailUsuarioDisplay').textContent = data.email || "Email não disponível";
+
+            // Define a imagem do perfil ou a padrão se não houver
+            const profileImage = data.profile_image ? `/uploads/${data.profile_image}` : defaultImage;
+            document.getElementById('fotoPerfilEmail').src = profileImage;
+            document.getElementById('fotoPerfil').src = profileImage;
+        })
+        .catch(error => {
+            console.error('Erro ao carregar os dados do usuário:', error);
+            alert("Erro ao carregar os dados do usuário.");
+            // Usa a imagem padrão em caso de erro
+            document.getElementById('fotoPerfil').src = '/paginas/login/uploads/usuarioDefault.jpg';
+        });
         
-                    document.getElementById('nomeUsuarioDisplay').textContent = data.username; // Preenche o campo nome
-                    document.getElementById('emailUsuarioDisplay').textContent = data.email;       // Preenche o campo e-mail
-
-                    // Define a imagem do perfil ou a padrão se não houver
-                    const profileImage = data.profile_image ? `/uploads/${data.profile_image}` : defaultImage;
-                    document.getElementById('fotoPerfilEmail').src = profileImage;
-                    document.getElementById('fotoPerfil').src = profileImage;
-
-                })
-                .catch(error => {
-                    console.error(error);
-                    alert("Erro ao carregar os dados do usuário.");
-                    // Usa a imagem padrão em caso de erro
-                    document.getElementById('fotoPerfil').src = '/paginas/login/uploads/usuarioDefault.jpg';
-                });
-        
-            // Pré-visualização da imagem de perfil
-            document.getElementById('inputFoto').addEventListener('change', function(event) {
+}
+   // Pré-visualização da imagem de perfil
+   document.getElementById('inputFoto').addEventListener('change', function(event) {
                 const file = event.target.files[0];
                 if (file) {
                     const reader = new FileReader();
@@ -236,7 +255,7 @@
                     reader.readAsDataURL(file);
                 }
             });
-        });
+
         </script>
     
       <div id="conteudo-privacidade" class="right-panel">

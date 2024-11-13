@@ -1,47 +1,40 @@
 const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
-const fileUpload = require('express-fileupload');
+const authRoutes = require('./backend/routes/authRoutes');
 const path = require('path');
-const authController = require('./backend/controllers/authController');
 
 const app = express();
-const PORT = 3000;
 
-// Configuração para servir arquivos estáticos
-app.use(express.static(path.join(__dirname, 'frontend')));
-app.use('/uploads', express.static(path.join(__dirname, 'frontend/paginas/login/uploads')));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-
-const userRoutes = require('./backend/routes/userRoutes'); // Ajuste o caminho conforme necessário
-app.use(userRoutes);
-
+// Configuração de sessões
 app.use(session({
-    secret: 'seu_segredo',
+    secret: 'segredo',
     resave: false,
-    saveUninitialized: false,
-    cookie: { secure: false } // Se estiver usando HTTP, defina como false, em HTTPS defina como true.
+    saveUninitialized: true
 }));
+app.use(authRoutes);
 
-app.use(express.json()); // Parsing de JSON
-app.use(bodyParser.urlencoded({ extended: true })); // Parsing de dados URL-encoded
-app.use(fileUpload()); // Manipulação de uploads de arquivos
+// Configuração de arquivos estáticos
+app.use('/uploads', express.static(path.join(__dirname, '/frontend/paginas/login/uploads')));
+app.use(express.static(path.join(__dirname, 'frontend')));
 
-
-// Importar e usar as rotas de autenticação
-const authRoutes = require('./backend/routes/authRoutes');
+// Rota padrão para a página inicial ou outras páginas
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend/'));  // Redireciona para a página de login
+});
+// Usar as rotas de autenticação
 app.use('/auth', authRoutes);
 
-// Tratamento de erro 404 para páginas não encontradas
-app.use((req, res) => {
-    res.status(404).send("Página não encontrada");
+// Rota de exemplo
+app.get('/', (req, res) => {
+    res.send('Bem-vindo ao sistema!');
 });
 
-
-app.post('/register', authController.register);
-app.post('/login', authController.login);
-
 // Iniciar o servidor
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
 });
