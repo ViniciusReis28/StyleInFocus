@@ -1763,3 +1763,12 @@ section.slider{
   position: relative;
   z-index: 1; /* Garante que o conteúdo fique sobre o fundo estrelado */
 }
+
+/*/-/-/-/-/-/-/Responsividade/-/-/-/-/-/-/*/
+
+@media screen and (max-width:800px) {
+  .botao-editar-perfil,.slider-container-text,.dis-play,
+  .Footer-bottom,.div-between,.right-section,.left-section,.search-bar-container{
+    display: none;
+  }
+}
