@@ -50,7 +50,7 @@ window.addEventListener("scroll", function () {
     logo.src = "../../../img/logopreta.png"; // Altera para a imagem preta
   } else {
     nav.classList.remove("scrolled"); // Remove a classe quando rola para cima
-    logo.src = "../../img/logobranca.png"; // Retorna à imagem branca
+    logo.src = "../../../img/logopreta.png"; // Retorna à imagem branca
   }
 });
 
@@ -111,7 +111,7 @@ const produtoId = urlParams.get("id");
 
 // Verifica se o ID do produto foi passado na URL
 if (produtoId) {
-  fetch(`http://localhost:3000/camisas/${produtoId}`)
+  fetch(`https://styleinfocusbackend.onrender.com/camisas/${produtoId}`)
     .then((response) => response.json())
     .then((data) => {
 
@@ -240,7 +240,7 @@ calcularFreteBtn.addEventListener("click", async () => {
 
   try {
     // Envia a requisição para o back-end
-    const response = await fetch("http://localhost:3000/frete/calcular-frete", {
+    const response = await fetch("https://styleinfocusbackend.onrender.com/frete/calcular-frete", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -320,7 +320,7 @@ calcularFreteBtn.addEventListener("click", async () => {
 
 // Função para carregar os comentários do produto
 function carregarComentarios() {
-  fetch(`http://localhost:3000/api/roupas/${produtoId}/comentarios`)
+  fetch(`https://styleinfocusbackend.onrender.com/api/roupas/${produtoId}/comentarios`)
     .then((response) => response.json())
     .then((comentarios) => {
       const listaComentarios = document.getElementById("lista-comentarios");
@@ -436,7 +436,7 @@ document.getElementById("comentario-form").addEventListener("submit", (event) =>
   };
 
   // Enviar comentário ao backend
-  fetch(`http://localhost:3000/api/roupas/${produtoId}/comentarios`, {
+  fetch(`https://styleinfocusbackend.onrender.com/api/roupas/${produtoId}/comentarios`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

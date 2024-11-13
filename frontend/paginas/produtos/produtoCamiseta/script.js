@@ -1,7 +1,7 @@
 
 // FETCH DAS BOX BANCO DE DADOS
 
-fetch('http://localhost:3000/camisas')
+fetch('https://styleinfocusbackend.onrender.com/camisas')
   .then(response => {
     if (!response.ok) {
       throw new Error('Erro na resposta da rede');

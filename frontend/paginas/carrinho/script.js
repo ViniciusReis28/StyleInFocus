@@ -295,6 +295,14 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+
+
+
+
+
+
+
+
 function carregarCarrinho() {
   const carrinhoItens = document.getElementById("carrinho-itens");
   const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
