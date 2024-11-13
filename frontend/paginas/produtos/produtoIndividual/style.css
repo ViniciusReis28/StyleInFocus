@@ -1632,7 +1632,7 @@ a {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
-  gap: 10px;
+  gap: 25px;
 }
 #lista-comentarios .comentario-item:nth-child(n+4) {
   display: none; /* Esconde comentários após o terceiro */
@@ -1665,21 +1665,40 @@ a {
 
 .btn-Comentarios {
   display: flex;
+  gap: 20px;
 }
 
 #btn-ver-mais {
-  background-color: #292929;
-  color: white;
+  height: 45px;
+  width: 160px;
+  background-color: #ffffff00;
+  font-size: 16px;
+  color: rgb(0, 0, 0);
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
   display: block;
   margin-top: 20px;
-  transition: background-color 0.3s;
+  transition: background-color 0.8s;
 }
 
 #btn-ver-mais:hover {
-  background-color: #363636;
+  background-color: #161616;
+  color: white;
+}
+
+#btn-fazer-avaliacao {
+  height: 45px;
+  width: 160px;
+  background-color: #181717;
+  font-size: 16px;
+  color: rgb(255, 255, 255);
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+  margin-top: 20px;
+  transition: background-color 0.8s;
 }
 
 
@@ -1752,10 +1771,11 @@ a {
 .mensagem-sucesso {
   display: none; /* Inicialmente oculta */
   position: fixed;
-  top: 20px;
+  top: 80%;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #28a745;
+  font-family: "Archivo", sans-serif;
+  background-color: #000000;
   color: white;
   padding: 10px 20px;
   border-radius: 5px;
