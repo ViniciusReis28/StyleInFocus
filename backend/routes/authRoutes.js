@@ -1,13 +1,22 @@
-// src/routes/authRoutes.js
 const express = require('express');
-const router = express.Router();
 const authController = require('../controllers/authController');
-const upload = require('../../config/multer'); // Aqui você pode definir o upload no arquivo de configuração
+const router = express.Router();
 
-router.post('/register', upload.single('profileImage'), authController.register);
+// Rota POST para registro de usuário
+router.post('/register', authController.register);
+
+// Rota POST para login de usuário
 router.post('/login', authController.login);
-router.post('/update', upload.single('inputFoto'), authController.updateProfile);
+router.post('/auth/login', authController.login);
+
+// Rota POST para atualizar informações do usuário
+router.post('/update', authController.update);
+
+// Rota POST para solicitar redefinição de senha
 router.post('/forgot-password', authController.forgotPassword);
-router.get('/reset-password', authController.resetPassword);
+
+// Rota POST para redefinir a senha
+router.post('/reset-password', authController.resetPassword);
+
 
 module.exports = router;

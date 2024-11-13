@@ -1,25 +1,28 @@
-// src/controllers/authController.js
 const bcrypt = require('bcrypt');
-const userModel = require('../models/userModel');
+const pool = require('../config/database');
+const crypto = require('crypto');
 const nodemailer = require('nodemailer');
+const User = require('../models/userModel');
 
 const authController = {
-    async register(req, res) {
+    register: async (req, res) => {
         const { username, email, password } = req.body;
+
         if (!username || !email || !password) {
             return res.status(400).json({ success: false, message: "Preencha todos os campos." });
         }
 
         try {
-            const existingUser = await userModel.findByEmail(email);
-            if (existingUser) {
+            const existingUser = await User.findByEmail(email);
+            if (existingUser.rows.length > 0) {
                 return res.status(400).json({ success: false, message: "E-mail já cadastrado." });
             }
 
             const hashedPassword = await bcrypt.hash(password, 10);
             const profileImage = req.file ? 'uploads/' + req.file.filename : null;
 
-            await userModel.createUser(username, email, hashedPassword, profileImage);
+            await User.createUser(username, email, hashedPassword, profileImage);
+
             res.json({ success: true, message: "Usuário cadastrado com sucesso." });
         } catch (error) {
             console.error('Erro ao cadastrar usuário:', error);
@@ -27,71 +30,61 @@ const authController = {
         }
     },
 
-    async login(req, res) {
+    login: async (req, res) => {
         const { email, password } = req.body;
-
-        const user = await userModel.findByEmail(email);
-        if (!user) {
-            return res.status(401).json({ success: false, errors: { email: 'E-mail inválido.' } });
-        }
-
-        const match = await bcrypt.compare(password, user.password);
-        if (match) {
+    
+        try {
+            const user = await User.findByEmail(email);
+            if (user.rows.length === 0) {
+                return res.status(400).json({ success: false, errors: { email: "Usuário não encontrado." } });
+            }
+    
+            const isPasswordMatch = await bcrypt.compare(password, user.rows[0].password);
+            if (!isPasswordMatch) {
+                return res.status(400).json({ success: false, errors: { password: "Senha incorreta." } });
+            }
+    
             req.session.userId = user.user_id;
-            req.session.username = user.username;
-            req.session.profileImage = user.profile_image;
-
-            const profileImagePath = user.profile_image ? `/login/uploads/${user.profile_image}` : '/login/uploads/usuarioDefault.jpg';
-
-            return res.json({
-                success: true,
-                message: "Login bem-sucedido!",
-                redirect: '/userLogado.html',
-                profileImagePath,
-                username: user.username
-            });
-        } else {
-            return res.status(401).json({ success: false, errors: { password: 'Senha incorreta.' } });
+            res.json({ success: true, redirect: '/paginas/login/userLogado.html' });
+        } catch (error) {
+            console.error('Erro ao fazer login:', error);
+            res.status(500).json({ success: false, message: "Erro no login." });
         }
     },
+    
+    
 
-    async updateProfile(req, res) {
-        const { username, email, senhaAtual, novaSenha, confirmacaoNovaSenha } = req.body;
-        if (!req.session.userId) {
-            return res.status(401).json({ success: false, message: "Não autenticado." });
+    update: async (req, res) => {
+        const { userId } = req.session;
+        const { username, email, profileImage } = req.body;
+
+        if (!userId) {
+            return res.status(401).json({ message: "Não autenticado." });
         }
 
         try {
-            const userId = req.session.userId;
-            const user = await userModel.findByEmail(email);
-
-            const isPasswordMatch = await bcrypt.compare(senhaAtual, user.password);
-            if (!isPasswordMatch) {
-                return res.status(401).json({ success: false, message: "Senha atual incorreta." });
-            }
-
-            await userModel.updateUser(userId, username, email, novaSenha, req.file ? 'uploads/' + req.file.filename : null);
-            req.session.username = username;
-            req.session.profileImage = req.file ? 'uploads/' + req.file.filename : user.profile_image;
-
-            res.redirect('/login/userEdited.html');
+            await User.updateProfile(userId, username, email, profileImage);
+            res.json({ success: true, message: "Perfil atualizado com sucesso." });
         } catch (error) {
             console.error('Erro ao atualizar perfil:', error);
-            res.status(500).json({ success: false, message: "Erro ao atualizar perfil." });
+            res.status(500).json({ message: "Erro ao atualizar perfil." });
         }
     },
 
-    async forgotPassword(req, res) {
+    forgotPassword: async (req, res) => {
         const { email } = req.body;
 
         try {
-            const result = await userModel.findByEmail(email);
-            if (!result) {
+            const result = await User.findByEmail(email);
+
+            if (result.rows.length === 0) {
                 return res.status(400).send('E-mail não encontrado');
             }
 
-            const token = await userModel.generateResetToken(email);
-            const resetLink = `http://localhost:3000/reset-password?token=${token}`;
+            const token = crypto.randomBytes(20).toString('hex');
+            const expiration = new Date(Date.now() + 3600000); // 1 hora
+
+            await User.setResetToken(email, token, expiration);
 
             const transporter = nodemailer.createTransport({
                 service: 'gmail',
@@ -101,6 +94,7 @@ const authController = {
                 },
             });
 
+            const resetLink = `http://localhost:3000/reset-password?token=${token}`;
             const mailOptions = {
                 to: email,
                 subject: 'Recuperação de Senha',
@@ -108,6 +102,7 @@ const authController = {
             };
 
             await transporter.sendMail(mailOptions);
+
             res.send('E-mail enviado com instruções para recuperação de senha');
         } catch (error) {
             console.error(error);
@@ -115,24 +110,26 @@ const authController = {
         }
     },
 
-    async resetPassword(req, res) {
+    resetPassword: async (req, res) => {
         const { token, newPassword } = req.body;
 
         try {
-            const user = await userModel.validateResetToken(token);
-            if (!user) {
+            const result = await pool.query('SELECT * FROM users WHERE reset_token = $1 AND reset_token_expiration > $2', [token, new Date()]);
+
+            if (result.rows.length === 0) {
                 return res.status(400).send('Token inválido ou expirado');
             }
 
             const hashedPassword = await bcrypt.hash(newPassword, 10);
-            await pool.query('UPDATE users SET password = $1, reset_token = NULL, reset_token_expiration = NULL WHERE reset_token = $2', [hashedPassword, token]);
+
+            await User.resetPassword(hashedPassword, token);
 
             res.send('Senha alterada com sucesso');
         } catch (error) {
             console.error(error);
             res.status(500).send('Erro ao processar a solicitação');
         }
-    }
+    },
 };
 
 module.exports = authController;
