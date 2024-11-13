@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Freeman&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 
 /* Reset básico */
@@ -452,7 +453,7 @@ nav:hover .right-section a::after {
 }
 
 nav:hover #logo {
-  content: url('../../img/logopreta.png'); /* Substitui a imagem quando o mouse passa no <nav> */
+  content: url('../../../img/logopreta.png'); /* Substitui a imagem quando o mouse passa no <nav> */
   transition: all 0.3s ease; /* Transição suave */
 }
 
