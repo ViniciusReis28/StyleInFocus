@@ -91,7 +91,7 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     // Log dos dados enviados
     console.log('Dados enviados:', formData);
 
-    fetch('http://localhost:3000/auth/login', {
+    fetch('https://styleinfocusbackend.onrender.com/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
