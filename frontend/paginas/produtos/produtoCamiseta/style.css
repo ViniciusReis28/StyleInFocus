@@ -657,7 +657,7 @@ a {
   /* Ocupa toda a altura da viewport */
   width: 100%;
   /* Ocupa toda a largura da viewport */
-  background-color: #ffffff00;
+  background-color: #4e4e4ec0;
 }
 
 /* A div de produtos fica centralizada com margem de 20% em cada lado */
@@ -1559,4 +1559,16 @@ section.slider{
   text-align: justify;
   font-size: 12px;
   color: rgb(0, 0, 0);
+}
+
+/*-------------------respopnsividade------------------------*/
+
+@media screen and (max-width: 1222px){
+
+
+  .slider-container-text,.center-section,.search-bar-container,.div-between,.Footer-bottom{
+    display: none;
+  }
+
+
 }

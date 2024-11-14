@@ -26,7 +26,7 @@ function closeLeftSidebar() {
 document.addEventListener('click', function(event) {
   var sidebar = document.getElementById('leftSidebar');
   var btn = document.querySelector('.btn-filtrar');
-  if (sidebar.style.width === "380px" && !sidebar.contains(event.target) && event.target !== btn) {
+  if (sidebar.width === "380px" && !sidebar.contains(event.target) && event.target !== btn) {
       closeLeftSidebar();
   }
 });
@@ -78,10 +78,10 @@ window.addEventListener('scroll', function() {
 
   if (window.scrollY > 50) { // Ajuste o valor conforme necessário
     nav.classList.add('scrolled'); // Adiciona a classe quando rola para baixo
-    logo.src = '../../../img/logopreta.png'; // Altera para a imagem preta
+    logo.src = '../../img/logopreta.png'; // Altera para a imagem preta
   } else {
     nav.classList.remove('scrolled'); // Remove a classe quando rola para cima
-    logo.src = '../../../img/logopreta.png'; // Retorna à imagem branca
+    logo.src = '../../img/logobranca.png'; // Retorna à imagem branca
   }
 });
 
@@ -102,7 +102,6 @@ window.addEventListener('scroll', function() {
     nav.classList.remove('scrolled'); // Remove a classe quando rola para cima
   }
 });
-
 
 
                                                                                 //SLIDE TEXT
@@ -245,3 +244,72 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   });
 });
+
+
+var radio = document.querySelector('.manual-btn')
+var cont = 1
+
+document.getElementById('radio1').checked = true
+
+setInterval(() => {
+    proximaimg()
+}, 4000)
+
+function proximaimg(){
+    cont++
+
+    if(cont > 3 ){
+        cont = 1
+    }
+
+    document.getElementById('radio'+cont).checked = true
+}
+
+
+// Simulação de produtos disponíveis com URLs
+const products = [
+  { name: "Camiseta personalizada", url: "/produtos/camiseta-personalizada" },
+  { name: "Camiseta preta", url: "/produtos/camiseta-preta" },
+  { name: "Camiseta branca", url: "/produtos/camiseta-branca" },
+  { name: "Camiseta azul", url: "/produtos/camiseta-azul" },
+  { name: "Camiseta vermelha", url: "/produtos/camiseta-vermelha" },
+  { name: "Camiseta listrada", url: "/produtos/camiseta-listrada" },
+  { name: "Camiseta de algodão", url: "/produtos/camiseta-algodao" },
+  { name: "Camiseta de manga longa", url: "/produtos/camiseta-manga-longa" }
+];
+
+function showSuggestions() {
+  const input = document.getElementById('query').value.toLowerCase();
+  const suggestionsBox = document.getElementById('suggestions');
+  
+  // Limpa sugestões anteriores
+  suggestionsBox.innerHTML = '';
+  
+  if (input) {
+      // Filtra produtos que correspondem ao texto digitado
+      const filteredProducts = products.filter(product => product.name.toLowerCase().includes(input));
+      
+      // Se houver resultados, mostra o dropdown
+      if (filteredProducts.length > 0) {
+          suggestionsBox.style.display = 'block';
+          filteredProducts.forEach(product => {
+              const suggestionItem = document.createElement('div');
+              suggestionItem.classList.add('suggestion-item');
+              suggestionItem.textContent = product.name;
+              
+              // Adiciona um evento de clique para redirecionar para a página do produto
+              suggestionItem.onclick = () => {
+                  window.location.href = product.url;
+              };
+              
+              suggestionsBox.appendChild(suggestionItem);
+          });
+      } else {
+          suggestionsBox.style.display = 'none';
+      }
+  } else {
+      suggestionsBox.style.display = 'none';
+  }
+}
+
+

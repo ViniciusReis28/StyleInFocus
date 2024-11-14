@@ -355,5 +355,125 @@ function atualizarEmail(novoEmail) {
       email.textContent = novoEmail;
   });
 }
+///////////////////////////////PEDIDOS//////////////////////////////
+function openTab(tabName) {
+  // Esconde todos os conteúdos de aba
+  var tabContents = document.querySelectorAll('.tab-content');
+  tabContents.forEach(function(tab) {
+      tab.style.display = 'none';
+      tab.classList.remove('active');
+  });
 
+  // Remove a classe 'active' de todos os botões
+  var tabButtons = document.querySelectorAll('.tab-button');
+  tabButtons.forEach(function(button) {
+      button.classList.remove('active');
+  });
 
+  // Mostra o conteúdo da aba correspondente e adiciona a classe 'active' ao botão
+  document.getElementById(tabName).style.display = 'block';
+  document.getElementById(tabName).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+function alterarQuantidade(button, change) {
+  const pedido = button.closest('.pedido');
+  const quantidadeElem = pedido.querySelector('.quantidade');
+  const precoUnitario = parseFloat(pedido.querySelector('.preco-unitario').innerText);
+  const precoFinalElem = pedido.querySelector('.preco-final');
+
+  let quantidade = parseInt(quantidadeElem.innerText);
+  quantidade = Math.max(1, quantidade + change);  // Impede quantidade menor que 1
+  quantidadeElem.innerText = quantidade;
+
+  // Atualiza o preço total
+  const precoTotal = (quantidade * precoUnitario).toFixed(2);
+  precoFinalElem.innerText = precoTotal;
+}
+
+////////////////////PARTE METODOS DE PAGAMENTOS//////////////////////////////
+
+document.addEventListener("DOMContentLoaded", exibirCartoesSalvos);
+
+function adicionarCartao(event) {
+    event.preventDefault();
+
+    const nomeCartao = document.getElementById("nome-cartao").value;
+    const numeroCartao = document.getElementById("numero-cartao").value;
+    const validadeCartao = document.getElementById("validade-cartao").value;
+
+    let cartoes = JSON.parse(localStorage.getItem("cartoes")) || [];
+
+    // Verificar se o cartão já está registrado
+    const cartaoExistente = cartoes.find(cartao => cartao.numero === numeroCartao);
+
+    if (cartaoExistente) {
+        alert("Este cartão já está registrado.");
+        return;
+    }
+
+    // Adicionar novo cartão
+    const cartao = {
+        nome: nomeCartao,
+        numero: numeroCartao,
+        validade: validadeCartao,
+    };
+
+    cartoes.push(cartao);
+    localStorage.setItem("cartoes", JSON.stringify(cartoes));
+
+    exibirCartoesSalvos();
+    document.querySelector(".formulario-cartao").reset();
+}
+
+function exibirCartoesSalvos() {
+    const listaCartoes = document.getElementById("lista-cartoes");
+    listaCartoes.innerHTML = "";
+
+    let cartoes = JSON.parse(localStorage.getItem("cartoes")) || [];
+    cartoes.forEach((cartao, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+            <div class="cartao-info">
+                <span class="cartao-numero">${cartao.numero.replace(/\d{12}(\d{4})/, "**** **** **** $1")}</span>
+                <span>${cartao.nome}</span><br>
+                <span>Validade: ${cartao.validade}</span>
+            </div>
+            <span class="remover-cartao" onclick="confirmarRemocaoCartao(${index})">Remover</span>
+        `;
+        listaCartoes.appendChild(li);
+    });
+}
+
+function confirmarRemocaoCartao(index) {
+    const confirmacao = confirm("Tem certeza que deseja remover este cartão?");
+    if (confirmacao) {
+        removerCartao(index);
+    }
+}
+
+function removerCartao(index) {
+    let cartoes = JSON.parse(localStorage.getItem("cartoes")) || [];
+    cartoes.splice(index, 1);
+    localStorage.setItem("cartoes", JSON.stringify(cartoes));
+    exibirCartoesSalvos();
+}
+
+function toggleResposta(id) {
+  const resposta = document.getElementById(`resposta${id}-suporte`);
+  const item = resposta.parentElement;
+  
+  // Alterna a exibição e a classe de item ativo
+  if (resposta.style.display === "block") {
+      resposta.style.display = "none";
+      item.classList.remove("active");
+  } else {
+      resposta.style.display = "block";
+      item.classList.add("active");
+  }
+}
+
+function irParaMaisInformacoes(event, url) {
+  event.stopPropagation(); // Evita que o clique no botão feche a resposta
+  window.location.href = url;
+}
