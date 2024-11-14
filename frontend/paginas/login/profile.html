@@ -98,7 +98,7 @@
               </path>
             </svg></a>
             <a href="#" id="profile-icon">
-              <img id="profile-image" src="/uploads/usuarioDefault.jpg" alt="Foto de Perfil" style="display: none; width: 30px; height: 30px; border-radius: 50%;">
+              <img id="profile-image" src="/login/uploads/usuarioDefault.jpg" alt="Foto de Perfil" style="display: none; width: 30px; height: 30px; border-radius: 50%;">
               <svg id="profile-svg" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"></path>
                   <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"></path>
@@ -107,10 +107,10 @@
         </div>
     
         <div class="profile-text">
-          <a class="text-login" href="../login/login.html" class="profile-link">ENTRE</a>
+          <a class="text-login" href="../login/login.html" id="login-link" class="profile-link">ENTRE</a>
           <a class="text-login">OU</a>
           <br>
-          <a class="text-login" href="../login/register.html" class="profile-link">CADASTRE-SE</a>
+          <a class="text-login" href="../login/register.html" id="register-link" class="profile-link">CADASTRE-SE</a>
         </div>  
       </nav>
 
@@ -145,7 +145,7 @@
         <form id="editarPerfil" method="POST" action="/auth/update" enctype="multipart/form-data">
                 <div class="foto-container">
                   <img id="fotoPerfil" src="/paginas/login/uploads/usuarioDefault.jpg" class="imagem-hover" alt="Foto de perfil">
-                  <input type="file" id="inputFoto" name="inputFoto" accept="image/*" style="display: none;">
+                  <input type="file" id="inputFoto" name="profile_image" accept="image/*" style="display: none;">
                   <div class="trocar-foto" onclick="document.getElementById('inputFoto').click();">Trocar Foto</div>
               </div>
             </div>
@@ -232,7 +232,7 @@ function carregarPerfilUsuario() {
             document.getElementById('emailUsuarioDisplay').textContent = data.email || "Email não disponível";
 
             // Define a imagem do perfil ou a padrão se não houver
-            const profileImage = data.profile_image ? `/uploads/${data.profile_image}` : defaultImage;
+            const profileImage = data.profile_image ? `${data.profile_image}` : defaultImage;
             document.getElementById('fotoPerfilEmail').src = profileImage;
             document.getElementById('fotoPerfil').src = profileImage;
         })

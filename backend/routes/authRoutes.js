@@ -1,23 +1,28 @@
 const express = require('express');
 const authController = require('../controllers/authController');
 const router = express.Router();
-const pool = require('../config/database'); // Verifique o caminho correto do seu arquivo db
+const pool = require('../config/database');
+const multer = require('multer');
+const path = require('path');
 
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, path.join(__dirname, '../../frontend/paginas/login/uploads'));
+    },
+    filename: (req, file, cb) => {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, uniqueSuffix + path.extname(file.originalname));
+    }
+});
 
-// Rota de registro
-router.post('/register', authController.upload.single('profileImage'), authController.register);
+const upload = multer({ storage: storage });
 
-// Rota de login
+// Rotas
+router.post('/register', upload.single('profile_image'), authController.register);
 router.post('/login', authController.login);
-
-// Rota para recuperar a senha
 router.post('/forgot-password', authController.forgotPassword);
-
-// Rota para redefinir a senha
 router.post('/reset-password', authController.resetPassword);
-
-
-router.post('/update', authController.updateProfile);
+router.post('/update', upload.single('profile_image'), authController.update);
 
 router.get('/check-session', (req, res) => {
     if (req.session.userId) {

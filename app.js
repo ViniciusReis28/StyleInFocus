@@ -8,12 +8,13 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// Configuração de sessões
 app.use(session({
-    secret: 'segredo',
-    resave: false,
-    saveUninitialized: true
+    secret: 'seu-segredo',      // Chave secreta para assinatura do ID da sessão
+    resave: false,              // Impede que a sessão seja salva em cada requisição, mesmo sem alterações
+    saveUninitialized: false,   // Não salva sessões não modificadas
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24  // Sessão dura 1 dia (24 horas)
+    }
 }));
 app.use(authRoutes);
 
@@ -27,11 +28,6 @@ app.get('/', (req, res) => {
 });
 // Usar as rotas de autenticação
 app.use('/auth', authRoutes);
-
-// Rota de exemplo
-app.get('/', (req, res) => {
-    res.send('Bem-vindo ao sistema!');
-});
 
 // Iniciar o servidor
 const PORT = process.env.PORT || 3000;
