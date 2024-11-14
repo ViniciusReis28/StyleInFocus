@@ -224,32 +224,4 @@
                                                     //CARRINHO
                                               
 
-  function adicionarAoCarrinho(nome, preco, imagem) {
-    // Cria um objeto para o produto, com quantidade inicial 1
-    const produto = {
-        nome: nome,
-        preco: parseFloat(preco) || 0, // Garante que o preço seja um número válido
-        imagem: imagem,
-        quantidade: 1 // Define a quantidade inicial como 1
-    };
-
-    // Verifica se já há um carrinho no localStorage
-    let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-
-    // Verifica se o produto já existe no carrinho
-    const produtoExistente = carrinho.find(item => item.nome === produto.nome);
-
-    if (produtoExistente) {
-        // Se o produto já existe, aumenta a quantidade
-        produtoExistente.quantidade += 1;
-    } else {
-        // Se o produto não existe, adiciona ao carrinho
-        carrinho.push(produto);
-    }
-
-    // Atualiza o carrinho no localStorage
-    localStorage.setItem('carrinho', JSON.stringify(carrinho));
-
-    // Redireciona para a página do carrinho
-    
-}
+ 
