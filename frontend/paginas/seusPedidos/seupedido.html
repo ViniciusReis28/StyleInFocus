@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área de Meus Pedidos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="meus-pedidos">
+        <h1>Meus Pedidos</h1>
+
+        <!-- Navegação entre abas -->
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab('aSerPago')">A Ser Pago</button>
+            <button class="tab-button" onclick="openTab('aSerEnviado')">A Ser Enviado</button>
+            <button class="tab-button" onclick="openTab('enviado')">Enviado</button>
+            <button class="tab-button" onclick="openTab('concluido')">Concluído</button>
+        </div>
+
+        <!-- Conteúdo das abas -->
+        <div class="tab-content" id="aSerPago">
+            <div class="pedido">
+                <img src="imagem1.jpg" alt="Produto 1">
+                <div class="info">
+                    <p>Produto 1</p>
+                    <p>Quantidade: 2</p>
+                </div>
+                <button class="botao">Pagar</button>
+            </div>
+            <div class="pedido">
+                <img src="imagem2.jpg" alt="Produto 2">
+                <div class="info">
+                    <p>Produto 2</p>
+                    <p>Quantidade: 1</p>
+                </div>
+                <button class="botao">Pagar</button>
+            </div>
+            <div class="pedido">
+                <img src="imagem3.jpg" alt="Produto 3">
+                <div class="info">
+                    <p>Produto 3</p>
+                    <p>Quantidade: 4</p>
+                </div>
+                <button class="botao">Pagar</button>
+            </div>
+        </div>
+
+        <div class="tab-content" id="aSerEnviado" style="display: none;">
+            <div class="pedido">
+                <img src="imagem4.jpg" alt="Produto 4">
+                <div class="info">
+                    <p>Produto 4</p>
+                    <p>Quantidade: 1</p>
+                </div>
+                <button class="botao">Enviar</button>
+            </div>
+            <div class="pedido">
+                <img src="imagem5.jpg" alt="Produto 5">
+                <div class="info">
+                    <p>Produto 5</p>
+                    <p>Quantidade: 3</p>
+                </div>
+                <button class="botao">Enviar</button>
+            </div>
+            <div class="pedido">
+                <img src="imagem6.jpg" alt="Produto 6">
+                <div class="info">
+                    <p>Produto 6</p>
+                    <p>Quantidade: 2</p>
+                </div>
+                <button class="botao">Enviar</button>
+            </div>
+        </div>
+
+        <div class="tab-content" id="enviado" style="display: none;">
+            <div class="pedido">
+                <img src="imagem7.jpg" alt="Produto 7">
+                <div class="info">
+                    <p>Produto 7</p>
+                    <p>Quantidade: 5</p>
+                </div>
+                <button class="botao">Rastrear</button>
+            </div>
+            <div class="pedido">
+                <img src="imagem8.jpg" alt="Produto 8">
+                <div class="info">
+                    <p>Produto 8</p>
+                    <p>Quantidade: 1</p>
+                </div>
+                <button class="botao">Rastrear</button>
+            </div>
+            <div class="pedido">
+                <img src="imagem9.jpg" alt="Produto 9">
+                <div class="info">
+                    <p>Produto 9</p>
+                    <p>Quantidade: 2</p>
+                </div>
+                <button class="botao">Rastrear</button>
+            </div>
+        </div>
+
+        <div class="tab-content" id="concluido" style="display: none;">
+            <div class="pedido">
+                <img src="imagem10.jpg" alt="Produto 10">
+                <div class="info">
+                    <p>Produto 10</p>
+                    <p>Quantidade: 3</p>
+                </div>
+                <button class="botao">Avaliar</button>
+            </div>
+            <div class="pedido">
+                <img src="imagem11.jpg" alt="Produto 11">
+                <div class="info">
+                    <p>Produto 11</p>
+                    <p>Quantidade: 4</p>
+                </div>
+                <button class="botao">Avaliar</button>
+            </div>
+            <div class="pedido">
+                <img src="imagem12.jpg" alt="Produto 12">
+                <div class="info">
+                    <p>Produto 12</p>
+                    <p>Quantidade: 2</p>
+                </div>
+                <button class="botao">Avaliar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
