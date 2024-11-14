@@ -283,4 +283,5 @@ document.getElementById("profile-icon").onclick = function () {
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
 
     // Redireciona para a página do carrinho
+    
 }

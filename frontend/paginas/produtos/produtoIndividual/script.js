@@ -90,22 +90,6 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelector(".prev").addEventListener("click", prevSlide);
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const urlParams = new URLSearchParams(window.location.search);
 const produtoId = urlParams.get("id");
 
@@ -114,18 +98,18 @@ if (produtoId) {
   fetch(`https://styleinfocusbackend.onrender.com/camisas/${produtoId}`)
     .then((response) => response.json())
     .then((data) => {
-
-
       const precoOriginal = parseFloat(data.preco);
 
-      
-      const precoComDesconto = precoOriginal * 0.90;
+      const precoComDesconto = precoOriginal * 0.9;
 
       // Formata os preços para o formato brasileiro (com vírgula)
-      
-      const precoComDescontoFormatado = precoComDesconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
-      console.log(precoComDescontoFormatado)
+      const precoComDescontoFormatado = precoComDesconto.toLocaleString(
+        "pt-BR",
+        { style: "currency", currency: "BRL" }
+      );
+
+      console.log(precoComDescontoFormatado);
       // Preenche os dados na página
       document.querySelector(".produto-imagem").src = data.img;
       document.querySelector(".produto-nome").textContent = data.nome;
@@ -133,7 +117,9 @@ if (produtoId) {
       document.querySelector(".produto-descricao").textContent = data.descricao;
       document.querySelector(".preco").textContent = `R$ ${data.preco}`;
 
-      document.querySelector(".precoComDesconto").textContent = `${precoComDescontoFormatado} no PIX`;
+      document.querySelector(
+        ".precoComDesconto"
+      ).textContent = `${precoComDescontoFormatado} no PIX`;
 
       // Criação dos botões de tamanho
       const tamanhosContainer = document.getElementById("tamanhos-container");
@@ -163,7 +149,7 @@ if (produtoId) {
       // Adiciona evento ao botão de comprar
       document.querySelector(".comprar-btn").addEventListener("click", () => {
         if (!tamanhoSelecionado) {
-          alert("Por favor, selecione um tamanho.");
+          mostrarMensagem("Por favor selecione um tamanho");
           return;
         }
 
@@ -189,24 +175,14 @@ if (produtoId) {
         localStorage.setItem("carrinho", JSON.stringify(carrinho));
 
         // Exibe um alerta de confirmação
-        alert("Produto adicionado ao carrinho com sucesso!");
+        mostrarMensagem("Produto adicionado ao carrinho com sucesso!");
       });
     })
     .catch((error) => {
       console.error("Erro ao buscar o produto:", error);
-      alert("Produto não encontrado ou erro na requisição.");
+      mostrarMensagemErro("produto não encontrado ou erro na requisição.");
     });
 }
-
-
-
-
-
-
-
-
-
-
 
 const incrementarBtn = document.getElementById("incrementar-btn");
 const decrementarBtn = document.getElementById("decrementar-btn");
@@ -234,19 +210,22 @@ calcularFreteBtn.addEventListener("click", async () => {
   const cepDestino = cepDestinoInput.value.trim();
 
   if (cepDestino.length !== 8) {
-    alert("Porfavor Insira um CEP para fazer o calculo");
+    mostrarMensagemErro("insira um CEP para fazer o calculo!");
     return;
   }
 
   try {
     // Envia a requisição para o back-end
-    const response = await fetch("https://styleinfocusbackend.onrender.com/frete/calcular-frete", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ cepDestino }),
-    });
+    const response = await fetch(
+      "https://styleinfocusbackend.onrender.com/frete/calcular-frete",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ cepDestino }),
+      }
+    );
 
     const data = await response.json();
     console.log(data); // Verifique o que está sendo retornado
@@ -299,28 +278,11 @@ calcularFreteBtn.addEventListener("click", async () => {
   }
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Função para carregar os comentários do produto
 function carregarComentarios() {
-  fetch(`https://styleinfocusbackend.onrender.com/api/roupas/${produtoId}/comentarios`)
+  fetch(
+    `https://styleinfocusbackend.onrender.com/api/roupas/${produtoId}/comentarios`
+  )
     .then((response) => response.json())
     .then((comentarios) => {
       const listaComentarios = document.getElementById("lista-comentarios");
@@ -339,7 +301,7 @@ function carregarComentarios() {
         // Formatando a data
         const dataCriacao = new Date(comentario.data_criacao); // Criando o objeto Date
         const dataFormatada = dataCriacao.toLocaleString("pt-BR", {
-          year: "numeric",// Ano completo (ex: "2024")
+          year: "numeric", // Ano completo (ex: "2024")
           month: "long", // Mês por extenso (ex: "novembro")
           day: "numeric", // Dia do mês (ex: "10")
         });
@@ -348,10 +310,7 @@ function carregarComentarios() {
         divComentario.innerHTML = `
           <div class="container-comentarios">
             <h3>${comentario.titulocomentario}</h3>
-            <div class="nome-data-comentario">
-              <p>${comentario.nome} - </p>
-              <p>${dataFormatada}</p>
-            </div>
+            <p>${comentario.nome} - ${dataFormatada}</p>
             <p>"${comentario.comentario}"</p>
             <p>Recomendaria esse item? <strong>${comentario.recomenda}</strong></p>
           </div>
@@ -367,19 +326,6 @@ function carregarComentarios() {
 // Carregar os comentários ao abrir a página
 carregarComentarios();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Função para abrir a modal
 document.getElementById("btn-fazer-avaliacao").addEventListener("click", () => {
   document.getElementById("modal-comentario").style.display = "flex"; // Exibe a modal
@@ -389,7 +335,6 @@ document.getElementById("btn-fazer-avaliacao").addEventListener("click", () => {
 document.getElementById("fechar-modal").addEventListener("click", () => {
   document.getElementById("modal-comentario").style.display = "none"; // Oculta a modal
 });
-
 
 // Função para exibir a mensagem de sucesso e depois fechar o modal e a mensagem
 function mostrarMensagemSucesso() {
@@ -410,107 +355,118 @@ function mostrarMensagemSucesso() {
   }, 5000); // 5000ms = 5 segundos
 }
 
-
-
 // Função para enviar o comentário
-document.getElementById("comentario-form").addEventListener("submit", (event) => {
-  event.preventDefault();
+document
+  .getElementById("comentario-form")
+  .addEventListener("submit", (event) => {
+    event.preventDefault();
 
-  const titulocomentario = document.getElementById("titulocomentario").value.trim();
-  const nome = document.getElementById("nome").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const textoComentario = document.getElementById("comentario-texto").value.trim();
-  const recomenda = document.querySelector('input[name="recomenda"]:checked')?.value;
-  if (!nome || !email || !textoComentario) {
-    alert("Preencha todos os campos!");
-    return;
-  }
+    const titulocomentario = document
+      .getElementById("titulocomentario")
+      .value.trim();
+    const nome = document.getElementById("nome").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const textoComentario = document
+      .getElementById("comentario-texto")
+      .value.trim();
+    const recomenda = document.querySelector(
+      'input[name="recomenda"]:checked'
+    )?.value;
+    if (!nome || !email || !textoComentario) {
+      alert("Preencha todos os campos!");
+      return;
+    }
 
-  const novoComentario = {
-    produtoId,
-    nome,
-    email,
-    comentario: textoComentario,
-    titulocomentario,
-    recomenda
-  };
+    const novoComentario = {
+      produtoId,
+      nome,
+      email,
+      comentario: textoComentario,
+      titulocomentario,
+      recomenda,
+    };
 
-  // Enviar comentário ao backend
-  fetch(`https://styleinfocusbackend.onrender.com/api/roupas/${produtoId}/comentarios`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(novoComentario),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      mostrarMensagemSucesso("Comentário enviado com sucesso!");
-      carregarComentarios(); // Recarregar lista de comentários
-      document.getElementById("comentario-form").reset(); // Limpar formulário
-      document.getElementById("modal-comentario").style.display = "none"; // Fechar a modal
-    })
-    .catch((error) => {
-      console.error("Erro ao enviar comentário:", error);
-      alert("Erro ao enviar comentário. Tente novamente mais tarde.");
-    });
-});
+    // Enviar comentário ao backend
+    fetch(
+      `https://styleinfocusbackend.onrender.com/api/roupas/${produtoId}/comentarios`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(novoComentario),
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        mostrarMensagemSucesso("Comentário enviado com sucesso!");
+        carregarComentarios(); // Recarregar lista de comentários
+        document.getElementById("comentario-form").reset(); // Limpar formulário
+        document.getElementById("modal-comentario").style.display = "none"; // Fechar a modal
+      })
+      .catch((error) => {
+        console.error("Erro ao enviar comentário:", error);
+        alert("Erro ao enviar comentário. Tente novamente mais tarde.");
+      });
+  });
 
-
-
-//funçao de mostrar mais ou menos comentarios 
-document.getElementById('btn-ver-mais').addEventListener('click', function() {
-  let comentariosOcultos = document.querySelectorAll('#lista-comentarios .comentario-item:nth-child(n+4)');
-  const botao = document.getElementById('btn-ver-mais');
+//funçao de mostrar mais ou menos comentarios
+document.getElementById("btn-ver-mais").addEventListener("click", function () {
+  let comentariosOcultos = document.querySelectorAll(
+    "#lista-comentarios .comentario-item:nth-child(n+4)"
+  );
+  const botao = document.getElementById("btn-ver-mais");
 
   // Verifica se os comentários extras estão visíveis
-  if (comentariosOcultos[0].style.display === 'none' || comentariosOcultos[0].style.display === '') {
-      // Exibe os comentários ocultos
-      comentariosOcultos.forEach(comentario => {
-          comentario.style.display = 'block'; // Exibe os comentários ocultos
-      });
-      botao.innerHTML = 'Ver Menos <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/></svg>'; // Muda o texto do botão e adiciona o ícone
+  if (
+    comentariosOcultos[0].style.display === "none" ||
+    comentariosOcultos[0].style.display === ""
+  ) {
+    // Exibe os comentários ocultos
+    comentariosOcultos.forEach((comentario) => {
+      comentario.style.display = "block"; // Exibe os comentários ocultos
+    });
+    botao.innerHTML =
+      'Ver Menos <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/></svg>'; // Muda o texto do botão e adiciona o ícone
   } else {
-      // Esconde os comentários extras novamente
-      comentariosOcultos.forEach(comentario => {
-          comentario.style.display = 'none'; // Esconde os comentários extras
-      });
-      botao.innerHTML = 'Ver Mais <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>'; // Muda o texto do botão e adiciona o ícone
+    // Esconde os comentários extras novamente
+    comentariosOcultos.forEach((comentario) => {
+      comentario.style.display = "none"; // Esconde os comentários extras
+    });
+    botao.innerHTML =
+      'Ver Mais <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>'; // Muda o texto do botão e adiciona o ícone
   }
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Função para exibir a mensagem de sucesso
-function mostrarMensagemSucesso() {
-  const mensagem = document.getElementById("mensagem-sucesso");
-  mensagem.classList.add("mostrar");
+function mostrarMensagem(mensagem) {
+  const mensagemElemento = document.getElementById("mensagem-sucesso");
+  const textoMensagem = document.getElementById("mensagem-texto");
 
-  // Fechar a mensagem após 3 segundos
+  // Atualiza o texto da mensagem
+  textoMensagem.textContent = mensagem;
+
+  // Mostra a mensagem
+  mensagemElemento.classList.add("mostrar");
+
+  // Fechar a mensagem após 4 segundos
   setTimeout(() => {
-    mensagem.classList.remove("mostrar");
-  }, 4000); // 3000ms = 3 segundos
+    mensagemElemento.classList.remove("mostrar");
+  }, 4000); // 4000ms = 4 segundos
 }
 
+function mostrarMensagemErro(mensagem) {
+  const mensagemElemento = document.getElementById("mensagem-erro");
+  const textoMensagem = document.getElementById("mensagem-text");
 
+  // Atualiza o texto da mensagem
+  textoMensagem.textContent = mensagem;
 
+  // Mostra a mensagem
+  mensagemElemento.classList.add("mostrar");
 
+  // Fechar a mensagem após 4 segundos
+  setTimeout(() => {
+    mensagemElemento.classList.remove("mostrar");
+  }, 4000); // 4000ms = 4 segundos
+}
