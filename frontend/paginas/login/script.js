@@ -111,92 +111,58 @@ document.querySelector('.next').addEventListener('click', nextSlide);
 document.querySelector('.prev').addEventListener('click', prevSlide);
 });
 
-// Função para verificar se a imagem de perfil está disponível
-function loadUserProfile() {
+
+document.addEventListener('DOMContentLoaded', () => {
   fetch('/auth/check-session')
       .then(response => response.json())
       .then(data => {
-          const profileImage = document.getElementById("profile-image");
-          const profileSvg = document.getElementById("profile-svg");
-          const profileTextDiv = document.querySelector(".profile-text");
+          const loginLink = document.getElementById('login-link');
+          const registerLink = document.getElementById('register-link');
+          const profileImageElement = document.getElementById('profile-image');
+          const profileSvgElement = document.getElementById('profile-svg');
+          
+          if (loginLink && registerLink) {
+              if (data.authenticated) {
+                  // Quando o usuário está autenticado
+                  loginLink.textContent = data.user.username;  // Exibe o nome do usuário
+                  registerLink.textContent = 'MINHA CONTA';  // Muda o texto de "Cadastrar-se" para "MINHA CONTA"
+                  
+                  // Altera o link de "MINHA CONTA" para o perfil do usuário
+                  registerLink.href = '../login/profile.html';  // Link para o perfil do usuário
 
-          // Verifica se o usuário está autenticado
-          if (data.isAuthenticated) {
-              // Atualiza a imagem de perfil
-              if (data.profileImagePath && data.profileImagePath !== "/login/uploads/usuarioDefault.jpg") {
-                  profileImage.src = data.profileImagePath;
-                  profileImage.style.display = "block";
-                  profileSvg.style.display = "none";
+                  const profileImage = data.user.profileImage || '/paginas/login/uploads/usuarioDefault.jpg';
+                  
+                  if (profileImageElement && profileSvgElement) {
+                      if (data.user.profileImage) {
+                          profileImageElement.src = profileImage;
+                          profileImageElement.style.display = 'inline';
+                          profileSvgElement.style.display = 'none';
+                      } else {
+                          profileSvgElement.style.display = 'inline';
+                          profileImageElement.style.display = 'none';
+                      }
+                  }
               } else {
-                  profileImage.style.display = "none";
-                  profileSvg.style.display = "block";
+                  // Quando o usuário não está autenticado
+                  loginLink.textContent = 'ENTRE';
+                  registerLink.textContent = 'CADASTRE-SE';
+                  
+                  // Alterando os links de login e registro
+                  loginLink.href = '/login';  // Link para login
+                  registerLink.href = '/register';  // Link para registro
               }
-
-              // Atualiza o texto de perfil para mostrar o nome do usuário e o link "Minha Conta"
-              profileTextDiv.innerHTML = `
-                  <a class="text-login" >${data.username}</a>
-                  <br>
-                  <a class="text-login" href="/profile" class="profile-link">MINHA CONTA</a>
-              `;
-
-              // Salva os dados no Local Storage
-              localStorage.setItem('username', data.username);
-              localStorage.setItem('profileImagePath', data.profileImagePath);
-          } else {
-              // Caso o usuário não esteja logado, exibe as opções padrão de "Entre" e "Cadastre-se"
-              profileTextDiv.innerHTML = `
-                  <a class="text-login" href="../login/login.html" class="profile-link">ENTRE</a>
-                  <a class="text-login">OU</a>
-                  <br>
-                  <a class="text-login" href="../login/register.html" class="profile-link">CADASTRE-SE</a>
-              `;
-
-              // Limpa os dados do Local Storage, se não estiver logado
-              localStorage.removeItem('username');
-              localStorage.removeItem('profileImagePath');
           }
       })
-      .catch(error => console.error("Erro ao carregar o perfil do usuário:", error));
-}
-
-// Função para carregar os dados do Local Storage ao carregar a página
-function loadProfileFromLocalStorage() {
-  const username = localStorage.getItem('username');
-  const profileImagePath = localStorage.getItem('profileImagePath');
-  const profileImage = document.getElementById("profile-image");
-  const profileSvg = document.getElementById("profile-svg");
-  const profileTextDiv = document.querySelector(".profile-text");
-
-  if (username) {
-      // Atualiza a imagem de perfil se houver
-      if (profileImagePath && profileImagePath !== "/login/uploads/usuarioDefault.jpg") {
-          profileImage.src = profileImagePath;
-          profileImage.style.display = "block";
-          profileSvg.style.display = "none";
-      } else {
-          profileImage.style.display = "none";
-          profileSvg.style.display = "block";
-      }
-
-      // Atualiza o texto de perfil
-      profileTextDiv.innerHTML = `
-          <a class="text-login" >${username}</a>
-          <br>
-          <a class="text-login" href="/profile" class="profile-link">MINHA CONTA</a>
-      `;
-  } else {
-      // Se não houver dados, exibe as opções padrão
-      profileTextDiv.innerHTML = `
-          <a class="text-login" href="../login/login.html" class="profile-link">ENTRE</a>
-          <a class="text-login">OU</a>
-          <br>
-          <a class="text-login" href="../login/register.html" class="profile-link">CADASTRE-SE</a>
-      `;
-  }
-}
-
-// Carregar o perfil do usuário ao carregar a página
-window.onload = function() {
-  loadProfileFromLocalStorage(); // Primeiro, tenta carregar do Local Storage
-  loadUserProfile(); // Depois, faz a chamada para verificar a sessão
-};
+      .catch(error => {
+          console.error('Erro ao verificar a sessão:', error);
+          const loginLink = document.getElementById('login-link');
+          const registerLink = document.getElementById('register-link');
+          if (loginLink && registerLink) {
+              loginLink.textContent = 'ENTRE';
+              registerLink.textContent = 'CADASTRE-SE';
+              // Caso de erro, volta os links para login e registro
+              loginLink.href = '../login/login.html';
+              registerLink.href = '../login/register.html';
+          }
+      });
+});
