@@ -95,7 +95,7 @@ const produtoId = urlParams.get("id");
 
 // Verifica se o ID do produto foi passado na URL
 if (produtoId) {
-  fetch(`https://styleinfocusbackend.onrender.com/camisas/${produtoId}`)
+  fetch(`http://localhost:3000/camisas/${produtoId}`)
     .then((response) => response.json())
     .then((data) => {
       const precoOriginal = parseFloat(data.preco);
@@ -217,7 +217,7 @@ calcularFreteBtn.addEventListener("click", async () => {
   try {
     // Envia a requisição para o back-end
     const response = await fetch(
-      "https://styleinfocusbackend.onrender.com/frete/calcular-frete",
+      "http://localhost:3000/frete/calcular-frete",
       {
         method: "POST",
         headers: {
@@ -281,7 +281,7 @@ calcularFreteBtn.addEventListener("click", async () => {
 // Função para carregar os comentários do produto
 function carregarComentarios() {
   fetch(
-    `https://styleinfocusbackend.onrender.com/api/roupas/${produtoId}/comentarios`
+    `http://localhost:3000/api/roupas/${produtoId}/comentarios`
   )
     .then((response) => response.json())
     .then((comentarios) => {
@@ -388,7 +388,7 @@ document
 
     // Enviar comentário ao backend
     fetch(
-      `https://styleinfocusbackend.onrender.com/api/roupas/${produtoId}/comentarios`,
+      `http://localhost:3000/api/roupas/${produtoId}/comentarios`,
       {
         method: "POST",
         headers: {
