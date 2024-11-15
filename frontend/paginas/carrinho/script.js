@@ -6,40 +6,6 @@ function carregarCarrinho() {
 
   // Limpa o carrinho atual
   cartItemsContainer.innerHTML = "";
-
-  // Cria os elementos para cada produto no carrinho
-  carrinho.forEach((item, index) => {
-    const itemElement = document.createElement("div");
-    itemElement.classList.add("cart-item");
-    itemElement.innerHTML = `
-            <img src="${item.imagem}" alt="${item.nome}">
-            <div class="item-info">
-                <h3>${item.nome}</h3>
-                <p>R$ ${item.preco.toFixed(2)}</p>
-                <div class="quantity-controls">
-                    <button class="button-cart" onclick="alterarQuantidade(${index}, -1)">-</button>
-                    <span id="quantidade-${index}">${item.quantidade}</span>
-                    <button class="button-cart" onclick="alterarQuantidade(${index}, 1)">+</button>
-                </div>
-            </div>
-            <button class="button-cart" onclick="removerItem(${index})">Remover</button>
-        `;
-    cartItemsContainer.appendChild(itemElement);
-    total += item.preco * item.quantidade;
-  });
-
-  // Calcular e exibir o total e frete
-  const frete = total > 200 ? 0 : 15; // Frete grátis acima de R$ 200
-  const totalFinal = total + frete;
-
-  document.getElementById("total-price").innerText = `R$ ${total.toFixed(2)}`;
-  document.getElementById("frete-price").innerText = `R$ ${frete.toFixed(2)}`;
-  document.getElementById("final-price").innerText = `R$ ${totalFinal.toFixed(
-    2
-  )}`;
-
-  // Habilitar ou desabilitar o botão de checkout
-  document.getElementById("checkout-btn").disabled = carrinho.length === 0;
 }
 
 // Função para alterar a quantidade do item no carrinho
@@ -163,142 +129,6 @@ window.addEventListener("scroll", function () {
   }
 });
 
-//SLIDE TEXT
-
-document.addEventListener("DOMContentLoaded", function () {
-  let currentSlide = 0;
-  const slideInterval = 3000; // Intervalo de 3 segundos para troca de slides
-
-  function nextSlide() {
-    const slides = document.querySelector(".slides-text");
-    const totalSlides = slides.children.length;
-
-    // Avançar para o próximo slide
-    currentSlide = (currentSlide + 1) % totalSlides;
-
-    // Atualizar a transformação do slide
-    slides.style.transform = `translateY(-${currentSlide * 310}%)`;
-  }
-
-  function prevSlide() {
-    const slides = document.querySelector(".slides-text");
-    const totalSlides = slides.children.length;
-
-    // Retroceder para o slide anterior
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-
-    // Atualizar a transformação do slide
-    slides.style.transform = `translateY(-${currentSlide * 310}%)`;
-  }
-
-  // Intervalo automático para troca de slides
-  setInterval(nextSlide, slideInterval);
-
-  // Funções para os botões
-  document.querySelector(".next").addEventListener("click", nextSlide);
-  document.querySelector(".prev").addEventListener("click", prevSlide);
-});
-
-//CAROUSEL DESTAQUES
-
-let currentIndex = 0;
-const items = document.querySelectorAll(".carousel-item");
-const totalItems = items.length;
-const itemsPerPage = 3;
-
-const carousel = document.querySelector(".carousel");
-const nextButton = document.getElementById("next");
-const prevButton = document.getElementById("prev");
-
-function updateCarousel() {
-  const offset = -currentIndex * (100 / itemsPerPage);
-  carousel.style.transform = `translateX(${offset}%)`;
-}
-
-function showNext() {
-  if (currentIndex < Math.ceil(totalItems / itemsPerPage) - 1) {
-    currentIndex++;
-  } else {
-    currentIndex = 0;
-  }
-  updateCarousel();
-}
-
-function showPrev() {
-  if (currentIndex > 0) {
-    currentIndex--;
-  } else {
-    currentIndex = Math.ceil(totalItems / itemsPerPage) - 1;
-  }
-  updateCarousel();
-}
-
-nextButton.addEventListener("click", showNext);
-prevButton.addEventListener("click", showPrev);
-
-setInterval(showNext, 8000); // Automatic slide every 3 seconds
-
-// Initialize carousel
-updateCarousel();
-
-let currentSlide2 = 0;
-
-function showSlide(index) {
-  const slides = document.querySelectorAll(".slide-text-index");
-  const totalSlides = slides.length;
-
-  if (index >= totalSlides) {
-    currentSlide2 = 0;
-  } else if (index < 0) {
-    currentSlide2 = totalSlides - 1;
-  } else {
-    currentSlide2 = index;
-  }
-
-  const newTransform = `translateX(${-currentSlide2 * 100}%)`;
-  document.querySelector(".slides-text").style.transform = newTransform;
-}
-
-function nextSlideText() {
-  showSlide(currentSlide2 + 1);
-}
-
-function prevSlide() {
-  showSlide(currentSlide2 - 1);
-}
-
-// Mostrar o primeiro slide
-showSlide(currentSlide2);
-
-// Função para auto-slide
-function startAutoSlide() {
-  setInterval(nextSlideText, 5000); // Muda de slide a cada 3 segundos
-}
-
-// Iniciar o auto-slide
-startAutoSlide();
-
-window.addEventListener("load", function () {
-  document.getElementById("preloader").style.display = "none";
-});
-
-// Código para exibir o preloader ao clicar em um link
-document.addEventListener("DOMContentLoaded", function () {
-  const links = document.querySelectorAll("a");
-  links.forEach((link) => {
-    link.addEventListener("click", function (event) {
-      if (!this.href.includes("#")) {
-        // Evitar recarregar para links âncora
-        document.getElementById("preloader").style.display = "flex";
-      }
-    });
-  });
-});
-
-
-
-
-
 
 
 
@@ -326,9 +156,17 @@ function carregarCarrinho() {
   // Limpa a div antes de exibir os itens
   carrinhoItens.innerHTML = "";
 
+  let totalFinal = 0;
+
   // Exibindo os produtos agrupados
   for (const key in produtosAgrupados) {
     const produto = produtosAgrupados[key];
+
+    produto.preco = parseFloat(produto.preco) || 0;
+
+    precoTotal = produto.preco * produto.quantidade;
+
+    totalFinal += precoTotal;
 
     const itemDiv = document.createElement("div");
     itemDiv.classList.add("carrinho-item");
@@ -338,14 +176,26 @@ function carregarCarrinho() {
       <div>
         <h3>${produto.nome}</h3>
         <p>Tamanho: ${produto.tamanho}</p>
-        <p>Quantidade: <span class="carrinho-quantidade">${produto.quantidade}</span></p>
-        <p>Preço: R$ ${(produto.preco * produto.quantidade).toFixed(2)}</p>
+        <p>Quantidade: <span class="carrinho-quantidade">${
+          produto.quantidade
+        }</span></p>
+        <p>Preço: R$ ${precoTotal.toLocaleString("pt-BR", {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        })}</p>
       </div>
     `;
 
     carrinhoItens.appendChild(itemDiv);
   }
+  console.log(totalFinal);
+  const finalPriceElement = document.getElementById("final-price");
+  finalPriceElement.textContent = `R$ ${totalFinal.toLocaleString("pt-BR", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })}`;
 }
+
 
 
 
