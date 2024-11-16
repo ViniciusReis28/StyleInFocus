@@ -44,7 +44,7 @@
 
           <div id="general-error" class="error-messages"></div> <!-- Div para mensagens de erro gerais -->
 
-          <form id="login-form">
+          <form id="login-form" action="https://styleinfocusbackend.onrender.com/auth/login" method="post" >
             <div>
                 <div id="email-error" style="color: #ff0000; font-size: 12px; font-family: Freeman, sans-serif;"></div>
                 <input class="input-login" name="email" type="email" placeholder="Digite seu email:">
@@ -80,7 +80,7 @@
 </div>
 <script>
 document.getElementById('login-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Impede o envio do formulário padrão
+    event.preventDefault(); // Impede o envio padrão do formulário
 
     const form = event.target;
     const formData = {
@@ -91,7 +91,6 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     // Log dos dados enviados
     console.log('Dados enviados:', formData);
 
-    // Enviar os dados via fetch
     fetch('https://styleinfocusbackend.onrender.com/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -127,6 +126,7 @@ document.getElementById('login-form').addEventListener('submit', function(event)
         document.getElementById('email-error').textContent = 'Ocorreu um erro ao fazer login.';
     });
 });
+
 
     </script>
     
