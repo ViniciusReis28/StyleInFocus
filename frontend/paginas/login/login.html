@@ -46,14 +46,16 @@
 
           <form id="login-form">
             <div>
+                
                 <div id="email-error" style="color: #ff0000; font-size: 12px; font-family: Freeman, sans-serif;"></div>
-                <input class="input-login" name="email" type="email" placeholder="Digite seu email:">
+                <input id="email" class="input-login" name="email" type="email" placeholder="Digite seu email:">
               </div>
               <div>
                 <div id="password-error" style="color: #ff0000; font-size: 12px; font-family: Freeman, sans-serif;"></div>
-                <input class="input-login" name="password" type="password" placeholder="Digite sua senha:">
+                <input id="password"class="input-login" name="password" type="password" placeholder="Digite sua senha:">
               </div>
               <button type="submit" class="glow-on-hover">LOGAR</button>
+              <div id="message"></div>
               <br>
               <br>
               <button class="buttongo">
@@ -79,54 +81,43 @@
 </div>
 </div>
 <script>
-document.getElementById('login-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Impede o envio padrão do formulário
+  document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('login-form').addEventListener('submit', async (event) => {
+                event.preventDefault(); // Impede o comportamento padrão de envio do formulário
 
-    const form = event.target;
-    const formData = {
-        email: form.email.value,
-        password: form.password.value
-    };
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
 
-    // Log dos dados enviados
-    console.log('Dados enviados:', formData);
+                try {
+                    // Enviar a requisição POST para o backend
+                    const response = await fetch('http://localhost:5000/api/auth/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email, password })
+                    });
 
-    fetch('/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Limpa mensagens de erro anteriores
-        document.getElementById('email-error').textContent = '';
-        document.getElementById('password-error').textContent = '';
+                    const data = await response.json();
 
-        // Log da resposta do servidor
-        console.log('Resposta do servidor:', data);
+                    if (response.ok) {
+                        // Exibir a mensagem de sucesso
+                        document.getElementById('message').innerText = `Bem-vindo! Token: ${data.token}`;
 
-        if (data.success) {
-            // Redireciona para a URL recebida do servidor
-            window.location.href = data.redirect;
-        } else {
-            // Se houver erros, exibe-os no formulário
-            if (data.errors) {
-                if (data.errors.email) {
-                    document.getElementById('email-error').textContent = data.errors.email;
+                        // Armazenar o token no localStorage
+                        localStorage.setItem('token', data.token);
+
+                        // Redirecionar o usuário para a página inicial ou outra página desejada
+                        window.location.href = '/userLogado.html'; // Ajuste para a página desejada
+                    } else {
+                        // Exibir a mensagem de erro
+                        document.getElementById('message').innerText = data.error || data.message;
+                    }
+                } catch (error) {
+                    // Exibir erro caso a requisição falhe
+                    console.error('Erro:', error);
+                    document.getElementById('message').innerText = 'Erro ao tentar conectar com o servidor.';
                 }
-                if (data.errors.password) {
-                    document.getElementById('password-error').textContent = data.errors.password;
-                }
-            }
-        }
-    })
-    .catch(error => {
-        console.error('Erro:', error);
-        // Exibe uma mensagem genérica de erro no formulário
-        document.getElementById('email-error').textContent = 'Ocorreu um erro ao fazer login.';
-    });
-});
-
+            });
+        });
 
     </script>
     
