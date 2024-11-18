@@ -78,8 +78,10 @@ h1 {
 }
 
 .cart-summary {
-  margin-top: 20px;
   font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Alinha o conteúdo à direita */
 }
 
 .button-cart {
@@ -387,12 +389,21 @@ a {
 }
 
 
+.teste {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Garante que o resumo fique no final */
+  height: 100%;
+  padding-bottom: 10px;
+}
 
 
-
-
-
-
+#carrinho-itens {
+  flex: 1; /* Faz com que ocupe o espaço disponível */
+  overflow-y: auto; /* Adiciona o scroll vertical se necessário */
+  max-height: 400px; /* Limite de altura para o scroll */
+  padding-right: 10px;
+}
 
 
 
