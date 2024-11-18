@@ -27,9 +27,10 @@ body {
 }
 
 .container {
-  flex: 1; /* Faz com que o main ocupe o espaço necessário para empurrar o footer */
-  padding-bottom: 100px; /* Espaço reservado para o footer, para que ele não sobreponha o conteúdo */
-  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  width: 65%;
+  height: 600px;
   margin: 0 auto;
   background-color: #fff;
   padding: 20px;
@@ -96,112 +97,8 @@ h1 {
   background-color: #ccc;
 }
 
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: none;
-  justify-content: center;
-  align-items: center;
-}
 
-.modal-content {
-  background-color: white;
-  padding: 20px;
-  text-align: center;
-  border-radius: 8px;
-}
 
-.modal-content button {
-  margin-top: 10px;
-  background-color: #dc3545;
-}
-
-/*--------------------------------------------------------SLIDE DO INDEX TEXT---------------------------------------------------*/
-
-/* Sobreposição preta para o efeito de escurecimento */
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
-  /* Preto com alta opacidade */
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-  z-index: 1;
-  /* Coloca a sobreposição acima da imagem */
-}
-
-/* Contêiner do slider */
-.slider-container-text {
-  position: absolute;
-  color: rgb(255, 255, 255);
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 40px; /* Ajuste conforme o tamanho necessário para os slides */
-  background: #050505;
-  overflow: hidden; /* Oculta slides fora da área visível */
-  display: flex;
-  align-items: center;
-  z-index: 2; /* Coloca o slider acima da imagem */
-}
-
-/* Slides */
-.slides-text {
-  display: flex;
-  flex-direction: column; /* Organiza slides verticalmente */
-  transition: transform 0.5s ease-in-out; /* Suaviza a transição */
-  width: 100%;
-  height: 80%; /* Garante que os slides preencham o contêiner */
-}
-
-/* Estilo individual dos slides */
-.slide-text-index {
-  width: 100%;
-  box-sizing: border-box;
-  text-align: center;
-  height: 100px; /* Ajuste conforme necessário */
-  flex-shrink: 0; /* Impede que o slide encolha */
-}
-
-.slide-text-index h2,
-.slide-text-index p {
-  font-family: "Bebas Neue", sans-serif;
-  font-size: 24px;
-  margin: 0; /* Remove margens */
-}
-
-/* Botões de navegação */
-.slider-container-text button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  border: none;
-  background-color: transparent;
-  /* Torna o fundo do botão transparente */
-  font-size: 24px;
-  cursor: pointer;
-  padding: 600px;
-  z-index: 3; /* Garante que os botões estejam acima do conteúdo do slider */
-
-  /* Ajusta o padding para ficar apenas ao redor do texto */
-}
-
-.prev {
-  color: rgb(255, 255, 255);
-  left: 10px;
-}
-
-.next {
-  color: rgb(255, 255, 255);
-  right: 10px;
-}
 
 /* BARRA DE NAVEGAÇÃO DO SITE */
 nav {
@@ -444,8 +341,8 @@ a {
 .progress-container {
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  max-width: 800px; /* Largura máxima da barra de progresso */
+  width: 60%;
+  max-width: 850px; /* Largura máxima da barra de progresso */
   margin: 20px auto;
   padding: 0 20px;
 }
@@ -478,13 +375,9 @@ a {
   background-color: #000; /* Cor de destaque para a etapa atual */
 }
 
-.step.completed span {
-  font-weight: bold;
-}
-
 .step span {
   margin-left: 10px;
-  font-size: 14px;
+  font-size: 21px;
   color: #888;
 }
 
@@ -492,6 +385,17 @@ a {
   display: flex;
   align-items: center;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 /* Estilo para a notificação */
 .notification {
