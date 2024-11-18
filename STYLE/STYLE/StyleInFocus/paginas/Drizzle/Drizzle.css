@@ -1,0 +1,32 @@
+body{
+    background-color: black;
+    color: white;
+}
+
+main {
+    background-color: #181818 ;
+    color: red;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 150%;
+
+    max-width: 70%;
+}
+
+.sobre {
+    border-spacing: 10px;
+}
+
+.Titulo{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 5vw;
+}
+
+
+.icon{
+    width: 15%;
+    height: 15%;
+}
+
+
+
+
