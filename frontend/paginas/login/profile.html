@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Perfil Do Usuario</title>
-  <link rel="stylesheet" href="/paginas/login/profile.css">
+  <link rel="stylesheet" href="profile.css">
   <link rel="shortcut icon" href="../../img/logopreta.png" type="image">
 
 </head>
@@ -142,7 +142,7 @@
             <div class="banner">
 
 
-        <form id="editarPerfil" method="POST" action="/auth/update" enctype="multipart/form-data">
+        <form id="editarPerfil" method="POST" action="http://localhost:3000/auth/update" enctype="multipart/form-data">
                 <div class="foto-container">
                   <img id="fotoPerfil" src="/paginas/login/uploads/usuarioDefault.jpg" class="imagem-hover" alt="Foto de perfil">
                   <input type="file" id="inputFoto" name="profile_image" accept="image/*" style="display: none;">
