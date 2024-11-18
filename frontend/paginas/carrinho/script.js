@@ -42,55 +42,7 @@ function removerItem(index) {
 // Inicializa o carrinho ao carregar a página
 window.onload = carregarCarrinho;
 
-// Modal de confirmação de remoção (opcional)
-let itemToRemove = null;
 
-document.getElementById("remove-modal").style.display = "none";
-document.getElementById("confirm-remove").onclick = () => {
-  if (itemToRemove !== null) {
-    removerItem(itemToRemove);
-  }
-  document.getElementById("remove-modal").style.display = "none";
-};
-document.getElementById("cancel-remove").onclick = () => {
-  document.getElementById("remove-modal").style.display = "none";
-};
-
-document.getElementById("profile-icon").onclick = function () {
-  document.getElementById("sidebar").style.width = "350px";
-  document.getElementById("overlay").style.width = "100%";
-};
-
-document.querySelector(".close-btn").onclick = function () {
-  document.getElementById("sidebar").style.width = "0";
-  document.getElementById("overlay").style.width = "0";
-};
-
-document.getElementById("overlay").onclick = function () {
-  document.getElementById("sidebar").style.width = "0";
-  document.getElementById("overlay").style.width = "0";
-};
-
-function openLeftSidebar() {
-  document.getElementById("leftSidebar").style.width = "380px";
-}
-
-function closeLeftSidebar() {
-  document.getElementById("leftSidebar").style.width = "0";
-}
-
-// Fechar o sidebar ao clicar fora dele
-document.addEventListener("click", function (event) {
-  var sidebar = document.getElementById("leftSidebar");
-  var btn = document.querySelector(".btn-filtrar");
-  if (
-    sidebar.style.width === "380px" &&
-    !sidebar.contains(event.target) &&
-    event.target !== btn
-  ) {
-    closeLeftSidebar();
-  }
-});
 
 function toggleDropdown(dropdownId) {
   const dropdown = document.getElementById(dropdownId);
@@ -188,7 +140,6 @@ function carregarCarrinho() {
 
     carrinhoItens.appendChild(itemDiv);
   }
-  console.log(totalFinal);
   const finalPriceElement = document.getElementById("final-price");
   finalPriceElement.textContent = `R$ ${totalFinal.toLocaleString("pt-BR", {
     minimumFractionDigits: 2,
@@ -196,6 +147,48 @@ function carregarCarrinho() {
   })}`;
 }
 
+// Verificar se há itens no carrinho e ir para Identificação
+function irParaIdentificacao() {
+  const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+
+  if (carrinho.length === 0) {
+    alert("Seu carrinho está vazio. Adicione itens para continuar.");
+    return;
+  }
+
+  // Atualizar o progresso
+  document.getElementById("step-1").classList.add("completed");
+  document.getElementById("step-2").classList.add("completed");
+
+  // Mostrar seção de Identificação e esconder Carrinho
+  document.getElementById("section-carrinho").style.display = "none";
+  document.getElementById("section-identificacao").style.display = "block";
+}
+
+
+// Coletar informações e ir para Pagamento
+function irParaPagamento() {
+  const rua = document.getElementById("rua").value;
+  const numero = document.getElementById("numero").value;
+  const cidade = document.getElementById("cidade").value;
+
+  if (!rua || !numero || !cidade) {
+    alert("Por favor, preencha todas as informações.");
+    return;
+  }
+
+  // Salvar dados do usuário (opcional)
+  const endereco = { rua, numero, cidade };
+  localStorage.setItem("endereco", JSON.stringify(endereco));
+
+  // Atualizar o progresso
+  document.getElementById("step-2").classList.add("completed");
+  document.getElementById("step-3").classList.add("completed");
+
+  // Mostrar seção de Pagamento e esconder Identificação
+  document.getElementById("section-identificacao").style.display = "none";
+  document.getElementById("section-pagamento").style.display = "block";
+}
 
 
 
