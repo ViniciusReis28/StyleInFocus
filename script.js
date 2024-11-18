@@ -266,8 +266,9 @@ function showSuggestions() {
 
 
 
+
 document.addEventListener('DOMContentLoaded', () => {
-  fetch('/auth/check-session')
+  fetch('http://localhost:3000/auth/check-session')
       .then(response => response.json())
       .then(data => {
           const loginLink = document.getElementById('login-link');
@@ -282,9 +283,9 @@ document.addEventListener('DOMContentLoaded', () => {
                   registerLink.textContent = 'MINHA CONTA';  // Muda o texto de "Cadastrar-se" para "MINHA CONTA"
                   
                   // Altera o link de "MINHA CONTA" para o perfil do usuário
-                  registerLink.href = '../login/profile.html';  // Link para o perfil do usuário
+                  registerLink.href = '../frontend/paginas/login/profile.html';  // Link para o perfil do usuário
 
-                  const profileImage = data.user.profileImage || '/paginas/login/uploads/usuarioDefault.jpg';
+                  const profileImage = data.user.profileImage || '../frontend/paginas/login/uploads/usuarioDefault.jpg';
                   
                   if (profileImageElement && profileSvgElement) {
                       if (data.user.profileImage) {
@@ -302,8 +303,8 @@ document.addEventListener('DOMContentLoaded', () => {
                   registerLink.textContent = 'CADASTRE-SE';
                   
                   // Alterando os links de login e registro
-                  loginLink.href = '/login';  // Link para login
-                  registerLink.href = '/register';  // Link para registro
+                  loginLink.href = '../frontend/paginas/login/login.html';  // Link para login
+                  registerLink.href = '../frontend/paginas/login/register.html';  // Link para registro
               }
           }
       })
@@ -315,8 +316,9 @@ document.addEventListener('DOMContentLoaded', () => {
               loginLink.textContent = 'ENTRE';
               registerLink.textContent = 'CADASTRE-SE';
               // Caso de erro, volta os links para login e registro
-              loginLink.href = '../login/login.html';
-              registerLink.href = '../login/register.html';
+              loginLink.href = '../frontend/paginas/login/login.html';
+              registerLink.href = '../frontend/paginas/login/register.html';
           }
       });
 });
+ 

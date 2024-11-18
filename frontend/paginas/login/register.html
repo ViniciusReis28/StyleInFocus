@@ -76,7 +76,7 @@ document.getElementById('register-form').addEventListener('submit', function(eve
     const email = event.target.email.value;
     const password = event.target.password.value;
 
-    fetch('https://styleinfocusbackend.onrender.com/auth/register', {
+    fetch('http://localhost:3000/auth/register', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

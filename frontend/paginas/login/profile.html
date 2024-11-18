@@ -193,7 +193,7 @@
       </div>
     
       <script>
-      fetch('/auth/check-session')
+      fetch('http://localhost:3000/auth/check-session')
     .then(response => {
         if (!response.ok) {
             throw new Error('Usuário não autenticado');
@@ -214,7 +214,7 @@
 
 // Função para carregar o perfil do usuário
 function carregarPerfilUsuario() {
-    fetch('/api/user')
+    fetch('http://localhost:3000/api/user')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Erro ao carregar os dados do usuário');
