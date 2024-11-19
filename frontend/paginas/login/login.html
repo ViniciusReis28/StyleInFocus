@@ -81,43 +81,41 @@
 </div>
 </div>
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('login-form').addEventListener('submit', async (event) => {
-                event.preventDefault(); // Impede o comportamento padrão de envio do formulário
+ document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('login-form').addEventListener('submit', async (event) => {
+        event.preventDefault(); // Impede o comportamento padrão de envio do formulário
 
-                const email = document.getElementById('email').value;
-                const password = document.getElementById('password').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
 
-                try {
-                    // Enviar a requisição POST para o backend
-                    const response = await fetch('http://localhost:3000/auth/login', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ email, password })
-                    });
-
-                    const data = await response.json();
-
-                    if (response.ok) {
-                        // Exibir a mensagem de sucesso
-                        document.getElementById('message').innerText = `Bem-vindo! Token: ${data.token}`;
-
-                        // Armazenar o token no localStorage
-                        localStorage.setItem('token', data.token);
-
-                        // Redirecionar o usuário para a página inicial ou outra página desejada
-                        window.location.href = 'userLogado.html'; // Ajuste para a página desejada
-                    } else {
-                        // Exibir a mensagem de erro
-                        document.getElementById('message').innerText = data.error || data.message;
-                    }
-                } catch (error) {
-                    // Exibir erro caso a requisição falhe
-                    console.error('Erro:', error);
-                    document.getElementById('message').innerText = 'Erro ao tentar conectar com o servidor.';
-                }
+        try {
+            // Enviar a requisição POST para o backend
+            const response = await fetch('http://localhost:3000/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
             });
-        });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                // Exibir mensagem de sucesso
+                document.getElementById('message').innerText = 'Login realizado com sucesso!';
+
+                // Redirecionar o usuário para a página inicial ou outra página desejada
+                window.location.href = 'userLogado.html'; // Ajuste para a página desejada
+            } else {
+                // Exibir a mensagem de erro
+                document.getElementById('message').innerText = data.error || data.message;
+            }
+        } catch (error) {
+            // Exibir erro caso a requisição falhe
+            console.error('Erro:', error);
+            document.getElementById('message').innerText = 'Erro ao tentar conectar com o servidor.';
+        }
+    });
+});
+
 
 
     </script>
