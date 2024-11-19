@@ -29,12 +29,12 @@ body {
 .container {
   display: flex;
   flex-direction: column;
-  width: 65%;
-  height: 600px;
+  width: 70%;
+  height: 680px;
   margin: 0 auto;
   background-color: #fff;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.041);
   margin-top: 50px;
   margin-bottom: 70px;
   border-radius: 9px;
@@ -81,7 +81,6 @@ h1 {
   font-size: 20px;
   display: flex;
   flex-direction: column;
-  align-items: flex-end; /* Alinha o conteúdo à direita */
 }
 
 .button-cart {
@@ -110,11 +109,9 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-  position: fixed; /* Torna a navbar fixa */
   top: 0px; /* Deslocamento inicial */
   left: 0; /* Alinha a navbar na esquerda da página */
   width: 100%; /* Faz a navbar ocupar toda a largura da página */
-  z-index: 1000; /* Garante que a navbar fique acima de outros elementos */
   background-color: #050505; /* Cor de fundo opaca */
   transition: top 0.3s; /* Transição suave para a mudança de posição */
   transition: background-color 0.3s, color 0.3s;
@@ -354,7 +351,7 @@ a {
   align-items: center;
   position: relative;
   text-align: center;
-  margin-top: 130px;
+  margin-top: 20px;
 }
 
 .step:first-child::before {
@@ -397,6 +394,21 @@ a {
   padding-bottom: 10px;
 }
 
+.teste button {
+  height: 40px;
+  width: 180px;
+  border-radius: 4px;
+  border: none;
+  transition: width 0.3s ease;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.teste button:hover {
+  background-color: #000;
+  color: white;
+}
+
 
 #carrinho-itens {
   flex: 1; /* Faz com que ocupe o espaço disponível */
@@ -404,6 +416,198 @@ a {
   max-height: 400px; /* Limite de altura para o scroll */
   padding-right: 10px;
 }
+
+
+
+.produto {
+  width: 100%;
+  height: 200px;
+  gap: 15px;
+  display: flex;
+  flex-direction: row;
+}
+
+.produtoInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 180px;
+}
+
+.produtoInfo p {
+  font-size: 22px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*FOOTER FIM DA PAGINA*/
+
+.footer {
+  background-color: #000;
+  height: 520px;
+  display: flex;
+  /* Define flexbox */
+  justify-content: center;
+  /* Centraliza horizontalmente */
+  font-family: "Nunito", sans-serif;
+  text-align: justify;
+  color: white;
+}
+
+.centroFooter {
+  width: 80%;
+  height: 100%;
+  /* Ocupa toda a altura do footer */
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* Alinha os itens no início do eixo principal */
+  position: relative;
+  /* Permite usar posicionamento absoluto dentro dela */
+}
+
+
+.Footer-main {
+  width: 90%;
+  height: 65%;
+  background-color: #000000;
+  position: relative;
+  top: 0%;
+  /* Ajuste este valor para posicionar mais acima ou mais abaixo */
+  display: flex;
+  /* Define flexbox para as colunas */
+  justify-content: space-between;
+  /* Distribui as colunas uniformemente */
+}
+
+.coluna {
+  width: 25%;
+  /* Cada coluna ocupa 30% da largura de .Footer-main */
+  background-color: #000000;
+  /* Cor de fundo para visualização */
+  padding: 10px;
+  box-sizing: border-box;
+  /* Inclui o padding na largura total */
+  display: flex;
+  flex-direction: column;
+}
+
+.coluna h2 {
+  margin-left: 15px;
+  font-size: 22px;
+}
+
+.coluna a {
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+  margin-bottom: -5px;
+}
+
+.coluna:last-child {
+  display: flex;
+  /* Define flexbox para a terceira coluna */
+  flex-direction: column;
+  /* Organiza as subcolunas verticalmente */
+  justify-content: space-between;
+  /* Distribui as subcolunas uniformemente */
+}
+
+.sub-coluna {
+  flex: 1;
+  /* Faz as subcolunas ocuparem a mesma quantidade de espaço */
+  background-color: #000000;
+  /* Cor de fundo para visualização */
+  margin-bottom: 10px;
+  /* Espaço entre as subcolunas */
+}
+
+.sub-coluna h3 {
+  margin-bottom: 15px
+}
+
+.sub-coluna:last-child {
+  margin-bottom: 0;
+  /* Remove o espaço após a última subcoluna */
+}
+
+.Footer-bottom {
+  width: 90%;
+  /* ocupa toda a largura da .centroFooter */
+  display: flex;
+  /* utiliza flexbox para alinhamento */
+  justify-content: space-between;
+  /* alinha um item em cada lado e outro no centro */
+  padding: 30px 0;
+  /* adicionar algum padding vertical */
+  position: relative;
+  /* Ajuste se necessário */
+}
+
+.Footer-item {
+  color: white;
+}
+
+.Footer-left {
+  margin-top: 10px;
+  text-align: left;
+  /* alinha texto à esquerda */
+}
+
+.Footer-left h3 {
+  font-size: 15px;
+}
+
+.Footer-left p {
+  font-size: 10px;
+}
+
+.Footer-center img {
+  width: 80px;
+  height: 80px;
+  margin-left: 50px;
+}
+
+.Footer-right {
+  margin-top: 5px;
+  text-align: right;
+  /* alinha texto à direita */
+}
+
+.Footer-right h3 {
+  font-size: 15px;
+}
+
+.Footer-right p {
+  font-size: 10px;
+}
+
+.div-between {
+  width: 90%;
+  border-top: 1px solid white;
+  /* Adicionando a linha */
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

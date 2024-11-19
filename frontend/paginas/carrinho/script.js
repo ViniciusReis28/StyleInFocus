@@ -42,8 +42,6 @@ function removerItem(index) {
 // Inicializa o carrinho ao carregar a página
 window.onload = carregarCarrinho;
 
-
-
 function toggleDropdown(dropdownId) {
   const dropdown = document.getElementById(dropdownId);
   const arrow = dropdown.previousElementSibling.querySelector(".arrow");
@@ -56,34 +54,6 @@ function toggleDropdown(dropdownId) {
     arrow.classList.add("up");
   }
 }
-
-function toggleColor(color) {
-  const button = document.querySelector(`.color-button[style*="${color}"]`);
-  if (button.classList.contains("selected")) {
-    button.classList.remove("selected");
-  } else {
-    button.classList.add("selected");
-  }
-}
-window.addEventListener("scroll", function () {
-  const nav = document.querySelector("nav");
-  const logo = document.getElementById("logo");
-
-  if (window.scrollY > 50) {
-    // Ajuste o valor conforme necessário
-    nav.style.top = "0"; // Fixa o nav no topo quando rola para baixo
-    nav.classList.add("scrolled"); // Adiciona a classe quando rola para baixo
-    logo.src = "../../img/logopreta.png"; // Altera para a imagem preta
-  } else {
-    nav.style.top = "40px"; // Retorna ao deslocamento inicial
-    nav.classList.remove("scrolled"); // Remove a classe quando rola para cima
-    logo.src = "../../img/logob.png"; // Retorna à imagem branca
-  }
-});
-
-
-
-
 
 function carregarCarrinho() {
   const carrinhoItens = document.getElementById("carrinho-itens");
@@ -124,17 +94,21 @@ function carregarCarrinho() {
     itemDiv.classList.add("carrinho-item");
 
     itemDiv.innerHTML = `
-      <img src="${produto.img}" alt="${produto.nome}" />
-      <div>
-        <h3>${produto.nome}</h3>
-        <p>Tamanho: ${produto.tamanho}</p>
-        <p>Quantidade: <span class="carrinho-quantidade">${
+      <div class="produto">
+        <div class="produtoImg">
+          <img src="${produto.img}" alt="${produto.nome}"/ style="height: 170px; width: 160px; border-radius: 2px;">
+        </div>
+        <div class="produtoInfo">
+          <h2>${produto.nome}</h2>
+          <p>Tamanho: ${produto.tamanho}</p>
+          <p>Quantidade: <span class="carrinho-quantidade">${
           produto.quantidade
-        }</span></p>
-        <p>Preço: R$ ${precoTotal.toLocaleString("pt-BR", {
+          }</span></p>
+          <p>Preço: R$ ${precoTotal.toLocaleString("pt-BR", {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2,
-        })}</p>
+          })}</p>
+        </div>
       </div>
     `;
 
@@ -165,7 +139,6 @@ function irParaIdentificacao() {
   document.getElementById("section-identificacao").style.display = "block";
 }
 
-
 // Coletar informações e ir para Pagamento
 function irParaPagamento() {
   const rua = document.getElementById("rua").value;
@@ -189,12 +162,6 @@ function irParaPagamento() {
   document.getElementById("section-identificacao").style.display = "none";
   document.getElementById("section-pagamento").style.display = "block";
 }
-
-
-
-
-
-
 
 // Função para finalizar compra (simplesmente limpando o carrinho por enquanto)
 function finalizarCompra() {
