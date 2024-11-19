@@ -283,7 +283,6 @@ document.addEventListener('DOMContentLoaded', async () => {
           } else {
               console.warn('Token inválido ou expirado. Redirecionando para o login.');
               localStorage.removeItem('token'); // Remove token inválido
-              window.location.href = 'login.html'; // Redireciona para o login
           }
       } catch (error) {
           console.error('Erro ao verificar a sessão:', error);
