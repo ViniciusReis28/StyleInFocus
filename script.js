@@ -269,6 +269,7 @@ function showSuggestions() {
 
 document.addEventListener('DOMContentLoaded', () => {
   fetch('http://localhost:3000/auth/check-session')
+  
       .then(response => response.json())
       .then(data => {
           const loginLink = document.getElementById('login-link');
