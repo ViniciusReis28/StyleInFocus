@@ -267,7 +267,7 @@ function showSuggestions() {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  fetch('/auth/check-session')
+  fetch('https://styleinfocusbackend.onrender.com/auth/check-session')
       .then(response => response.json())
       .then(data => {
           const loginLink = document.getElementById('login-link');
