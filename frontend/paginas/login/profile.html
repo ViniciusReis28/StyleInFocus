@@ -193,15 +193,17 @@
       </div>
     
       <script>
-     const token = localStorage.getItem('token');
+     // Recupera o token armazenado no localStorage
+const token = localStorage.getItem('token');
 
 if (!token) {
-    window.location.href = 'login.html';
+    // Caso não tenha token, redireciona para a página de login
 } else {
+    // Verificar a sessão com o token
     fetch('https://styleinfocusbackend.onrender.com/auth/check-session', {
         method: 'GET',
         headers: {
-            'Authorization': `Bearer ${token}`
+            'Authorization': `Bearer ${token}`  // Envia o token como parte do cabeçalho
         }
     })
     .then(response => {
@@ -212,22 +214,22 @@ if (!token) {
     })
     .then(data => {
         if (data.authenticated) {
-            carregarPerfilUsuario();
+            carregarPerfilUsuario();  // Função para carregar os dados do usuário
         } else {
-            window.location.href = 'login.html';
         }
     })
     .catch(error => {
         console.error('Erro ao verificar a sessão:', error);
-        window.location.href = 'login.html';
     });
 }
 
+// Função para carregar o perfil do usuário
 function carregarPerfilUsuario() {
+    // Faz a requisição para carregar os dados do usuário
     fetch('https://styleinfocusbackend.onrender.com/api/user', {
         method: 'GET',
         headers: {
-            'Authorization': `Bearer ${token}`
+            'Authorization': `Bearer ${token}`  // Envia o token nas requisições de perfil
         }
     })
     .then(response => {
@@ -237,27 +239,35 @@ function carregarPerfilUsuario() {
         return response.json();
     })
     .then(data => {
-        const defaultImage = '/paginas/login/uploads/usuarioDefault.jpg';
+        const defaultImage = '/paginas/login/uploads/usuarioDefault.jpg'; // Caminho da imagem padrão
+
+        // Preenche os campos com os dados do usuário
         document.getElementById('username').value = data.username || "";
         document.getElementById('email').value = data.email || "";
+
         document.getElementById('nomeUsuarioDisplay').textContent = data.username || "Usuário";
         document.getElementById('emailUsuarioDisplay').textContent = data.email || "Email não disponível";
+
+        // Define a imagem do perfil ou a padrão se não houver
         const profileImage = data.profile_image ? `${data.profile_image}` : defaultImage;
         document.getElementById('fotoPerfilEmail').src = profileImage;
         document.getElementById('fotoPerfil').src = profileImage;
     })
     .catch(error => {
         console.error('Erro ao carregar os dados do usuário:', error);
+        alert("Erro ao carregar os dados do usuário.");
+        // Usa a imagem padrão em caso de erro
         document.getElementById('fotoPerfil').src = '/paginas/login/uploads/usuarioDefault.jpg';
     });
 }
 
+// Pré-visualização da imagem de perfil
 document.getElementById('inputFoto').addEventListener('change', function(event) {
     const file = event.target.files[0];
     if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
-            document.getElementById('fotoPerfil').src = e.target.result;
+            document.getElementById('fotoPerfil').src = e.target.result; // Atualiza a imagem da pré-visualização
         };
         reader.readAsDataURL(file);
     }
