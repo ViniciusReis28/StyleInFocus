@@ -226,7 +226,7 @@ if (!token) {
 // Função para carregar o perfil do usuário
 function carregarPerfilUsuario() {
     // Faz a requisição para carregar os dados do usuário
-    fetch('https://styleinfocusbackend.onrender.com/api/user', {
+    fetch('https://styleinfocusbackend.onrender.com/auth/api/user', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`  // Envia o token nas requisições de perfil
@@ -379,7 +379,7 @@ document.getElementById('inputFoto').addEventListener('change', function(event) 
     </a>
   </div>
 
-<script src="/paginas/login/script.js"></script>
+<script src="script.js"></script>
 </body>
 
 </html>
