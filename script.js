@@ -264,6 +264,39 @@ function showSuggestions() {
 }
 
 
+document.addEventListener('DOMContentLoaded', async () => {
+  const token = localStorage.getItem('token'); // Recupera o token do localStorage
+
+  if (token) {
+      try {
+          const response = await fetch('https://styleinfocusbackend.onrender.com/auth/check-session', {
+              method: 'GET',
+              headers: {
+                  'Authorization': `Bearer ${token}`,
+              },
+          });
+
+          if (response.ok) {
+              const data = await response.json();
+              console.log('Sessão autenticada:', data);
+              // Exibir informações do usuário na página (opcional)
+          } else {
+              console.warn('Token inválido ou expirado. Redirecionando para o login.');
+              localStorage.removeItem('token'); // Remove token inválido
+              window.location.href = 'login.html'; // Redireciona para o login
+          }
+      } catch (error) {
+          console.error('Erro ao verificar a sessão:', error);
+          window.location.href = 'login.html'; // Redireciona em caso de erro
+      }
+  } else {
+      console.log('Token não encontrado. Redirecionando para o login.');
+      window.location.href = 'login.html'; // Redireciona se não houver token
+  }
+});
+
+
+
 
 document.addEventListener('DOMContentLoaded', async () => {
   const loginLink = document.getElementById('login-link');
