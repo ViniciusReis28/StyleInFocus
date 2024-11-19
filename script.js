@@ -265,58 +265,66 @@ function showSuggestions() {
 
 
 
+document.addEventListener('DOMContentLoaded', async () => {
+  const loginLink = document.getElementById('login-link');
+  const registerLink = document.getElementById('register-link');
+  const profileImageElement = document.getElementById('profile-image');
+  const profileSvgElement = document.getElementById('profile-svg');
 
-document.addEventListener('DOMContentLoaded', () => {
-  fetch('https://styleinfocusbackend.onrender.com/auth/check-session')
-      .then(response => response.json())
-      .then(data => {
-          const loginLink = document.getElementById('login-link');
-          const registerLink = document.getElementById('register-link');
-          const profileImageElement = document.getElementById('profile-image');
-          const profileSvgElement = document.getElementById('profile-svg');
-          
-          if (loginLink && registerLink) {
-              if (data.authenticated) {
-                  // Quando o usuário está autenticado
-                  loginLink.textContent = data.user.username;  // Exibe o nome do usuário
-                  registerLink.textContent = 'MINHA CONTA';  // Muda o texto de "Cadastrar-se" para "MINHA CONTA"
-                  
-                  // Altera o link de "MINHA CONTA" para o perfil do usuário
-                  registerLink.href = '../login/profile.html';  // Link para o perfil do usuário
+  const token = localStorage.getItem('token'); // Obtém o token armazenado
 
-                  const profileImage = data.user.profileImage || '/paginas/login/uploads/usuarioDefault.jpg';
-                  
-                  if (profileImageElement && profileSvgElement) {
-                      if (data.user.profileImage) {
-                          profileImageElement.src = profileImage;
-                          profileImageElement.style.display = 'inline';
-                          profileSvgElement.style.display = 'none';
-                      } else {
-                          profileSvgElement.style.display = 'inline';
-                          profileImageElement.style.display = 'none';
-                      }
-                  }
-              } else {
-                  // Quando o usuário não está autenticado
-                  loginLink.textContent = 'ENTRE';
-                  registerLink.textContent = 'CADASTRE-SE';
-                  
-                  // Alterando os links de login e registro
-                  loginLink.href = '/login';  // Link para login
-                  registerLink.href = '/register';  // Link para registro
-              }
-          }
-      })
-      .catch(error => {
-          console.error('Erro ao verificar a sessão:', error);
-          const loginLink = document.getElementById('login-link');
-          const registerLink = document.getElementById('register-link');
-          if (loginLink && registerLink) {
-              loginLink.textContent = 'ENTRE';
-              registerLink.textContent = 'CADASTRE-SE';
-              // Caso de erro, volta os links para login e registro
-              loginLink.href = '../login/login.html';
-              registerLink.href = '../login/register.html';
+  if (!token) {
+      // Usuário não autenticado
+      loginLink.textContent = 'ENTRE';
+      registerLink.textContent = 'CADASTRE-SE';
+      loginLink.href = '../login/login.html';
+      registerLink.href = '../login/register.html';
+      return;
+  }
+
+  try {
+      // Faz a requisição para verificar a sessão
+      const response = await fetch('https://styleinfocusbackend.onrender.com/auth/check-session', {
+          method: 'GET',
+          headers: {
+              'Authorization': `Bearer ${token}` // Adiciona o token no cabeçalho
           }
       });
+
+      if (!response.ok) {
+          throw new Error('Token inválido ou sessão expirada');
+      }
+
+      const data = await response.json();
+
+      if (data.authenticated) {
+          // Usuário autenticado
+          loginLink.textContent = data.user.username;  // Exibe o nome do usuário
+          registerLink.textContent = 'MINHA CONTA';  // Altera o texto de "Cadastrar-se" para "MINHA CONTA"
+          registerLink.href = '../login/profile.html';  // Link para o perfil do usuário
+
+          const profileImage = data.user.profileImage || '/paginas/login/uploads/usuarioDefault.jpg';
+
+          if (profileImageElement && profileSvgElement) {
+              if (data.user.profileImage) {
+                  profileImageElement.src = profileImage;
+                  profileImageElement.style.display = 'inline';
+                  profileSvgElement.style.display = 'none';
+              } else {
+                  profileSvgElement.style.display = 'inline';
+                  profileImageElement.style.display = 'none';
+              }
+          }
+      } else {
+          throw new Error('Usuário não autenticado');
+      }
+  } catch (error) {
+      console.error('Erro ao verificar a sessão:', error);
+
+      // Usuário não autenticado ou erro na verificação
+      loginLink.textContent = 'ENTRE';
+      registerLink.textContent = 'CADASTRE-SE';
+      loginLink.href = '../login/login.html';
+      registerLink.href = '../login/register.html';
+  }
 });

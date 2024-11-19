@@ -81,6 +81,13 @@
 </div>
 </div>
 <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    // Remover token ao carregar a página de login
+    localStorage.removeItem('token');
+
+    console.log('Token removido ao entrar na página de login.');
+});
+
  document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('login-form');
     const messageElement = document.getElementById('message');
