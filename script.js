@@ -293,68 +293,69 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 
-
-
 document.addEventListener('DOMContentLoaded', async () => {
-  const loginLink = document.getElementById('login-link');
-  const registerLink = document.getElementById('register-link');
-  const profileImageElement = document.getElementById('profile-image');
-  const profileSvgElement = document.getElementById('profile-svg');
+  const token = localStorage.getItem('token'); // Recupera o token armazenado
 
-  const token = localStorage.getItem('token'); // Obtém o token armazenado
+  const loginLink = document.getElementById('login-link'); // Link "Entrar"
+  const registerLink = document.getElementById('register-link'); // Link "Cadastrar-se"
+  const profileImageElement = document.getElementById('profile-image'); // Imagem de perfil
+  const profileSvgElement = document.getElementById('profile-svg'); // Ícone padrão de perfil
 
-  if (!token) {
-      // Usuário não autenticado
-      loginLink.textContent = 'ENTRE';
-      registerLink.textContent = 'CADASTRE-SE';
-      loginLink.href = '../login/login.html';
-      registerLink.href = '../login/register.html';
-      return;
-  }
-
-  try {
-      // Faz a requisição para verificar a sessão
-      const response = await fetch('https://styleinfocusbackend.onrender.com/auth/check-session', {
-          method: 'GET',
-          headers: {
-              'Authorization': `Bearer ${token}` // Adiciona o token no cabeçalho
-          }
-      });
-
-      if (!response.ok) {
-          throw new Error('Token inválido ou sessão expirada');
+  // Função para exibir o modo não autenticado
+  const mostrarModoNaoAutenticado = () => {
+      if (loginLink && registerLink) {
+          loginLink.textContent = 'ENTRAR';
+          loginLink.href = '/login.html';
+          registerLink.textContent = 'CADASTRAR-SE';
+          registerLink.href = '/register.html';
       }
+      if (profileImageElement && profileSvgElement) {
+          profileSvgElement.style.display = 'inline';
+          profileImageElement.style.display = 'none';
+      }
+  };
 
-      const data = await response.json();
+  if (token) {
+      try {
+          const response = await fetch('https://styleinfocusbackend.onrender.com/auth/check-session', {
+              method: 'GET',
+              headers: {
+                  'Authorization': `Bearer ${token}`,
+              },
+          });
 
-      if (data.authenticated) {
-          // Usuário autenticado
-          loginLink.textContent = data.user.username;  // Exibe o nome do usuário
-          registerLink.textContent = 'MINHA CONTA';  // Altera o texto de "Cadastrar-se" para "MINHA CONTA"
-          registerLink.href = '../login/profile.html';  // Link para o perfil do usuário
+          if (response.ok) {
+              const data = await response.json();
+              console.log('Sessão autenticada:', data);
 
-          const profileImage = data.user.profileImage || '/paginas/login/uploads/usuarioDefault.jpg';
-
-          if (profileImageElement && profileSvgElement) {
-              if (data.user.profileImage) {
-                  profileImageElement.src = profileImage;
-                  profileImageElement.style.display = 'inline';
-                  profileSvgElement.style.display = 'none';
-              } else {
-                  profileSvgElement.style.display = 'inline';
-                  profileImageElement.style.display = 'none';
+              if (loginLink && registerLink) {
+                  loginLink.textContent = data.user.username || 'Usuário';
+                  loginLink.href = '#';
+                  registerLink.textContent = 'MINHA CONTA';
+                  registerLink.href = '/profile.html';
               }
+              if (profileImageElement && profileSvgElement) {
+                  if (data.user.profileImage) {
+                      profileImageElement.src = data.user.profileImage;
+                      profileImageElement.style.display = 'inline';
+                      profileSvgElement.style.display = 'none';
+                  } else {
+                      profileSvgElement.style.display = 'inline';
+                      profileImageElement.style.display = 'none';
+                  }
+              }
+          } else {
+              console.warn('Token inválido ou expirado. Redirecionando para o login.');
+              localStorage.removeItem('token'); // Remove o token inválido
+              mostrarModoNaoAutenticado(); // Mostra o conteúdo padrão
           }
-      } else {
-          throw new Error('Usuário não autenticado');
+      } catch (error) {
+          console.error('Erro ao verificar a sessão:', error);
+          mostrarModoNaoAutenticado(); // Mostra o conteúdo padrão
       }
-  } catch (error) {
-      console.error('Erro ao verificar a sessão:', error);
-
-      // Usuário não autenticado ou erro na verificação
-      loginLink.textContent = 'ENTRE';
-      registerLink.textContent = 'CADASTRE-SE';
-      loginLink.href = '../login/login.html';
-      registerLink.href = '../login/register.html';
+  } else {
+      console.log('Token não encontrado.');
+      mostrarModoNaoAutenticado(); // Mostra o conteúdo padrão
   }
 });
+
