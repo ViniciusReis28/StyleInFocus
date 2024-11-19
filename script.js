@@ -287,11 +287,9 @@ document.addEventListener('DOMContentLoaded', async () => {
           }
       } catch (error) {
           console.error('Erro ao verificar a sessão:', error);
-          window.location.href = 'login.html'; // Redireciona em caso de erro
       }
   } else {
       console.log('Token não encontrado. Redirecionando para o login.');
-      window.location.href = 'login.html'; // Redireciona se não houver token
   }
 });
 
