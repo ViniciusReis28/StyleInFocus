@@ -57,6 +57,7 @@ function toggleDropdown(dropdownId) {
 
 function carregarCarrinho() {
   const carrinhoItens = document.getElementById("carrinho-itens");
+  const mensagemVazio = document.getElementById("mensagem-vazio");
   const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
 
   // Para armazenar os produtos únicos e somar quantidades quando necessário
@@ -80,46 +81,87 @@ function carregarCarrinho() {
 
   let totalFinal = 0;
 
-  // Exibindo os produtos agrupados
-  for (const key in produtosAgrupados) {
-    const produto = produtosAgrupados[key];
+  if (Object.keys(produtosAgrupados).length === 0) {
+    // Se não há produtos, mostra a mensagem de carrinho vazio
+    mensagemVazio.style.display = "block";
+  } else {
+    // Caso contrário, esconde a mensagem de carrinho vazio
+    mensagemVazio.style.display = "none";
 
-    produto.preco = parseFloat(produto.preco) || 0;
+    // Exibindo os produtos agrupados
+    for (const key in produtosAgrupados) {
+      const produto = produtosAgrupados[key];
 
-    precoTotal = produto.preco * produto.quantidade;
+      produto.preco = parseFloat(produto.preco) || 0;
 
-    totalFinal += precoTotal;
+      const precoTotal = produto.preco * produto.quantidade;
 
-    const itemDiv = document.createElement("div");
-    itemDiv.classList.add("carrinho-item");
+      totalFinal += precoTotal;
 
-    itemDiv.innerHTML = `
-      <div class="produto">
-        <div class="produtoImg">
-          <img src="${produto.img}" alt="${produto.nome}"/ style="height: 170px; width: 160px; border-radius: 2px;">
+      const itemDiv = document.createElement("div");
+      itemDiv.classList.add("carrinho-item");
+
+      itemDiv.innerHTML = `
+        <div class="produto">
+          <div class="produtoImg">
+            <img src="${produto.img}" alt="${
+        produto.nome
+      }" style="height: 170px; width: 160px; border-radius: 2px;">
+          </div>
+          <div class="produtoInfo">
+            <h2>${produto.nome}</h2>
+            <p>Tamanho: ${produto.tamanho}</p>
+            <p>Quantidade: <span class="carrinho-quantidade">${
+              produto.quantidade
+            }</span></p>
+            <p>Preço: R$ ${precoTotal.toLocaleString("pt-BR", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}</p>
+          </div>
+          <div class="btn-produto">
+            <button class="remover-produto" data-id="${key}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+              </svg>
+            </button>
+          </div>
         </div>
-        <div class="produtoInfo">
-          <h2>${produto.nome}</h2>
-          <p>Tamanho: ${produto.tamanho}</p>
-          <p>Quantidade: <span class="carrinho-quantidade">${
-          produto.quantidade
-          }</span></p>
-          <p>Preço: R$ ${precoTotal.toLocaleString("pt-BR", {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-          })}</p>
-        </div>
-      </div>
-    `;
+      `;
 
-    carrinhoItens.appendChild(itemDiv);
+      carrinhoItens.appendChild(itemDiv);
+    }
   }
+
   const finalPriceElement = document.getElementById("final-price");
   finalPriceElement.textContent = `R$ ${totalFinal.toLocaleString("pt-BR", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   })}`;
+
+  // Adiciona evento para remover produtos
+  const botoesRemover = document.querySelectorAll(".remover-produto");
+  botoesRemover.forEach((botao) => {
+    botao.addEventListener("click", () => {
+      const key = botao.getAttribute("data-id");
+
+      // Remover do carrinho no localStorage
+      const novoCarrinho = carrinho.filter((produto) => {
+        const produtoKey = `${produto.id}-${produto.tamanho}`;
+        return produtoKey !== key;
+      });
+
+      localStorage.setItem("carrinho", JSON.stringify(novoCarrinho));
+
+      // Recarregar o carrinho
+      carregarCarrinho();
+    });
+  });
 }
+
+// Carrega o carrinho ao iniciar a página
+document.addEventListener("DOMContentLoaded", carregarCarrinho);
+
 
 // Verificar se há itens no carrinho e ir para Identificação
 function irParaIdentificacao() {

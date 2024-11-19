@@ -63,7 +63,6 @@
         <span>Pagamento</span>
       </div>
     </div>
-
     <div id="notification" class="notification"></div>
     <div class="container">
       <div class="left-section">
@@ -75,10 +74,15 @@
           />
         </a>
       </div>
+      
       <!-- Etapa 1: Carrinho de Compras -->
       <div id="section-carrinho" class="teste">
         <h1>Carrinho de Compras</h1>
-        <div id="carrinho-itens"></div>
+        <div id="carrinho-itens">
+        </div>
+        <div id="mensagem-vazio" style="display: none; text-align: center; font-size: 30px; color: gray; ">
+          Seu Carrinho Está Vazio
+        </div>
         <div id="cart-summary" class="cart-summary">
           <div>
             <span>Total Final:</span>
@@ -105,6 +109,7 @@
         <p>Informações de pagamento aqui...</p>
         <button onclick="finalizarCompra()">Finalizar Pagamento</button>
       </div>
+      
     </div>
 
     <div class="footer">

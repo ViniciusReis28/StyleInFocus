@@ -29,13 +29,13 @@ body {
 .container {
   display: flex;
   flex-direction: column;
-  width: 70%;
-  height: 680px;
+  width: 60%;
+  height: 700px;
   margin: 0 auto;
   background-color: #fff;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.041);
-  margin-top: 50px;
+  margin-top: 25px;
   margin-bottom: 70px;
   border-radius: 9px;
 }
@@ -342,7 +342,7 @@ a {
   justify-content: space-between;
   width: 60%;
   max-width: 850px; /* Largura máxima da barra de progresso */
-  margin: 20px auto;
+  margin: 10px auto;
   padding: 0 20px;
 }
 
@@ -394,20 +394,38 @@ a {
   padding-bottom: 10px;
 }
 
+.teste span {
+  font-size: 30px;
+}
+
 .teste button {
+  background-color: #000;
+  color: white;
   height: 40px;
   width: 180px;
-  border-radius: 4px;
+  border-radius: 8px;
   border: none;
-  transition: width 0.3s ease;
   cursor: pointer;
   font-size: 16px;
 }
 
-.teste button:hover {
-  background-color: #000;
-  color: white;
+.btn-produto {
+  display: flex;
+  justify-content: flex-end; /* Alinha o botão à direita */
 }
+
+.btn-produto button {
+  background-color: #00000000;
+  color: #000;
+  height: 60px;
+  width: 60px;
+  border-radius: 100%;
+}
+
+.btn-produto button:hover {
+  color: rgb(163, 27, 27);
+}
+
 
 
 #carrinho-itens {
@@ -415,6 +433,7 @@ a {
   overflow-y: auto; /* Adiciona o scroll vertical se necessário */
   max-height: 400px; /* Limite de altura para o scroll */
   padding-right: 10px;
+  margin-bottom: 20px;
 }
 
 
@@ -425,6 +444,8 @@ a {
   gap: 15px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between; /* Espaça os elementos para as extremidades */
+  align-items: center; /* Alinha verticalmente no centro */
 }
 
 .produtoInfo {
@@ -432,6 +453,7 @@ a {
   flex-direction: column;
   gap: 8px;
   height: 180px;
+  flex-grow: 1; /* Faz com que ocupe o espaço disponível */
 }
 
 .produtoInfo p {
