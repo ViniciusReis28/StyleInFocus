@@ -223,9 +223,9 @@ if (!token) {
     });
 }
 
-// Função para carregar o perfil do usuário
+/// Função para carregar o perfil do usuário
 function carregarPerfilUsuario() {
-    // Verifique se o token está disponível
+    const token = localStorage.getItem('token'); // Busque o token salvo no armazenamento local
     if (!token) {
         console.error("Token de autenticação não encontrado.");
         alert("Por favor, faça login novamente.");
@@ -246,26 +246,26 @@ function carregarPerfilUsuario() {
             return response.json();
         })
         .then(data => {
+            console.log("Dados do usuário carregados:", data); // Log para depuração
+
             const defaultImage = 'frontend/paginas/login/uploads/usuarioDefault.jpg';
 
             // Atualiza os campos com os dados recebidos
-            document.getElementById('username').value = data.username || "";
-            document.getElementById('email').value = data.email || "";
+            const user = data.user; // A API retorna os dados do usuário dentro de "user"
 
-            document.getElementById('nomeUsuarioDisplay').textContent = data.username || "Usuário";
-            document.getElementById('emailUsuarioDisplay').textContent = data.email || "Email não disponível";
+            document.getElementById('username').value = user.username || "";
+            document.getElementById('nomeUsuarioDisplay').textContent = user.username || "Usuário";
 
-            // Define a imagem de perfil (usa a padrão se não houver)
-            const profileImage = data.profile_image || defaultImage;
-            document.getElementById('fotoPerfilEmail').src = profileImage;
-            document.getElementById('fotoPerfil').src = profileImage;
+            // Não há email ou profile_image na resposta; usamos placeholders
+            document.getElementById('email').value = "Email não fornecido";
+            document.getElementById('emailUsuarioDisplay').textContent = "Email não disponível";
+
+            document.getElementById('fotoPerfilEmail').src = defaultImage;
+            document.getElementById('fotoPerfil').src = defaultImage;
         })
         .catch(error => {
             console.error('Erro ao carregar os dados do usuário:', error);
             alert("Erro ao carregar os dados do usuário.");
-            
-            // Usa a imagem padrão em caso de erro
-            document.getElementById('fotoPerfil').src = 'frontend/paginas/login/uploads/usuarioDefault.jpg';
         });
 }
 
