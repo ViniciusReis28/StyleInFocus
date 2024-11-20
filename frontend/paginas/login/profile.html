@@ -34,7 +34,7 @@
     
       <nav>
         <div class="left-section">
-          <a href="../index/index.html">
+          <a href="index.html">
           <img src="../../img/logopreta.png" id="logo" style="height: 90px; width: 90px; margin: 5px; margin-top: 20px;">
           </a>
         </div>
@@ -145,7 +145,7 @@
         <form id="editarPerfil" enctype="multipart/form-data">
           
                 <div class="foto-container">
-                  <img id="fotoPerfil" src="http://localhost:3000/uploads/usuarioDefault.jpg" class="imagem-hover" alt="Foto de perfil">
+                  <img id="fotoPerfil" src="https://styleinfocusbackend.onrender.com/uploads/usuarioDefault.jpg" class="imagem-hover" alt="Foto de perfil">
                   <input type="file" id="inputFoto" name="profile_image" accept="image/*" style="display: none;">
                   <div class="trocar-foto" onclick="document.getElementById('inputFoto').click();">Trocar Foto</div>
               </div>
@@ -202,7 +202,7 @@ if (!token) {
     // Caso não tenha token, redireciona para a página de login
 } else {
     // Verificar a sessão com o token
-    fetch('http://localhost:3000/auth/check-session', {
+    fetch('https://styleinfocusbackend.onrender.com/auth/check-session', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`  // Envia o token como parte do cabeçalho
@@ -235,7 +235,7 @@ function carregarPerfilUsuario() {
     }
 
     // Faz a requisição para carregar os dados do usuário
-    fetch('http://localhost:3000/auth/api/user', {
+    fetch('https://styleinfocusbackend.onrender.com/auth/api/user', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}` // Inclui o token no cabeçalho
@@ -248,7 +248,7 @@ function carregarPerfilUsuario() {
             return response.json();
         })
         .then(data => {
-            const defaultImage = 'http://localhost:3000/uploads/usuarioDefault.jpg';
+            const defaultImage = 'https://styleinfocusbackend.onrender.com/uploads/usuarioDefault.jpg';
 
             // Atualiza os campos com os dados recebidos
             document.getElementById('username').value = data.username || "";
@@ -260,14 +260,14 @@ function carregarPerfilUsuario() {
             // Define a imagem de perfil (usa a padrão se não houver)
             const profileImage = data.profile_image || defaultImage;
             document.getElementById('fotoPerfilEmail').src = `http://localhost:3000/${profileImage}`;
-            document.getElementById('fotoPerfil').src = `http://localhost:3000/${profileImage}`;
+            document.getElementById('fotoPerfil').src = `https://styleinfocusbackend.onrender.com/${profileImage}`;
         })
         .catch(error => {
             console.error('Erro ao carregar os dados do usuário:', error);
             alert("Erro ao carregar os dados do usuário.");
             
             // Usa a imagem padrão em caso de erro
-            document.getElementById('fotoPerfil').src = 'http://localhost:3000/uploads/usuarioDefault.jpg';
+            document.getElementById('fotoPerfil').src = 'https://styleinfocusbackend.onrender.com/uploads/usuarioDefault.jpg';
         });
 }
 
@@ -284,7 +284,7 @@ document.getElementById('editarPerfil').addEventListener('submit', async (event)
     const formData = new FormData(form); // Captura os dados do formulário
 
     try {
-        const response = await fetch('http://localhost:3000/auth/update', {
+        const response = await fetch('https://styleinfocusbackend.onrender.com/auth/update', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`, // Corrigido aqui com crases
