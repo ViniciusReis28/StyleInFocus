@@ -225,40 +225,48 @@ if (!token) {
 
 // Função para carregar o perfil do usuário
 function carregarPerfilUsuario() {
+    // Verifique se o token está disponível
+    if (!token) {
+        console.error("Token de autenticação não encontrado.");
+        alert("Por favor, faça login novamente.");
+        return;
+    }
+
     // Faz a requisição para carregar os dados do usuário
     fetch('https://styleinfocusbackend.onrender.com/auth/api/user', {
         method: 'GET',
         headers: {
-            'Authorization': `Bearer ${token}`  // Envia o token nas requisições de perfil
+            'Authorization': `Bearer ${token}` // Inclui o token no cabeçalho
         }
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Erro ao carregar os dados do usuário');
-        }
-        return response.json();
-    })
-    .then(data => {
-        const defaultImage = '/paginas/login/uploads/usuarioDefault.jpg'; // Caminho da imagem padrão
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro ao carregar os dados do usuário');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const defaultImage = 'frontend/paginas/login/uploads/usuarioDefault.jpg';
 
-        // Preenche os campos com os dados do usuário
-        document.getElementById('username').value = data.username || "";
-        document.getElementById('email').value = data.email || "";
+            // Atualiza os campos com os dados recebidos
+            document.getElementById('username').value = data.username || "";
+            document.getElementById('email').value = data.email || "";
 
-        document.getElementById('nomeUsuarioDisplay').textContent = data.username || "Usuário";
-        document.getElementById('emailUsuarioDisplay').textContent = data.email || "Email não disponível";
+            document.getElementById('nomeUsuarioDisplay').textContent = data.username || "Usuário";
+            document.getElementById('emailUsuarioDisplay').textContent = data.email || "Email não disponível";
 
-        // Define a imagem do perfil ou a padrão se não houver
-        const profileImage = data.profile_image ? `${data.profile_image}` : defaultImage;
-        document.getElementById('fotoPerfilEmail').src = profileImage;
-        document.getElementById('fotoPerfil').src = profileImage;
-    })
-    .catch(error => {
-        console.error('Erro ao carregar os dados do usuário:', error);
-        alert("Erro ao carregar os dados do usuário.");
-        // Usa a imagem padrão em caso de erro
-        document.getElementById('fotoPerfil').src = '/paginas/login/uploads/usuarioDefault.jpg';
-    });
+            // Define a imagem de perfil (usa a padrão se não houver)
+            const profileImage = data.profile_image || defaultImage;
+            document.getElementById('fotoPerfilEmail').src = profileImage;
+            document.getElementById('fotoPerfil').src = profileImage;
+        })
+        .catch(error => {
+            console.error('Erro ao carregar os dados do usuário:', error);
+            alert("Erro ao carregar os dados do usuário.");
+            
+            // Usa a imagem padrão em caso de erro
+            document.getElementById('fotoPerfil').src = 'frontend/paginas/login/uploads/usuarioDefault.jpg';
+        });
 }
 
 // Pré-visualização da imagem de perfil
