@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Freeman&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-
 
 
 /* Reset básico */
@@ -175,7 +173,7 @@ section.slider{
 /*------------------------------------------------------------------SLIDE DA TELA INDEX DO PRODUTOS DESTAQUES ------------------------------------------------------------*/
 .h1-destaques {
   text-align: center;
-  font-family: "Freeman", sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   font-size: 50px;
 }
 
@@ -304,7 +302,6 @@ section.slider{
 
 
 
-
 /*--------------------------------------------------------SLIDE DO INDEX TEXT---------------------------------------------------*/
 
 /* Sobreposição preta para o efeito de escurecimento */
@@ -391,6 +388,8 @@ section.slider{
 
 
 
+
+
 /*ICONE WATS*/
 .whats {
   position: fixed;
@@ -399,257 +398,176 @@ section.slider{
   z-index: 9999px;
 }
 
-     /* BARRA DE NAVEGAÇÃO DO SITE */
-     nav {
-      height: 100px;
-      font-family: "Bebas Neue", sans-serif;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 20px;
-      position: fixed; /* Torna a navbar fixa */
-      top: 40px; /* Deslocamento inicial */
-      left: 0; /* Alinha a navbar na esquerda da página */
-      width: 100%; /* Faz a navbar ocupar toda a largura da página */
-      z-index: 1000; /* Garante que a navbar fique acima de outros elementos */
-      background-color: rgb(255, 255, 255); /* Cor de fundo opaca */
-      transition: top 0.3s; /* Transição suave para a mudança de posição */
-      transition: background-color 0.3s, color 0.3s;
-      box-shadow: 2px 2px 5px rgba(2, 2, 2, 0.281);
-      
-    }
-    
-    nav.scrolled .center-section a::after,
-    nav.scrolled .right-section a::after {
-      background-color: rgb(0, 0, 0); /* Muda a cor da borda inferior para preto */
-    }
-    
-    nav.scrolled {
-      top: 0; /* Fixa o nav no topo quando rola para baixo */
-      background-color: white !important; /* Cor de fundo após rolar */
-      color: black !important; /* Cor do texto após rolar */
-    }
-    nav.scrolled a {
-      font-size: 25px;
-      color: black !important; /* Cor dos links após rolar */
-    }
-    
-    nav.scrolled .dropdown-menu a {
-      font-size: 18px; /* Ajuste o tamanho da fonte quando rolado */
-      color: gray; /* Ajuste a cor do texto quando rolado */
-    }
-    
-                                                                            /*HOVERS NAV*/
-    nav:hover {
-      background-color: #ffffff;
-    }
-    nav:hover a {
-      color: #000000;
-    }
-    
-    
-    
-    nav:hover .center-section .dropdown > a::after,
-    nav:hover .right-section a::after {
-      background-color: rgb(0, 0, 0); /* Muda a cor da borda inferior para preto */
-      
-    }
-    
-    nav:hover #logo {
-      content: url('../../../img/logopreta.png'); /* Substitui a imagem quando o mouse passa no <nav> */
-      transition: all 0.3s ease; /* Transição suave */
-    }
-    
-    
-    a {
-      text-decoration: none;
-      color: rgb(0, 0, 0);
-      font-size: 25px;
-      padding: 10px 15px;
-      border-radius: 5px;
-      transition: background-color 0.3s, color 0.3s;
-      position: relative;
-    }
-    
-    
-    .right-section a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -21px;
-      /* Ajuste essa distância para alterar o espaço abaixo do texto */
-      width: 0;
-      height: 3px;
-      background-color: rgb(0, 0, 0);
-      transition: width 0.3s ease;
-    }
-    
-    .center-section .dropdown>a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -4px;
-      /* Ajuste essa distância para alterar o espaço abaixo do texto */
-      width: 0;
-      height: 3px;
-      background-color: rgb(0, 0, 0);
-      transition: width 0.3s ease;
-    }
-    
-    
-    .center-section a:hover::after,
-    .right-section a:hover::after {
-      width: 100%;
-    }
-    
-    .center-section a,
-    .right-section a {
-      padding: 10px 15px;
-      border-radius: 5px;
-    }
-    
-    
-    .left-section,
-    .center-section,
-    .right-section {
-      display: flex;
-      align-items: center;
-    }
-    
-    .center-section ul {
-      display: flex;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    
-    .center-section li {
-      margin: 0 15px; /* Espaçamento horizontal entre os itens */
-      position: relative; /* Para os dropdowns */
-    
-    }
-    
-    
-    .center-section a {
-      display: flex; /* Isso permite que o link ocupe toda a área do item da lista */
-      align-items: center; /* Centraliza o texto verticalmente */
-      padding: 30px 15px; /* Ampla área de clique */
-      
-    }
-    
-    .right-section a {
-      margin-left: 10px;
-    }
-    
-    .group {
-      display: flex;
-      line-height: 28px;
-      align-items: center;
-      position: relative;
-      margin-right: -18px;
-    }
-    
-    .input {
-      font-family: "Montserrat", sans-serif;
-      width: 80%;
-      height: 35px;
-      padding-left: 2.5rem;
-      box-shadow: 0 0 0 1.5px #313131, 0 0 25px -17px #000;
-      border: 0;
-      border-radius: 12px;
-      background-color: #000000;
-      outline: none;
-      color: #ffffff;
-      transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-      cursor: text;
-      z-index: 0;
-    }
-    
-    .input::placeholder {
-      color: #bdbecb;
-    }
-    
-    .input:hover {
-      box-shadow: 0 0 0 2.5px #2f303d, 0px 0px 25px -15px #000;
-    }
-    
-    .input:active {
-      transform: scale(0.95);
-    }
-    
-    .input:focus {
-      box-shadow: 0 0 0 2.5px #2f303d;
-    }
-    
-    .search-icon {
-      position: absolute;
-      left: 1rem;
-      fill: #bdbecb;
-      width: 1rem;
-      height: 1rem;
-      pointer-events: none;
-      z-index: 1;
-    }
-    
-    .search-bar-container {
-      position: absolute;
-      top: 50%;
-      left: 87%;
-      transform: translate(-50%, -50%);
-    }
-    
-    
-    /* Estilo para os itens do dropdown */
-    .dropdown {
-      position: relative;
-    }
-    
-    .dropdown-menu {
-      display: none;
-      /* Inicialmente oculto */
-      position: absolute;
-      /* Posiciona o menu dropdown em relação ao item */
-      width: 100%;
-      /* Define a largura como 100% da largura do item dropdown */
-      left: 0;
-      /* Alinha o menu dropdown com a borda esquerda do item dropdown */
-      top: 97px;
-      /* Ajusta a posição abaixo do nav */
-      background-color: #ffffff;
-      /* Fundo do menu dropdown */
-      z-index: 1000;
-      /* Garante que o menu fique acima de outros elementos */
-      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
-      /* Adiciona sombra para um efeito de destaque */
-    }
-    
-    /* Links dentro do dropdown */
-    .dropdown-menu a {
-      padding: 10px 15px;
-      font-size: 18px;
-      color: black;
-      display: block;
-      width: 100%;
-      text-decoration: none;
-      transition: background-color 0.3s ease, color 0.3s ease; /* Suave transição */
-    }
-    
-    /* Efeito hover ao passar o mouse sobre os links do dropdown */
-    .dropdown-menu a:hover {
-      background-color: rgba(0, 0, 0, 0.1); /* Cor de fundo ao passar o mouse */
-      color: #7a7a7a; /* Cor do texto ao passar o mouse */
-    }
-    
-    
-    .dropdown:hover .dropdown-menu {
-      display: block; /* Exibe o dropdown ao passar o mouse */
-    }
-    
-    .dropdown-items {
-      display: flex;
-      flex-direction: column;
-      /* Mantém os itens do dropdown empilhados */
-    }
+/*BARRA DE NAVEGAÇAO DO SITE */
+nav {
+  height: 120px;
+  font-family: "Freeman", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  position: relative;
+  box-shadow: 0 2px 0px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-size: 22px;
+  padding: 10px 15px;
+  /* Adiciona padding para aumentar a área de clique */
+  border-radius: 5px;
+  /* Adiciona cantos arredondados */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.center-section a,
+.right-section a {
+  padding: 10px 15px;
+  /* Adiciona padding para aumentar a área de clique */
+  border-radius: 5px;
+  /* Adiciona cantos arredondados */
+}
+
+.center-section a:hover,
+.right-section a:hover {
+  color: white;
+  /* Cor do texto ao passar o mouse */
+  background-color: #000;
+  /* Cor de fundo ao passar o mouse */
+}
+
+.left-section,
+.center-section,
+.right-section {
+  display: flex;
+  align-items: center;
+}
+
+.center-section ul {
+  display: flex;
+  list-style: none;
+  /* Remove os pontos */
+  padding: 0;
+  margin: 0;
+}
+
+.center-section li {
+  margin: 0 25px;
+  /* Espaçamento entre os itens */
+}
+
+.right-section a {
+  margin-left: 10px;
+  /* Espaçamento entre os ícones na direita */
+}
+
+.group {
+  display: flex;
+  line-height: 28px;
+  align-items: center;
+  position: relative;
+  margin-right: -18px;
+}
+
+.input {
+  font-family: "Montserrat", sans-serif;
+  width: 80%;
+  height: 35px;
+  padding-left: 2.5rem;
+  box-shadow: 0 0 0 1.5px #313131, 0 0 25px -17px #000;
+  border: 0;
+  border-radius: 12px;
+  background-color: #000000;
+  outline: none;
+  color: #ffffff;
+  transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  cursor: text;
+  z-index: 0;
+}
+
+.input::placeholder {
+  color: #bdbecb;
+}
+
+.input:hover {
+  box-shadow: 0 0 0 2.5px #2f303d, 0px 0px 25px -15px #000;
+}
+
+.input:active {
+  transform: scale(0.95);
+}
+
+.input:focus {
+  box-shadow: 0 0 0 2.5px #2f303d;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  fill: #bdbecb;
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.search-bar-container {
+  position: absolute;
+  /* Allows positioning it anywhere inside the nav */
+  top: 50%;
+  /* Adjust as necessary */
+  left: 87%;
+  /* Adjust as necessary */
+  transform: translate(-50%, -50%);
+  /* Centering */
+}
+
+/*Drop down Produtos*/
+
+.dropdown {
+  position: relative;
+  /* Essencial para o posicionamento absoluto do submenu */
+}
+
+.dropdown-menu {
+  position: absolute;
+  left: 40px;
+  top: 100%;
+  /* Posiciona abaixo do elemento pai */
+  transform: translateX(-35%);
+  background-color: rgb(245, 245, 245);
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  display: none;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  margin-top: 12px;
+}
+
+.dropdown-menu a {
+
+  padding: 5px 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.dropdown-items {
+  display: flex;
+  /* Configura os links para ficarem lado a lado */
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+  /* Exibe o menu ao passar o mouse */
+}
+
+.dropdown-menu a:hover {
+  background-color: #000000;
+  color: white;
+}
 
 
 
@@ -676,6 +594,18 @@ section.slider{
   margin: auto;
 }
 
+
+
+.Spotify {
+  border-radius: 12px;
+  width: 16%;
+  height: 80px;
+  position: fixed;
+  z-index: 5000;
+  left: 141px;
+  top: 52px; /* Defina um valor inicial para top */
+  transition: top 0.3s ease; /* Adiciona uma transição suave */
+}
 
 
 
@@ -1807,6 +1737,8 @@ section.slider{
   background-color: #ffffff;
  }
  .header2 {
+  position: relative;
+  top: 100px;
   background-color: #ffffff;
 
  }
@@ -1835,4 +1767,188 @@ section.slider{
  }
 
 
+/* /////////////////Termos de serviço */
 
+.termos-servico-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Título */
+.titulo_2 {
+  font-size: 2.5em;
+  color: #007bff;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* Parágrafo introdutório */
+.intro {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 20px;
+  text-align: justify;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+/* Lista de termos */
+.termos-lista {
+  list-style-type: none;
+}
+
+.termos-lista li {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  text-align: justify;
+  padding: 15px;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.termo-icone {
+  font-size: 1.4em;
+  margin-right: 10px;
+  color: #007bff;
+}
+
+/* Estilo do termo em negrito */
+.termos-lista li strong {
+  color: #007bff;
+  font-weight: bold;
+}
+
+/* /////////////////////Fundo */
+
+
+/* Contêiner de estrelas */
+#stars-container {
+  position: fixed; /* Fica fixo na tela */
+  height: 100vh;
+  width: 100vw;
+  background: radial-gradient(ellipse at bottom, #2d2f3a 0%, #000000 100%);
+  overflow: hidden;
+  z-index: -1; /* Coloca o fundo atrás do conteúdo */
+
+}
+
+/* Estrelas pequenas */
+#stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  background: transparent;
+  box-shadow: 
+    100px 500px 0 #FFF, 200px 1500px 0 #FFF, 300px 100px 0 #FFF, 
+    400px 1200px 0 #FFF, 500px 800px 0 #FFF, 600px 400px 0 #FFF,
+    700px 900px 0 #FFF, 800px 700px 0 #FFF, 900px 200px 0 #FFF,
+    1000px 1600px 0 #FFF, 1100px 1300px 0 #FFF, 1200px 1400px 0 #FFF,
+    1300px 1100px 0 #FFF, 1400px 900px 0 #FFF, 1500px 1000px 0 #FFF,
+    1600px 700px 0 #FFF, 1700px 500px 0 #FFF, 1800px 400px 0 #FFF,
+    1900px 300px 0 #FFF, 2000px 200px 0 #FFF, 2100px 100px 0 #FFF,
+    2200px 1500px 0 #FFF, 2300px 1800px 0 #FFF, 2400px 1700px 0 #FFF,
+    2500px 1600px 0 #FFF, 2600px 1500px 0 #FFF, 2700px 1200px 0 #FFF; /* Mais estrelas */
+  border-radius: 50%;
+  animation: animateStars 50s linear infinite;
+  pointer-events: none; /* Para que o movimento das estrelas não interfira com cliques */
+
+}
+
+/* Estrelas médias */
+#stars2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  box-shadow: 
+    150px 400px 0 #FFF, 250px 1400px 0 #FFF, 350px 300px 0 #FFF, 
+    450px 1100px 0 #FFF, 550px 700px 0 #FFF, 650px 500px 0 #FFF,
+    750px 1000px 0 #FFF, 850px 800px 0 #FFF, 950px 300px 0 #FFF,
+    1050px 1500px 0 #FFF, 1150px 1200px 0 #FFF, 1250px 1300px 0 #FFF,
+    1350px 1000px 0 #FFF, 1450px 800px 0 #FFF, 1550px 900px 0 #FFF,
+    1650px 600px 0 #FFF, 1750px 400px 0 #FFF, 1850px 300px 0 #FFF,
+    1950px 200px 0 #FFF, 2050px 100px 0 #FFF, 2150px 1400px 0 #FFF,
+    2250px 1700px 0 #FFF, 2350px 1600px 0 #FFF, 2450px 1500px 0 #FFF,
+    2550px 1400px 0 #FFF, 2650px 1100px 0 #FFF, 2750px 1000px 0 #FFF; /* Mais estrelas */
+  border-radius: 50%;
+  animation: animateStars2 60s linear infinite;
+}
+
+/* Estrelas grandes */
+#stars3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 3px;
+  background: transparent;
+  box-shadow: 
+    200px 300px 0 #FFF, 300px 1300px 0 #FFF, 400px 500px 0 #FFF, 
+    500px 1000px 0 #FFF, 600px 600px 0 #FFF, 700px 500px 0 #FFF,
+    800px 1200px 0 #FFF, 900px 1100px 0 #FFF, 1000px 400px 0 #FFF,
+    1100px 1400px 0 #FFF, 1200px 1300px 0 #FFF, 1300px 1500px 0 #FFF,
+    1400px 900px 0 #FFF, 1500px 800px 0 #FFF, 1600px 700px 0 #FFF,
+    1700px 500px 0 #FFF, 1800px 300px 0 #FFF, 1900px 200px 0 #FFF,
+    2000px 100px 0 #FFF, 2100px 1500px 0 #FFF, 2200px 1700px 0 #FFF,
+    2300px 1600px 0 #FFF, 2400px 1500px 0 #FFF, 2500px 1400px 0 #FFF,
+    2600px 1200px 0 #FFF, 2700px 1000px 0 #FFF, 2800px 900px 0 #FFF; /* Mais estrelas */
+  border-radius: 50%;
+  animation: animateStars3 80s linear infinite;
+}
+
+/* Animação de estrelas em direções aleatórias */
+@keyframes animateStars {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-500px, -500px); /* Move diagonalmente para cima e para a esquerda */
+  }
+}
+
+@keyframes animateStars2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(500px, -500px); /* Move diagonalmente para cima e para a direita */
+  }
+}
+
+@keyframes animateStars3 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-500px, 500px); /* Move diagonalmente para baixo e para a esquerda */
+  }
+}
+
+#content {
+  position: relative;
+  z-index: 1; /* Garante que o conteúdo fique sobre o fundo estrelado */
+}
+
+@media screen and (max-width: 1222px){
+
+
+  .center-section,.search-bar-container,.slider-container-text,.Footer-main{
+    display: none;
+  }
+
+
+}
