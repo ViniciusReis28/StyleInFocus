@@ -98,7 +98,7 @@
               </path>
             </svg></a>
             <a href="#" id="profile-icon">
-              <img id="profile-image" src="/frontend/paginas/login/uploads/usuarioDefault.jpg" alt="Foto de Perfil" style="display: none; width: 30px; height: 30px; border-radius: 50%;">
+              <img id="profile-image" src="http://localhost:3000/uploads/usuarioDefault.jpg" alt="Foto de Perfil" style="display: none; width: 30px; height: 30px; border-radius: 50%;">
               <svg id="profile-svg" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"></path>
                   <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"></path>
@@ -119,7 +119,7 @@
         <div class="box-perfil">
           <div class="left-panel">
             <div class="Foto-Email">
-              <img id="fotoPerfilEmail" src="/frontend/paginas/login/uploads/usuarioDefault.jpg" alt="Imagem de Perfil">
+              <img id="fotoPerfilEmail" src="http://localhost:3000/uploads/usuarioDefault.jpg" alt="Imagem de Perfil">
       
               <div class="email-user">
                 <h1 class="nomeUsuario" id="nomeUsuarioDisplay">Nome do Usuário</h1>
@@ -142,9 +142,10 @@
             <div class="banner">
 
 
-        <form id="editarPerfil" method="POST" action="https://styleinfocusbackend.onrender.com/auth/update" enctype="multipart/form-data">
+        <form id="editarPerfil" enctype="multipart/form-data">
+          
                 <div class="foto-container">
-                  <img id="fotoPerfil" src="uploads/usuarioDefault.jpg" class="imagem-hover" alt="Foto de perfil">
+                  <img id="fotoPerfil" src="http://localhost:3000/uploads/usuarioDefault.jpg" class="imagem-hover" alt="Foto de perfil">
                   <input type="file" id="inputFoto" name="profile_image" accept="image/*" style="display: none;">
                   <div class="trocar-foto" onclick="document.getElementById('inputFoto').click();">Trocar Foto</div>
               </div>
@@ -185,6 +186,7 @@
               <div id="general-error" style="color: #ff0000; font-size: 12px;"></div>
               
               <button type="submit" id="btnSalvar" class="glow-on-hover">Salvar Alterações</button>
+              
             </div>
           </form>
 
@@ -200,7 +202,7 @@ if (!token) {
     // Caso não tenha token, redireciona para a página de login
 } else {
     // Verificar a sessão com o token
-    fetch('https://styleinfocusbackend.onrender.com/auth/check-session', {
+    fetch('http://localhost:3000/auth/check-session', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`  // Envia o token como parte do cabeçalho
@@ -233,7 +235,7 @@ function carregarPerfilUsuario() {
     }
 
     // Faz a requisição para carregar os dados do usuário
-    fetch('https://styleinfocusbackend.onrender.com/auth/api/user', {
+    fetch('http://localhost:3000/auth/api/user', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}` // Inclui o token no cabeçalho
@@ -246,7 +248,7 @@ function carregarPerfilUsuario() {
             return response.json();
         })
         .then(data => {
-            const defaultImage = 'frontend/paginas/login/uploads/usuarioDefault.jpg';
+            const defaultImage = 'http://localhost:3000/uploads/usuarioDefault.jpg';
 
             // Atualiza os campos com os dados recebidos
             document.getElementById('username').value = data.username || "";
@@ -257,17 +259,51 @@ function carregarPerfilUsuario() {
 
             // Define a imagem de perfil (usa a padrão se não houver)
             const profileImage = data.profile_image || defaultImage;
-            document.getElementById('fotoPerfilEmail').src = profileImage;
-            document.getElementById('fotoPerfil').src = profileImage;
+            document.getElementById('fotoPerfilEmail').src = `http://localhost:3000/${profileImage}`;
+            document.getElementById('fotoPerfil').src = `http://localhost:3000/${profileImage}`;
         })
         .catch(error => {
             console.error('Erro ao carregar os dados do usuário:', error);
             alert("Erro ao carregar os dados do usuário.");
             
             // Usa a imagem padrão em caso de erro
-            document.getElementById('fotoPerfil').src = 'frontend/paginas/login/uploads/usuarioDefault.jpg';
+            document.getElementById('fotoPerfil').src = 'http://localhost:3000/uploads/usuarioDefault.jpg';
         });
 }
+
+document.getElementById('editarPerfil').addEventListener('submit', async (event) => {
+    event.preventDefault(); // Impede o envio padrão do formulário
+
+    const token = localStorage.getItem('token'); // Obtém o token armazenado
+    if (!token) {
+        alert('Usuário não autenticado. Faça login novamente.');
+        return;
+    }
+
+    const form = event.target;
+    const formData = new FormData(form); // Captura os dados do formulário
+
+    try {
+        const response = await fetch('http://localhost:3000/auth/update', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`, // Corrigido aqui com crases
+            },
+            body: formData, // Envia os dados do formulário
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            alert('Perfil atualizado com sucesso!');
+        } else {
+            alert(`Erro: ${data.message}`);
+        }
+    } catch (error) {
+        console.error('Erro ao enviar a requisição:', error);
+        alert('Erro ao salvar as alterações.');
+    }
+});
+
 
 // Pré-visualização da imagem de perfil
 document.getElementById('inputFoto').addEventListener('change', function(event) {

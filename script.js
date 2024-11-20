@@ -262,3 +262,86 @@ function showSuggestions() {
       suggestionsBox.style.display = 'none';
   }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Recupera o token armazenado no localStorage (ou sessionStorage, dependendo da sua escolha)
+  const token = localStorage.getItem('token');
+
+  // Se houver token, inclui ele no cabeçalho da requisição
+  fetch('/auth/check-session', {
+      method: 'GET',
+      headers: {
+          'Authorization': `Bearer ${token}`,  // Envia o token no cabeçalho
+      },
+  })
+  .then(response => response.json())
+  .then(data => {
+      const loginLink = document.getElementById('login-link');
+      const registerLink = document.getElementById('register-link');
+      const profileImageElement = document.getElementById('profile-image');
+      const profileSvgElement = document.getElementById('profile-svg');
+      const orText = document.getElementById('or-text'); // Seleciona o texto "OU"
+
+      if (loginLink && registerLink) {
+          if (data.authenticated) {
+              // Quando o usuário está autenticado
+              loginLink.textContent = data.user.username;  // Exibe o nome do usuário
+              registerLink.textContent = 'MINHA CONTA';  // Muda o texto de "Cadastrar-se" para "MINHA CONTA"
+              
+              // Altera o link de "MINHA CONTA" para o perfil do usuário
+              registerLink.href = '../login/profile.html';  // Link para o perfil do usuário
+
+              const profileImage = data.user.profileImage || '/paginas/login/uploads/usuarioDefault.jpg';
+
+              if (profileImageElement && profileSvgElement) {
+                  if (data.user.profileImage) {
+                      profileImageElement.src = profileImage;
+                      profileImageElement.style.display = 'inline';
+                      profileSvgElement.style.display = 'none';
+                  } else {
+                      profileSvgElement.style.display = 'inline';
+                      profileImageElement.style.display = 'none';
+                  }
+              }
+
+              // Esconde o texto "OU"
+              if (orText) {
+                  orText.style.display = 'none';
+              }
+          } else {
+              // Quando o usuário não está autenticado
+              loginLink.textContent = 'ENTRE';
+              registerLink.textContent = 'CADASTRE-SE';
+
+              // Alterando os links de login e registro
+              loginLink.href = '../login/login.html';  // Link para login
+              registerLink.href = '../login/register.html';  // Link para registro
+
+              // Exibe o texto "OU"
+              if (orText) {
+                  orText.style.display = 'inline';
+              }
+          }
+      }
+  })
+  .catch(error => {
+      console.error('Erro ao verificar a sessão:', error);
+      const loginLink = document.getElementById('login-link');
+      const registerLink = document.getElementById('register-link');
+      const orText = document.getElementById('or-text');
+      
+      if (loginLink && registerLink) {
+          loginLink.textContent = 'ENTRE';
+          registerLink.textContent = 'CADASTRE-SE';
+          
+          // Caso de erro, volta os links para login e registro
+          loginLink.href = '../login/login.html';
+          registerLink.href = '../login/register.html';
+
+          // Exibe o texto "OU" no caso de erro
+          if (orText) {
+              orText.style.display = 'inline';
+          }
+      }
+  });
+});
