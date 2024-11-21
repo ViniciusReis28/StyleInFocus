@@ -34,7 +34,7 @@
     
       <nav>
         <div class="left-section">
-          <a href="../index/index.html">
+          <a href="/../../../index.html">
           <img src="../../img/logopreta.png" id="logo" style="height: 90px; width: 90px; margin: 5px; margin-top: 20px;">
           </a>
         </div>
@@ -97,8 +97,8 @@
                 d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2">
               </path>
             </svg></a>
-            <a href="#" id="profile-icon">
-              <img id="profile-image" src="http://localhost:3000/uploads/usuarioDefault.jpg" alt="Foto de Perfil" style="display: none; width: 30px; height: 30px; border-radius: 50%;">
+            <a href="" id="profile-icon">
+              <img id="profile-image" src="http://localhost:3000/usuarioDefault.jpg" alt="Foto de Perfil" style="display: none; width: 30px; height: 30px; border-radius: 50%;">
               <svg id="profile-svg" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"></path>
                   <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"></path>
@@ -107,10 +107,10 @@
         </div>
     
         <div class="profile-text">
-          <a class="text-login" href="../login/login.html" id="login-link" class="profile-link">ENTRE</a>
-          <a class="text-login">OU</a>
+          <a class="text-login" id="login-text" href="login.html" class="profile-link">ENTRE</a>
+          <a class="text-login" id="separator">OU</a>
           <br>
-          <a class="text-login" href="../login/register.html" id="register-link" class="profile-link">CADASTRE-SE</a>
+          <a class="text-login" id="register-text" href="register.html" class="profile-link">CADASTRE-SE</a>
         </div>  
       </nav>
 
@@ -226,19 +226,39 @@ if (!token) {
 }
 
 // Função para carregar o perfil do usuário
+
 function carregarPerfilUsuario() {
-    // Verifique se o token está disponível
+    const profileImageElement = document.getElementById('profile-image');
+    const profileSvgElement = document.getElementById('profile-svg');
+    const loginTextElement = document.getElementById('login-text');
+    const registerTextElement = document.getElementById('register-text');
+    const separatorElement = document.getElementById('separator');
+    const defaultImage = 'http://localhost:3000/uploads/usuarioDefault.jpg';
+
     if (!token) {
-        console.error("Token de autenticação não encontrado.");
-        alert("Por favor, faça login novamente.");
+        // Usuário não está logado
+        console.log("Usuário não autenticado.");
+        
+        // Exibe o SVG
+        profileImageElement.style.display = "none";
+        profileSvgElement.style.display = "block";
+
+        // Mantém os textos padrão
+        loginTextElement.textContent = "ENTRE";
+        loginTextElement.href = "frontend/paginas/login/login.html";
+
+        registerTextElement.textContent = "CADASTRE-SE";
+        registerTextElement.href = "frontend/paginas/login/register.html";
+
+        separatorElement.style.display = "inline"; // Exibe "OU"
         return;
     }
 
-    // Faz a requisição para carregar os dados do usuário
+    // Se o token existe, tenta buscar os dados do usuário
     fetch('http://localhost:3000/auth/api/user', {
         method: 'GET',
         headers: {
-            'Authorization': `Bearer ${token}` // Inclui o token no cabeçalho
+            'Authorization': `Bearer ${token}`
         }
     })
         .then(response => {
@@ -248,28 +268,54 @@ function carregarPerfilUsuario() {
             return response.json();
         })
         .then(data => {
-            const defaultImage = 'http://localhost:3000/uploads/usuarioDefault.jpg';
+            // Define a imagem de perfil (usa a padrão se não houver)
+            const profileImage = data.profile_image ? `http://localhost:3000/${data.profile_image}` : defaultImage;
 
-            // Atualiza os campos com os dados recebidos
+            // Atualiza a imagem de perfil
+            document.getElementById('fotoPerfilEmail').src = profileImage;
+            document.getElementById('fotoPerfil').src = profileImage;
+
+            if (profileImage) {
+                profileImageElement.src = profileImage;
+                profileImageElement.style.display = "block";
+                profileSvgElement.style.display = "none";
+            } else {
+                profileImageElement.style.display = "none";
+                profileSvgElement.style.display = "block"; // Exibe o SVG se não houver imagem
+            }
+
+            // Atualiza os textos
             document.getElementById('username').value = data.username || "";
             document.getElementById('email').value = data.email || "";
 
             document.getElementById('nomeUsuarioDisplay').textContent = data.username || "Usuário";
             document.getElementById('emailUsuarioDisplay').textContent = data.email || "Email não disponível";
 
-            // Define a imagem de perfil (usa a padrão se não houver)
-            const profileImage = data.profile_image || defaultImage;
-            document.getElementById('fotoPerfilEmail').src = `http://localhost:3000/${profileImage}`;
-            document.getElementById('fotoPerfil').src = `http://localhost:3000/${profileImage}`;
+            // Atualiza os textos do menu
+            loginTextElement.textContent = data.username || "Usuário";
+            loginTextElement.href = "#"; // Remove o link de login
+
+            registerTextElement.textContent = "MINHA CONTA"; // Altera "CADASTRE-SE" para "MINHA CONTA"
+            registerTextElement.href = "frontend/paginas/login/profile.html"; // Link para a página de perfil
+
+            separatorElement.style.display = "none"; // Remove "OU"
         })
         .catch(error => {
             console.error('Erro ao carregar os dados do usuário:', error);
             alert("Erro ao carregar os dados do usuário.");
-            
+
             // Usa a imagem padrão em caso de erro
-            document.getElementById('fotoPerfil').src = 'http://localhost:3000/uploads/usuarioDefault.jpg';
+            profileImageElement.style.display = "none";
+            profileSvgElement.style.display = "block";
+
+            // Exibe o SVG e imagem padrão se houver erro
+            document.getElementById('fotoPerfil').src = defaultImage;
         });
 }
+
+// Carrega os dados do usuário ao carregar a página
+window.onload = carregarPerfilUsuario;
+
 
 document.getElementById('editarPerfil').addEventListener('submit', async (event) => {
     event.preventDefault(); // Impede o envio padrão do formulário
