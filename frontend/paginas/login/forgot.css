@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Freeman&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 
 /* Reset básico */
@@ -431,3 +432,32 @@ section.slider{
   z-index: 1;
 }
 
+/* Estilos da notificação */
+.notification {
+  font-family: "Bebas Neue", sans-serif;
+  display: none;
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 16px;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Animação de entrada suave */
+.notification.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Estilos de erro e sucesso */
+.notification.success {
+  background-color: #4CAF50; /* Verde */
+}
+
+.notification.error {
+  background-color: #f44336; /* Vermelho */
+}
