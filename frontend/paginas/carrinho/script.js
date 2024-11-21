@@ -183,24 +183,55 @@ function irParaIdentificacao() {
 
 // Coletar informações e ir para Pagamento
 function irParaPagamento() {
+  // Captura os valores do formulário
+  const nome = document.getElementById("nome-completo").value;
+  const cpf = document.getElementById("cpf").value;
+  const email = document.getElementById("email").value;
+  const telefone = document.getElementById("telefone").value;
+
   const rua = document.getElementById("rua").value;
   const numero = document.getElementById("numero").value;
   const cidade = document.getElementById("cidade").value;
+  const bairro = document.getElementById("bairro").value;
+  const estado = document.getElementById("estado").value;
+  const complemento = document.getElementById("complemento").value;
+  const pontoDeReferencia = document.getElementById("pontoDeReferencia").value;
 
-  if (!rua || !numero || !cidade) {
-    alert("Por favor, preencha todas as informações.");
+  const cep = document.getElementById("cep-destino").value;
+  const frete = document.getElementById("resultadoFrete").textContent.trim(); 
+
+  // Validar se os campos obrigatórios estão preenchidos
+  if (!nome || !cpf || !email || !telefone || !rua || !numero || !cidade || !bairro || !estado || !cep) {
+    alert("Por favor, preencha todas as informações obrigatórias.");
     return;
   }
 
-  // Salvar dados do usuário (opcional)
-  const endereco = { rua, numero, cidade };
-  localStorage.setItem("endereco", JSON.stringify(endereco));
+  // Criar um objeto com todas as informações
+  const dadosIdentificacao = {
+    nome,
+    cpf,
+    email,
+    telefone,
+    endereco: {
+      rua,
+      numero,
+      cidade,
+      bairro,
+      estado,
+      complemento,
+      pontoDeReferencia,
+      cep,
+    },
+    frete,
+  };
 
+  // Salvar as informações no LocalStorage
+  localStorage.setItem("dadosIdentificacao", JSON.stringify(dadosIdentificacao));
   // Atualizar o progresso
   document.getElementById("step-2").classList.add("completed");
   document.getElementById("step-3").classList.add("completed");
 
-  // Mostrar seção de Pagamento e esconder Identificação
+  // Mostrar a seção de Pagamento
   document.getElementById("section-identificacao").style.display = "none";
   document.getElementById("section-pagamento").style.display = "block";
 }
@@ -227,3 +258,113 @@ function showNotification(message) {
     notification.classList.remove("show");
   }, 3000);
 }
+
+
+// Captura o botão de calcular frete e o input de CEP
+const calcularFreteBtn = document.getElementById("calcular-frete-btn");
+const cepDestinoInput = document.getElementById("cep-destino");
+const resultadoFrete = document.getElementById("resultadoFrete");
+
+// Função para enviar o CEP e calcular o frete
+calcularFreteBtn.addEventListener("click", async () => {
+  const cepDestino = cepDestinoInput.value.trim();
+
+  if (cepDestino.length !== 8) {
+    mostrarMensagemErro("Insira um CEP válido para calcular o frete!");
+    return;
+  }
+
+  try {
+    const response = await fetch("http://localhost:3000/frete/calcular-frete", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ cepDestino }),
+    });
+
+    const data = await response.json();
+
+    if (data.error) {
+      resultadoFrete.textContent = `Erro: ${data.error}`;
+    } else {
+      if (data.length > 0) {
+        let htmlContent = "";
+
+        data.slice(0, 3).forEach((service, index) => {
+          if (service.price && service.time) {
+            const precoFormatado = service.price.toString().replace(".", ",");
+
+            htmlContent += `
+              <div class="frete-container" onclick="selecionarFrete(${index})" data-index="${index}">
+                <div class="repostaDb-frete">
+                <input type="radio" name="frete" id="frete-${index}" value='${JSON.stringify(service)}' class="radio-frete" onclick="selecionarFrete(${index})"/>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-truck" viewBox="0 0 16 16">
+                    <path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5zm1.294 7.456A2 2 0 0 1 4.732 11h5.536a2 2 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456M12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/>
+                  </svg>
+                  <div class="box-infotransporte">
+                    <div class="infoTransporte">
+                      <p>${service.company}</p>
+                      <p>${service.name}</p>
+                      <p>Prazo da Entrega - ${service.time} dias úteis</p>
+                    </div>
+                    <div class="precoFrete">
+                      R$${precoFormatado}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+          }
+        });
+
+        resultadoFrete.innerHTML = htmlContent;
+
+        // Armazena as opções de frete em uma variável global para facilitar a seleção
+        window.opcoesFrete = data;
+      } else {
+        resultadoFrete.textContent = "Nenhum serviço disponível para este CEP.";
+      }
+    }
+  } catch (error) {
+    resultadoFrete.textContent = "Erro ao calcular o frete. Tente novamente mais tarde.";
+  }
+});
+
+let freteSelecionado = null;
+
+function selecionarFrete(index) {
+  // Remove o destaque de todas as caixas
+  document.querySelectorAll(".frete-container").forEach((box) => {
+    box.style.border = "";
+  });
+
+  // Destaca a caixa selecionada
+  const selectedBox = document.querySelector(`[data-index="${index}"]`);
+  selectedBox.style.border = "2px solid #000";
+
+  // Armazena os dados do frete selecionado
+  const selectedRadio = document.getElementById(`frete-${index}`);
+  freteSelecionado = JSON.parse(selectedRadio.value);
+
+  console.log("Frete selecionado:", freteSelecionado);
+}
+
+
+  // Máscara para CPF
+  function mascaraCPF(cpf) {
+    cpf.value = cpf.value
+      .replace(/\D/g, "") // Remove caracteres não numéricos
+      .replace(/(\d{3})(\d)/, "$1.$2") // Adiciona o primeiro ponto
+      .replace(/(\d{3})(\d)/, "$1.$2") // Adiciona o segundo ponto
+      .replace(/(\d{3})(\d{1,2})$/, "$1-$2"); // Adiciona o traço
+  }
+
+  // Máscara para Telefone
+  function mascaraTelefone(telefone) {
+    telefone.value = telefone.value
+      .replace(/\D/g, "") // Remove caracteres não numéricos
+      .replace(/(\d{2})(\d)/, "($1) $2") // Adiciona parênteses no DDD
+      .replace(/(\d{5})(\d)/, "$1-$2") // Adiciona o traço
+      .replace(/(-\d{4})\d+?$/, "$1"); // Limita o tamanho
+  }
