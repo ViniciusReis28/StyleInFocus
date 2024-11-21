@@ -2070,7 +2070,130 @@ section.slider{
   transform: rotateY(180deg);
 }
 
+/* ///////////////////////////////cards */
 
+/* .custom-card {
+  width: 190px;
+  height: 254px;
+  border-radius: 20px;
+  background: #f5f5f5;
+  position: relative;
+  padding: 1.8rem;
+  border: 2px solid #c3c6ce;
+  transition: 0.5s ease-out;
+  overflow: visible;
+}
+
+.custom-card-details {
+  color: black;
+  height: 100%;
+  gap: 0.5em;
+  display: grid;
+  place-content: center;
+}
+
+.custom-card-button {
+  transform: translate(-50%, 125%);
+  width: 60%;
+  border-radius: 1rem;
+  border: none;
+  background-color: #008bf8;
+  color: #fff;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  opacity: 0;
+  transition: 0.3s ease-out;
+}
+
+.custom-card-body {
+  color: rgb(134, 134, 134);
+}
+
+.custom-card-title {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+
+.custom-card:hover {
+  border-color: #008bf8;
+  box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+}
+
+.custom-card:hover .custom-card-button {
+  transform: translate(-50%, 50%);
+  opacity: 1;
+}
+
+
+.custom-card-extra-info {
+  display: none;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border-top: 1px solid #c3c6ce;
+  color: #333;
+  font-size: 0.9rem;
+  line-height: 1.5rem;
+} */
+
+.custom-card {
+  width: 300px;
+  border: 2px solid #2936f0;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: 0.3s;
+  background-color: #000000;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.custom-card-image {
+  width: 100%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.custom-card-image:hover {
+  opacity: 0.8;
+}
+
+.custom-card-content {
+  padding: 1rem;
+  text-align: center;
+}
+
+.custom-card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.custom-card-body {
+  font-size: 0.9rem;
+  color: #ffffff;
+}
+
+/* Área extra (informações adicionais) */
+.custom-card-extra {
+  display: none;
+  padding: 1rem;
+  border-top: 1px solid #c3c6ce;
+  background-color: #000000;
+  color: #ffffff;
+  font-size: 20px;
+  line-height: 1.4rem;
+}
+
+/* Animação para mostrar o espaço ao abrir */
+.custom-card-extra.open {
+  display: block;
+}
 
 
 
