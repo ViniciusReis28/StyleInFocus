@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Perfil Do Usuario</title>
+  <title>Minha Conta</title>
   <link rel="stylesheet" href="profile.css">
   <link rel="shortcut icon" href="../../img/logopreta.png" type="image">
 
@@ -186,7 +186,9 @@
               <div id="general-error" style="color: #ff0000; font-size: 12px;"></div>
               
               <button type="submit" id="btnSalvar" class="glow-on-hover">Salvar Alterações</button>
-              
+              <button id="logoutButton" onclick="logout()" class="glow-on-hover-sair">SAIR</button>
+              <div id="message" class="notification hidden"></div>
+
             </div>
           </form>
 
@@ -350,7 +352,6 @@ document.getElementById('editarPerfil').addEventListener('submit', async (event)
     }
 });
 
-
 // Pré-visualização da imagem de perfil
 document.getElementById('inputFoto').addEventListener('change', function(event) {
     const file = event.target.files[0];
@@ -362,6 +363,29 @@ document.getElementById('inputFoto').addEventListener('change', function(event) 
         reader.readAsDataURL(file);
     }
 });
+
+const logout = async () => {
+    const token = localStorage.getItem('token'); // Obtém o token armazenado
+
+    const response = await fetch('http://localhost:3000/auth/logout', {
+        method: 'POST',
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        },
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+        localStorage.removeItem('token'); // Remove o token
+        alert(data.message);
+        window.location.href = '/index.html'; // Redireciona para login
+    } else {
+        alert('Erro ao realizar logout.');
+    }
+};
+
 
         </script>
     
