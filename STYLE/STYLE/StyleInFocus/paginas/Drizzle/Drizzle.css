@@ -8,8 +8,18 @@ main {
     color: red;
     font-family: 'Times New Roman', Times, serif;
     font-size: 150%;
-
+    padding: 10px;
     max-width: 70%;
+}
+
+.mainLocation {
+    margin-left: 5%;
+    margin-top: 5%;
+}
+
+.ImagemDrizzle{
+    margin-right: 5%;
+    margin-top: 5%;
 }
 
 .sobre {
