@@ -163,6 +163,8 @@ function carregarCarrinho() {
 document.addEventListener("DOMContentLoaded", carregarCarrinho);
 
 
+
+
 // Verificar se há itens no carrinho e ir para Identificação
 function irParaIdentificacao() {
   const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
@@ -181,7 +183,6 @@ function irParaIdentificacao() {
   document.getElementById("section-identificacao").style.display = "block";
 }
 
-// Coletar informações e ir para Pagamento
 function irParaPagamento() {
   // Captura os valores do formulário
   const nome = document.getElementById("nome-completo").value;
@@ -196,17 +197,32 @@ function irParaPagamento() {
   const estado = document.getElementById("estado").value;
   const complemento = document.getElementById("complemento").value;
   const pontoDeReferencia = document.getElementById("pontoDeReferencia").value;
-
   const cep = document.getElementById("cep-destino").value;
-  const frete = document.getElementById("resultadoFrete").textContent.trim(); 
 
   // Validar se os campos obrigatórios estão preenchidos
-  if (!nome || !cpf || !email || !telefone || !rua || !numero || !cidade || !bairro || !estado || !cep) {
+  if (
+    !nome ||
+    !cpf ||
+    !email ||
+    !telefone ||
+    !rua ||
+    !numero ||
+    !cidade ||
+    !bairro ||
+    !estado ||
+    !cep
+  ) {
     alert("Por favor, preencha todas as informações obrigatórias.");
     return;
   }
 
-  // Criar um objeto com todas as informações
+  // Verificar se um frete foi selecionado
+  if (!freteSelecionado) {
+    alert("Por favor, selecione uma opção de frete.");
+    return;
+  }
+
+  // Criar um objeto com todas as informações do cliente
   const dadosIdentificacao = {
     nome,
     cpf,
@@ -222,11 +238,40 @@ function irParaPagamento() {
       pontoDeReferencia,
       cep,
     },
-    frete,
+    frete: freteSelecionado, // Apenas o frete selecionado
   };
 
-  // Salvar as informações no LocalStorage
-  localStorage.setItem("dadosIdentificacao", JSON.stringify(dadosIdentificacao));
+  // Obter os itens do carrinho
+  const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+  const produtosAgrupados = {};
+
+  carrinho.forEach((produto) => {
+    const key = `${produto.id}-${produto.tamanho}`;
+    if (produtosAgrupados[key]) {
+      produtosAgrupados[key].quantidade += produto.quantidade;
+    } else {
+      produtosAgrupados[key] = { ...produto };
+    }
+  });
+
+  let totalCarrinho = 0;
+  for (const key in produtosAgrupados) {
+    const produto = produtosAgrupados[key];
+    produto.preco = parseFloat(produto.preco) || 0;
+    totalCarrinho += produto.preco * produto.quantidade;
+  }
+
+  // Criar objeto do pedido completo
+  const pedidoCompleto = {
+    dadosIdentificacao,
+    produtos: produtosAgrupados,
+    frete: freteSelecionado,
+    total: totalCarrinho,
+  };
+
+  // Salvar o pedido completo no localStorage
+  localStorage.setItem('pedidoCompleto', JSON.stringify(pedidoCompleto));
+
   // Atualizar o progresso
   document.getElementById("step-2").classList.add("completed");
   document.getElementById("step-3").classList.add("completed");
@@ -234,30 +279,52 @@ function irParaPagamento() {
   // Mostrar a seção de Pagamento
   document.getElementById("section-identificacao").style.display = "none";
   document.getElementById("section-pagamento").style.display = "block";
+
+  // Exibir as informações na seção de pagamento
+  exibirInformacoesPagamento(pedidoCompleto);
+
+  console.log("Pedido completo:", JSON.stringify(pedidoCompleto, null, 2));
 }
 
-// Função para finalizar compra (simplesmente limpando o carrinho por enquanto)
-function finalizarCompra() {
-  showNotification("Compra finalizada! Limpando o carrinho...");
-  localStorage.removeItem("carrinho");
-  carregarCarrinho(); // Atualiza o carrinho após limpar
+function exibirInformacoesPagamento(pedidoCompleto) {
+  console.log(pedidoCompleto)
+  const divPagamento = document.getElementById("informacoes-pagamento");
+
+  // Verificar se o elemento foi encontrado
+  if (!divPagamento) {
+    console.error("Elemento 'informacoes-pagamento' não encontrado.");
+    return;
+  }
+
+  // Acessando as informações do pedido
+  const dadosIdentificacao = pedidoCompleto.dadosIdentificacao;
+  let totalCarrinho = pedidoCompleto.total;
+  const freteSelecionado = pedidoCompleto.frete;
+  
+  
+  // Garantir que o preço do frete e o total dos produtos sejam números
+  totalCarrinho = parseFloat(totalCarrinho) || 0;
+  const freteSelecionadoPreco = parseFloat(freteSelecionado.price) || 0;
+
+  const totalComFrete = totalCarrinho + freteSelecionadoPreco;
+
+  divPagamento.innerHTML = `
+    <h3>Informações do Pedido</h3>
+    <p><strong>Nome:</strong> ${dadosIdentificacao.nome}</p>
+    <p><strong>CPF:</strong> ${dadosIdentificacao.cpf}</p>
+    <p><strong>Email:</strong> ${dadosIdentificacao.email}</p>
+    <p><strong>Telefone:</strong> ${dadosIdentificacao.telefone}</p>
+    <p><strong>Endereço:</strong> ${dadosIdentificacao.endereco.rua}, ${dadosIdentificacao.endereco.numero}, ${dadosIdentificacao.endereco.cidade} - ${dadosIdentificacao.endereco.estado}</p>
+    <p><strong>Frete:</strong> R$ ${freteSelecionadoPreco.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+    <p><strong>Total dos Produtos:</strong> R$ ${totalCarrinho.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+    <p><strong>Total com Frete:</strong> R$ ${totalComFrete.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+  `;
 }
+
 
 // Carregar o carrinho ao abrir a página
 document.addEventListener("DOMContentLoaded", carregarCarrinho);
 
-function showNotification(message) {
-  const notification = document.getElementById("notification");
-  notification.textContent = message;
-
-  // Adiciona a classe 'show' para exibir a notificação
-  notification.classList.add("show");
-
-  // Remove a notificação após 3 segundos
-  setTimeout(() => {
-    notification.classList.remove("show");
-  }, 3000);
-}
 
 
 // Captura o botão de calcular frete e o input de CEP
@@ -298,7 +365,9 @@ calcularFreteBtn.addEventListener("click", async () => {
             htmlContent += `
               <div class="frete-container" onclick="selecionarFrete(${index})" data-index="${index}">
                 <div class="repostaDb-frete">
-                <input type="radio" name="frete" id="frete-${index}" value='${JSON.stringify(service)}' class="radio-frete" onclick="selecionarFrete(${index})"/>
+                  <input type="radio" name="frete" id="frete-${index}" value='${JSON.stringify(
+              service
+            )}' class="radio-frete" />
                   <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-truck" viewBox="0 0 16 16">
                     <path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5zm1.294 7.456A2 2 0 0 1 4.732 11h5.536a2 2 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456M12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/>
                   </svg>
@@ -327,7 +396,8 @@ calcularFreteBtn.addEventListener("click", async () => {
       }
     }
   } catch (error) {
-    resultadoFrete.textContent = "Erro ao calcular o frete. Tente novamente mais tarde.";
+    resultadoFrete.textContent =
+      "Erro ao calcular o frete. Tente novamente mais tarde.";
   }
 });
 
@@ -336,7 +406,7 @@ let freteSelecionado = null;
 function selecionarFrete(index) {
   // Remove o destaque de todas as caixas
   document.querySelectorAll(".frete-container").forEach((box) => {
-    box.style.border = "";
+    box.style.border = "none";
   });
 
   // Destaca a caixa selecionada
@@ -344,27 +414,61 @@ function selecionarFrete(index) {
   selectedBox.style.border = "2px solid #000";
 
   // Armazena os dados do frete selecionado
-  const selectedRadio = document.getElementById(`frete-${index}`);
-  freteSelecionado = JSON.parse(selectedRadio.value);
-
+  freteSelecionado = window.opcoesFrete[index];
   console.log("Frete selecionado:", freteSelecionado);
 }
 
 
-  // Máscara para CPF
-  function mascaraCPF(cpf) {
-    cpf.value = cpf.value
-      .replace(/\D/g, "") // Remove caracteres não numéricos
-      .replace(/(\d{3})(\d)/, "$1.$2") // Adiciona o primeiro ponto
-      .replace(/(\d{3})(\d)/, "$1.$2") // Adiciona o segundo ponto
-      .replace(/(\d{3})(\d{1,2})$/, "$1-$2"); // Adiciona o traço
-  }
 
-  // Máscara para Telefone
-  function mascaraTelefone(telefone) {
-    telefone.value = telefone.value
-      .replace(/\D/g, "") // Remove caracteres não numéricos
-      .replace(/(\d{2})(\d)/, "($1) $2") // Adiciona parênteses no DDD
-      .replace(/(\d{5})(\d)/, "$1-$2") // Adiciona o traço
-      .replace(/(-\d{4})\d+?$/, "$1"); // Limita o tamanho
-  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Máscara para CPF
+function mascaraCPF(cpf) {
+  cpf.value = cpf.value
+    .replace(/\D/g, "") // Remove caracteres não numéricos
+    .replace(/(\d{3})(\d)/, "$1.$2") // Adiciona o primeiro ponto
+    .replace(/(\d{3})(\d)/, "$1.$2") // Adiciona o segundo ponto
+    .replace(/(\d{3})(\d{1,2})$/, "$1-$2"); // Adiciona o traço
+}
+
+// Máscara para Telefone
+function mascaraTelefone(telefone) {
+  telefone.value = telefone.value
+    .replace(/\D/g, "") // Remove caracteres não numéricos
+    .replace(/(\d{2})(\d)/, "($1) $2") // Adiciona parênteses no DDD
+    .replace(/(\d{5})(\d)/, "$1-$2") // Adiciona o traço
+    .replace(/(-\d{4})\d+?$/, "$1"); // Limita o tamanho
+}
+
+function showNotification(message) {
+  const notification = document.getElementById("notification");
+  notification.textContent = message;
+
+  // Adiciona a classe 'show' para exibir a notificação
+  notification.classList.add("show");
+
+  // Remove a notificação após 3 segundos
+  setTimeout(() => {
+    notification.classList.remove("show");
+  }, 3000);
+}
