@@ -325,7 +325,7 @@ function carregarPerfilUsuario() {
                 loginTextElement.href = "#"; // Remove o link de login
 
                 registerTextElement.textContent = "MINHA CONTA"; // Altera "CADASTRE-SE" para "MINHA CONTA"
-                registerTextElement.href = "frontend/paginas/login/profile.html"; // Link para a página de perfil
+                registerTextElement.href = "frontend/paginas/minhaConta/profile.html"; // Link para a página de perfil
 
                 separatorElement.style.display = "none"; // Remove "OU"
             } else {
