@@ -1188,3 +1188,513 @@ body {
 .form__field:required, .form__field:invalid {
   box-shadow: none;
 }
+
+ /*CODIGO CSS DA PAGINA DO PERFIL USUARIO DA INFORMAÇOES DA CONTA*/
+
+
+
+ .banner {
+  position: relative;
+  width: 100%;
+  height: 170px; /* Altura do banner */
+  background-color: black; /* Cor de fundo preta */
+  display: flex; /* Para alinhar a foto e o texto lado a lado */
+  align-items: center; /* Centraliza verticalmente o conteúdo */
+  padding-left: 65px; /* Espaçamento do conteúdo em relação à esquerda */
+}
+
+.foto-container {
+  position: relative;
+  margin-right: 20px; /* Espaço entre a imagem e o texto */
+  margin-top: 100px;
+}
+
+.imagem-hover {
+  height: 210px;
+  width: 210px;
+  object-fit: cover;
+  transition: transform 0.3s;
+  border-radius: 50%; /* Deixa a imagem circular */
+  border: 6px solid white;
+  cursor: pointer;
+}
+
+.trocar-foto {
+  position: absolute;
+  height: 210px;
+  width: 210px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.315);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.6s;
+  cursor: pointer;
+}
+
+.foto-container:hover .trocar-foto {
+  opacity: 1;
+}
+
+.informacoes-conta-nome {
+  color: white; /* Cor do texto branca */
+}
+
+.informacoes-conta-nome h1 {
+  font-size: 44px;
+  margin: 0; /* Remove margem padrão */
+  margin-top: 30px;
+}
+
+.container-minhaConta {
+  display: flex;
+  flex-direction: column;
+  margin-top: 45px;
+  gap: 20px;
+  padding: 50px;
+}
+
+.minhaConta-section {
+  padding: 15px;
+  font-size: 26px;
+  position: relative;
+}
+
+.input-box {
+  font-size: 18px;
+  border-bottom: 2px solid #ccc; /* Apenas uma linha embaixo */
+  padding-bottom: 5px; /* Espaço entre o texto e a linha */
+}
+
+.editar-botao {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.editar-botao:hover {
+  background-color: #0056b3;
+}
+
+input[type="text"] {
+  font-size: 18px;
+  border: none;
+  border-bottom: 2px solid #007bff; /* Estilo da linha inferior quando em modo de edição */
+  padding: 5px;
+  outline: none;
+  width: 70%; /* Largura do input */
+}
+/* ////////////////////////////////////PEDIDOS//////////////////////////// */
+
+
+
+.tabs {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+
+  display: flex;
+  justify-content: space-between;  /* Distribui igualmente as abas */
+  width: 100%;  /* Faz com que as abas ocupem toda a largura */
+  max-width: 800px;  /* Limita a largura máxima */
+}
+
+.tab-button {
+  flex: 1;  /* Faz com que cada botão ocupe um espaço igual */
+  text-align: center;  /* Centraliza o texto dentro dos botões */
+  padding: 15px;  /* Adiciona espaçamento interno aos botões */
+  font-size: 18px;  /* Aumenta o tamanho da fonte */
+  background-color: #f0f0f0;  /* Fundo para os botões */
+  border: none;  /* Remove bordas */
+  cursor: pointer;  /* Adiciona cursor de ponteiro */
+}
+
+.tab-button.active {
+  background-color: #000000;  /* Cor para o botão ativo */
+  color: white;  /* Texto branco para o botão ativo */
+}
+
+.tab-content {
+  height: 80vh; /* Define altura expandida para a área rolável */
+  overflow-y: auto;
+  padding-right: 10px; /* Para melhorar a aparência do scroll */
+
+}
+
+.tab-content.active {
+  display: block;  /* Exibe o conteúdo da aba ativa */
+}
+
+
+/* Estilo para cada pedido */
+.pedido {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 800px;
+  background-color: #f9f9f9;
+  margin: 15px 0;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.pedido:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Imagem do produto alinhada à esquerda */
+.pedido img {
+  width: 200px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Área das informações do produto (lado direito) */
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  width: 100%;
+  padding-left: 20px;
+}
+
+/* Nome do produto */
+.nome-produto {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Preço */
+.preco {
+  font-size: 16px;
+  font-weight: bold;
+  color: #4CAF50;
+}
+
+.preco, .preco-total {
+  font-size: 14px;
+  color: #666;
+  margin: 5px 0;
+}
+
+.quantidade-container {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.botao-alterar {
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  background-color: #ddd;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 5px;
+  transition: background-color 0.3s;
+}
+
+
+.botao-alterar:hover {
+  background-color: #bbb;
+}
+
+.quantidade {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 10px;
+}
+
+/* Estiliza o botão de ação */
+.botao {
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.botao:hover {
+  background-color: #555;
+}
+
+/* ////////////////////////////////////METODO DE PAGAMENT0//////////////////////////// */
+.container-cartao-credito {
+  background-color: #f0f0f0;
+  padding: 20px;
+  max-width: 400px;
+  margin: 40px auto;
+  border-radius: 10px;
+}
+
+.titulo-cartao {
+  text-align: center;
+  color: #333;
+  font-weight: bold;
+}
+
+.formulario-cartao .campo-cartao {
+  margin-bottom: 15px;
+}
+
+.formulario-cartao label {
+  font-weight: bold;
+  color: #333;
+}
+
+.grupo-input {
+  position: relative;
+}
+
+.icone-cartao {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 8px 10px 8px 30px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  color: #333;
+}
+
+.campos-inline {
+  display: flex;
+  gap: 10px;
+}
+
+.botao-cartao {
+  width: 100%;
+  padding: 10px;
+  background-color: #000000;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.botao-cartao:hover {
+  background-color: #202020;
+}
+
+.cartoes-salvos {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+.cartoes-salvos h3 {
+  text-align: center;
+  color: #333;
+  font-weight: bold;
+}
+
+#lista-cartoes {
+  list-style: none;
+  padding: 0;
+}
+
+#lista-cartoes li {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cartao-info {
+  font-size: 14px;
+  color: #555;
+}
+
+.cartao-numero {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.remover-cartao {
+  color: #ff4d4d;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+
+
+/* ////////////////////////////////////SUPORTE //////////////////////////// */
+
+
+.container-duvidas-suporte {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.titulo-duvidas-suporte {
+  color: #333;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+.duvida-item-suporte {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #ddd;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.duvida-item-suporte:hover {
+  background-color: #b9b9b9;
+}
+
+.pergunta-duvida-suporte {
+  color: #000;
+  font-size: 20px;
+  margin: 0;
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+}
+
+.pergunta-duvida-suporte::after {
+  content: '▼';
+  font-size: 14px;
+  margin-left: 10px;
+  transition: transform 0.3s;
+}
+
+.duvida-item-suporte.active .pergunta-duvida-suporte::after {
+  transform: rotate(-180deg);
+}
+
+.resposta-duvida-suporte {
+  color: rgb(8, 8, 8);
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 16px;
+  margin-top: 10px;
+  padding-left: 20px;
+  display: none;
+  animation: slideDown-suporte 0.3s ease-out;
+}
+
+/* Estilo do botão */
+.button-suporte {
+  height: 50px;
+  width: 200px;
+  position: relative;
+  background-color: transparent;
+  cursor: pointer;
+  border: 2px solid #252525;
+  overflow: hidden;
+  border-radius: 30px;
+  color: #333;
+  transition: all 0.5s ease-in-out;
+}
+
+.btn-txt-suporte {
+  z-index: 1;
+  font-weight: 800;
+  letter-spacing: 4px;
+}
+
+.button-suporte::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: all 0.5s ease-in-out;
+  background-color: #333;
+  border-radius: 30px;
+  visibility: hidden;
+  height: 10px;
+  width: 10px;
+  z-index: -1;
+}
+
+.button-suporte:hover {
+  color: #fff;
+  border: none;
+}
+
+.button-suporte:hover::after {
+  visibility: visible;
+  transform: scale(100) translateX(4px);
+}
+
+
+/* ///////////////////////////////SUPPORTE ////////////////////////////// */
+.banner-suporte{
+  display: flex;
+  height: 150px; /* Altura do banner */
+  align-items: left; /* Centralizar o conteúdo verticalmente */
+  justify-content: flex-start; /* Centralizar o conteúdo horizontalmente */
+  
+  
+  background-color: #000000; /* Cor de fundo da navbar */
+    display: flex; /* Usar flexbox para alinhamento */
+    align-items: center; /* Centralizar o conteúdo verticalmente */
+    /* gap: 10px; Espaçamento entre os itens */
+   
+}
+
+.img-drizzle{
+  width: auto;
+  height: 100%;
+  max-height: 100%;
+  border-radius: 100%;
+  object-fit: cover;
+}
+
+@keyframes slideDown-suporte {
+  from {
+      opacity: 0;
+      transform: translateY(-10px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}

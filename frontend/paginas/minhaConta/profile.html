@@ -128,14 +128,180 @@
             </div>
             <div class="menu-item" onclick="mostrarConteudo('minhaConta')">Minha Conta</div>
             <div class="menu-item" onclick="mostrarConteudo('pedidos')">Pedidos</div>
-            <div class="menu-item" onclick="mostrarConteudo('privacidade')">Configurações de privacidade</div>
+            <!-- <div class="menu-item" onclick="mostrarConteudo('privacidade')">Configurações de privacidade</div> -->
             <div class="menu-item" onclick="mostrarConteudo('suporte')">Suporte e ajuda</div>
             <div class="menu-item" onclick="mostrarConteudo('pagamentos')">Métodos de pagamento</div>
           </div>
       
-          <div id="conteudo-pedidos" class="right-panel">
-            <h2>Pedidos</h2>
-            <p>Aqui você pode ver seus pedidos.</p>
+          <div id="conteudo-pedidos" class="right-panel conteudo-pedidos-page">
+
+            <div class="meus-pedidos">
+              <div class="banner-suporte">
+                <img class="img-drizzle" src="../../img/drizzle.png" class="logo">
+              <h1 class="informacoes-conta-nome">Meus Pedidos</h1>
+            </div>
+    
+              <!-- Navegação entre abas -->
+              <div class="tabs">
+                <button class="tab-button active" onclick="openTab('aSerPago')">A Ser Pago</button>
+                <button class="tab-button" onclick="openTab('aSerEnviado')">A Ser Enviado</button>
+                <button class="tab-button" onclick="openTab('envio')">Enviado</button>
+                <button class="tab-button" onclick="openTab('concluido')">Concluído</button>
+              </div>
+    
+    
+              <!-- //////////////////////////////////////////A SER PAGO /////////////////////////////////////////// -->
+    
+    
+              <!-- Conteúdo das abas -->
+              <div class="tab-content" id="aSerPago">
+    
+                <div class="pedido">
+                  <img src="../../img-produtos/camisetaBrancaStreetwearCachorro.jpg" alt="Produto 1">
+                  <div class="info">
+                    <p class="nome-produto">Produto 1</p>
+                    <p class="preco">Preço unitário: R$ <span class="preco-unitario">49.90</span></p>
+                    <div class="quantidade-container">
+                      <button class="botao-alterar" onclick="alterarQuantidade(this, -1)">-</button>
+                      <span class="quantidade">2</span>
+                      <button class="botao-alterar" onclick="alterarQuantidade(this, 1)">+</button>
+                    </div>
+                    <p class="preco-total">Preço total: R$ <span class="preco-final">99.80</span></p>
+                    <button class="botao">Pagar</button>
+                  </div>
+                </div>
+    
+                <div class="pedido">
+                  <img src="../../img-produtos/camisetaBrancaStreetwearCachorro.jpg" alt="Produto 1">
+                  <div class="info">
+                    <p class="nome-produto">Produto 1</p>
+                    <p class="preco">Preço unitário: R$ <span class="preco-unitario">49.90</span></p>
+                    <div class="quantidade-container">
+                      <button class="botao-alterar" onclick="alterarQuantidade(this, -1)">-</button>
+                      <span class="quantidade">2</span>
+                      <button class="botao-alterar" onclick="alterarQuantidade(this, 1)">+</button>
+                    </div>
+                    <p class="preco-total">Preço total: R$ <span class="preco-final">99.80</span></p>
+                    <button class="botao">Pagar</button>
+                  </div>
+                </div>
+    
+                <div class="pedido">
+                  <img src="../../img-produtos/camisetaBrancaStreetwearCachorro.jpg" alt="Produto 1">
+                  <div class="info">
+                    <p class="nome-produto">Produto 1</p>
+                    <p class="preco">Preço unitário: R$ <span class="preco-unitario">49.90</span></p>
+                    <div class="quantidade-container">
+                      <button class="botao-alterar" onclick="alterarQuantidade(this, -1)">-</button>
+                      <span class="quantidade">2</span>
+                      <button class="botao-alterar" onclick="alterarQuantidade(this, 1)">+</button>
+                    </div>
+                    <p class="preco-total">Preço total: R$ <span class="preco-final">99.80</span></p>
+                    <button class="botao">Pagar</button>
+                  </div>
+                </div>
+    
+                <div class="pedido">
+                  <img src="../../img-produtos/camisetaBrancaStreetwearCachorro.jpg" alt="Produto 1">
+                  <div class="info">
+                    <p class="nome-produto">Produto 1</p>
+                    <p class="preco">Preço unitário: R$ <span class="preco-unitario">49.90</span></p>
+                    <div class="quantidade-container">
+                      <button class="botao-alterar" onclick="alterarQuantidade(this, -1)">-</button>
+                      <span class="quantidade">2</span>
+                      <button class="botao-alterar" onclick="alterarQuantidade(this, 1)">+</button>
+                    </div>
+                    <p class="preco-total">Preço total: R$ <span class="preco-final">99.80</span></p>
+                    <button class="botao">Pagar</button>
+                  </div>
+                </div>
+    
+              </div>
+    
+    
+              <!-- //////////////////////////////////////////A SER ENVIADO /////////////////////////////////////////// -->
+    
+    
+    
+              <div class="tab-content" id="aSerEnviado">
+    
+                <div class="pedido">
+                  <img src="../../img-produtos/camisetaBrancaStreetwearCachorro.jpg" alt="Produto 1">
+                  <div class="info">
+                    <p class="nome-produto">Produto 1</p>
+                    <button class="botao">Verificar Pedido</button>
+                  </div>
+                </div>
+    
+                <div class="pedido">
+                  <img src="../../img-produtos/camisetaBrancaStreetwearCachorro.jpg" alt="Produto 1">
+                  <div class="info">
+                    <p class="nome-produto">Produto 1</p>
+                    <button class="botao">Verificar Pedido</button>
+    
+                  </div>
+                </div>
+    
+                <div class="pedido">
+                  <img src="../../img-produtos/camisetaBrancaStreetwearCachorro.jpg" alt="Produto 1">
+                  <div class="info">
+                    <p class="nome-produto">Produto 1</p>
+                    <button class="botao">Verificar Pedido</button>
+                  </div>
+                </div>
+    
+                <div class="pedido">
+                  <img src="../../img-produtos/camisetaBrancaStreetwearCachorro.jpg" alt="Produto 1">
+                  <div class="info">
+                    <p class="nome-produto">Produto 1</p>
+                    <button class="botao">Verificar Pedido</button>
+                  </div>
+                </div>
+              </div>
+              <!-- //////////////////////////////////////////ENVIADO /////////////////////////////////////////// -->
+    
+              <div class="tab-content" id="envio">
+    
+                <div class="pedido">
+                  <img src="../../img-produtos/camisetaBrancaStreetwearCachorro.jpg" alt="Produto 1">
+                  <div class="info">
+                    <p class="nome-produto">Produto 1</p>
+                    <button class="botao">RASTRAEAR</button>
+                  </div>
+                </div>
+    
+                <div class="pedido">
+                  <img src="../../img-produtos/camisetaBrancaStreetwearCachorro.jpg" alt="Produto 1">
+                  <div class="info">
+                    <p class="nome-produto">Produto 1</p>
+                    <button class="botao">RASTRAEAR</button>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="tab-content" id="concluido">
+    
+                <div class="pedido">
+                  <img src="../../img-produtos/camisetaBrancaStreetwearCachorro.jpg" alt="Produto 1">
+                  <div class="info">
+                    <p class="nome-produto">Produto 1</p>
+                    <button class="botao">Avaliar</button>
+                  </div>
+                </div>
+    
+                <div class="pedido">
+                  <img src="../../img-produtos/camisetaBrancaStreetwearCachorro.jpg" alt="Produto 1">
+                  <div class="info">
+                    <p class="nome-produto">Produto 1</p>
+                    <button class="botao">Avaliar</button>
+                  </div>
+                </div>
+              </div>
+    
+    
+            </div>
+    
+    
           </div>
       
           <div id="conteudo-minhaConta" class="right-panel active">
@@ -194,6 +360,135 @@
 
           </div>
         </div>
+<!-- //////////////////////////////////////////SUPORTE  /////////////////////////////////////////// -->
+
+<div id="conteudo-suporte" class="right-panel">
+
+  <div class="banner-suporte">
+      <img class="img-drizzle" src="../../img/drizzle.png" class="logo">
+    <h1 class="informacoes-conta-nome">Suporte e ajuda</h1>
+  </div>
+
+  <div class="container-duvidas-suporte">
+    <h2 class="titulo-duvidas-suporte">Possíveis Dúvidas</h2>
+
+    <div class="duvida-item-suporte" onclick="toggleResposta(1)">
+      <h3 class="pergunta-duvida-suporte">Como faço para criar uma conta?</h3>
+      <div id="resposta1-suporte" class="resposta-duvida-suporte">
+        <p>Para criar uma conta, clique no botão "Cadastre-se" no topo da página e siga os passos indicados. Será
+          necessário informar seu nome, e-mail e uma senha segura.</p>
+          <br>
+        <button class="button-suporte" onclick="irParaMaisInformacoes(event, 'criacao-conta.html')">
+          <span class="btn-txt-suporte">Saiba mais</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="duvida-item-suporte" onclick="toggleResposta(2)">
+      <h3 class="pergunta-duvida-suporte">Esqueci minha senha. O que faço?</h3>
+      <div id="resposta2-suporte" class="resposta-duvida-suporte">
+        <p>Na página de login, clique em "Esqueci minha senha" e insira o e-mail cadastrado. Você receberá um link
+          para redefinir sua senha.</p>
+          <br>
+
+        <button class="button-suporte" onclick="irParaMaisInformacoes(event, 'redefinir-senha.html')">
+          <span class="btn-txt-suporte">Saiba mais</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="duvida-item-suporte" onclick="toggleResposta(3)">
+      <h3 class="pergunta-duvida-suporte">Quais métodos de pagamento são aceitos?</h3>
+      <div id="resposta3-suporte" class="resposta-duvida-suporte">
+        <p>Aceitamos pagamentos por cartão de crédito, boleto bancário e transferência via PIX. Todas as
+          transações são realizadas em ambiente seguro.</p>
+          <br>
+
+        <button class="button-suporte" onclick="irParaMaisInformacoes(event, 'pagamento.html')">
+          <span class="btn-txt-suporte">Saiba mais</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="duvida-item-suporte" onclick="toggleResposta(4)">
+      <h3 class="pergunta-duvida-suporte">Posso cancelar minha conta a qualquer momento?</h3>
+      <div id="resposta4-suporte" class="resposta-duvida-suporte">
+        <p>Sim, você pode cancelar sua conta a qualquer momento através das configurações de perfil. Lembre-se de
+          que isso é irreversível.</p>
+          <br>
+
+        <button class="button-suporte" onclick="irParaMaisInformacoes(event, 'cancelamento.html')">
+          <span class="btn-txt-suporte">Saiba mais</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+
+</div>
+<!-- //////////////////////////////////////////METODOS DE PAGAMENTOS /////////////////////////////////////////// -->
+
+<div id="conteudo-pagamentos" class="right-panel">
+  <div class="banner-suporte">
+    <img class="img-drizzle" src="../../img/drizzle.png" class="logo">
+  <h1 class="informacoes-conta-nome">Métodos de pagamento</h1>
+</div>
+
+  <div class="container-cartao-credito">
+    <h2 class="titulo-cartao">Adicionar Cartão de Crédito</h2>
+    <form class="formulario-cartao" onsubmit="adicionarCartao(event)">
+      <div class="campo-cartao">
+        <label for="nome-cartao">Nome no Cartão</label>
+        <div class="grupo-input">
+          <i class="icone-cartao fa fa-user"></i>
+          <input type="text" id="nome-cartao" placeholder="Nome como aparece no cartão" required>
+        </div>
+      </div>
+      <div class="campo-cartao">
+        <label for="numero-cartao">Número do Cartão</label>
+        <div class="grupo-input">
+          <i class="icone-cartao fa fa-credit-card"></i>
+          <input type="text" id="numero-cartao" placeholder="0000 0000 0000 0000" maxlength="19" required>
+        </div>
+      </div>
+      <div class="campos-inline">
+        <div class="campo-cartao">
+          <label for="validade-cartao">Data de Validade</label>
+          <div class="grupo-input">
+            <i class="icone-cartao fa fa-calendar"></i>
+            <input type="text" id="validade-cartao" placeholder="MM/AA" maxlength="5" required>
+          </div>
+        </div>
+        <div class="campo-cartao">
+          <label for="cvv-cartao">CVV</label>
+          <div class="grupo-input">
+            <i class="icone-cartao fa fa-lock"></i>
+            <input type="text" id="cvv-cartao" placeholder="CVV" maxlength="3" required>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="botao-cartao">Adicionar Cartão</button>
+    </form>
+  </div>
+
+  <!-- Exibir cartões salvos -->
+  <div class="cartoes-salvos">
+    <h3>Cartões Salvos</h3>
+    <ul id="lista-cartoes"></ul>
+  </div>
+
+
+
+
+
+</div>
+
+
+
       </div>
     
       <script>
