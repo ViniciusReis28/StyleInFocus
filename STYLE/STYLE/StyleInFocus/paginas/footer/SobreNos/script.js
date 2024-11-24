@@ -8,8 +8,11 @@
 //   }
   
 
-  function toggleInfo() {
-    const extraInfo = document.getElementById("extraInfo");
-    extraInfo.classList.toggle("open"); // Adiciona ou remove a classe "open"
+  
+
+
+  function toggleInfo(cardId) {
+    const extraInfo = document.getElementById(cardId);
+    extraInfo.classList.toggle("open"); // Alterna a exibição do card correspondente
   }
   
