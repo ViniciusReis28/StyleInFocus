@@ -1860,3 +1860,21 @@ section.slider{
 }
 
 
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Faz o vídeo preencher o fundo sem distorção */
+  z-index: -1; /* Fica atrás de todos os outros elementos */
+}
+
+.content {
+  position: relative;
+  color: white;
+  text-align: center;
+  margin-top: 50vh;
+  transform: translateY(-50%);
+  font-family: Arial, sans-serif;
+}
