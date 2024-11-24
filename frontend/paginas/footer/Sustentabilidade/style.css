@@ -5,9 +5,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
 
 
-body {
-  background-color: rgb(224, 224, 224);
-}
+
 
 /* Reset básico */
 * {
@@ -46,7 +44,8 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  z-index: 10; /* Certifica-se de que o texto fique acima da imagem */
+  z-index: 10;
+  /* Certifica-se de que o texto fique acima da imagem */
 }
 
 .slide-link2 {
@@ -57,6 +56,7 @@ body {
   padding: 10px 20px;
   border-radius: 5px;
 }
+
 .slide-text2 {
   font-family: "Bebas Neue", sans-serif;
   position: absolute;
@@ -64,12 +64,14 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  z-index: 10; /* Certifica-se de que o texto fique acima da imagem */
+  z-index: 10;
+  /* Certifica-se de que o texto fique acima da imagem */
 }
 
 .slide-link {
   font-size: 70px;
-  color: white; /* Altere a cor conforme necessário */
+  color: white;
+  /* Altere a cor conforme necessário */
   text-decoration: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -126,14 +128,18 @@ section.slider {
   width: 100%;
 }
 
-.nav-manual,
+
 .nav-auto {
   position: absolute;
-  bottom: -90px; /* Posiciona 10px acima da parte inferior do contêiner */
-  right: 10px; /* Posiciona 10px à esquerda do lado direito do contêiner */
+  bottom: -90px;
+  /* Posiciona 10px acima da parte inferior do contêiner */
+  right: 10px;
+  /* Posiciona 10px à esquerda do lado direito do contêiner */
   display: flex;
-  justify-content: flex-end; /* Alinha à direita */
-  gap: 5px; /* Espaçamento entre os botões */
+  justify-content: flex-end;
+  /* Alinha à direita */
+  gap: 5px;
+  /* Espaçamento entre os botões */
 }
 
 /* Estilo dos botões manuais e automáticos */
@@ -244,6 +250,7 @@ section.slider {
   text-align: center;
   font-family: "Bebas Neue", sans-serif;
   font-size: 50px;
+  margin-top: 150PX;
 }
 
 .carousel-wrapper {
@@ -285,7 +292,9 @@ section.slider {
   color: rgb(0, 0, 0);
   box-shadow: 0 5px 15px rgba(115, 115, 115, 0);
   padding: 20px;
-  font-family: "Nunito", sans-serif;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 20px;
+
 }
 
 .carousel-item div img {
@@ -300,17 +309,39 @@ section.slider {
   font-size: 25px;
 }
 
+
 .carousel-item div button {
-  border: none;
-  border-radius: 5px;
-  background-color: #000;
-  color: white;
-  width: 100%;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 30px;
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  will-change: box-shadow, transform;
+  background: radial-gradient(100% 100% at 100% 0%, #000000 0%, #000000 100%);
+  box-shadow: 0px 0.01em 0.01em rgba(0, 0, 0, 0.4), 0px 0.3em 0.7em -0.01em rgba(0, 0, 0, 0.3), inset 0px -0.01em 0px rgba(0, 0, 0, 0.5);
+  padding: 0 2em;
+  border-radius: 0.3em;
+  color: #fff;
   height: 50px;
-  font-size: 18px;
-  padding: 5px;
+  width: 100%;
   margin: 5px;
+  text-shadow: 0 1px 0 rgb(0 0 0 / 40%);
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
 }
+
+.carousel-item div button:hover {
+  box-shadow: 0px 0.1em 0.2em rgba(0, 162, 255, 0.4), 0px 0.4em 0.7em -0.1em rgb(45 35 66 / 30%), inset 0px -0.1em 0px #000000;
+  transform: translateY(-0.1em);
+}
+
+.carousel-item div button:active {
+  box-shadow: inset 0px 0.1em 0.6em #04ff43;
+  transform: translateY(0em);
+}
+
+
+
 
 .carousel-item div button svg {
   margin-right: 5px;
@@ -372,8 +403,7 @@ section.slider {
 
 
 
-/*-------------------------------------------------SLIDE DO INDEX TEXT---------------------------------------------------*/
-
+/*--------------------------------------------------------SLIDE DO INDEX TEXT---------------------------------------------------*/
 
 /* Sobreposição preta para o efeito de escurecimento */
 .overlay {
@@ -397,21 +427,27 @@ section.slider {
   top: 0;
   left: 0;
   width: 100%;
-  height: 40px; /* Ajuste conforme o tamanho necessário para os slides */
+  height: 40px;
+  /* Ajuste conforme o tamanho necessário para os slides */
   background: #050505;
-  overflow: hidden; /* Oculta slides fora da área visível */
+  overflow: hidden;
+  /* Oculta slides fora da área visível */
   display: flex;
   align-items: center;
-  z-index: 2; /* Coloca o slider acima da imagem */
+  z-index: 2;
+  /* Coloca o slider acima da imagem */
 }
 
 /* Slides */
 .slides-text {
   display: flex;
-  flex-direction: column; /* Organiza slides verticalmente */
-  transition: transform 0.5s ease-in-out; /* Suaviza a transição */
+  flex-direction: column;
+  /* Organiza slides verticalmente */
+  transition: transform 0.5s ease-in-out;
+  /* Suaviza a transição */
   width: 100%;
-  height: 80%; /* Garante que os slides preencham o contêiner */
+  height: 80%;
+  /* Garante que os slides preencham o contêiner */
 }
 
 /* Estilo individual dos slides */
@@ -419,16 +455,19 @@ section.slider {
   width: 100%;
   box-sizing: border-box;
   text-align: center;
-  height: 100px; /* Ajuste conforme necessário */
-  flex-shrink: 0; /* Impede que o slide encolha */
+  height: 100px;
+  /* Ajuste conforme necessário */
+  flex-shrink: 0;
+  /* Impede que o slide encolha */
 }
 
 .slide-text-index h2,
 .slide-text-index p {
-  
+
   font-family: "Bebas Neue", sans-serif;
   font-size: 24px;
-  margin: 0; /* Remove margens */
+  margin: 0;
+  /* Remove margens */
 }
 
 /* Botões de navegação */
@@ -442,7 +481,8 @@ section.slider {
   font-size: 24px;
   cursor: pointer;
   padding: 600px;
-  z-index: 3; /* Garante que os botões estejam acima do conteúdo do slider */
+  z-index: 3;
+  /* Garante que os botões estejam acima do conteúdo do slider */
 
   /* Ajusta o padding para ficar apenas ao redor do texto */
 }
@@ -465,8 +505,8 @@ section.slider {
   z-index: 9999px;
 }
 
-                                                              /* BARRA DE NAVEGAÇÃO DO SITE */
-nav {
+/* BARRA DE NAVEGAÇÃO DO SITE */
+nav { 
   height: 100px;
   font-family: "Bebas Neue", sans-serif;
   display: flex;
@@ -478,7 +518,7 @@ nav {
   left: 0; /* Alinha a navbar na esquerda da página */
   width: 100%; /* Faz a navbar ocupar toda a largura da página */
   z-index: 1000; /* Garante que a navbar fique acima de outros elementos */
-  background-color: rgba(255, 255, 255, 0); /* Cor de fundo opaca */
+  background-color: rgb(255, 255, 255); /* Cor de fundo opaca */
   transition: top 0.3s; /* Transição suave para a mudança de posição */
   transition: background-color 0.3s, color 0.3s
 }
@@ -493,7 +533,7 @@ nav.scrolled .right-section a::after {
 nav.scrolled {
   top: 0;
   /* Fixa o nav no topo quando rola para baixo */
-  background-color: rgb(0, 0, 0) !important;
+  background-color: white !important;
   /* Cor de fundo após rolar */
   color: black !important;
   /* Cor do texto após rolar */
@@ -518,10 +558,12 @@ nav:hover {
 }
 
 nav:hover a {
-  color: #000000;
+  color: #ffffff;
 }
 
-
+nav:hover .profile-text .text-login {
+  color: #000000;
+}
 
 nav:hover .center-section .dropdown>a::after,
 nav:hover .right-section a::after {
@@ -531,14 +573,16 @@ nav:hover .right-section a::after {
 }
 
 nav:hover #logo {
-  content: url('../../img/logopreta.png'); /* Substitui a imagem quando o mouse passa no <nav> */
-  transition: all 0.3s ease; /* Transição suave */
+  content: url('../../../img/logopreta.png');
+  /* Substitui a imagem quando o mouse passa no <nav> */
+  transition: all 0.3s ease;
+  /* Transição suave */
 }
 
 
 a {
   text-decoration: none;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   font-size: 25px;
   padding: 10px 15px;
   border-radius: 5px;
@@ -592,6 +636,18 @@ a {
   align-items: center;
 }
 
+/* Garante que a center-section fique centralizada */
+.center-section {
+  left: 165px;
+  position: relative;
+  z-index: 1; /* Mantém acima de outros conteúdos, se necessário */
+}
+
+/* Right-section posicionada à direita */
+.right-section {
+  display: flex;
+  z-index: 2;
+}
 .center-section ul {
   display: flex;
   list-style: none;
@@ -614,13 +670,14 @@ a {
 }
 
 .right-section a {
-  margin-left: 10px;
+  margin-left: 0px;
+  left: 250px;
 }
 
 .search-bar-container {
   position: absolute;
   top: 50%;
-  left: 87%;
+  left: 83%;
   transform: translate(-50%, -50%);
 }
 
@@ -640,6 +697,35 @@ a {
   height: 1rem;
   pointer-events: none;
   z-index: 1;
+}
+
+
+.profile-text {
+  margin-left: 5px;
+  color: #ffffff; /* Change to match the color in your image */
+  font-weight: bold;
+}
+
+.profile-link::after {
+  content: none;
+}
+
+/* Estilo geral do link na seção de perfil */
+.profile-text .text-login {
+  position: relative;
+  padding: 5px;
+  border-radius: 5px;
+  color: #000000;
+  font-size: 20px; /* Adjust size as needed */
+  text-decoration: none;
+  
+}
+.profile-text .text-login:hover {
+  text-decoration: underline;
+}
+.text-login:hover {
+  color: #000000;
+  text-decoration: none;
 }
 
 .input {
@@ -755,7 +841,6 @@ a {
   /* Mantém os itens do dropdown empilhados */
 }
 
-
 /* banner Principal */
 .bannerzinho {
   display: grid;
@@ -778,16 +863,8 @@ a {
 
 
 
-.Spotify {
-  border-radius: 12px;
-  width: 16%;
-  height: 80px;
-  position: fixed;
-  z-index: 5000;
-  left: 141px;
-  top: 52px; /* Defina um valor inicial para top */
-  transition: top 0.3s ease; /* Adiciona uma transição suave */
-}
+
+
 
 /*-------------------------------------------------------------------CSS DA PAGINAS DE PRODUTOs--------------------------------------------------------------------------*/
 .produtos-camisas-container {
@@ -816,7 +893,7 @@ a {
   width: 100%;
   height: auto;
   margin-bottom: 30px;
-  background-color: #ff000000;
+  background-color: #ffffff00;
 }
 
 .filtros {
@@ -846,40 +923,18 @@ a {
   gap: 30px;
   /* Espaço entre as caixas */
 }
-#cart-count {
-  display: inline-block;
-  position: relative;
-  background: red;
-  color: white;
-  border-radius: 50%;
-  padding: 2px 5px;
-  font-size: 12px;
-}
 
-@keyframes pulse {
-  0% {
-      transform: scale(1);
-  }
-  50% {
-      transform: scale(1.2);
-  }
-  100% {
-      transform: scale(1);
-  }
-}
-
-.pulse {
-  animation: pulse 0.6s ease;
-}
 .box {
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 0px 15px rgba(0, 0, 0, 0.1);
   border: #000;
   padding: 20px;
-  flex: 1 1 calc(33.333% - 25px);
+  flex: 1 1 calc(33.333% - 20px);
+  /* Tamanho da caixa para garantir três por linha */
   box-sizing: border-box;
   text-align: left;
+  /* Alinhamento à esquerda para o texto */
   display: block;
   flex-direction: column;
   align-items: center;
@@ -887,89 +942,57 @@ a {
 }
 
 .box img {
-  width: 100%;
+  width: 92%;
   /* Ajuste conforme necessário */
   margin: auto;
   /* Centraliza a imagem horizontalmente */
-  border-radius: 8px;
 }
 
 .box h1 {
-  font-family: "Bebas Neue", sans-serif;
-  font-size: 30px;
-  margin: 1px 0;
+  font-family: "Nunito", sans-serif;
+  font-size: 20px;
+  margin: 10px 0;
   align-self: flex-start;
-  color: #000;
-  margin-left: 17px;
-
   /* Alinha o texto à esquerda */
 }
 
 .box h3 {
   align-self: flex-start;
-  font-family: "Bebas Neue", sans-serif;
-  font-size: 25px;
-  color: #000;
-  margin-left: 17px;
-
+  font-family: "Nunito", sans-serif;
+  font-size: 18px;
 }
 
 
 .box p {
-  font-family: "Bebas Neue", sans-serif;
+  font-family: "Nunito", sans-serif;
   font-size: 14px;
   color: #888;
   align-self: flex-start;
   /* Alinha o texto à esquerda */
-  margin-left: 17px;
 }
-
 
 .box button {
-  font-family: "Bebas Neue", sans-serif;
-  font-size: 30px;
-  display: flex; /* Usando flexbox para centralização */
-  justify-content: center; /* Centraliza horizontalmente */
-  align-items: center; /* Centraliza verticalmente */
-  outline: 0;
-  border: 0;
+  font-family: "Nunito", sans-serif;
+  font-size: 18px;
+  padding: 10px 20px;
+  color: white;
+  background-color: #000000;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  will-change: box-shadow,transform;
-  background: radial-gradient( 100% 100% at 100% 0%, #000000 0%, #000000 100% );
-  box-shadow: 0px 0.01em 0.01em rgba(0, 0, 0, 0.4), 0px 0.3em 0.7em -0.01em rgba(0, 0, 0, 0.3), inset 0px -0.01em 0px rgba(0, 0, 0, 0.5);
-  padding: 0 2em;
-  border-radius: 0.3em;
-  color: #fff;
-  height: 50px;
-  width: 98%;
-  margin: 5px;
-  text-shadow: 0 1px 0 rgb(0 0 0 / 40%);
-  transition: box-shadow 0.15s ease, transform 0.15s ease;
+  margin-top: 10px;
+  /* Empurra o botão para o fundo da caixa */
+  align-self: center;
+  /* Alinha o botão à esquerda */
 }
-
-.box button:hover {
-  box-shadow: 0px 0.1em 0.2em rgba(0, 162, 255, 0.4), 0px 0.4em 0.7em -0.1em rgb(45 35 66 / 30%), inset 0px -0.1em 0px #000000;
-  transform: translateY(-0.1em);
-}
-
-.box button:active {
-  box-shadow: inset 0px 0.1em 0.6em #04eeff;
-  transform: translateY(0em);
-}
-
-.box button svg {
-  margin-right: 5px;
-  margin-top: 0px;
-}
-
 
 
 /*-------------------------------------------------------------- BOTÂO DO FILTRAR PAGINA DE PRODUTOS------------------------------------------------------*/
 .btn-filtrar {
 
   padding: 15px 30px;
-  font-size: 25px;
-  font-family: "Bebas Neue", sans-serif;
+  font-size: 18px;
+  font-family: "Nunito", sans-serif;
   color: white;
   background-color: #000000;
   border: none;
@@ -993,11 +1016,11 @@ a {
   z-index: 2000;
   top: 0;
   left: 0;
-  background-color: #050505;
+  background-color: #232323;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
-  font-family: "Bebas Neue", sans-serif;
+  font-family: "Nunito", sans-serif;
 }
 
 .closebtn-left {
@@ -1019,7 +1042,7 @@ a {
 .left-sidebar a {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
-  font-size: 40px;
+  font-size: 25px;
   color: #818181;
   display: block;
   transition: 0.3s;
@@ -1027,8 +1050,7 @@ a {
 
 .left-sidebar h1 {
   color: white;
-  margin: 10px;
-  
+  margin: 5px;
 }
 
 .left-sidebar a:hover {
@@ -1049,7 +1071,6 @@ a {
 }
 
 .filter-section-left h3 {
-  font-size:25px;
   color: rgb(255, 255, 255);
   cursor: pointer;
   display: flex;
@@ -1129,11 +1150,8 @@ a {
   height: 50px;
   width: 200px;
   background-color: #ffffffd6;
-  font-size: 30px;
+  font-size: 20px;
   color: rgb(0, 0, 0);
-  font-family: "Bebas Neue", sans-serif;
-  margin-top: 20px;
-
 }
 
 
@@ -1732,177 +1750,209 @@ section.slider{
   font-size: 12px;
   color: rgb(0, 0, 0);
 }
-
-
-/* Variáveis substituídas com valores gerados manualmente */
-
-
-
-
-
-
-
-
-
-
-/* Contêiner de estrelas */
-#stars-container {
-  position: fixed; /* Fica fixo na tela */
-  height: 100vh;
-  width: 100vw;
-  background: radial-gradient(ellipse at bottom, #2d2f3a 0%, #000000 100%);
-  overflow: hidden;
-  z-index: -1; /* Coloca o fundo atrás do conteúdo */
-
+/*----------------------------------------------    SUSTENTABILIDADE    ---------------------------------------------------*/
+.body-sustenta{
+    font-family:"freeman", sans-serif;
+;
 }
 
-/* Título Principal */
-.page-header {
-  background-color: transparent; /* Fundo transparente */
-  color: #fff; /* Texto branco */
-  padding: 4rem 2rem;
-  text-align: center;
-  margin-bottom: 3rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra discreta */
+/* Seção de Introdução com Imagem no Meio */
+.intro {
+    background: url('../../../img/foto-ong.jpg') no-repeat center center;
+    background-size: cover; /* Mantém a imagem coberta sem distorção */
+    background-attachment: fixed; /* Fixar a imagem ao fundo */
+    color: white;
+    height: 70vh; /* Menor altura para manter o foco na imagem */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
 }
 
-.page-header h1 {
-  font-size: 5rem; /* Tamanho maior */
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  margin: 0;
-  text-transform: uppercase;
-  color: #000; /* Texto do título agora é preto */
-  animation: fadeInDown 1s ease-out;
+.intro::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0); /* Transparência preta para melhorar o contraste */
+    z-index: -1;
 }
 
-.page-header p {
-  font-size: 1.5rem; /* Subtítulo maior */
-  margin-top: 1rem;
-  animation: fadeInUp 1.2s ease-out;
+.intro .container {
+    max-width: 1000px;
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+    
+}
+.titulo {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    padding: 5px 20px; /* Distância entre a borda e o texto */
+    color: #ffffff; /* Cor do texto */
+    display: inline; /* Para garantir que a borda se ajuste apenas à largura do texto */
+    position: relative; /* Para permitir a sobreposição da sombra */
+    text-shadow: 3px 3px 8px rgb(0, 0, 0); /* Sombra suave ao redor do texto */
+}
+.titulo-1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    padding: 5px 20px; /* Distância entre a borda e o texto */
+    color: #000000; /* Cor do texto */
+    display: inline; /* Para garantir que a borda se ajuste apenas à largura do texto */
+    position: relative; /* Para permitir a sobreposição da sombra */
 }
 
-/* Subtítulo */
-.subtitle {
-  text-align: center;
-  margin: 3rem 0;
+.descricao {
+    font-size: 2.0rem;
+        margin-bottom: 40px;
+    align-items: center;
+    opacity: 0; /* Inicialmente invisível para animação */
+    text-shadow: 3px 3px 8px rgb(0, 0, 0); /* Sombra suave ao redor do texto */
+
+    animation: slideIn 1.5s ease-out 0.5s forwards; /* Animação da descrição */
 }
 
-.subtitle h2 {
-  font-size: 3rem;
-  font-weight: bold;
-  color: #fff;
-  margin-bottom: 1rem;
+.btn-sustentabilidade {
+    background-color: #28a745;
+    color: white;
+    padding: 15px 40px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    transition: background-color 0.3s;
+    opacity: 0; /* Inicialmente invisível para animação */
+    animation: slideIn 1.5s ease-out 1s forwards; /* Animação do botão */
 }
 
-.subtitle p {
-  font-size: 1.5rem;
-  color: #ddd;
+.btn-sustentabilidade:hover {
+    background-color: #218838;
 }
 
-/* Animações */
-@keyframes fadeInDown {
-  from {
-      opacity: 0;
-      transform: translateY(-50px);
-  }
-  to {
-      opacity: 1;
-      transform: translateY(0);
-  }
+/* Animação para fazer o texto aparecer com efeito de deslizamento */
+@keyframes slideIn {
+    0% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
-@keyframes fadeInUp {
-  from {
-      opacity: 0;
-      transform: translateY(50px);
-  }
-  to {
-      opacity: 1;
-      transform: translateY(0);
-  }
+/* Seção de Detalhes sobre Sustentabilidade */
+.detalles {
+    background-color: #f9f9f9;
+    padding: 50px 20px;
+    text-align: center;
 }
 
-/* Seção Propósitos */
-.container-propositos {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  padding: 2rem;
-  justify-content: center;
+.detalles .titulo {
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 20px;
 }
 
-/* Contêiner de propósito */
-.container-proposito {
-  background: #222; /* Contêiner com fundo preto */
-  border: 2px solid #444; /* Bordas cinza escuro */
-  border-radius: 15px;
-  padding: 2rem;
-  width: 30%;
-  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1); /* Sombra branca suave */
-  color: #fff; /* Texto branco */
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.detalles .descricao {
+    font-size: 1.4rem;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+.detalhes {
+    padding: 80px 20px;
+    background-color: #fff;
 }
 
-.container-proposito:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2); /* Sombra mais visível */
+.detalhes h3 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 40px;
 }
 
-/* Títulos dos propósitos */
-.container-proposito h3 {
-  font-size: 2rem; /* Título maior */
-  margin-bottom: 1rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #fff; /* Texto branco */
+.detalhes-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
 }
 
-/* Botão de interação */
-.toggle-btn {
-  background-color: #444; /* Fundo do botão cinza escuro */
-  color: #fff; /* Texto branco */
-  border: none;
-  border-radius: 5px;
-  padding: 0.8rem 1.5rem;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+.detalhe {
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
 }
 
-.toggle-btn:hover {
-  background-color: #666; /* Cinza mais claro ao passar o mouse */
-  transform: translateY(-3px);
+.detalhe:hover {
+    transform: translateY(-10px);
 }
 
-/* Texto escondido */
-.proposito-text {
-  font-size: 1.2rem; /* Tamanho maior */
-  line-height: 1.8;
-  margin-top: 1.5rem;
-  display: none; /* Começa escondido */
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  color: #ddd; /* Texto em cinza claro */
+.detalhe-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
 }
 
-.proposito-text.show {
-  display: block; /* Quando for mostrado */
-  opacity: 1;
+.text {
+    padding: 20px;
 }
 
-/* Ajuste responsivo */
-@media (max-width: 768px) {
-  .container-proposito {
-      width: 100%; /* Contêiner ocupa 100% da largura em telas pequenas */
-  }
+.detalhe h4 {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
 
-  .page-header h1 {
-      font-size: 3.5rem; /* Ajuste do título em telas menores */
-  }
+.detalhe p {
+    font-size: 1rem;
+    color: #777;
+}
 
-  .page-header p {
-      font-size: 1.3rem;
-  }
+/* Seção de Chamada para Ação */
+.cta {
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.cta h3 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.cta p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.btn-loja {
+    background-color: #28a745;
+    color: white;
+    padding: 15px 40px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    transition: background-color 0.3s;
+}
+
+.btn-loja:hover {
+    background-color: #218838;
 }
