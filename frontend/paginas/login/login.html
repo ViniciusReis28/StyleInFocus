@@ -100,7 +100,7 @@
     const checkAuthentication = () => {
         const token = localStorage.getItem('token');
         if (token) {
-            window.location.href = 'userLogado.html'; // Ajuste a página de destino
+            window.location.href = '/index.html'; // Ajuste a página de destino
         }
     };
 
@@ -137,7 +137,7 @@
                 // Mensagem de sucesso e redirecionamento
                 displayMessage('Login realizado com sucesso!');
                 setTimeout(() => {
-                    window.location.href = 'userLogado.html'; // Ajuste a página de destino
+                    window.location.href = '/index.html'; // Ajuste a página de destino
                 }, 1000); // Espera um segundo para mostrar a mensagem
             } else {
                 // Exibe mensagem de erro retornada pelo servidor
