@@ -183,7 +183,7 @@ function irParaIdentificacao() {
   document.getElementById("section-identificacao").style.display = "block";
 }
 
-function irParaPagamento() {
+function irParaConfirmacao() {
   // Captura os valores do formulário
   const nome = document.getElementById("nome-completo").value;
   const cpf = document.getElementById("cpf").value;
@@ -216,13 +216,7 @@ function irParaPagamento() {
     return;
   }
 
-  // Verificar se um frete foi selecionado
-  if (!freteSelecionado) {
-    alert("Por favor, selecione uma opção de frete.");
-    return;
-  }
-
-  // Criar um objeto com todas as informações do cliente
+  // Criar um objeto com os dados
   const dadosIdentificacao = {
     nome,
     cpf,
@@ -238,7 +232,6 @@ function irParaPagamento() {
       pontoDeReferencia,
       cep,
     },
-    frete: freteSelecionado, // Apenas o frete selecionado
   };
 
   // Obter os itens do carrinho
@@ -265,61 +258,59 @@ function irParaPagamento() {
   const pedidoCompleto = {
     dadosIdentificacao,
     produtos: produtosAgrupados,
-    frete: freteSelecionado,
     total: totalCarrinho,
   };
 
   // Salvar o pedido completo no localStorage
-  localStorage.setItem('pedidoCompleto', JSON.stringify(pedidoCompleto));
+  localStorage.setItem("pedidoCompleto", JSON.stringify(pedidoCompleto));
 
-  // Atualizar o progresso
-  document.getElementById("step-2").classList.add("completed");
-  document.getElementById("step-3").classList.add("completed");
-
-  // Mostrar a seção de Pagamento
-  document.getElementById("section-identificacao").style.display = "none";
-  document.getElementById("section-pagamento").style.display = "block";
-
-  // Exibir as informações na seção de pagamento
-  exibirInformacoesPagamento(pedidoCompleto);
-
-  console.log("Pedido completo:", JSON.stringify(pedidoCompleto, null, 2));
+  // Atualizar a exibição da confirmação
+  exibirConfirmacao(pedidoCompleto);
 }
 
-function exibirInformacoesPagamento(pedidoCompleto) {
-  console.log(pedidoCompleto)
-  const divPagamento = document.getElementById("informacoes-pagamento");
 
-  // Verificar se o elemento foi encontrado
-  if (!divPagamento) {
-    console.error("Elemento 'informacoes-pagamento' não encontrado.");
-    return;
+function exibirConfirmacao(pedidoCompleto) {
+  const divConfirmacao = document.getElementById("informacoes-confirmacao");
+
+  // Gerar o conteúdo da confirmação
+  const { dadosIdentificacao, produtos, total } = pedidoCompleto;
+  let produtosHTML = "<h4>Produtos:</h4>";
+
+  for (const key in produtos) {
+    const produto = produtos[key];
+    produtosHTML += `
+      <div style="margin-bottom: 10px;">
+        <img src="${produto.img}" alt="${produto.nome}" style="width: 100px; height: 100px; object-fit: cover;" />
+        <p><strong>Nome:</strong> ${produto.nome}</p>
+        <p><strong>Tamanho:</strong> ${produto.tamanho}</p>
+        <p><strong>Quantidade:</strong> ${produto.quantidade}</p>
+        <p><strong>Preço:</strong> R$ ${produto.preco.toLocaleString("pt-BR", {
+          minimumFractionDigits: 2,
+        })}</p>
+      </div>
+    `;
   }
 
-  // Acessando as informações do pedido
-  const dadosIdentificacao = pedidoCompleto.dadosIdentificacao;
-  let totalCarrinho = pedidoCompleto.total;
-  const freteSelecionado = pedidoCompleto.frete;
-  
-  
-  // Garantir que o preço do frete e o total dos produtos sejam números
-  totalCarrinho = parseFloat(totalCarrinho) || 0;
-  const freteSelecionadoPreco = parseFloat(freteSelecionado.price) || 0;
-
-  const totalComFrete = totalCarrinho + freteSelecionadoPreco;
-
-  divPagamento.innerHTML = `
-    <h3>Informações do Pedido</h3>
+  divConfirmacao.innerHTML = `
+    <h3>Resumo do Pedido</h3>
     <p><strong>Nome:</strong> ${dadosIdentificacao.nome}</p>
     <p><strong>CPF:</strong> ${dadosIdentificacao.cpf}</p>
     <p><strong>Email:</strong> ${dadosIdentificacao.email}</p>
     <p><strong>Telefone:</strong> ${dadosIdentificacao.telefone}</p>
     <p><strong>Endereço:</strong> ${dadosIdentificacao.endereco.rua}, ${dadosIdentificacao.endereco.numero}, ${dadosIdentificacao.endereco.cidade} - ${dadosIdentificacao.endereco.estado}</p>
-    <p><strong>Frete:</strong> R$ ${freteSelecionadoPreco.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-    <p><strong>Total dos Produtos:</strong> R$ ${totalCarrinho.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-    <p><strong>Total com Frete:</strong> R$ ${totalComFrete.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+    <p><strong>Total:</strong> R$ ${total.toLocaleString("pt-BR", {
+      minimumFractionDigits: 2,
+    })}</p>
+    ${produtosHTML}
   `;
+  document.getElementById("step-2").classList.add("completed");
+  document.getElementById("step-3").classList.add("completed");
+  // Atualizar as seções visíveis
+  document.getElementById("section-identificacao").style.display = "none";
+  document.getElementById("section-confirmacao").style.display = "block";
 }
+
+
 
 
 // Carregar o carrinho ao abrir a página

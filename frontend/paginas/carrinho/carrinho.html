@@ -60,6 +60,10 @@
       </div>
       <div id="step-3" class="step">
         <div class="circle">3</div>
+        <span>Confirmação</span>
+      </div>
+      <div id="step-4" class="step">
+        <div class="circle">4</div>
         <span>Pagamento</span>
       </div>
     </div>
@@ -166,13 +170,20 @@
           </div>
         <div id="cart-summary" class="cart-summary">
           <div class="btn">
-            <button class="btn-finalizarCompra" onclick="irParaPagamento()">Finalizar Compra</button>
+            <button class="btn-finalizarCompra" onclick="irParaConfirmacao()">Finalizar Compra</button>
             <button class="btn-continuarComprando"><a href="../../../index.html">Continuar Comprando</a></button>
           </div>
         </div>
       </div>
 
-      <!-- Etapa 3: Pagamento -->
+      <!-- Etapa 3: Confirmação -->
+      <div id="section-confirmacao" class="teste" style="display: none">
+       <h1>Confirmação do Pedido</h1>
+        <div id="informacoes-confirmacao"></div>
+         <button onclick="irParaPagamento()">Ir para Pagamento</button>
+        </div>
+
+      <!-- Etapa 4: Pagamento -->
       <div id="section-pagamento" class="teste" style="display: none">
         <h1>Pagamento</h1>
         <div id="informacoes-pagamento"></div>
