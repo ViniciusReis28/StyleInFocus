@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Style In Focus</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="shortcut icon" href="../../../img/logobranca.png" type="image">
+  <link rel="shortcut icon" href="../../../img/logopreta.png" type="image">
 </head>
 
 <body>
@@ -28,6 +28,8 @@
       src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWp3dGsxa2VwdHYydzFjaGZieG9zZXVtMWpyejZyY2cwOHM3cDNreCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l3nWhI38IWDofyDrW/giphy.webp"
       alt="Loading...">
   </div>
+  
+  </div>
   <div class="overlay"></div>
   <div class="slider-container-text">
     <button class="prev" onclick="prevSlide()">&#10094;</button>
@@ -41,11 +43,13 @@
     </div>
     <button class="next" onclick="nextSlide()">&#10095;</button>
   </div>
+  
+  
 
 
   <nav>
     <div class="left-section">
-       <a href="../../../../index.html">
+      <a href="../../../../index.html">
       <img src="../../../img/logopreta.png" id="logo" style="height: 90px; width: 90px; margin: 5px; margin-top: 20px;">
       </a>
     </div>
@@ -62,7 +66,7 @@
         <li class="dropdown">
           <a href="">Masculino</a>
           <div class="dropdown-menu">
-            <a href="frontend/paginas/produtos/produtoCamiseta/masculino-produtos-camisas.html">Camisa</a>
+            <a href="../../../paginas/produtos/produtoCamiseta/masculino-produtos-camisas.html">Camisa</a>
             <a href="">Moletom</a>
             <a href="">Calça</a>
           </div>
@@ -145,54 +149,67 @@
 
 
 
- <!---------------------------------------------------- SUSTENTABILIDADE  ----------------------------------------------------->
- <div class="body-sustenta">
-   <!-- Seção de Introdução com Imagem de Fundo -->
-<!-- Seção de Introdução com Imagem no Meio -->
-<section class="intro">
-    <div class="container">
-        <h2 class="titulo">Vestindo o Futuro</h2>
-        <div class="descricao">Criamos camisetas streetwear com materiais sustentáveis, combinando estilo e respeito pelo meio ambiente.</div>
-        <a href="https://sosamazonia.org.br" class="btn-sustentabilidade">SOSAMAZÔNIA</a>
-    </div>
-</section>
+ <!---------------------------------------------------- politica e privacidade  ----------------------------->
+ 
 
-<!-- Seção de Detalhes sobre Sustentabilidade -->
-<section id="detalhes" class="detalhes">
-    <div class="container">
-        <h2 class="titulo-1">Por Que Escolher a Sustentabilidade?</h2>
-        <p class="descricao-1">Nossa missão é reduzir o impacto ambiental, utilizando tecidos reciclados e processos de produção responsáveis. Ao escolher nossas camisetas, você faz parte de um movimento global por um futuro mais verde.</p>
-    </div>
+<div class="body-perso">
+
+
+           
+
+
+   
     
-</section>
-<section id="detalhes" class="detalhes">
     <div class="container">
-        <h3>Nosso Compromisso com a Sustentabilidade</h3>
-        <div class="detalhes-info">
-            <div class="detalhe">
-                <img src="../../../img/camisa-tecido.jpg" alt="Camisetas Ecológicas" class="detalhe-img"/>
-                <div class="text">
-                    <h4>Camisetas Eco-Friendly</h4>
-                    <p>Feitas de materiais reciclados e orgânicos, reduzindo o impacto ambiental e criando estilo com consciência.</p>
-                </div>
-            </div>
-            <div class="detalhe">
-                <img src="../../../img/camisa-tecido1.jpg" alt="Personalização" class="detalhe-img"/>
-                <div class="text">
-                    <h4>Personalização Consciente</h4>
-                    <p>Com designs exclusivos, suas camisetas podem ser personalizadas com tintas ecológicas, respeitando o meio ambiente.</p>
-                </div>
-            </div>
-            <div class="detalhe">
-                <img src="../../../img/camisa-tecido3.jpg" alt="Embalagem Sustentável" class="detalhe-img"/>
-                <div class="text">
-                    <h4>Embalagens Sustentáveis</h4>
-                    <p>Embalagens feitas de materiais recicláveis e biodegradáveis, para garantir que cada envio seja feito com respeito ao meio ambiente.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+        <!-- Carrossel de Cores -->
+        <section class="carrossel-cores">
+          <div class="carrossel-container" id="cores-container">
+            <div class="cor-item" style="background-color: #ffffff;">Branco</div>
+            <div class="cor-item" style="background-color: #000000;">Preto</div>
+            <div class="cor-item" style="background-color: #ff5733;">Laranja</div>
+            <div class="cor-item" style="background-color: #007bff;">Azul</div>
+            <div class="cor-item" style="background-color: #28a745;">Verde</div>
+            <div class="cor-item" style="background-color: #ffc107;">Amarelo</div>
+            <div class="cor-item" style="background-color: #e91e63;">Rosa</div>
+            <div class="cor-item" style="background-color: #9b59b6;">Roxo</div>
+            <div class="cor-item" style="background-color: #34495e;">Cinza Escuro</div>
+          </div>
+          <button class="carrossel-btn prev" id="btn-prev-cor">&#10094;</button>
+          <button class="carrossel-btn next" id="btn-next-cor">&#10095;</button>
+        </section>
+    
+        <!-- Carrossel de Imagens -->
+        <section class="carrossel-imagem">
+          <img id="imagem-carrossel" src="images/camiseta-frente.jpg" alt="Imagem da Camiseta" />
+          <button class="carrossel-btn prev" id="btn-prev-img">&#10094;</button>
+          <button class="carrossel-btn next" id="btn-next-img">&#10095;</button>
+        </section>
+    
+        <section class="informacoes">
+          <h2>Como Funciona a Personalização</h2>
+          <p>Escolha a cor da sua camiseta e selecione onde deseja adicionar seu logo ou imagem.</p>
+          <ul>
+            <li>Escolha a cor da camiseta no carrossel.</li>
+            <li>Selecione um dos locais para o logo: peito, peito direito, ou barra da camisa.</li>
+            <li>Adicione sua própria imagem ou logo.</li>
+          </ul>
+        </section>
+      </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
 
 
@@ -201,6 +218,14 @@
 
 
 
+
+
+
+
+
+
+
+ 
 
 <br>
 <br>
@@ -224,8 +249,8 @@
         <a href="">Pedido</a>
         <a href="">Patrocínio</a>
         <a href="">Corporativo</a>
-        <a href="">Personalização</a>
-        <a href="">Troca ou Devoluções</a>
+        <a href="../personalização/personalização.html">Personalização</a>
+        <a href="../troca-ou-devolução/troca-ou-devolução.html">Troca ou Devoluções</a>
       </div>
       <div class="coluna">
         <div class="sub-coluna">

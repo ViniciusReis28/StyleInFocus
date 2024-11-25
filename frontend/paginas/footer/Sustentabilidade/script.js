@@ -47,10 +47,10 @@ function toggleDropdown(dropdownId) {
   
     if (window.scrollY > 50) { // Ajuste o valor conforme necessário
       nav.classList.add('scrolled'); // Adiciona a classe quando rola para baixo
-      logo.src = 'frontend/img/logopreta.png'; // Altera para a imagem preta
+      logo.src = '../../../img/logopreta.png'; // Altera para a imagem preta
     } else {
       nav.classList.remove('scrolled'); // Remove a classe quando rola para cima
-      logo.src = 'frontend/img/logobranca.png'; // Retorna à imagem branca
+      logo.src = '../../../img/logopreta.png'; // Retorna à imagem branca
     }
   });
   
