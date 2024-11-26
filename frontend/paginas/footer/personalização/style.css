@@ -1767,99 +1767,139 @@ section.slider{
   
 
   
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+
+
+/* Container Animado */
+.custom-animated-container {
+  animation: custom-fadeIn 1.5s ease;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+}
+
+@keyframes custom-fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
   }
-  
-  /* Estilos do Carrossel de Cores */
-  .carrossel-cores {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    margin: 40px 0;
-    overflow: hidden;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .carrossel-container {
-    display: flex;
-    transition: transform 0.5s ease;
-  }
-  
-  .cor-item {
-    flex: 0 0 100px;
-    height: 100px;
-    margin: 0 10px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.9rem;
-    color: white;
-    font-weight: bold;
-  }
-  
-  .carrossel-btn {
-    background-color: #333333;
-    color: #ffffff;
-    border: none;
-    cursor: pointer;
-    font-size: 1.5rem;
-    padding: 10px;
-    border-radius: 50%;
-    position: absolute;
-    z-index: 10;
-    top: 50%;
-    transform: translateY(-50%);
-    transition: background-color 0.3s ease;
-  }
-  
-  .carrossel-btn:hover {
-    background-color: #555555;
-  }
-  
-  .carrossel-btn.prev {
-    left: 10px;
-  }
-  
-  .carrossel-btn.next {
-    right: 10px;
-  }
-  
-  /* Estilos do Carrossel de Imagens */
-  .carrossel-imagem {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    margin: 40px 0;
-  }
-  
-  .carrossel-imagem img {
-    width: 80%;
-    max-width: 500px;
-    transition: opacity 0.5s ease;
-  }
-  
-  .informacoes {
-    margin-top: 40px;
-  }
-  
-  .informacoes h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-  
-  .informacoes ul {
-    list-style: none;
-    margin: 0 auto;
-    display: inline-block;
-    text-align: left;
-  }
-  
-  .informacoes ul li {
-    font-size: 1rem;
-    margin-bottom: 10px;
-  }
+}
+
+.custom-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border: 2px solid #333;
+}
+
+
+/* Texto Informativo */
+.custom-informacoes {
+  margin-bottom: 30px;
+}
+
+.custom-informacoes h1 {
+  font-size: 3.5rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.custom-informacoes p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.custom-extra-div {
+  font-size: 1rem;
+  color: #444;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+/* Estilos do Modelo Oversized */
+.custom-modelo-camiseta {
+  margin: 30px 0;
+}
+
+.custom-modelo-camiseta h3 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #444;
+}
+
+.custom-imagem-container {
+  display: inline-block;
+  text-align: center;
+}
+
+.custom-imagem-camiseta {
+  width: 300px;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.custom-imagem-camiseta:hover {
+  transform: scale(1.05);
+}
+
+/* Cores Disponíveis */
+.custom-cores-disponiveis {
+  margin: 30px 0;
+}
+
+.custom-cores-disponiveis h3 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #444;
+}
+
+/* Fileiras de cores */
+.custom-cores-fileiras {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.custom-fileira {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.custom-cor-item {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: bold;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.custom-cor-item:nth-child(1) { /* Branco */
+  border: 2px solid #000;
+  color: #333;
+  text-shadow: none;
+}
+
+.custom-cor-item:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
