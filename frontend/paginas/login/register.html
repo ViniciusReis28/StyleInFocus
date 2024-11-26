@@ -105,7 +105,7 @@ document.getElementById('register-form').addEventListener('submit', function (ev
             if (data.success) {
                 displayMessage('Cadastro realizado com sucesso!');
                 setTimeout(() => {
-                    window.location.href = 'userCadastrado.html';
+                    window.location.href = './login.html';
                 }, 3000);
             } else {
                 if (data.errors) {
