@@ -1,6 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Freeman&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
 
+
+body {
+  background-color: rgb(224, 224, 224);
+}
 
 /* Reset básico */
 * {
@@ -31,12 +38,68 @@
 
 /*--------------------------------SLIDE BANNER DA PAGINA PRINCIPAL-----------------------------------*/
 
+/* Estilo do contêiner do texto */
+.slide-text {
+  font-family: "Bebas Neue", sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10; /* Certifica-se de que o texto fique acima da imagem */
+}
+
+.slide-link2 {
+  font-size: 35px;
+  text-decoration: none;
+  bottom: 50px;
+  right: 160px;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+.slide-text2 {
+  font-family: "Bebas Neue", sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10; /* Certifica-se de que o texto fique acima da imagem */
+}
+
+.slide-link {
+  font-size: 70px;
+  color: white; /* Altere a cor conforme necessário */
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.slide-text::after,
+.slide-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  /* Ajuste essa distância para alterar o espaço abaixo do texto */
+  width: 0;
+  height: 3px;
+  background-color: rgb(255, 255, 255);
+  transition: width 0.3s ease;
+}
+
+.slide-text:hover::after {
+  width: 100%;
+}
+
 section.slider {
   margin: 0 auto;
   width: 100%;
   height: auto;
   padding: 0 !important;
   overflow: hidden;
+
 }
 
 .slider-content {
@@ -59,23 +122,24 @@ section.slider {
 }
 
 .slide-box img {
-  height: auto;
+  height: 100%;
   width: 100%;
 }
 
 .nav-manual,
 .nav-auto {
   position: absolute;
-  width: 100%;
-  margin-top: 26%;
+  bottom: -90px; /* Posiciona 10px acima da parte inferior do contêiner */
+  right: 10px; /* Posiciona 10px à esquerda do lado direito do contêiner */
   display: flex;
-  justify-content: center;
+  justify-content: flex-end; /* Alinha à direita */
+  gap: 5px; /* Espaçamento entre os botões */
 }
 
+/* Estilo dos botões manuais e automáticos */
 .nav-manual .manual-btn,
 .nav-auto div {
   border: 1px solid #ffffff;
-  margin-top: 260px;
   padding: 8px;
   border-radius: 50%;
   cursor: pointer;
@@ -108,7 +172,7 @@ section.slider {
 
 .text-container {
   display: flex;
-  font-family: "Nunito", sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   justify-content: space-around;
   align-items: center;
   margin: 20px auto;
@@ -132,10 +196,11 @@ section.slider {
 }
 
 .text-produtos-teste {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 50px;
   display: flex;
   text-align: center;
   justify-content: center;
-  font-family: "Nunito", sans-serif;
 }
 
 .circle-container-BolinhasDeProdutos {
@@ -177,8 +242,8 @@ section.slider {
 /*------------------------------------------------------------------SLIDE DA TELA INDEX DO PRODUTOS DESTAQUES ------------------------------------------------------------*/
 .h1-destaques {
   text-align: center;
-  font-family: "Nunito", sans-serif;
-  font-size: 42px;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 50px;
 }
 
 .carousel-wrapper {
@@ -307,67 +372,90 @@ section.slider {
 
 
 
-/*--------------------------------------------------------SLIDE DO INDEX TEXT---------------------------------------------------*/
+/*-------------------------------------------------SLIDE DO INDEX TEXT---------------------------------------------------*/
 
-.slider-container-text {
-  position: relative;
-  margin-top: 10px;
+
+/* Sobreposição preta para o efeito de escurecimento */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 60px;
-  overflow: hidden;
-  background: #ffffff;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  /* Preto com alta opacidade */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 1;
+  /* Coloca a sobreposição acima da imagem */
 }
 
+/* Contêiner do slider */
+.slider-container-text {
+  position: absolute;
+  color: rgb(255, 255, 255);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px; /* Ajuste conforme o tamanho necessário para os slides */
+  background: #050505;
+  overflow: hidden; /* Oculta slides fora da área visível */
+  display: flex;
+  align-items: center;
+  z-index: 2; /* Coloca o slider acima da imagem */
+}
+
+/* Slides */
 .slides-text {
   display: flex;
-  transition: transform 0.5s ease-in-out;
+  flex-direction: column; /* Organiza slides verticalmente */
+  transition: transform 0.5s ease-in-out; /* Suaviza a transição */
+  width: 100%;
+  height: 80%; /* Garante que os slides preencham o contêiner */
 }
 
+/* Estilo individual dos slides */
 .slide-text-index {
-  min-width: 100%;
+  width: 100%;
   box-sizing: border-box;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.244);
-  padding: 5px;
   text-align: center;
+  height: 100px; /* Ajuste conforme necessário */
+  flex-shrink: 0; /* Impede que o slide encolha */
 }
 
-.slide-text-index h2 {
-  font-family: "Nunito", sans-serif;
-  font-size: 18px;
-  margin-top: 0;
-}
-
+.slide-text-index h2,
 .slide-text-index p {
-  font-family: "Nunito", sans-serif;
-
+  
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 24px;
+  margin: 0; /* Remove margens */
 }
 
+/* Botões de navegação */
 .slider-container-text button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   border: none;
-  background-color: #00000000;
-  font-size: 18px;
-  padding: 500px;
+  background-color: transparent;
+  /* Torna o fundo do botão transparente */
+  font-size: 24px;
   cursor: pointer;
-}
+  padding: 600px;
+  z-index: 3; /* Garante que os botões estejam acima do conteúdo do slider */
 
-.slider-container-text button:hover {
-  color: #000;
+  /* Ajusta o padding para ficar apenas ao redor do texto */
 }
 
 .prev {
+  color: rgb(255, 255, 255);
   left: 10px;
 }
 
 .next {
+  color: rgb(255, 255, 255);
   right: 10px;
 }
-
-
-
-
 
 /*ICONE WATS*/
 .whats {
@@ -377,45 +465,127 @@ section.slider {
   z-index: 9999px;
 }
 
-/*BARRA DE NAVEGAÇAO DO SITE */
-nav {
-  height: 120px;
-  font-family: "Freeman", sans-serif;
+                                                           /* BARRA DE NAVEGAÇÃO DO SITE */
+nav { 
+  height: 100px;
+  font-family: "Bebas Neue", sans-serif;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-  position: relative;
-  box-shadow: 0 2px 0px rgba(0, 0, 0, 0.3);
-  border-radius: 5px;
+  position: fixed; /* Torna a navbar fixa */
+  top: 40px; /* Deslocamento inicial */
+  left: 0; /* Alinha a navbar na esquerda da página */
+  width: 100%; /* Faz a navbar ocupar toda a largura da página */
+  z-index: 1000; /* Garante que a navbar fique acima de outros elementos */
+  background-color: rgb(255, 255, 255); /* Cor de fundo opaca */
+  transition: top 0.3s; /* Transição suave para a mudança de posição */
+  transition: background-color 0.3s, color 0.3s
 }
+
+
+nav.scrolled .center-section a::after,
+nav.scrolled .right-section a::after {
+  background-color: rgb(0, 0, 0);
+  /* Muda a cor da borda inferior para preto */
+}
+
+nav.scrolled {
+  top: 0;
+  /* Fixa o nav no topo quando rola para baixo */
+  background-color: white !important;
+  /* Cor de fundo após rolar */
+  color: black !important;
+  /* Cor do texto após rolar */
+}
+
+nav.scrolled a {
+  font-size: 25px;
+  color: black !important;
+  /* Cor dos links após rolar */
+}
+
+nav.scrolled .dropdown-menu a {
+  font-size: 18px;
+  /* Ajuste o tamanho da fonte quando rolado */
+  color: rgb(0, 0, 0);
+  /* Ajuste a cor do texto quando rolado */
+}
+
+/*HOVERS NAV*/
+nav:hover {
+  background-color: #ffffff;
+}
+
+nav:hover a {
+  color: #000000;
+}
+
+
+
+nav:hover .center-section .dropdown>a::after,
+nav:hover .right-section a::after {
+  background-color: rgb(0, 0, 0);
+  /* Muda a cor da borda inferior para preto */
+
+}
+
+nav:hover #logo {
+  content: url('../../../img/logopreta.png');
+  /* Substitui a imagem quando o mouse passa no <nav> */
+  transition: all 0.3s ease;
+  /* Transição suave */
+}
+
 
 a {
   text-decoration: none;
-  color: black;
-  font-size: 22px;
+  color: rgb(0, 0, 0);
+  font-size: 25px;
   padding: 10px 15px;
-  /* Adiciona padding para aumentar a área de clique */
   border-radius: 5px;
-  /* Adiciona cantos arredondados */
   transition: background-color 0.3s, color 0.3s;
+  position: relative;
+}
+
+
+.right-section a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -21px;
+  /* Ajuste essa distância para alterar o espaço abaixo do texto */
+  width: 0;
+  height: 3px;
+  background-color: rgb(0, 0, 0);
+  transition: width 0.3s ease;
+}
+
+.center-section .dropdown>a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  /* Ajuste essa distância para alterar o espaço abaixo do texto */
+  width: 0;
+  height: 3px;
+  background-color: rgb(0, 0, 0);
+  transition: width 0.3s ease;
+}
+
+
+
+.center-section a:hover::after,
+.right-section a:hover::after {
+  width: 100%;
 }
 
 .center-section a,
 .right-section a {
   padding: 10px 15px;
-  /* Adiciona padding para aumentar a área de clique */
   border-radius: 5px;
-  /* Adiciona cantos arredondados */
 }
 
-.center-section a:hover,
-.right-section a:hover {
-  color: white;
-  /* Cor do texto ao passar o mouse */
-  background-color: #000;
-  /* Cor de fundo ao passar o mouse */
-}
 
 .left-section,
 .center-section,
@@ -427,19 +597,33 @@ a {
 .center-section ul {
   display: flex;
   list-style: none;
-  /* Remove os pontos */
   padding: 0;
   margin: 0;
 }
 
 .center-section li {
-  margin: 0 25px;
-  /* Espaçamento entre os itens */
+  margin: 0 15px; /* Espaçamento horizontal entre os itens */
+  position: relative; /* Para os dropdowns */
+
+}
+
+
+.center-section a {
+  display: flex; /* Isso permite que o link ocupe toda a área do item da lista */
+  align-items: center; /* Centraliza o texto verticalmente */
+  padding: 30px 15px; /* Ampla área de clique */
+  
 }
 
 .right-section a {
   margin-left: 10px;
-  /* Espaçamento entre os ícones na direita */
+}
+
+.search-bar-container {
+  position: absolute;
+  top: 50%;
+  left: 87%;
+  transform: translate(-50%, -50%);
 }
 
 .group {
@@ -448,6 +632,16 @@ a {
   align-items: center;
   position: relative;
   margin-right: -18px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  fill: #bdbecb;
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .input {
@@ -482,75 +676,86 @@ a {
   box-shadow: 0 0 0 2.5px #2f303d;
 }
 
-.search-icon {
+.suggestions-box {
   position: absolute;
-  left: 1rem;
-  fill: #bdbecb;
-  width: 1rem;
-  height: 1rem;
-  pointer-events: none;
-  z-index: 1;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  border: 1px solid #ccc;
+  background-color: #000;
+  /* Para combinar com a barra de pesquisa */
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  display: none;
+  /* Escondido por padrão */
 }
 
-.search-bar-container {
-  position: absolute;
-  /* Allows positioning it anywhere inside the nav */
-  top: 50%;
-  /* Adjust as necessary */
-  left: 87%;
-  /* Adjust as necessary */
-  transform: translate(-50%, -50%);
-  /* Centering */
+.suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+  color: #ffffff;
+  /* Cor do texto para as sugestões */
 }
 
-/*Drop down Produtos*/
+.suggestion-item:hover {
+  background-color: #2f303d;
+  /* Cor do fundo ao passar o mouse */
+}
 
+
+
+/* Estilo para os itens do dropdown */
 .dropdown {
   position: relative;
-  /* Essencial para o posicionamento absoluto do submenu */
 }
 
 .dropdown-menu {
-  position: absolute;
-  left: 40px;
-  top: 100%;
-  /* Posiciona abaixo do elemento pai */
-  transform: translateX(-35%);
-  background-color: rgb(245, 245, 245);
-  border: 1px solid #ccc;
-  border-radius: 10px;
   display: none;
-  padding: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  /* Inicialmente oculto */
+  position: absolute;
+  /* Posiciona o menu dropdown em relação ao item */
+  width: 100%;
+  /* Define a largura como 100% da largura do item dropdown */
+  left: 0;
+  /* Alinha o menu dropdown com a borda esquerda do item dropdown */
+  top: 97px;
+  /* Ajusta a posição abaixo do nav */
+  background-color: #ffffff;
+  /* Fundo do menu dropdown */
   z-index: 1000;
-  margin-top: 12px;
+  /* Garante que o menu fique acima de outros elementos */
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  /* Adiciona sombra para um efeito de destaque */
 }
 
+/* Links dentro do dropdown */
 .dropdown-menu a {
-
-  padding: 5px 10px;
-  text-decoration: none;
+  padding: 10px 15px;
+  font-size: 18px;
   color: black;
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Suave transição */
+}
+
+/* Efeito hover ao passar o mouse sobre os links do dropdown */
+.dropdown-menu a:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Cor de fundo ao passar o mouse */
+  color: #7a7a7a; /* Cor do texto ao passar o mouse */
+}
+
+
+.dropdown:hover .dropdown-menu {
+  display: block; /* Exibe o dropdown ao passar o mouse */
 }
 
 .dropdown-items {
   display: flex;
-  /* Configura os links para ficarem lado a lado */
+  flex-direction: column;
+  /* Mantém os itens do dropdown empilhados */
 }
-
-.dropdown:hover .dropdown-menu {
-  display: block;
-  /* Exibe o menu ao passar o mouse */
-}
-
-.dropdown-menu a:hover {
-  background-color: #000000;
-  color: white;
-}
-
-
-
-
 
 
 /* banner Principal */
@@ -564,6 +769,7 @@ a {
   margin-top: 15px;
   max-width: 80%;
   height: auto;
+  border-radius: 40px;
 }
 
 .teste {
@@ -574,8 +780,16 @@ a {
 
 
 
-
-
+.Spotify {
+  border-radius: 12px;
+  width: 16%;
+  height: 80px;
+  position: fixed;
+  z-index: 5000;
+  left: 141px;
+  top: 52px; /* Defina um valor inicial para top */
+  transition: top 0.3s ease; /* Adiciona uma transição suave */
+}
 
 /*-------------------------------------------------------------------CSS DA PAGINAS DE PRODUTOs--------------------------------------------------------------------------*/
 .produtos-camisas-container {
@@ -604,14 +818,14 @@ a {
   width: 100%;
   height: auto;
   margin-bottom: 30px;
-  background-color: #ffffff00;
+  background-color: #ff000000;
 }
 
 .filtros {
   gap: 100px;
   display: flex;
   font-size: 14px;
-  font-family: "Nunito", sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   cursor: pointer;
 }
 
@@ -641,11 +855,9 @@ a {
   box-shadow: 0 0px 15px rgba(0, 0, 0, 0.1);
   border: #000;
   padding: 20px;
-  flex: 1 1 calc(33.333% - 20px);
-  /* Tamanho da caixa para garantir três por linha */
+  flex: 1 1 calc(33.333% - 25px);
   box-sizing: border-box;
   text-align: left;
-  /* Alinhamento à esquerda para o texto */
   display: block;
   flex-direction: column;
   align-items: center;
@@ -653,57 +865,87 @@ a {
 }
 
 .box img {
-  width: 92%;
+  width: 100%;
   /* Ajuste conforme necessário */
   margin: auto;
   /* Centraliza a imagem horizontalmente */
+  border-radius: 8px;
 }
 
 .box h1 {
-  font-family: "Nunito", sans-serif;
-  font-size: 20px;
-  margin: 10px 0;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 30px;
+  margin: 1px 0;
   align-self: flex-start;
+  color: #000;
+  margin-left: 17px;
+
   /* Alinha o texto à esquerda */
 }
 
 .box h3 {
   align-self: flex-start;
-  font-family: "Nunito", sans-serif;
-  font-size: 18px;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 25px;
+  color: #000;
+  margin-left: 17px;
+
 }
 
 
 .box p {
-  font-family: "Nunito", sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   font-size: 14px;
   color: #888;
   align-self: flex-start;
   /* Alinha o texto à esquerda */
+  margin-left: 17px;
 }
 
+
 .box button {
-  font-family: "Nunito", sans-serif;
-  font-size: 18px;
-  padding: 10px 20px;
-  color: white;
-  background-color: #000000;
-  border: none;
-  border-radius: 5px;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 30px;
+  display: inline-block;
+  outline: 0;
+  border: 0;
   cursor: pointer;
-  margin-top: 10px;
-  /* Empurra o botão para o fundo da caixa */
-  align-self: center;
-  /* Alinha o botão à esquerda */
+  will-change: box-shadow,transform;
+  background: radial-gradient( 100% 100% at 100% 0%, #000000 0%, #000000 100% );
+  box-shadow: 0px 0.01em 0.01em rgba(0, 0, 0, 0.4), 0px 0.3em 0.7em -0.01em rgba(0, 0, 0, 0.3), inset 0px -0.01em 0px rgba(0, 0, 0, 0.5);
+  padding: 0 2em;
+  border-radius: 0.3em;
+  color: #fff;
+  height: 50px;
+  width: 98%;
+  margin: 5px;
+  text-shadow: 0 1px 0 rgb(0 0 0 / 40%);
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
 }
+
+.box button:hover {
+  box-shadow: 0px 0.1em 0.2em rgba(0, 162, 255, 0.4), 0px 0.4em 0.7em -0.1em rgb(45 35 66 / 30%), inset 0px -0.1em 0px #000000;
+  transform: translateY(-0.1em);
+}
+
+.box button:active {
+  box-shadow: inset 0px 0.1em 0.6em #04ff43;
+  transform: translateY(0em);
+}
+
+.box button svg {
+  margin-right: 5px;
+  margin-top: 0px;
+}
+
 
 
 /*-------------------------------------------------------------- BOTÂO DO FILTRAR PAGINA DE PRODUTOS------------------------------------------------------*/
 .btn-filtrar {
 
   padding: 15px 30px;
-  font-size: 18px;
-  font-family: "Nunito", sans-serif;
+  font-size: 25px;
+  font-family: "Bebas Neue", sans-serif;
   color: white;
   background-color: #000000;
   border: none;
@@ -717,6 +959,8 @@ a {
   background-color: #131313e5;
 }
 
+
+
 /*SIDE BAR DE FILTRO*/
 .left-sidebar {
   height: 100%;
@@ -725,11 +969,11 @@ a {
   z-index: 2000;
   top: 0;
   left: 0;
-  background-color: #232323;
+  background-color: #050505;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
-  font-family: "Nunito", sans-serif;
+  font-family: "Bebas Neue", sans-serif;
 }
 
 .closebtn-left {
@@ -751,7 +995,7 @@ a {
 .left-sidebar a {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 40px;
   color: #818181;
   display: block;
   transition: 0.3s;
@@ -759,7 +1003,8 @@ a {
 
 .left-sidebar h1 {
   color: white;
-  margin: 5px;
+  margin: 10px;
+  
 }
 
 .left-sidebar a:hover {
@@ -780,6 +1025,7 @@ a {
 }
 
 .filter-section-left h3 {
+  font-size:25px;
   color: rgb(255, 255, 255);
   cursor: pointer;
   display: flex;
@@ -859,13 +1105,12 @@ a {
   height: 50px;
   width: 200px;
   background-color: #ffffffd6;
-  font-size: 20px;
+  font-size: 30px;
   color: rgb(0, 0, 0);
+  font-family: "Bebas Neue", sans-serif;
+  margin-top: 20px;
+
 }
-
-
-
-
 
 
 .color-button-container {
@@ -931,6 +1176,7 @@ a {
   right: 0px;
   font-size: 38px;
 }
+
 
 /* Overlay for the sidebar */
 .overlay {
@@ -1171,279 +1417,6 @@ section.slider{
 }
 
 
-
-
-/*-------------------------------------------------login maluco do vinin que ta em dois css ----------------------------------- */
-
-.login-container2 {
-
-  justify-content: center;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(60, 61, 61, 0.966);
-  padding: 80px;
-  width: 400px;
-  margin: auto;
-  margin-top: 200px;
-
-}
-
-.flex {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.input-login {
-  width: 100%;
-  max-width: 220px;
-  height: 45px;
-  padding: 12px;
-  border-radius: 12px;
-  border: 2px solid rgb(15, 15, 15);
-  outline: none;
-  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-  box-shadow: 0px 0px 20px -18px;
-  margin-bottom: 20px;
-}
-
-.input-login:hover {
-  border: 3px solid rgb(39, 39, 39);
-  box-shadow: 0px 0px 20px -17px;
-}
-
-.input-login:active {
-  transform: scale(0.95);
-}
-
-.input-login:focus {
-  border: 3px solid rgb(0, 0, 0);
-}
-
-.signup-link {
-  font-family: "Freeman", sans-serif;
-  color: #6B7280;
-  text-align: center;
-  padding-top: 20px;
-}
-
-.signup-link a {
-  color: #000;
-  text-decoration: underline;
-
-}
-
-
-.sif {
-  font-family: "Freeman", sans-serif;
-  color: #000000;
-  display: flex;
-  justify-content: center;
-  padding-top: 25px;
-  font-size: 90px;
-}
-
-.linkada {
-  font-family: "Freeman", sans-serif;
-  color: #000000;
-  display: flex;
-  justify-content: center;
-  padding-top: 20px;
-  font-size: 20px;
-}
-
-.linkzin {
-  font-family: "Freeman", sans-serif;
-  color: #3d3d3d;
-  text-align: center;
-  padding-top: 25px;
-  font-size: 20px;
-}
-
-
-.glow-on-hover {
-  font-family: "Freeman", sans-serif;
-  font-size: 20px;
-  width: 220px;
-  height: 50px;
-  border: none;
-  outline: none;
-  color: #fff;
-  background: #111;
-  cursor: pointer;
-  position: relative;
-  z-index: 0;
-  border-radius: 10px;
-}
-
-.glow-on-hover:before {
-
-  content: '';
-  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  background-size: 400%;
-  z-index: -1;
-  filter: blur(5px);
-  width: calc(100% + 4px);
-  height: calc(100% + 4px);
-  animation: glowing 20s linear infinite;
-  opacity: 0;
-  transition: opacity .3s ease-in-out;
-  border-radius: 10px;
-}
-
-.glow-on-hover:active {
-  color: #ffffff
-}
-
-.glow-on-hover:active:after {
-  background: transparent;
-}
-
-.glow-on-hover:hover:before {
-  opacity: 1;
-}
-
-.glow-on-hover:after {
-  z-index: -1;
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #111;
-  left: 0;
-  top: 0;
-  border-radius: 10px;
-}
-
-@keyframes glowing {
-  0% {
-    background-position: 0 0;
-  }
-
-  50% {
-    background-position: 400% 0;
-  }
-
-  100% {
-    background-position: 0 0;
-  }
-}
-
-.area {
-  background: #e9e9e9;
-  background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
-  width: 100%;
-  height: 100vh;
-
-
-}
-
-.circles {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  pointer-events: none;
-
-}
-
-.circles li {
-  position: absolute;
-  display: block;
-  list-style: none;
-  width: 20px;
-  height: 20px;
-  background: rgba(0, 0, 0, 0.2);
-  animation: animate 25s linear infinite;
-  bottom: -150px;
-  pointer-events: none;
-
-}
-
-.circles li:nth-child(1) {
-  left: 25%;
-  width: 80px;
-  height: 80px;
-  animation-delay: 0s;
-}
-
-
-.circles li:nth-child(2) {
-  left: 10%;
-  width: 20px;
-  height: 20px;
-  animation-delay: 2s;
-  animation-duration: 12s;
-}
-
-.circles li:nth-child(3) {
-  left: 70%;
-  width: 20px;
-  height: 20px;
-  animation-delay: 4s;
-}
-
-.circles li:nth-child(4) {
-  left: 40%;
-  width: 60px;
-  height: 60px;
-  animation-delay: 0s;
-  animation-duration: 18s;
-}
-
-.circles li:nth-child(5) {
-  left: 65%;
-  width: 20px;
-  height: 20px;
-  animation-delay: 0s;
-}
-
-.circles li:nth-child(6) {
-  left: 75%;
-  width: 110px;
-  height: 110px;
-  animation-delay: 3s;
-}
-
-.circles li:nth-child(7) {
-  left: 35%;
-  width: 150px;
-  height: 150px;
-  animation-delay: 7s;
-}
-
-.circles li:nth-child(8) {
-  left: 50%;
-  width: 25px;
-  height: 25px;
-  animation-delay: 15s;
-  animation-duration: 45s;
-}
-
-.circles li:nth-child(9) {
-  left: 20%;
-  width: 15px;
-  height: 15px;
-  animation-delay: 2s;
-  animation-duration: 35s;
-}
-
-.circles li:nth-child(10) {
-  left: 85%;
-  width: 150px;
-  height: 150px;
-  animation-delay: 0s;
-  animation-duration: 11s
-}
-
-
-
 @keyframes animate {
 
   0% {
@@ -1576,6 +1549,12 @@ section.slider{
   color: #bdbdbd;
 }
 
+
+
+
+
+
+
 /* Estrela de avaliaçoes*/
 
 .rating {
@@ -1660,6 +1639,208 @@ section.slider{
 
 .Comprar-produto a {
   color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*CSS QUEM SOMOS*/
+.container-quemsomos {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.painel-quemsomos {
+  color: #fff;
+  margin: auto;
+  background-color: rgb(30, 36, 56);
+  width: 300px;
+  height: 480px;
+  border-radius: 30px;
+  text-align: center;
+  padding-top: 45px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  border: #fff;
+
+}
+
+
+
+.header {
+  background-color: #ffffff;
+}
+
+.header2 {
+  background-color: #ffffff;
+
+}
+
+.titulo {
+  font-family: "Freeman", sans-serif;
+  text-align: center;
+  padding-top: 20px;
+  font-size: 100px;
+  color: rgb(0, 0, 0);
+}
+
+.dentro {
+  font-family: "Freeman", sans-serif;
+  text-align: center;
+  padding-bottom: 70px;
+  font-size: 100px;
+  color: rgb(0, 0, 0);
+}
+
+.example-element {
+  padding-left: 200px;
+  font-family: "Freeman", sans-serif;
+  text-align: justify;
+  font-size: 12px;
+  color: rgb(0, 0, 0);
+}
+
+
+/* Variáveis substituídas com valores gerados manualmente */
+
+
+
+
+
+
+
+
+
+
+/* Contêiner de estrelas */
+#stars-container {
+  position: fixed; /* Fica fixo na tela */
+  height: 100vh;
+  width: 100vw;
+  background: radial-gradient(ellipse at bottom, #2d2f3a 0%, #000000 100%);
+  overflow: hidden;
+  z-index: -1; /* Coloca o fundo atrás do conteúdo */
+
+}
+
+/* Estrelas pequenas */
+#stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  background: transparent;
+  box-shadow: 
+    100px 500px 0 #FFF, 200px 1500px 0 #FFF, 300px 100px 0 #FFF, 
+    400px 1200px 0 #FFF, 500px 800px 0 #FFF, 600px 400px 0 #FFF,
+    700px 900px 0 #FFF, 800px 700px 0 #FFF, 900px 200px 0 #FFF,
+    1000px 1600px 0 #FFF, 1100px 1300px 0 #FFF, 1200px 1400px 0 #FFF,
+    1300px 1100px 0 #FFF, 1400px 900px 0 #FFF, 1500px 1000px 0 #FFF,
+    1600px 700px 0 #FFF, 1700px 500px 0 #FFF, 1800px 400px 0 #FFF,
+    1900px 300px 0 #FFF, 2000px 200px 0 #FFF, 2100px 100px 0 #FFF,
+    2200px 1500px 0 #FFF, 2300px 1800px 0 #FFF, 2400px 1700px 0 #FFF,
+    2500px 1600px 0 #FFF, 2600px 1500px 0 #FFF, 2700px 1200px 0 #FFF; /* Mais estrelas */
+  border-radius: 50%;
+  animation: animateStars 50s linear infinite;
+  pointer-events: none; /* Para que o movimento das estrelas não interfira com cliques */
+
+}
+
+/* Estrelas médias */
+#stars2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  box-shadow: 
+    150px 400px 0 #FFF, 250px 1400px 0 #FFF, 350px 300px 0 #FFF, 
+    450px 1100px 0 #FFF, 550px 700px 0 #FFF, 650px 500px 0 #FFF,
+    750px 1000px 0 #FFF, 850px 800px 0 #FFF, 950px 300px 0 #FFF,
+    1050px 1500px 0 #FFF, 1150px 1200px 0 #FFF, 1250px 1300px 0 #FFF,
+    1350px 1000px 0 #FFF, 1450px 800px 0 #FFF, 1550px 900px 0 #FFF,
+    1650px 600px 0 #FFF, 1750px 400px 0 #FFF, 1850px 300px 0 #FFF,
+    1950px 200px 0 #FFF, 2050px 100px 0 #FFF, 2150px 1400px 0 #FFF,
+    2250px 1700px 0 #FFF, 2350px 1600px 0 #FFF, 2450px 1500px 0 #FFF,
+    2550px 1400px 0 #FFF, 2650px 1100px 0 #FFF, 2750px 1000px 0 #FFF; /* Mais estrelas */
+  border-radius: 50%;
+  animation: animateStars2 60s linear infinite;
+}
+
+/* Estrelas grandes */
+#stars3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 3px;
+  background: transparent;
+  box-shadow: 
+    200px 300px 0 #FFF, 300px 1300px 0 #FFF, 400px 500px 0 #FFF, 
+    500px 1000px 0 #FFF, 600px 600px 0 #FFF, 700px 500px 0 #FFF,
+    800px 1200px 0 #FFF, 900px 1100px 0 #FFF, 1000px 400px 0 #FFF,
+    1100px 1400px 0 #FFF, 1200px 1300px 0 #FFF, 1300px 1500px 0 #FFF,
+    1400px 900px 0 #FFF, 1500px 800px 0 #FFF, 1600px 700px 0 #FFF,
+    1700px 500px 0 #FFF, 1800px 300px 0 #FFF, 1900px 200px 0 #FFF,
+    2000px 100px 0 #FFF, 2100px 1500px 0 #FFF, 2200px 1700px 0 #FFF,
+    2300px 1600px 0 #FFF, 2400px 1500px 0 #FFF, 2500px 1400px 0 #FFF,
+    2600px 1200px 0 #FFF, 2700px 1000px 0 #FFF, 2800px 900px 0 #FFF; /* Mais estrelas */
+  border-radius: 50%;
+  animation: animateStars3 80s linear infinite;
+}
+
+/* Animação de estrelas em direções aleatórias */
+@keyframes animateStars {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-500px, -500px); /* Move diagonalmente para cima e para a esquerda */
+  }
+}
+
+@keyframes animateStars2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(500px, -500px); /* Move diagonalmente para cima e para a direita */
+  }
+}
+
+@keyframes animateStars3 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-500px, 500px); /* Move diagonalmente para baixo e para a esquerda */
+  }
+}
+
+#content {
+  position: relative;
+  z-index: 1; /* Garante que o conteúdo fique sobre o fundo estrelado */
+}
+
+@media screen and (max-width: 1222px){
+
+
+  .center-section,.search-bar-container,.slider-container-text,.Footer-main{
+    display: none;
+  }
+
+
 }
 
 
