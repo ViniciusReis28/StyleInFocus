@@ -1,21 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 /* Corpo da página */
 body {
     background-color: black;  /* Cor de fundo preta */
     color: white;  /* Cor do texto */
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: "Bebas Neue", sans-serif;
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: flex-start; /* Alinha ao topo da tela */
     position: relative;
-    overflow: hidden;
+    height: 100vh;  /* Garante que a tela ocupe toda a altura */
 }
 
-/* Cabeçalho */
-.Titulo {
-    text-align: center;
-    font-size: 7em; 
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    color: #ffffff; /* Azul claro */
-    margin-top: 20px;
+/* Container principal para alinhar main e membros de equipe */
+.main-container {
+    display: flex;
+    flex-direction: row; /* Alinha os itens lado a lado */
+    justify-content: center;
+    align-items: flex-start;
+    width: 90%;
+    padding: 20px;
+}
+
+/* Imagem principal */
+.Drizzle {
+    max-width: 311px;
+    max-height: 177px;
+    margin-bottom: 20px; /* Espaço abaixo da imagem */
 }
 
 /* Estilo do texto principal */
@@ -25,32 +38,39 @@ body {
     margin: 20px;
     background-color: #1a1a1a;
     max-width: 70%;
+    border-radius: 30px;
+    padding: 20px;
+    text-align: center;
 }
 
-/* Estilo para as seções de equipe */
+/* Título "Membros de Equipe" */
 .equipe {
-    text-align: center;
     font-size: 2em;
     margin-top: 40px;
     color: #ffffff;
 }
 
-.card-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 30px;
+/* Container para os cartões (membros) */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 0px;
+    padding: 0px;
+    justify-items: center; /* Centraliza os cartões dentro do grid */
+    max-width: 1000px;
 }
 
+/* Cartão individual */
 .card {
     background-color: #333;
     border-radius: 10px;
     overflow: hidden;
     width: 280px;
     color: white;
+    
 }
 
+/* Cabeçalho do cartão */
 .card-header {
     background-color: #272727;
     color: white;
@@ -59,6 +79,7 @@ body {
     text-align: center;
 }
 
+/* Corpo do cartão */
 .card-body {
     padding: 15px;
     font-size: 1em;
@@ -71,10 +92,12 @@ body {
 }
 
 .card-body p {
+    font-family: "Playfair Display", serif;
     font-size: 0.9em;
     line-height: 1.4em;
 }
 
+/* Botão no corpo do cartão */
 .card-body button {
     background-color: #00BFFF;
     border: none;
@@ -89,14 +112,6 @@ body {
     background-color: #1E90FF;
 }
 
-/* Estilo da imagem */
-.icon {
-    display: block;
-    margin: 0 auto;
-    max-width: 100px;
-    margin-top: 30px;
-}
-
 /* Efeito da chuva */
 .raindrop {
     position: absolute;
@@ -107,13 +122,14 @@ body {
     animation: rise linear infinite;
 }
 
+.padd{
+    padding: 5px;
+}
 @keyframes rise {
-
-        0% {
-            transform: translateY(-1500px); /* Começa um pouco acima da tela */
-        }
-        100% {
-            transform: translateY(100vh); /* Vai até a parte inferior da tela */
-        }
-    
+    0% {
+        transform: translateY(-150vh); /* Começa um pouco acima da tela */
+    }
+    100% {
+        transform: translateY(130vh); /* Vai até a parte inferior da tela */
+    }
 }
