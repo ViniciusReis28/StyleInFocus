@@ -632,6 +632,42 @@ a {
 }
 
 
+                                  /*section confirmaçao*/
+.pedido-produto-final {
+  overflow-y: auto;
+  height: 200px;
+}
+
+.pedido-produto-final-por-produto {
+  display: flex;
+  flex-direction: row;
+  height: 200px;
+  gap: 15px;
+}
+
+.pedido-produto-final-por-produto img {
+  height: 180px;
+  width: 180px;
+}
+
+.info-produto-final {
+  margin-top: 25px;
+  font-size: 25px;
+ 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

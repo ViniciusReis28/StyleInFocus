@@ -154,7 +154,7 @@
         </div>
       </div>
     </div>
-
+   
     <!-- Etapa 3: Confirmação -->
     <div id="section-confirmacao" class="teste" style="display: none">
       <h1>Confirmação do Pedido</h1>
@@ -162,7 +162,12 @@
         <div class="pedido-produto-final"></div>
         <div class="pedido-indentificacao-final"></div>
       </div>
-      <button onclick="finalizarPedido()">Ir para Pagamento</button>
+      <div id="cart-summary" class="cart-summary">
+        <div class="btn">
+          <button onclick="finalizarPedido()">Ir para Pagamento</button>
+          <button class="btn-continuarComprando"><a href="../../../index.html">Continuar Comprando</a></button>
+        </div>
+      </div>
     </div>
 
     <!-- Etapa 4: Pagamento -->

@@ -104,18 +104,20 @@ function carregarCarrinho() {
       itemDiv.innerHTML = `
         <div class="produto">
           <div class="produtoImg">
-            <img src="${produto.img}" alt="${produto.nome
-        }" style="height: 170px; width: 160px; border-radius: 2px;">
+            <img src="${produto.img}" alt="${
+        produto.nome
+      }" style="height: 170px; width: 160px; border-radius: 2px;">
           </div>
           <div class="produtoInfo">
             <h2>${produto.nome}</h2>
             <p>Tamanho: ${produto.tamanho}</p>
-            <p>Quantidade: <span class="carrinho-quantidade">${produto.quantidade
-        }</span></p>
+            <p>Quantidade: <span class="carrinho-quantidade">${
+              produto.quantidade
+            }</span></p>
             <p>Preço: R$ ${precoTotal.toLocaleString("pt-BR", {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-        })}</p>
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}</p>
           </div>
           <div class="btn-produto">
             <button class="remover-produto" data-id="${key}">
@@ -159,9 +161,6 @@ function carregarCarrinho() {
 
 // Carrega o carrinho ao iniciar a página
 document.addEventListener("DOMContentLoaded", carregarCarrinho);
-
-
-
 
 // Verificar se há itens no carrinho e ir para Identificação
 function irParaIdentificacao() {
@@ -229,7 +228,7 @@ function irParaConfirmacao() {
       estado,
       complemento,
       pontoDeReferencia,
-      cep
+      cep,
     },
   };
 
@@ -269,7 +268,9 @@ function irParaConfirmacao() {
 
 function exibirConfirmacao(pedidoCompleto) {
   const divProdutos = document.querySelector(".pedido-produto-final");
-  const divIdentificacao = document.querySelector(".pedido-indentificacao-final");
+  const divIdentificacao = document.querySelector(
+    ".pedido-indentificacao-final"
+  );
 
   // Garantir que o preço do frete seja tratado como número
   const precoFrete = parseFloat(freteSelecionado.price);
@@ -287,31 +288,35 @@ function exibirConfirmacao(pedidoCompleto) {
   });
 
   // Gerar o HTML dos produtos
-  let produtosHTML = "<h4>Produtos:</h4>";
+  let produtosHTML = "";
   for (const key in produtos) {
     const produto = produtos[key];
     produtosHTML += `
-      <div style="margin-bottom: 10px;">
-        <img src="${produto.img}" alt="${produto.nome}" style="width: 100px; height: 100px; object-fit: cover;" />
-        <p><strong>Nome:</strong> ${produto.nome}</p>
-        <p><strong>Tamanho:</strong> ${produto.tamanho}</p>
-        <p><strong>Quantidade:</strong> ${produto.quantidade}</p>
-        <p><strong>Preço:</strong> R$ ${produto.preco.toLocaleString("pt-BR", {
-      minimumFractionDigits: 2,
-    })}</p>
-      </div>
+      <div class="pedido-produto-final-por-produto">
+        <img src="${produto.img}" alt="${produto.nome}"/>
+          <div class="info-produto-final">
+            <p><strong>Nome:</strong> ${produto.nome}</p>
+            <p><strong>Tamanho:</strong> ${produto.tamanho}</p>
+            <p><strong>Quantidade:</strong> ${produto.quantidade}</p>
+          </div>
+     </div>
     `;
   }
 
   // Gerar o HTML das informações de identificação
   const identificacaoHTML = `
-    <h3>Resumo do Pedido</h3>
+    <h3>Informação do Pedido</h3>
+    <div></div>
     <p><strong>Nome:</strong> ${dadosIdentificacao.nome}</p>
     <p><strong>CPF:</strong> ${dadosIdentificacao.cpf}</p>
     <p><strong>CEP:</strong> ${dadosIdentificacao.freteSelecionado}</p>
     <p><strong>Email:</strong> ${dadosIdentificacao.email}</p>
     <p><strong>Telefone:</strong> ${dadosIdentificacao.telefone}</p>
-    <p><strong>Endereço:</strong> ${dadosIdentificacao.endereco.rua}, ${dadosIdentificacao.endereco.numero}, ${dadosIdentificacao.endereco.cidade} - ${dadosIdentificacao.endereco.estado}</p>
+    <p><strong>Endereço:</strong> ${dadosIdentificacao.endereco.rua}, ${
+    dadosIdentificacao.endereco.numero
+  }, ${dadosIdentificacao.endereco.cidade} - ${
+    dadosIdentificacao.endereco.estado
+  }</p>
     <p><strong>Frete:</strong> R$ ${precoFrete.toLocaleString("pt-BR", {
       minimumFractionDigits: 2,
     })}</p>
@@ -322,9 +327,9 @@ function exibirConfirmacao(pedidoCompleto) {
   divProdutos.innerHTML = produtosHTML;
   divIdentificacao.innerHTML = identificacaoHTML;
 
-  console.log(dadosIdentificacao.freteSelecionado)
+  console.log(dadosIdentificacao.freteSelecionado);
+  document.getElementById("step-2").classList.add("completed");
   document.getElementById("step-3").classList.add("completed");
-  document.getElementById("step-4").classList.add("completed");
   // Atualizar as seções visíveis
   document.getElementById("section-identificacao").style.display = "none";
   document.getElementById("section-confirmacao").style.display = "block";
@@ -338,13 +343,8 @@ function finalizarPedido() {
   document.getElementById("section-pagamento").style.display = "block";
 }
 
-
-
-
 // Carregar o carrinho ao abrir a página
 document.addEventListener("DOMContentLoaded", carregarCarrinho);
-
-
 
 // Captura o botão de calcular frete e o input de CEP
 const calcularFreteBtn = document.getElementById("calcular-frete-btn");
@@ -436,30 +436,6 @@ function selecionarFrete(index) {
   freteSelecionado = window.opcoesFrete[index];
   console.log("Frete selecionado:", freteSelecionado);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Máscara para CPF
 function mascaraCPF(cpf) {
