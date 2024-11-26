@@ -77,6 +77,7 @@ document.querySelector('.glow-on-hover-image-clear').addEventListener('click', f
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Elementos da página
   const shirtImg = document.getElementById('shirt-img');
   const shirtIcon = document.getElementById('shirt-icon');
   const customImage = document.getElementById('custom-image');
@@ -88,13 +89,53 @@ document.addEventListener('DOMContentLoaded', () => {
   const positionButtons = document.querySelectorAll('.glow-on-hover');
   const shirtDisplay = document.getElementById('shirt-display'); // Seção da camisa
 
+  // Armazenando as informações da camisa
+  const shirtData = {
+    color: '',
+    customImage: '',
+    icon: '',
+    position: '',
+    shape: ''
+  };
+
+  // Atualiza a exibição das informações no HTML
+  function updateShirtDisplay() {
+    document.getElementById('shirt-color-display').innerText = `Cor selecionada: ${shirtData.color}`;
+    document.getElementById('shirt-shape-display').innerText = `Forma selecionada: ${shirtData.shape}`;
+    document.getElementById('shirt-position-display').innerText = `Posição selecionada: ${shirtData.position}`;
+    document.getElementById('shirt-icon-display').src = shirtData.icon;
+    document.getElementById('shirt-icon-display').style.display = shirtData.icon ? 'block' : 'none';
+  }
+
   // Mudar a imagem da camisa e o background dos círculos ao clicar em uma cor
   shirtButtons.forEach(button => {
     button.addEventListener('click', () => {
       const imageUrl = button.getAttribute('data-image');
       shirtImg.setAttribute('src', imageUrl);
 
-      // Mudar o background dos círculos dependendo da cor da camisa
+      // Mapeando a cor para o nome em português
+      let colorName = '';
+      if (button.classList.contains('red')) {
+        colorName = 'Vermelho';
+      } else if (button.classList.contains('blue')) {
+        colorName = 'Azul';
+      } else if (button.classList.contains('green')) {
+        colorName = 'Verde';
+      } else if (button.classList.contains('yellow')) {
+        colorName = 'Amarelo';
+      } else if (button.classList.contains('pink')) {
+        colorName = 'Rosa';
+      } else if (button.classList.contains('purple')) {
+        colorName = 'Roxo';
+      } else if (button.classList.contains('white')) {
+        colorName = 'Branco';
+      } else if (button.classList.contains('turquoise')) {
+        colorName = 'Turquesa';
+      }
+
+      shirtData.color = colorName; // Armazenando o nome da cor em português
+
+      // Atualiza o fundo dos círculos
       circles.forEach(circle => {
         if (button.classList.contains('red')) {
           circle.style.background = '#ff0000';
@@ -114,10 +155,13 @@ document.addEventListener('DOMContentLoaded', () => {
           circle.style.background = '#19B9A4';
         }
       });
+
+      // Atualizar a exibição
+      updateShirtDisplay();
     });
   });
 
-
+  // Alterar forma da imagem
   const shapeButtons = document.querySelectorAll('.glow-on-hover-shape');
   shapeButtons.forEach(button => {
     button.addEventListener('click', () => {
@@ -141,32 +185,30 @@ document.addEventListener('DOMContentLoaded', () => {
           customImage.classList.add('triangle');
           break;
       }
+
+      shirtData.shape = shape; // Armazenando a forma selecionada
+      updateShirtDisplay(); // Atualizar a exibição
     });
   });
 
-  iconButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const iconSrc = button.getAttribute('data-icon');
-      shirtDisplay.src = iconSrc; // Ajuste para sua implementação
-
-      // Adiciona estilo ativo
-      iconButtons.forEach(btn => btn.classList.remove('active-icon'));
-      button.classList.add('active-icon');
-    });
-  });
-
-  // Adicionar o ícone à camisa
+  // Seleção de ícones
   iconButtons.forEach(button => {
     button.addEventListener('click', () => {
       const iconUrl = button.getAttribute('data-icon');
       shirtIcon.setAttribute('src', iconUrl);
       shirtIcon.classList.remove('hidden');
+      shirtData.icon = iconUrl; // Armazenando o ícone selecionado
+
+      // Atualizar a exibição
+      updateShirtDisplay();
     });
   });
 
   // Limpar a imagem do ícone
   clearButton.addEventListener('click', () => {
     shirtIcon.classList.add('hidden');
+    shirtData.icon = ''; // Limpar ícone
+    updateShirtDisplay(); // Atualizar a exibição
   });
 
   // Fazer upload de imagem personalizada
@@ -177,6 +219,8 @@ document.addEventListener('DOMContentLoaded', () => {
     reader.onload = function (e) {
       customImage.setAttribute('src', e.target.result);
       customImage.classList.remove('hidden');
+      shirtData.customImage = e.target.result; // Armazenando a imagem personalizada
+      updateShirtDisplay(); // Atualizar a exibição
     };
 
     if (file) {
@@ -184,17 +228,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-
-  // POSIÇÃO
-
+  // Posições da imagem
   positionButtons.forEach(button => {
     button.addEventListener('click', () => {
       const position = button.getAttribute('data-position');
-
-      // Resetando transformações e tamanhos antes de cada posição
       customImage.style.transform = 'none';
       customImage.style.width = 'auto';
       customImage.style.height = 'auto';
+      shirtData.position = position; // Armazenando a posição selecionada
 
       switch (position) {
         case 'center-center':
@@ -202,21 +243,24 @@ document.addEventListener('DOMContentLoaded', () => {
           customImage.style.top = '40%';
           customImage.style.transform = 'translate(-50%, -50%)';
           break;
-        case 'small-right': // Nova posição para a imagem pequena
+        case 'small-right':
           customImage.style.left = '63%';
           customImage.style.top = '29%';
           customImage.style.transform = 'translate(-50%, -50%)';
-          customImage.style.width = '50px'; // Define um tamanho pequeno
+          customImage.style.width = '50px';
           customImage.style.height = '50px';
           break;
-        case 'small-left': // Nova posição para a imagem pequena
+        case 'small-left':
           customImage.style.left = '35%';
           customImage.style.top = '29%';
           customImage.style.transform = 'translate(-50%, -50%)';
-          customImage.style.width = '50px'; // Define um tamanho pequeno
+          customImage.style.width = '50px';
           customImage.style.height = '50px';
           break;
       }
+
+      // Atualizar a exibição
+      updateShirtDisplay();
     });
   });
 });
