@@ -4,55 +4,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Drizzle</title>
     <link rel="stylesheet" type="text/css" href="Drizzle.css" media="screen" />
+
 </head>
 
 <body>
     <Center>
-        <p class="Titulo">Drizzle</p>
+        <div>
+            <p class="Titulo">Drizzle</p>
+            <main class="sobre">
+                <p>
+                    A Drizzle é uma empresa atualmente focada no ramo de estilo e moda, tendo como destaque sua grande marca
+                    Style in Focus. No momento, esse é o principal produto que a empresa oferece. No entanto, a Drizzle tem
+                    planos ambiciosos para o futuro, incluindo a expansão para outras áreas do mercado econômico. O
+                    principal objetivo é fortalecer a marca, globalizá-la no mundo digital e permitir que suas marcas
+                    cresçam em conjunto, promovendo ainda mais o desenvolvimento da empresa, sempre com seriedade e
+                    foco. O nome "Drizzle" foi inspirado na origem da empresa, localizada na região de São Paulo, conhecida como a
+                    "terra da garoa". Em inglês, "drizzle" significa "garoa", simbolizando essa conexão com suas raízes.
+                </p>
+            </main>
 
-        <main align="justify">
-            <p class="sobre">
-                A Drizzle é uma empresa atualmente focada no ramo de estilo e moda, tendo como destaque sua grande marca
-                Style in Focus. No momento, esse é o principal produto que a empresa oferece. No entanto, a Drizzle tem
-                planos ambiciosos para o futuro, incluindo a expansão para outras áreas do mercado econômico. O
-                principal objetivo é fortalecer a marca, globalizá-la no mundo digital e permitir que suas marcas
-                cresçam em conjunto, promovendo ainda mais o desenvolvimento da empresa, sempre como mui seriedade e
-                foco.
-                O nome "Drizzle" foi inspirado na origem da empresa, localizada na região de São Paulo, conhecida como a
-                "terra da garoa". Em inglês, "drizzle" significa "garoa", simbolizando essa conexão com suas raízes
-            </p>
-        </main>
+            <a href="../index/index.html" target="_blank">
+                <img class="icon" src="../../img/logobranca.png" alt="Logo">
+            </a>
 
-        <a href="../index/index.html" target="_blank">
-            <img class="icon" src="../../img/logobranca.png">
-        </a>
-        <h1 class="equipe">membros de equipe</h1>
-        <span class="card border-danger">
-            <button class="Nicolas">
-                <div class="card border-danger mb-3" style="max-width: 18rem;">
+            <h1 class="equipe">Membros de Equipe</h1>
+
+            <div class="card-wrapper">
+                <!-- Card de membro -->
+                <div class="card">
                     <div class="card-header">Nicolas Wendel Silva Santos</div>
-                    <div class="card-body text-danger">
-                        <h5 class="card-title">Designer</h5>
-                        <p class="card-text">Participou ativamente na criação de banners e roupas próprias, além de fazer os slides.</p>
+                    <div class="card-body">
+                        <h5>Designer</h5>
+                        <p>Responsável pela criação e implementação do design visual do projeto, incluindo a identidade visual, banners, layout e experiência do usuário.</p>
                     </div>
                 </div>
-            </button>
-        </span>
 
-        <span class="card border-danger">
-            <button class="Pablo">
-                <div class="card border-danger mb-3" style="max-width: 18rem;">
+                <div class="card">
                     <div class="card-header">Pablo Bocão</div>
-                    <div class="card-body text-danger">
-                        <h5 class="card-title">Designer</h5>
-                        <p class="card-text">Participou ativamente na criação de banners e roupas próprias, além de fazer os slides.</p>
+                    <div class="card-body">
+                        <h5>Full-Stack</h5>
+                        <p>Desenvolvedor que atuou tanto no front-end quanto no back-end do projeto, garantindo a integração e funcionalidade completa do sistema.</p>
                     </div>
                 </div>
-            </button>
-        </span>
+
+                <div class="card">
+                    <div class="card-header">Vinicius Reis</div>
+                    <div class="card-body">
+                        <h5>Back-end</h5>
+                        <p>Focado na parte do servidor, banco de dados e lógica de aplicação do projeto, garantindo que todas as funcionalidades e dados fossem processados corretamente.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">Marcelo Henrique Esteves de Lara</div>
+                    <div class="card-body">
+                        <h5>Front-end</h5>
+                        <p>Responsável pela implementação da interface do usuário, com foco em otimização e desenvolvimento de recursos avançados, criando uma experiência de navegação completa e interativa.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">Breno Soares Vilela</div>
+                    <div class="card-body">
+                        <h5>Front-end</h5>
+                        <p>Contribuiu para a implementação da interface do usuário, auxiliando com ajustes e melhorias em funcionalidades específicas do front-end.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">Davi Assis</div>
+                    <div class="card-body">
+                        <h5>Documentação</h5>
+                        <p>Responsável por redigir a documentação técnica e de usuário do projeto, garantindo clareza e completude para futura manutenção e entendimento do sistema.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </Center>
+
+    <script>
+        // Função para criar as gotas
+        function createRaindrop() {
+            let raindrop = document.createElement('div');
+            raindrop.classList.add('raindrop');
+
+            // Posição aleatória na parte superior da tela (horizontal)
+            raindrop.style.left = Math.random() * 100 + 'vw';  // Variando entre 0% a 100% da largura
+            raindrop.style.animationDuration = Math.random() * 2 + 2 + 's'; // Variação no tempo de queda das gotas
+
+            document.body.appendChild(raindrop);
+
+            // Remover a gota após ela terminar a animação
+            raindrop.addEventListener('animationend', function () {
+                raindrop.remove();
+            });
+        }
+
+        // Gerar gotas a cada intervalo
+        setInterval(createRaindrop, 50);  // A cada 50ms, gera uma nova gota
+    </script>
 </body>
 
 </html>
