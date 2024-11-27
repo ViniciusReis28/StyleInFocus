@@ -278,6 +278,7 @@ function exibirConfirmacao(pedidoCompleto) {
   // Extrair dados do pedido
   const { dadosIdentificacao, produtos, total } = pedidoCompleto;
 
+
   // Calcular o total final
   const totalComFrete = total + precoFrete;
 
@@ -291,13 +292,23 @@ function exibirConfirmacao(pedidoCompleto) {
   let produtosHTML = "";
   for (const key in produtos) {
     const produto = produtos[key];
+    const precoProduto = parseFloat(produto.preco);
+    const qtdProduto = parseInt(produto.quantidade, 10);
+    const totalProduto = precoProduto * qtdProduto;
+
+    // Formatar o total do produto
+    const totalProdutoFormatado = totalProduto.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
     produtosHTML += `
       <div class="pedido-produto-final-por-produto">
         <img src="${produto.img}" alt="${produto.nome}"/>
           <div class="info-produto-final">
-            <p><strong>Nome:</strong> ${produto.nome}</p>
-            <p><strong>Tamanho:</strong> ${produto.tamanho}</p>
-            <p><strong>Quantidade:</strong> ${produto.quantidade}</p>
+            <p><strong>Nome : </strong> ${produto.nome}</p>
+            <p><strong>Tamanho : </strong> ${produto.tamanho}</p>
+            <p><strong>Quantidade : </strong> ${produto.quantidade}</p>
+            <p><strong>Quantidade : </strong> ${totalProdutoFormatado}</p>
           </div>
      </div>
     `;
@@ -305,22 +316,25 @@ function exibirConfirmacao(pedidoCompleto) {
 
   // Gerar o HTML das informações de identificação
   const identificacaoHTML = `
-    <h3>Informação do Pedido</h3>
-    <div></div>
-    <p><strong>Nome:</strong> ${dadosIdentificacao.nome}</p>
-    <p><strong>CPF:</strong> ${dadosIdentificacao.cpf}</p>
-    <p><strong>CEP:</strong> ${dadosIdentificacao.freteSelecionado}</p>
-    <p><strong>Email:</strong> ${dadosIdentificacao.email}</p>
-    <p><strong>Telefone:</strong> ${dadosIdentificacao.telefone}</p>
-    <p><strong>Endereço:</strong> ${dadosIdentificacao.endereco.rua}, ${
-    dadosIdentificacao.endereco.numero
-  }, ${dadosIdentificacao.endereco.cidade} - ${
-    dadosIdentificacao.endereco.estado
-  }</p>
-    <p><strong>Frete:</strong> R$ ${precoFrete.toLocaleString("pt-BR", {
-      minimumFractionDigits: 2,
-    })}</p>
-    <p><strong>Total com Frete:</strong> ${totalComFreteFormatado}</p>
+    <div class="container-info-produtos">
+      <h2>Informação Para Envio</h2>
+      <div class="info-nome-cpf">
+         <p><strong>Nome : </strong> ${dadosIdentificacao.nome}</p>
+         <p><strong>CPF : </strong> ${dadosIdentificacao.cpf}</p>
+      </div>
+      <div class="info-contato">
+        <p><strong>Email : </strong> ${dadosIdentificacao.email}</p>
+        <p><strong>Telefone : </strong> ${dadosIdentificacao.telefone}</p>
+      </div>
+      <div class="info-para-entrega-cliente">
+        <p><strong>Endereço : </strong> ${dadosIdentificacao.endereco.rua}, ${dadosIdentificacao.endereco.numero}, ${dadosIdentificacao.endereco.cidade} - ${dadosIdentificacao.endereco.estado}</p>
+        <p><strong>CEP : </strong> ${dadosIdentificacao.endereco.cep}</p>
+      </div>
+      <div class="valores-produtos">
+        <p><strong>Frete : </strong> R$ ${precoFrete.toLocaleString("pt-BR", {minimumFractionDigits: 2,})}</p>
+        <p><strong>Total : </strong> ${totalComFreteFormatado}</p>
+      </div>
+    </div>
   `;
 
   // Adicionar os conteúdos às respectivas divs
@@ -345,6 +359,20 @@ function finalizarPedido() {
 
 // Carregar o carrinho ao abrir a página
 document.addEventListener("DOMContentLoaded", carregarCarrinho);
+
+
+function voltarParaAnterior() {
+  // Atualizar o progresso removendo a classe 'completed' da etapa atual
+  document.getElementById("step-4").classList.remove("completed");
+  document.getElementById("step-3").classList.remove("completed");
+
+  // Atualizar as seções visíveis
+  document.getElementById("section-pagamento").style.display = "none";
+  document.getElementById("section-confirmacao").style.display = "block";
+}
+
+
+
 
 // Captura o botão de calcular frete e o input de CEP
 const calcularFreteBtn = document.getElementById("calcular-frete-btn");

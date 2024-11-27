@@ -635,25 +635,78 @@ a {
                                   /*section confirmaçao*/
 .pedido-produto-final {
   overflow-y: auto;
-  height: 200px;
+  height: 250px;
 }
 
 .pedido-produto-final-por-produto {
   display: flex;
   flex-direction: row;
-  height: 200px;
+  height: 250px;
   gap: 15px;
 }
 
 .pedido-produto-final-por-produto img {
-  height: 180px;
-  width: 180px;
+  height: 220px;
+  width: 200px;
 }
 
 .info-produto-final {
   margin-top: 25px;
   font-size: 25px;
  
+}
+
+
+
+.container-info-produtos {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-info-produtos h2 {
+  font-size: 32px;
+}
+
+.info-nome-cpf {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+}
+
+.info-nome-cpf p {
+  width: 80%;
+  font-size: 26px;
+}
+
+
+
+.info-contato {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+}
+
+.info-contato p {
+  width: 80%;
+  font-size: 26px;
+}
+
+.info-para-entrega-cliente {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+}
+
+.info-para-entrega-cliente p {
+  width: 80%;
+  font-size: 26px;
+}
+
+.valores-produtos {
+  padding: 2px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 22px;
 }
 
 
