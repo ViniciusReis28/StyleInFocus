@@ -359,6 +359,7 @@ function finalizarPedido() {
 
 function toggleBox(tipo) {
   const box = document.getElementById(`box-${tipo}`);
+  const parentBox = box.parentElement; // Pega o container da box
   
   // Fechar todas as outras boxes antes de abrir a atual
   document.querySelectorAll(".form-detalhes").forEach((form) => {
@@ -368,7 +369,13 @@ function toggleBox(tipo) {
   });
 
   // Alternar exibição da box atual
-  box.style.display = box.style.display === "block" ? "none" : "block";
+  if (box.style.display === "none" || box.style.display === "") {
+    box.style.display = "block";
+    parentBox.classList.add("ativo"); // Adiciona a classe "ativo" à box selecionada
+  } else {
+    box.style.display = "none";
+    parentBox.classList.remove("ativo"); // Remove a classe "ativo" quando a box for fechada
+  }
 }
 
 
@@ -529,4 +536,30 @@ function showNotification(message) {
   setTimeout(() => {
     notification.classList.remove("show");
   }, 3000);
+}
+
+
+function finalizarCompraaaaaaaaaa() {
+  const creditoBox = document.getElementById("box-credito");
+  const debitoBox = document.getElementById("box-debito");
+  const pixBox = document.getElementById("box-pix");
+
+  const mensagemCompra = document.getElementById("mensagemCompra");
+  const qrcodeContainer = document.getElementById("qrcodeContainer");
+
+  // Verificar se o conteúdo do Cartão de Crédito ou Débito está visível
+  if (creditoBox.style.display === "block" || debitoBox.style.display === "block") {
+    // Para Cartão de Crédito ou Débito
+    mensagemCompra.style.display = "block";  // Exibir mensagem de compra realizada
+    qrcodeContainer.style.display = "none"; // Esconder o QR Code do Pix
+
+    // Redirecionar para o index após 3 segundos
+    setTimeout(() => {
+      window.location.href = "../../../index.html"; // Redireciona para o index
+    }, 3000); // 3 segundos
+  } else if (pixBox.style.display === "block") {
+    // Para Pix
+    mensagemCompra.style.display = "none";  // Esconder a mensagem de compra realizada
+    qrcodeContainer.style.display = "block"; // Exibir o QR Code do Pix
+  }
 }

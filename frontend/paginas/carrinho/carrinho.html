@@ -177,8 +177,8 @@
       <h1>Pagamento</h1>
       <div class="container-pagamento">
         <!-- Cartão de Crédito -->
-        <div class="box-pagamento" onclick="toggleBox('credito')">
-          <h2>Cartão de Crédito</h2>
+        <div class="box-pagamento" >
+          <h2  onclick="toggleBox('credito')">Cartão de Crédito</h2>
           <div id="box-credito" class="form-detalhes" style="display: none;">
             <input type="text" placeholder="Número do Cartão" required />
             <input type="text" placeholder="Nome no Cartão" required />
@@ -188,8 +188,8 @@
         </div>
     
         <!-- Cartão de Débito -->
-        <div class="box-pagamento" onclick="toggleBox('debito')">
-          <h2>Cartão de Débito</h2>
+        <div class="box-pagamento" >
+          <h2  onclick="toggleBox('debito')">Cartão de Débito</h2>
           <div id="box-debito" class="form-detalhes" style="display: none;">
             <input type="text" placeholder="Número do Cartão" required />
             <input type="text" placeholder="Nome no Cartão" required />
@@ -199,20 +199,27 @@
         </div>
     
         <!-- Pix -->
-        <div class="box-pagamento" onclick="toggleBox('pix')">
-          <h2>Pix</h2>
+        <div class="box-pagamento">
+          <h2  onclick="toggleBox('pix')">Pix</h2>
           <div id="box-pix" class="form-detalhes" style="display: none;">
             <input type="text" placeholder="Nome Completo" required/>
-            <input type="text" placeholder="CPF" required/>
+            <input type="text" placeholder="CPF" required oninput="mascaraCPF(this)"/>
           </div>
         </div>
       </div>
-    
-      <button class="btn-voltar" onclick="voltarParaPaginaConfirmaçao()">Voltar</button>
-      <button onclick="finalizarCompra()">Finalizar Pagamento</button>
-    </div>
-    
 
+      <button class="btn-voltar" onclick="voltarParaPaginaConfirmaçao()">Voltar</button>
+      <button onclick="finalizarCompraaaaaaaaaa()">Finalizar Pagamento</button>
+      <!-- Mensagem de Compra Realizada e QR Code (Oculto por padrão) -->
+        <div id="mensagemCompra" style="display: none;">
+          <h3>Compra Realizada com Sucesso!</h3>
+          <img src="../../img/compra_realizada_com_sucesso.png" alt="Compra Realizada" style="width: 100px; height: 100px; display: block; margin: 10px auto;" />
+        </div>
+        <div id="qrcodeContainer" style="display: none;">
+          <h3>Escaneie o QR Code para pagar via Pix:</h3>
+          <img src="link-para-o-qrcode.png" alt="QR Code" />
+        </div>
+    </div>
   </div>
 
   <div class="footer">
