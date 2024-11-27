@@ -6,40 +6,6 @@ function carregarCarrinho() {
 
   // Limpa o carrinho atual
   cartItemsContainer.innerHTML = "";
-
-  // Cria os elementos para cada produto no carrinho
-  carrinho.forEach((item, index) => {
-    const itemElement = document.createElement("div");
-    itemElement.classList.add("cart-item");
-    itemElement.innerHTML = `
-            <img src="${item.imagem}" alt="${item.nome}">
-            <div class="item-info">
-                <h3>${item.nome}</h3>
-                <p>R$ ${item.preco.toFixed(2)}</p>
-                <div class="quantity-controls">
-                    <button class="button-cart" onclick="alterarQuantidade(${index}, -1)">-</button>
-                    <span id="quantidade-${index}">${item.quantidade}</span>
-                    <button class="button-cart" onclick="alterarQuantidade(${index}, 1)">+</button>
-                </div>
-            </div>
-            <button class="button-cart" onclick="removerItem(${index})">Remover</button>
-        `;
-    cartItemsContainer.appendChild(itemElement);
-    total += item.preco * item.quantidade;
-  });
-
-  // Calcular e exibir o total e frete
-  const frete = total > 200 ? 0 : 15; // Frete grátis acima de R$ 200
-  const totalFinal = total + frete;
-
-  document.getElementById("total-price").innerText = `R$ ${total.toFixed(2)}`;
-  document.getElementById("frete-price").innerText = `R$ ${frete.toFixed(2)}`;
-  document.getElementById("final-price").innerText = `R$ ${totalFinal.toFixed(
-    2
-  )}`;
-
-  // Habilitar ou desabilitar o botão de checkout
-  document.getElementById("checkout-btn").disabled = carrinho.length === 0;
 }
 
 // Função para alterar a quantidade do item no carrinho
@@ -76,56 +42,6 @@ function removerItem(index) {
 // Inicializa o carrinho ao carregar a página
 window.onload = carregarCarrinho;
 
-// Modal de confirmação de remoção (opcional)
-let itemToRemove = null;
-
-document.getElementById("remove-modal").style.display = "none";
-document.getElementById("confirm-remove").onclick = () => {
-  if (itemToRemove !== null) {
-    removerItem(itemToRemove);
-  }
-  document.getElementById("remove-modal").style.display = "none";
-};
-document.getElementById("cancel-remove").onclick = () => {
-  document.getElementById("remove-modal").style.display = "none";
-};
-
-document.getElementById("profile-icon").onclick = function () {
-  document.getElementById("sidebar").style.width = "350px";
-  document.getElementById("overlay").style.width = "100%";
-};
-
-document.querySelector(".close-btn").onclick = function () {
-  document.getElementById("sidebar").style.width = "0";
-  document.getElementById("overlay").style.width = "0";
-};
-
-document.getElementById("overlay").onclick = function () {
-  document.getElementById("sidebar").style.width = "0";
-  document.getElementById("overlay").style.width = "0";
-};
-
-function openLeftSidebar() {
-  document.getElementById("leftSidebar").style.width = "380px";
-}
-
-function closeLeftSidebar() {
-  document.getElementById("leftSidebar").style.width = "0";
-}
-
-// Fechar o sidebar ao clicar fora dele
-document.addEventListener("click", function (event) {
-  var sidebar = document.getElementById("leftSidebar");
-  var btn = document.querySelector(".btn-filtrar");
-  if (
-    sidebar.style.width === "380px" &&
-    !sidebar.contains(event.target) &&
-    event.target !== btn
-  ) {
-    closeLeftSidebar();
-  }
-});
-
 function toggleDropdown(dropdownId) {
   const dropdown = document.getElementById(dropdownId);
   const arrow = dropdown.previousElementSibling.querySelector(".arrow");
@@ -139,172 +55,9 @@ function toggleDropdown(dropdownId) {
   }
 }
 
-function toggleColor(color) {
-  const button = document.querySelector(`.color-button[style*="${color}"]`);
-  if (button.classList.contains("selected")) {
-    button.classList.remove("selected");
-  } else {
-    button.classList.add("selected");
-  }
-}
-window.addEventListener("scroll", function () {
-  const nav = document.querySelector("nav");
-  const logo = document.getElementById("logo");
-
-  if (window.scrollY > 50) {
-    // Ajuste o valor conforme necessário
-    nav.style.top = "0"; // Fixa o nav no topo quando rola para baixo
-    nav.classList.add("scrolled"); // Adiciona a classe quando rola para baixo
-    logo.src = "../../img/logopreta.png"; // Altera para a imagem preta
-  } else {
-    nav.style.top = "40px"; // Retorna ao deslocamento inicial
-    nav.classList.remove("scrolled"); // Remove a classe quando rola para cima
-    logo.src = "../../img/logob.png"; // Retorna à imagem branca
-  }
-});
-
-//SLIDE TEXT
-
-document.addEventListener("DOMContentLoaded", function () {
-  let currentSlide = 0;
-  const slideInterval = 3000; // Intervalo de 3 segundos para troca de slides
-
-  function nextSlide() {
-    const slides = document.querySelector(".slides-text");
-    const totalSlides = slides.children.length;
-
-    // Avançar para o próximo slide
-    currentSlide = (currentSlide + 1) % totalSlides;
-
-    // Atualizar a transformação do slide
-    slides.style.transform = `translateY(-${currentSlide * 310}%)`;
-  }
-
-  function prevSlide() {
-    const slides = document.querySelector(".slides-text");
-    const totalSlides = slides.children.length;
-
-    // Retroceder para o slide anterior
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-
-    // Atualizar a transformação do slide
-    slides.style.transform = `translateY(-${currentSlide * 310}%)`;
-  }
-
-  // Intervalo automático para troca de slides
-  setInterval(nextSlide, slideInterval);
-
-  // Funções para os botões
-  document.querySelector(".next").addEventListener("click", nextSlide);
-  document.querySelector(".prev").addEventListener("click", prevSlide);
-});
-
-//CAROUSEL DESTAQUES
-
-let currentIndex = 0;
-const items = document.querySelectorAll(".carousel-item");
-const totalItems = items.length;
-const itemsPerPage = 3;
-
-const carousel = document.querySelector(".carousel");
-const nextButton = document.getElementById("next");
-const prevButton = document.getElementById("prev");
-
-function updateCarousel() {
-  const offset = -currentIndex * (100 / itemsPerPage);
-  carousel.style.transform = `translateX(${offset}%)`;
-}
-
-function showNext() {
-  if (currentIndex < Math.ceil(totalItems / itemsPerPage) - 1) {
-    currentIndex++;
-  } else {
-    currentIndex = 0;
-  }
-  updateCarousel();
-}
-
-function showPrev() {
-  if (currentIndex > 0) {
-    currentIndex--;
-  } else {
-    currentIndex = Math.ceil(totalItems / itemsPerPage) - 1;
-  }
-  updateCarousel();
-}
-
-nextButton.addEventListener("click", showNext);
-prevButton.addEventListener("click", showPrev);
-
-setInterval(showNext, 8000); // Automatic slide every 3 seconds
-
-// Initialize carousel
-updateCarousel();
-
-let currentSlide2 = 0;
-
-function showSlide(index) {
-  const slides = document.querySelectorAll(".slide-text-index");
-  const totalSlides = slides.length;
-
-  if (index >= totalSlides) {
-    currentSlide2 = 0;
-  } else if (index < 0) {
-    currentSlide2 = totalSlides - 1;
-  } else {
-    currentSlide2 = index;
-  }
-
-  const newTransform = `translateX(${-currentSlide2 * 100}%)`;
-  document.querySelector(".slides-text").style.transform = newTransform;
-}
-
-function nextSlideText() {
-  showSlide(currentSlide2 + 1);
-}
-
-function prevSlide() {
-  showSlide(currentSlide2 - 1);
-}
-
-// Mostrar o primeiro slide
-showSlide(currentSlide2);
-
-// Função para auto-slide
-function startAutoSlide() {
-  setInterval(nextSlideText, 5000); // Muda de slide a cada 3 segundos
-}
-
-// Iniciar o auto-slide
-startAutoSlide();
-
-window.addEventListener("load", function () {
-  document.getElementById("preloader").style.display = "none";
-});
-
-// Código para exibir o preloader ao clicar em um link
-document.addEventListener("DOMContentLoaded", function () {
-  const links = document.querySelectorAll("a");
-  links.forEach((link) => {
-    link.addEventListener("click", function (event) {
-      if (!this.href.includes("#")) {
-        // Evitar recarregar para links âncora
-        document.getElementById("preloader").style.display = "flex";
-      }
-    });
-  });
-});
-
-
-
-
-
-
-
-
-
 function carregarCarrinho() {
   const carrinhoItens = document.getElementById("carrinho-itens");
+  const mensagemVazio = document.getElementById("mensagem-vazio");
   const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
 
   // Para armazenar os produtos únicos e somar quantidades quando necessário
@@ -326,42 +79,381 @@ function carregarCarrinho() {
   // Limpa a div antes de exibir os itens
   carrinhoItens.innerHTML = "";
 
-  // Exibindo os produtos agrupados
-  for (const key in produtosAgrupados) {
-    const produto = produtosAgrupados[key];
+  let totalFinal = 0;
 
-    const itemDiv = document.createElement("div");
-    itemDiv.classList.add("carrinho-item");
+  if (Object.keys(produtosAgrupados).length === 0) {
+    // Se não há produtos, mostra a mensagem de carrinho vazio
+    mensagemVazio.style.display = "block";
+  } else {
+    // Caso contrário, esconde a mensagem de carrinho vazio
+    mensagemVazio.style.display = "none";
 
-    itemDiv.innerHTML = `
-      <img src="${produto.img}" alt="${produto.nome}" />
-      <div>
-        <h3>${produto.nome}</h3>
-        <p>Tamanho: ${produto.tamanho}</p>
-        <p>Quantidade: <span class="carrinho-quantidade">${produto.quantidade}</span></p>
-        <p>Preço: R$ ${(produto.preco * produto.quantidade).toFixed(2)}</p>
-      </div>
-    `;
+    // Exibindo os produtos agrupados
+    for (const key in produtosAgrupados) {
+      const produto = produtosAgrupados[key];
 
-    carrinhoItens.appendChild(itemDiv);
+      produto.preco = parseFloat(produto.preco) || 0;
+
+      const precoTotal = produto.preco * produto.quantidade;
+
+      totalFinal += precoTotal;
+
+      const itemDiv = document.createElement("div");
+      itemDiv.classList.add("carrinho-item");
+
+      itemDiv.innerHTML = `
+        <div class="produto">
+          <div class="produtoImg">
+            <img src="${produto.img}" alt="${
+        produto.nome
+      }" style="height: 170px; width: 160px; border-radius: 2px;">
+          </div>
+          <div class="produtoInfo">
+            <h2>${produto.nome}</h2>
+            <p>Tamanho: ${produto.tamanho}</p>
+            <p>Quantidade: <span class="carrinho-quantidade">${
+              produto.quantidade
+            }</span></p>
+            <p>Preço: R$ ${precoTotal.toLocaleString("pt-BR", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}</p>
+          </div>
+          <div class="btn-produto">
+            <button class="remover-produto" data-id="${key}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      `;
+
+      carrinhoItens.appendChild(itemDiv);
+    }
   }
+
+  const finalPriceElement = document.getElementById("final-price");
+  finalPriceElement.textContent = `R$ ${totalFinal.toLocaleString("pt-BR", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })}`;
+
+  // Adiciona evento para remover produtos
+  const botoesRemover = document.querySelectorAll(".remover-produto");
+  botoesRemover.forEach((botao) => {
+    botao.addEventListener("click", () => {
+      const key = botao.getAttribute("data-id");
+
+      // Remover do carrinho no localStorage
+      const novoCarrinho = carrinho.filter((produto) => {
+        const produtoKey = `${produto.id}-${produto.tamanho}`;
+        return produtoKey !== key;
+      });
+
+      localStorage.setItem("carrinho", JSON.stringify(novoCarrinho));
+
+      // Recarregar o carrinho
+      carregarCarrinho();
+    });
+  });
 }
 
+// Carrega o carrinho ao iniciar a página
+document.addEventListener("DOMContentLoaded", carregarCarrinho);
 
+// Verificar se há itens no carrinho e ir para Identificação
+function irParaIdentificacao() {
+  const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
 
+  if (carrinho.length === 0) {
+    alert("Seu carrinho está vazio. Adicione itens para continuar.");
+    return;
+  }
 
+  // Atualizar o progresso
+  document.getElementById("step-1").classList.add("completed");
+  document.getElementById("step-2").classList.add("completed");
 
+  // Mostrar seção de Identificação e esconder Carrinho
+  document.getElementById("section-carrinho").style.display = "none";
+  document.getElementById("section-identificacao").style.display = "block";
+}
 
+function irParaConfirmacao() {
+  // Captura os valores do formulário
+  const nome = document.getElementById("nome-completo").value;
+  const cpf = document.getElementById("cpf").value;
+  const email = document.getElementById("email").value;
+  const telefone = document.getElementById("telefone").value;
 
-// Função para finalizar compra (simplesmente limpando o carrinho por enquanto)
-function finalizarCompra() {
-  showNotification("Compra finalizada! Limpando o carrinho...");
-  localStorage.removeItem("carrinho");
-  carregarCarrinho(); // Atualiza o carrinho após limpar
+  const rua = document.getElementById("rua").value;
+  const numero = document.getElementById("numero").value;
+  const cidade = document.getElementById("cidade").value;
+  const bairro = document.getElementById("bairro").value;
+  const estado = document.getElementById("estado").value;
+  const complemento = document.getElementById("complemento").value;
+  const pontoDeReferencia = document.getElementById("pontoDeReferencia").value;
+  const cep = document.getElementById("cep-destino").value;
+
+  // Validar se os campos obrigatórios estão preenchidos
+  if (
+    !nome ||
+    !cpf ||
+    !email ||
+    !telefone ||
+    !rua ||
+    !numero ||
+    !cidade ||
+    !bairro ||
+    !estado ||
+    !cep
+  ) {
+    alert("Por favor, preencha todas as informações obrigatórias.");
+    return;
+  }
+
+  // Criar um objeto com os dados
+  const dadosIdentificacao = {
+    nome,
+    cpf,
+    email,
+    telefone,
+    freteSelecionado,
+    endereco: {
+      rua,
+      numero,
+      cidade,
+      bairro,
+      estado,
+      complemento,
+      pontoDeReferencia,
+      cep,
+    },
+  };
+
+  // Obter os itens do carrinho
+  const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+  const produtosAgrupados = {};
+
+  carrinho.forEach((produto) => {
+    const key = `${produto.id}-${produto.tamanho}`;
+    if (produtosAgrupados[key]) {
+      produtosAgrupados[key].quantidade += produto.quantidade;
+    } else {
+      produtosAgrupados[key] = { ...produto };
+    }
+  });
+
+  let totalCarrinho = 0;
+  for (const key in produtosAgrupados) {
+    const produto = produtosAgrupados[key];
+    produto.preco = parseFloat(produto.preco) || 0;
+    totalCarrinho += produto.preco * produto.quantidade;
+  }
+
+  // Criar objeto do pedido completo
+  const pedidoCompleto = {
+    dadosIdentificacao,
+    produtos: produtosAgrupados,
+    total: totalCarrinho,
+  };
+
+  // Salvar o pedido completo no localStorage
+  localStorage.setItem("pedidoCompleto", JSON.stringify(pedidoCompleto));
+
+  // Atualizar a exibição da confirmação
+  exibirConfirmacao(pedidoCompleto);
+}
+
+function exibirConfirmacao(pedidoCompleto) {
+  const divProdutos = document.querySelector(".pedido-produto-final");
+  const divIdentificacao = document.querySelector(
+    ".pedido-indentificacao-final"
+  );
+
+  // Garantir que o preço do frete seja tratado como número
+  const precoFrete = parseFloat(freteSelecionado.price);
+
+  // Extrair dados do pedido
+  const { dadosIdentificacao, produtos, total } = pedidoCompleto;
+
+  // Calcular o total final
+  const totalComFrete = total + precoFrete;
+
+  // Formatar o valor total com frete
+  const totalComFreteFormatado = totalComFrete.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
+
+  // Gerar o HTML dos produtos
+  let produtosHTML = "";
+  for (const key in produtos) {
+    const produto = produtos[key];
+    produtosHTML += `
+      <div class="pedido-produto-final-por-produto">
+        <img src="${produto.img}" alt="${produto.nome}"/>
+          <div class="info-produto-final">
+            <p><strong>Nome:</strong> ${produto.nome}</p>
+            <p><strong>Tamanho:</strong> ${produto.tamanho}</p>
+            <p><strong>Quantidade:</strong> ${produto.quantidade}</p>
+          </div>
+     </div>
+    `;
+  }
+
+  // Gerar o HTML das informações de identificação
+  const identificacaoHTML = `
+    <h3>Informação do Pedido</h3>
+    <div></div>
+    <p><strong>Nome:</strong> ${dadosIdentificacao.nome}</p>
+    <p><strong>CPF:</strong> ${dadosIdentificacao.cpf}</p>
+    <p><strong>CEP:</strong> ${dadosIdentificacao.freteSelecionado}</p>
+    <p><strong>Email:</strong> ${dadosIdentificacao.email}</p>
+    <p><strong>Telefone:</strong> ${dadosIdentificacao.telefone}</p>
+    <p><strong>Endereço:</strong> ${dadosIdentificacao.endereco.rua}, ${
+    dadosIdentificacao.endereco.numero
+  }, ${dadosIdentificacao.endereco.cidade} - ${
+    dadosIdentificacao.endereco.estado
+  }</p>
+    <p><strong>Frete:</strong> R$ ${precoFrete.toLocaleString("pt-BR", {
+      minimumFractionDigits: 2,
+    })}</p>
+    <p><strong>Total com Frete:</strong> ${totalComFreteFormatado}</p>
+  `;
+
+  // Adicionar os conteúdos às respectivas divs
+  divProdutos.innerHTML = produtosHTML;
+  divIdentificacao.innerHTML = identificacaoHTML;
+
+  console.log(dadosIdentificacao.freteSelecionado);
+  document.getElementById("step-2").classList.add("completed");
+  document.getElementById("step-3").classList.add("completed");
+  // Atualizar as seções visíveis
+  document.getElementById("section-identificacao").style.display = "none";
+  document.getElementById("section-confirmacao").style.display = "block";
+}
+
+function finalizarPedido() {
+  document.getElementById("step-3").classList.add("completed");
+  document.getElementById("step-4").classList.add("completed");
+  // Atualizar as seções visíveis
+  document.getElementById("section-confirmacao").style.display = "none";
+  document.getElementById("section-pagamento").style.display = "block";
 }
 
 // Carregar o carrinho ao abrir a página
 document.addEventListener("DOMContentLoaded", carregarCarrinho);
+
+// Captura o botão de calcular frete e o input de CEP
+const calcularFreteBtn = document.getElementById("calcular-frete-btn");
+const cepDestinoInput = document.getElementById("cep-destino");
+const resultadoFrete = document.getElementById("resultadoFrete");
+
+// Função para enviar o CEP e calcular o frete
+calcularFreteBtn.addEventListener("click", async () => {
+  const cepDestino = cepDestinoInput.value.trim();
+
+  if (cepDestino.length !== 8) {
+    mostrarMensagemErro("Insira um CEP válido para calcular o frete!");
+    return;
+  }
+
+  try {
+    const response = await fetch("http://localhost:3000/frete/calcular-frete", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ cepDestino }),
+    });
+
+    const data = await response.json();
+
+    if (data.error) {
+      resultadoFrete.textContent = `Erro: ${data.error}`;
+    } else {
+      if (data.length > 0) {
+        let htmlContent = "";
+
+        data.slice(0, 3).forEach((service, index) => {
+          if (service.price && service.time) {
+            const precoFormatado = service.price.toString().replace(".", ",");
+
+            htmlContent += `
+              <div class="frete-container" onclick="selecionarFrete(${index})" data-index="${index}">
+                <div class="repostaDb-frete">
+                  <input type="radio" name="frete" id="frete-${index}" value='${JSON.stringify(
+              service
+            )}' class="radio-frete" />
+                  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-truck" viewBox="0 0 16 16">
+                    <path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5zm1.294 7.456A2 2 0 0 1 4.732 11h5.536a2 2 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456M12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/>
+                  </svg>
+                  <div class="box-infotransporte">
+                    <div class="infoTransporte">
+                      <p>${service.company}</p>
+                      <p>${service.name}</p>
+                      <p>Prazo da Entrega - ${service.time} dias úteis</p>
+                    </div>
+                    <div class="precoFrete">
+                      R$${precoFormatado}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+          }
+        });
+
+        resultadoFrete.innerHTML = htmlContent;
+
+        // Armazena as opções de frete em uma variável global para facilitar a seleção
+        window.opcoesFrete = data;
+      } else {
+        resultadoFrete.textContent = "Nenhum serviço disponível para este CEP.";
+      }
+    }
+  } catch (error) {
+    resultadoFrete.textContent =
+      "Erro ao calcular o frete. Tente novamente mais tarde.";
+  }
+});
+
+let freteSelecionado = null;
+
+function selecionarFrete(index) {
+  // Remove o destaque de todas as caixas
+  document.querySelectorAll(".frete-container").forEach((box) => {
+    box.style.border = "none";
+  });
+
+  // Destaca a caixa selecionada
+  const selectedBox = document.querySelector(`[data-index="${index}"]`);
+  selectedBox.style.border = "2px solid #000";
+
+  // Armazena os dados do frete selecionado
+  freteSelecionado = window.opcoesFrete[index];
+  console.log("Frete selecionado:", freteSelecionado);
+}
+
+// Máscara para CPF
+function mascaraCPF(cpf) {
+  cpf.value = cpf.value
+    .replace(/\D/g, "") // Remove caracteres não numéricos
+    .replace(/(\d{3})(\d)/, "$1.$2") // Adiciona o primeiro ponto
+    .replace(/(\d{3})(\d)/, "$1.$2") // Adiciona o segundo ponto
+    .replace(/(\d{3})(\d{1,2})$/, "$1-$2"); // Adiciona o traço
+}
+
+// Máscara para Telefone
+function mascaraTelefone(telefone) {
+  telefone.value = telefone.value
+    .replace(/\D/g, "") // Remove caracteres não numéricos
+    .replace(/(\d{2})(\d)/, "($1) $2") // Adiciona parênteses no DDD
+    .replace(/(\d{5})(\d)/, "$1-$2") // Adiciona o traço
+    .replace(/(-\d{4})\d+?$/, "$1"); // Limita o tamanho
+}
 
 function showNotification(message) {
   const notification = document.getElementById("notification");
@@ -375,3 +467,56 @@ function showNotification(message) {
     notification.classList.remove("show");
   }, 3000);
 }
+function showCart() {
+  const savedData = JSON.parse(localStorage.getItem('customizationData'));
+
+  // Verificar se o savedData existe
+  if (savedData) {
+    // Verificar se o elemento com o id 'cart-details' existe na página
+    const cartDetailsElement = document.getElementById('cart-details');
+    if (cartDetailsElement) {
+      cartDetailsElement.innerHTML = `
+        <div style="display: flex; align-items: flex-start; gap: 20px;">
+          <!-- Imagem da Camisa -->
+          <div style="flex-shrink: 0;">
+
+            <img src="${savedData.shirtImage}"" style="height: 170px; width: 160px; border-radius: 2px;"">
+          </div>
+          
+          <!-- Detalhes da Personalização -->
+          <div>
+          
+            <ul style="list-style: none; padding: 0;">
+              <li><strong>Cor da Camisa:</strong> ${savedData.shirtColor}</li>
+              <li>
+               <li>
+                <strong>Ícone Selecionado:</strong><br>
+                <img src="${savedData.icon}" width="80" style="border: 1px solid #ddd; border-radius: 4px; padding: 5px;">
+              </li>
+              </div>
+              <div>
+                <ul style="list-style: none; padding: 0;">
+                <strong>Imagem Personalizada:</strong><br>
+                <img src="${savedData.customImage}" width="100" style="border: 1px solid #ddd; border-radius: 4px; padding: 5px;">
+              </li>
+              <li><strong>Posição da Imagem:</strong> ${savedData.imagePosition}</li>
+              <li><strong>Forma da Imagem:</strong> ${savedData.imageShape}</li>
+             
+            </ul>
+          </div>
+          </div>
+
+
+
+      `;
+    } else {
+      console.error('Elemento #cart-details não encontrado!');
+    }
+  } else {
+    console.log('Nenhuma personalização encontrada no carrinho.');
+    document.getElementById('cart-details').innerHTML = `<p>Seu carrinho está vazio.</p>`;
+  }
+}
+
+// Chamar a função showCart quando a página for carregada
+document.addEventListener('DOMContentLoaded', showCart);

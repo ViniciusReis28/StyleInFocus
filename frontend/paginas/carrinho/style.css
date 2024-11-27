@@ -27,14 +27,15 @@ body {
 }
 
 .container {
-  flex: 1; /* Faz com que o main ocupe o espaço necessário para empurrar o footer */
-  padding-bottom: 100px; /* Espaço reservado para o footer, para que ele não sobreponha o conteúdo */
-  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  height: 800px;
   margin: 0 auto;
   background-color: #fff;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-top: 50px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.041);
+  margin-top: 25px;
   margin-bottom: 70px;
   border-radius: 9px;
 }
@@ -77,8 +78,9 @@ h1 {
 }
 
 .cart-summary {
-  margin-top: 20px;
   font-size: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .button-cart {
@@ -96,113 +98,6 @@ h1 {
   background-color: #ccc;
 }
 
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: none;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  background-color: white;
-  padding: 20px;
-  text-align: center;
-  border-radius: 8px;
-}
-
-.modal-content button {
-  margin-top: 10px;
-  background-color: #dc3545;
-}
-
-/*--------------------------------------------------------SLIDE DO INDEX TEXT---------------------------------------------------*/
-
-/* Sobreposição preta para o efeito de escurecimento */
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
-  /* Preto com alta opacidade */
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-  z-index: 1;
-  /* Coloca a sobreposição acima da imagem */
-}
-
-/* Contêiner do slider */
-.slider-container-text {
-  position: absolute;
-  color: rgb(255, 255, 255);
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 40px; /* Ajuste conforme o tamanho necessário para os slides */
-  background: #050505;
-  overflow: hidden; /* Oculta slides fora da área visível */
-  display: flex;
-  align-items: center;
-  z-index: 2; /* Coloca o slider acima da imagem */
-}
-
-/* Slides */
-.slides-text {
-  display: flex;
-  flex-direction: column; /* Organiza slides verticalmente */
-  transition: transform 0.5s ease-in-out; /* Suaviza a transição */
-  width: 100%;
-  height: 80%; /* Garante que os slides preencham o contêiner */
-}
-
-/* Estilo individual dos slides */
-.slide-text-index {
-  width: 100%;
-  box-sizing: border-box;
-  text-align: center;
-  height: 100px; /* Ajuste conforme necessário */
-  flex-shrink: 0; /* Impede que o slide encolha */
-}
-
-.slide-text-index h2,
-.slide-text-index p {
-  font-family: "Bebas Neue", sans-serif;
-  font-size: 24px;
-  margin: 0; /* Remove margens */
-}
-
-/* Botões de navegação */
-.slider-container-text button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  border: none;
-  background-color: transparent;
-  /* Torna o fundo do botão transparente */
-  font-size: 24px;
-  cursor: pointer;
-  padding: 600px;
-  z-index: 3; /* Garante que os botões estejam acima do conteúdo do slider */
-
-  /* Ajusta o padding para ficar apenas ao redor do texto */
-}
-
-.prev {
-  color: rgb(255, 255, 255);
-  left: 10px;
-}
-
-.next {
-  color: rgb(255, 255, 255);
-  right: 10px;
-}
-
 /* BARRA DE NAVEGAÇÃO DO SITE */
 nav {
   height: 100px;
@@ -211,11 +106,9 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-  position: fixed; /* Torna a navbar fixa */
   top: 0px; /* Deslocamento inicial */
   left: 0; /* Alinha a navbar na esquerda da página */
   width: 100%; /* Faz a navbar ocupar toda a largura da página */
-  z-index: 1000; /* Garante que a navbar fique acima de outros elementos */
   background-color: #050505; /* Cor de fundo opaca */
   transition: top 0.3s; /* Transição suave para a mudança de posição */
   transition: background-color 0.3s, color 0.3s;
@@ -440,105 +333,12 @@ a {
   /* Mantém os itens do dropdown empilhados */
 }
 
-/* SIDEBAR DA BARRA DE NAVEGAÇÃO DO SITE */
-.sidebar {
-  height: 100%;
-  width: 0px;
-  position: fixed;
-  top: 0;
-  right: 0;
-  background-color: #000000;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
-  z-index: 2000;
-}
-
-.sidebar a {
-  text-align: right;
-  padding: 10px 15px;
-  text-decoration: none;
-  font-size: 20px;
-  color: #ffffff;
-  display: block;
-  transition: 0.3s;
-  font-family: "Freeman", sans-serif;
-  margin-right: 10px;
-}
-
-.sidebar a:hover {
-  color: #b6b6b6;
-}
-
-.sidebar .close-btn {
-  position: absolute;
-  top: 0;
-  right: 0px;
-  font-size: 38px;
-}
-
-/* Overlay for the sidebar */
-.overlay {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.11);
-  overflow-x: hidden;
-  transition: 0.5s;
-  z-index: 1999;
-}
-
-footer {
-  background-color: #050505;
-  color: #fff;
-  padding: 20px 0;
-  text-align: center;
-  width: 100%;
-}
-
-.footer-certificates {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-bottom: 20px;
-}
-
-.footer-certificates img {
-  max-height: 5000px;
-  width: 400px;
-}
-
-.footer-links {
-  margin-bottom: 20px;
-}
-
-.footer-links a {
-  color: #fff;
-  margin: 0 15px;
-  text-decoration: none;
-}
-
-.footer-links a:hover {
-  text-decoration: underline;
-}
-
-.footer-info {
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.footer-info strong {
-  color: #00aaff; /* cor do logo da Magalu */
-}
-
 .progress-container {
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  max-width: 800px; /* Largura máxima da barra de progresso */
-  margin: 20px auto;
+  width: 60%;
+  max-width: 850px; /* Largura máxima da barra de progresso */
+  margin: 10px auto;
   padding: 0 20px;
 }
 
@@ -547,7 +347,7 @@ footer {
   align-items: center;
   position: relative;
   text-align: center;
-  margin-top: 130px;
+  margin-top: 20px;
 }
 
 .step:first-child::before {
@@ -570,19 +370,453 @@ footer {
   background-color: #000; /* Cor de destaque para a etapa atual */
 }
 
-.step.completed span {
-  font-weight: bold;
-}
-
 .step span {
   margin-left: 10px;
-  font-size: 14px;
+  font-size: 21px;
   color: #888;
 }
 
 .right-section {
   display: flex;
   align-items: center;
+}
+
+/*Parte das estapas*/
+
+.teste {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Garante que o resumo fique no final */
+  height: 100%;
+  padding-bottom: 10px;
+}
+
+.teste span {
+  font-size: 30px;
+}
+
+.btn-produto {
+  display: flex;
+  justify-content: flex-end; /* Alinha o botão à direita */
+}
+
+.btn-produto button {
+  background-color: #00000000;
+  border: none;
+  color: #000;
+  height: 60px;
+  width: 60px;
+  cursor: pointer;
+  border-radius: 100%;
+}
+
+.btn-produto button:hover {
+  color: rgb(163, 27, 27);
+}
+
+#carrinho-itens {
+  flex: 1; /* Faz com que ocupe o espaço disponível */
+  overflow-y: auto; /* Adiciona o scroll vertical se necessário */
+  max-height: 400px; /* Limite de altura para o scroll */
+  padding-right: 10px;
+  margin-bottom: 20px;
+}
+
+.produto {
+  width: 100%;
+  height: 200px;
+  gap: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; /* Espaça os elementos para as extremidades */
+  align-items: center; /* Alinha verticalmente no centro */
+}
+
+.produtoInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 180px;
+  flex-grow: 1; /* Faz com que ocupe o espaço disponível */
+}
+
+.produtoInfo p {
+  font-size: 22px;
+}
+
+.btn {
+  display: flex;
+  gap: 15px;
+}
+
+.btn-finalizarCompra {
+  background-color: #000;
+  color: white;
+  height: 40px;
+  width: 180px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-continuarComprando {
+  border-radius: 8px;
+  background-color: #ffffff00;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-continuarComprando a {
+  font-size: 16px;
+  color: #000;
+}
+
+.btn-continuarComprando a:hover {
+  color: white;
+}
+
+.btn-continuarComprando:hover {
+  background-color: #000000ee;
+}
+
+
+.infoUsuario {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.infoUsuario input {
+  font-size: 16px;
+  height: 35px;
+}
+
+.info {
+  display: flex;
+  gap: 10px;
+}
+
+#nome-completo {
+  width: 70%;
+}
+
+#cpf {
+  width: 30%;
+}
+
+#email {
+  width: 65%;
+}
+
+#telefone {
+  width: 35%;
+}
+
+.infoEntrega {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.infoEntrega input {
+  height: 35px;
+  font-size: 16px;
+}
+
+#rua {
+  width: 100%;
+}
+
+.infoEntregaProdutoLocalizaoCasa {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.infoEntregaProdutoLocalizaoCasa input {
+  width: 40%;
+}
+
+.infoEntregaProdutoLocalizaoCasa select {
+  width: 30%;
+  font-size: 16px;
+}
+.infoCEP {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.infoCEP input{
+  height: 35px;
+  width: 180px;
+  border-radius: 5px;
+  border: none;
+}
+
+.infoCEP button {
+  height: 35px;
+  background-color: #00000000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.infoCEP button:hover {
+  border: 2px solid #000;
+}
+
+#resultadoFrete {
+  margin-bottom: 10px;
+}
+
+
+.frete-container {
+  margin-top: 10px; /* Adiciona um espaçamento entre as caixas */
+  border-radius: 8px; /* Bordas arredondadas */
+  width: 350px; /* Largura fixa para as caixas */
+  height: 60px;
+}
+
+.repostaDb-frete {
+  display: flex;  
+  height: 65px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;  
+  background-color: #ffffff00;
+}
+
+.repostaDb-frete input {
+  margin-top: 12px;
+  margin-left: 15px;
+  width: 30px; /* Tamanho menor */
+  height: 28px; /* Tamanho menor */
+  border: 2px solid #000; /* Borda preta */
+  border-radius: 50%; /* Forma circular */
+  background-color: #fff; /* Fundo branco */
+  cursor: pointer;
+}
+.repostaDb-frete input:checked {
+  accent-color: black;
+}
+
+.repostaDb-frete a {
+  color: #000;
+}
+
+.repostaDb-frete svg {
+  margin-top: 8px;
+  margin-left: 10px;
+}
+
+.box-infotransporte {
+  display: flex;
+  width: 100%;
+  background-color: #00000000;
+  height: 100%;
+}
+
+.infoTransporte {
+  font-family: "Quicksand", sans-serif;
+  font-size: 11px;
+  margin-top: 5px;
+  margin-left: 10px;
+  font-weight: bold;
+  flex-direction: column;
+}
+
+.precoFrete {
+  font-weight: bold;
+  padding: 20px 15px;
+  margin-left: 5px;
+}
+
+
+                                  /*section confirmaçao*/
+.pedido-produto-final {
+  overflow-y: auto;
+  height: 200px;
+}
+
+.pedido-produto-final-por-produto {
+  display: flex;
+  flex-direction: row;
+  height: 200px;
+  gap: 15px;
+}
+
+.pedido-produto-final-por-produto img {
+  height: 180px;
+  width: 180px;
+}
+
+.info-produto-final {
+  margin-top: 25px;
+  font-size: 25px;
+ 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*FOOTER FIM DA PAGINA*/
+
+.footer {
+  background-color: #000;
+  height: 520px;
+  display: flex;
+  /* Define flexbox */
+  justify-content: center;
+  /* Centraliza horizontalmente */
+  font-family: "Nunito", sans-serif;
+  text-align: justify;
+  color: white;
+}
+
+.centroFooter {
+  width: 80%;
+  height: 100%;
+  /* Ocupa toda a altura do footer */
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* Alinha os itens no início do eixo principal */
+  position: relative;
+  /* Permite usar posicionamento absoluto dentro dela */
+}
+
+.Footer-main {
+  width: 90%;
+  height: 65%;
+  background-color: #000000;
+  position: relative;
+  top: 0%;
+  /* Ajuste este valor para posicionar mais acima ou mais abaixo */
+  display: flex;
+  /* Define flexbox para as colunas */
+  justify-content: space-between;
+  /* Distribui as colunas uniformemente */
+}
+
+.coluna {
+  width: 25%;
+  /* Cada coluna ocupa 30% da largura de .Footer-main */
+  background-color: #000000;
+  /* Cor de fundo para visualização */
+  padding: 10px;
+  box-sizing: border-box;
+  /* Inclui o padding na largura total */
+  display: flex;
+  flex-direction: column;
+}
+
+.coluna h2 {
+  margin-left: 15px;
+  font-size: 22px;
+}
+
+.coluna a {
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+  margin-bottom: -5px;
+}
+
+.coluna:last-child {
+  display: flex;
+  /* Define flexbox para a terceira coluna */
+  flex-direction: column;
+  /* Organiza as subcolunas verticalmente */
+  justify-content: space-between;
+  /* Distribui as subcolunas uniformemente */
+}
+
+.sub-coluna {
+  flex: 1;
+  /* Faz as subcolunas ocuparem a mesma quantidade de espaço */
+  background-color: #000000;
+  /* Cor de fundo para visualização */
+  margin-bottom: 10px;
+  /* Espaço entre as subcolunas */
+}
+
+.sub-coluna h3 {
+  margin-bottom: 15px;
+}
+
+.sub-coluna:last-child {
+  margin-bottom: 0;
+  /* Remove o espaço após a última subcoluna */
+}
+
+.Footer-bottom {
+  width: 90%;
+  /* ocupa toda a largura da .centroFooter */
+  display: flex;
+  /* utiliza flexbox para alinhamento */
+  justify-content: space-between;
+  /* alinha um item em cada lado e outro no centro */
+  padding: 30px 0;
+  /* adicionar algum padding vertical */
+  position: relative;
+  /* Ajuste se necessário */
+}
+
+.Footer-item {
+  color: white;
+}
+
+.Footer-left {
+  margin-top: 10px;
+  text-align: left;
+  /* alinha texto à esquerda */
+}
+
+.Footer-left h3 {
+  font-size: 15px;
+}
+
+.Footer-left p {
+  font-size: 10px;
+}
+
+.Footer-center img {
+  width: 80px;
+  height: 80px;
+  margin-left: 50px;
+}
+
+.Footer-right {
+  margin-top: 5px;
+  text-align: right;
+  /* alinha texto à direita */
+}
+
+.Footer-right h3 {
+  font-size: 15px;
+}
+
+.Footer-right p {
+  font-size: 10px;
+}
+
+.div-between {
+  width: 90%;
+  border-top: 1px solid white;
+  /* Adicionando a linha */
 }
 
 /* Estilo para a notificação */
@@ -607,7 +841,6 @@ footer {
   opacity: 1;
   visibility: visible;
 }
-
 
 #carrinho-itens img {
   height: 100px;
