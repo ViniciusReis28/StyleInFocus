@@ -450,6 +450,8 @@ a {
 }
 
 .btn-finalizarCompra {
+  font-family: "Bebas Neue", sans-serif;
+
   background-color: #000;
   color: white;
   height: 40px;
@@ -457,17 +459,21 @@ a {
   border-radius: 8px;
   border: none;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 18px;
 }
 
+
+
 .btn-continuarComprando {
+  font-family: "Bebas Neue", sans-serif;
+
   border-radius: 8px;
   background-color: #ffffff00;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .btn-continuarComprando a {
-  font-size: 16px;
+  font-size: 18px;
   color: #000;
 }
 

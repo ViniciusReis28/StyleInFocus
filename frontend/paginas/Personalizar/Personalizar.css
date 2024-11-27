@@ -952,7 +952,7 @@ img {
 }
 
 
-
+                                            
                                                                       /* SHAPE BUTTONS */
 
 .glow-on-hover-shape {
@@ -1193,4 +1193,105 @@ img {
 
 .card:hover .zoom-box {
   display: block; /* Exibe o quadrado quando o mouse passar por cima */
+}
+
+/* Estilos do overlay (fundo escurecido) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Estilos da caixa de modal */
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  width: 500px;
+}
+
+.modal-content p {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+/*BOTAO DOS TAMANHOS*/
+.glow-on-hover-size {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 28px;
+  width: 100px; /* Faz o botão ocupar toda a largura da coluna */
+  height: 55px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+}
+
+.glow-on-hover-size:before {
+    
+  content: '';
+  background: linear-gradient(45deg, #2bff00, #15ff00, #54fc06, #78da64, #00ff2a, #01ff2b, #5eff00, #00ff37, #26ff93);
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 10px;
+}
+
+.glow-on-hover-size:active {
+  color: #ffffff
+}
+
+.glow-on-hover-size:active:after {
+  background: transparent;
+}
+
+.glow-on-hover-size:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover-size:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 400% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+}
 }

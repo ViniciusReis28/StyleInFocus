@@ -76,68 +76,72 @@ function carregarCarrinho() {
     }
   });
 
-  // Limpa a div antes de exibir os itens
-  carrinhoItens.innerHTML = "";
+// Limpa a div antes de exibir os itens
+carrinhoItens.innerHTML = "";
 
-  let totalFinal = 0;
+let totalFinal = 0;
 
-  if (Object.keys(produtosAgrupados).length === 0) {
-    // Se não há produtos, mostra a mensagem de carrinho vazio
-    mensagemVazio.style.display = "block";
-  } else {
-    // Caso contrário, esconde a mensagem de carrinho vazio
-    mensagemVazio.style.display = "none";
+// Definir o preço fixo da camisa personalizada
+const precoCamisaPersonalizada = 75.00;  // Exemplo de valor fixo da camisa
 
-    // Exibindo os produtos agrupados
-    for (const key in produtosAgrupados) {
-      const produto = produtosAgrupados[key];
+if (Object.keys(produtosAgrupados).length === 0) {
+  // Se não há produtos, mostra a mensagem de carrinho vazio
+  mensagemVazio.style.display = "block";
+} else {
+  // Caso contrário, esconde a mensagem de carrinho vazio
+  mensagemVazio.style.display = "none";
 
-      produto.preco = parseFloat(produto.preco) || 0;
+  // Exibindo os produtos agrupados
+  for (const key in produtosAgrupados) {
+    const produto = produtosAgrupados[key];
 
-      const precoTotal = produto.preco * produto.quantidade;
+    produto.preco = parseFloat(produto.preco) || 0;
 
-      totalFinal += precoTotal;
+    const precoTotal = produto.preco * produto.quantidade;
 
-      const itemDiv = document.createElement("div");
-      itemDiv.classList.add("carrinho-item");
+    totalFinal += precoTotal; // Adiciona o preço dos produtos
 
-      itemDiv.innerHTML = `
-        <div class="produto">
-          <div class="produtoImg">
-            <img src="${produto.img}" alt="${
-        produto.nome
-      }" style="height: 170px; width: 160px; border-radius: 2px;">
-          </div>
-          <div class="produtoInfo">
-            <h2>${produto.nome}</h2>
-            <p>Tamanho: ${produto.tamanho}</p>
-            <p>Quantidade: <span class="carrinho-quantidade">${
-              produto.quantidade
-            }</span></p>
-            <p>Preço: R$ ${precoTotal.toLocaleString("pt-BR", {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            })}</p>
-          </div>
-          <div class="btn-produto">
-            <button class="remover-produto" data-id="${key}">
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-                <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
-              </svg>
-            </button>
-          </div>
+    const itemDiv = document.createElement("div");
+    itemDiv.classList.add("carrinho-item");
+
+    itemDiv.innerHTML = `
+      <div class="produto">
+        <div class="produtoImg">
+          <img src="${produto.img}" alt="${produto.nome}" style="height: 170px; width: 160px; border-radius: 2px;">
         </div>
-      `;
+        <div class="produtoInfo">
+          <h2>${produto.nome}</h2>
+          <p>Tamanho: ${produto.tamanho}</p>
+          <p>Quantidade: <span class="carrinho-quantidade">${produto.quantidade}</span></p>
+          <p>Preço: R$ ${precoTotal.toLocaleString("pt-BR", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })}</p>
+        </div>
+        <div class="btn-produto">
+          <button class="remover-produto" data-id="${key}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+              <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    `;
 
-      carrinhoItens.appendChild(itemDiv);
-    }
+    carrinhoItens.appendChild(itemDiv);
   }
+}
 
-  const finalPriceElement = document.getElementById("final-price");
-  finalPriceElement.textContent = `R$ ${totalFinal.toLocaleString("pt-BR", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  })}`;
+// Adicionar o preço fixo da camisa personalizada ao total
+totalFinal += precoCamisaPersonalizada;
+
+// Atualizar o preço final na página
+const finalPriceElement = document.getElementById("final-price");
+finalPriceElement.textContent = `R$ ${totalFinal.toLocaleString("pt-BR", {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+})}`;
+
 
   // Adiciona evento para remover produtos
   const botoesRemover = document.querySelectorAll(".remover-produto");
@@ -268,9 +272,7 @@ function irParaConfirmacao() {
 
 function exibirConfirmacao(pedidoCompleto) {
   const divProdutos = document.querySelector(".pedido-produto-final");
-  const divIdentificacao = document.querySelector(
-    ".pedido-indentificacao-final"
-  );
+  const divIdentificacao = document.querySelector(".pedido-indentificacao-final");
 
   // Garantir que o preço do frete seja tratado como número
   const precoFrete = parseFloat(freteSelecionado.price);
@@ -278,15 +280,14 @@ function exibirConfirmacao(pedidoCompleto) {
   // Extrair dados do pedido
   const { dadosIdentificacao, produtos, total } = pedidoCompleto;
 
-  // Calcular o total final
-  const totalComFrete = total + precoFrete;
+  // Calcular o total final com o preço fixo da camisa personalizada e o frete
+  const totalComFrete = total + precoFrete + precoCamisaPersonalizada;
 
   // Formatar o valor total com frete
   const totalComFreteFormatado = totalComFrete.toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
   });
-
   // Gerar o HTML dos produtos
   let produtosHTML = "";
   for (const key in produtos) {
@@ -467,54 +468,89 @@ function showNotification(message) {
     notification.classList.remove("show");
   }, 3000);
 }
-function showCart() {
+function showCart() { 
   const savedData = JSON.parse(localStorage.getItem('customizationData'));
+
+  // Definindo o preço fixo da camisa personalizada
+  const precoCamisaPersonalizada = 75.00;  // Preço fixo para a camisa
 
   // Verificar se o savedData existe
   if (savedData) {
     // Verificar se o elemento com o id 'cart-details' existe na página
     const cartDetailsElement = document.getElementById('cart-details');
     if (cartDetailsElement) {
+      // Exibe as informações básicas e o botão para ver as personalizações
       cartDetailsElement.innerHTML = `
         <div style="display: flex; align-items: flex-start; gap: 20px;">
           <!-- Imagem da Camisa -->
           <div style="flex-shrink: 0;">
-
-            <img src="${savedData.shirtImage}"" style="height: 170px; width: 160px; border-radius: 2px;"">
+            <img src="${savedData.shirtImage}" style="height: 170px; width: 160px; border-radius: 2px;">
           </div>
-          
-          <!-- Detalhes da Personalização -->
-          <div>
-          
+
+          <!-- Detalhes do Produto -->
+        <div class="produtoInfo">
+            <ul style="list-style: none; padding: 0;">
+             <h2>CAMISA PERSONALIZADA:</h2>
+              <p>Preço: R$ ${precoCamisaPersonalizada.toLocaleString("pt-BR", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })} </p>
+              <p>Tamanho:${savedData.shirtSize}</p>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Botão para abrir o Modal -->
+        <button id="showModalButton" style="padding: 10px 20px; margin-top: 10px; background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer;">
+          Ver informações da personalização
+        </button>
+
+        <!-- Modal com informações de personalização (inicialmente oculto) -->
+        <div id="personalizationModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 9999; justify-content: center; align-items: center;">
+          <div style="background-color: white; padding: 20px; border-radius: 10px; max-width: 500px; width: 100%;">
+            <h2>Informações da Personalização</h2>
             <ul style="list-style: none; padding: 0;">
               <li><strong>Cor da Camisa:</strong> ${savedData.shirtColor}</li>
               <li>
-               <li>
                 <strong>Ícone Selecionado:</strong><br>
                 <img src="${savedData.icon}" width="80" style="border: 1px solid #ddd; border-radius: 4px; padding: 5px;">
               </li>
-              </div>
-              <div>
-                <ul style="list-style: none; padding: 0;">
-                <strong>Imagem Personalizada:</strong><br>
+              <li><strong>Imagem Personalizada:</strong><br>
                 <img src="${savedData.customImage}" width="100" style="border: 1px solid #ddd; border-radius: 4px; padding: 5px;">
               </li>
               <li><strong>Posição da Imagem:</strong> ${savedData.imagePosition}</li>
               <li><strong>Forma da Imagem:</strong> ${savedData.imageShape}</li>
-             
             </ul>
+            <button id="closeModalButton" style="padding: 10px 20px; background-color: #dc3545; color: white; border: none; border-radius: 5px; cursor: pointer;">
+              Fechar
+            </button>
+            
           </div>
-          </div>
-
-
-
+        </div>
       `;
+
+      // Ação para abrir o modal
+      const showModalButton = document.getElementById('showModalButton');
+      const personalizationModal = document.getElementById('personalizationModal');
+      const closeModalButton = document.getElementById('closeModalButton');
+
+      showModalButton.addEventListener('click', () => {
+        personalizationModal.style.display = 'flex';
+      });
+
+      // Ação para fechar o modal
+      closeModalButton.addEventListener('click', () => {
+        personalizationModal.style.display = 'none';
+      });
     } else {
       console.error('Elemento #cart-details não encontrado!');
     }
   } else {
     console.log('Nenhuma personalização encontrada no carrinho.');
-    document.getElementById('cart-details').innerHTML = `<p>Seu carrinho está vazio.</p>`;
+    const cartDetailsElement = document.getElementById('cart-details');
+    if (cartDetailsElement) {
+      cartDetailsElement.innerHTML = `<p>Seu carrinho está vazio.</p>`;
+    }
   }
 }
 
