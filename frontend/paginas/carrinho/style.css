@@ -712,6 +712,52 @@ a {
 
 
 
+.container-pagamento {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.box-pagamento {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  transition: background-color 0.3s ease;
+}
+
+.box-pagamento:hover {
+  background-color: #eaeaea;
+}
+
+.box-pagamento h3 {
+  margin: 0;
+}
+
+.form-detalhes {
+  margin-top: 10px;
+  display: none;
+}
+
+.form-detalhes input {
+  display: block;
+  width: 100%;
+  font-size: 18px;
+  height: 50px;
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+
+
+
+
+
+
+
 
 
 

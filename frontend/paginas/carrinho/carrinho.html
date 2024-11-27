@@ -68,7 +68,7 @@
       </div>
       <div id="cart-summary" class="cart-summary">
         <div>
-          <span>Total Final:</span>
+          <span>Total :</span>
           <span id="final-price">R$ 0,00</span>
         </div>
         <div class="btn">
@@ -149,6 +149,7 @@
       </div>
       <div id="cart-summary" class="cart-summary">
         <div class="btn">
+          <button class="btn-voltar" onclick="voltarParaPaginaCarrinho()">Voltar</button>
           <button class="btn-finalizarCompra" onclick="irParaConfirmacao()">Finalizar Compra</button>
           <button class="btn-continuarComprando"><a href="../../../index.html">Continuar Comprando</a></button>
         </div>
@@ -164,6 +165,7 @@
       </div>
       <div id="cart-summary" class="cart-summary">
         <div class="btn">
+          <button class="btn-voltar" onclick="voltarParaPaginaIndentificacao()">Voltar</button>
           <button class="btn-finalizarCompra" onclick="finalizarPedido()">Ir para Pagamento</button>
           <button class="btn-continuarComprando"><a href="../../../index.html">Continuar Comprando</a></button>
         </div>
@@ -173,10 +175,43 @@
     <!-- Etapa 4: Pagamento -->
     <div id="section-pagamento" class="teste" style="display: none">
       <h1>Pagamento</h1>
-      <div id="informacoes-pagamento"></div>
-      <button class="btn-voltar" onclick="voltarParaAnterior()">Voltar</button>
+      <div class="container-pagamento">
+        <!-- Cartão de Crédito -->
+        <div class="box-pagamento" onclick="toggleBox('credito')">
+          <h2>Cartão de Crédito</h2>
+          <div id="box-credito" class="form-detalhes" style="display: none;">
+            <input type="text" placeholder="Número do Cartão" required />
+            <input type="text" placeholder="Nome no Cartão" required />
+            <input type="text" placeholder="Data de Validade (MM/AA)" required />
+            <input type="text" placeholder="CVV" required />
+          </div>
+        </div>
+    
+        <!-- Cartão de Débito -->
+        <div class="box-pagamento" onclick="toggleBox('debito')">
+          <h2>Cartão de Débito</h2>
+          <div id="box-debito" class="form-detalhes" style="display: none;">
+            <input type="text" placeholder="Número do Cartão" required />
+            <input type="text" placeholder="Nome no Cartão" required />
+            <input type="text" placeholder="Data de Validade (MM/AA)" required />
+            <input type="text" placeholder="Banco Emissor" required />
+          </div>
+        </div>
+    
+        <!-- Pix -->
+        <div class="box-pagamento" onclick="toggleBox('pix')">
+          <h2>Pix</h2>
+          <div id="box-pix" class="form-detalhes" style="display: none;">
+            <input type="text" placeholder="Nome Completo" required/>
+            <input type="text" placeholder="CPF" required/>
+          </div>
+        </div>
+      </div>
+    
+      <button class="btn-voltar" onclick="voltarParaPaginaConfirmaçao()">Voltar</button>
       <button onclick="finalizarCompra()">Finalizar Pagamento</button>
     </div>
+    
 
   </div>
 
