@@ -507,23 +507,7 @@ function selecionarFrete(index) {
   console.log("Frete selecionado:", freteSelecionado);
 }
 
-// Máscara para CPF
-function mascaraCPF(cpf) {
-  cpf.value = cpf.value
-    .replace(/\D/g, "") // Remove caracteres não numéricos
-    .replace(/(\d{3})(\d)/, "$1.$2") // Adiciona o primeiro ponto
-    .replace(/(\d{3})(\d)/, "$1.$2") // Adiciona o segundo ponto
-    .replace(/(\d{3})(\d{1,2})$/, "$1-$2"); // Adiciona o traço
-}
 
-// Máscara para Telefone
-function mascaraTelefone(telefone) {
-  telefone.value = telefone.value
-    .replace(/\D/g, "") // Remove caracteres não numéricos
-    .replace(/(\d{2})(\d)/, "($1) $2") // Adiciona parênteses no DDD
-    .replace(/(\d{5})(\d)/, "$1-$2") // Adiciona o traço
-    .replace(/(-\d{4})\d+?$/, "$1"); // Limita o tamanho
-}
 
 function showNotification(message) {
   const notification = document.getElementById("notification");
@@ -562,4 +546,45 @@ function finalizarCompraaaaaaaaaa() {
     mensagemCompra.style.display = "none";  // Esconder a mensagem de compra realizada
     qrcodeContainer.style.display = "block"; // Exibir o QR Code do Pix
   }
+}
+
+
+
+
+
+
+
+//FORMATAR ALGUNS INPUT E COISAS DIGITADAS 
+function formatarDataValidade(input) {
+  let valor = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+  if (valor.length >= 3) {
+    valor = valor.slice(0, 2) + '/' + valor.slice(2, 4);
+  }
+  input.value = valor;
+}
+
+function formatarNumeroCartao(input) {
+  let valor = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+  valor = valor.replace(/(\d{4})(?=\d)/g, '$1 '); // Adiciona espaço a cada 4 dígitos
+  input.value = valor.trim(); // Remove espaço extra no final, se houver
+}
+
+// Máscara para CPF
+function mascaraCPF(cpf) {
+  cpf.value = cpf.value
+    .replace(/\D/g, "") // Remove caracteres não numéricos
+    .slice(0, 11) // Limita o CPF a 11 números
+    .replace(/(\d{3})(\d)/, "$1.$2") // Adiciona o primeiro ponto
+    .replace(/(\d{3})(\d)/, "$1.$2") // Adiciona o segundo ponto
+    .replace(/(\d{3})(\d{1,2})$/, "$1-$2"); // Adiciona o traço
+}
+
+// Máscara para Telefone
+function mascaraTelefone(telefone) {
+  telefone.value = telefone.value
+    .replace(/\D/g, "") // Remove caracteres não numéricos
+    .slice(0, 11) // Limita o número a 11 dígitos
+    .replace(/(\d{2})(\d)/, "($1) $2") // Adiciona parênteses no DDD
+    .replace(/(\d{5})(\d)/, "$1-$2") // Adiciona o traço
+    .replace(/(-\d{4})\d+?$/, "$1"); // Limita o tamanho
 }

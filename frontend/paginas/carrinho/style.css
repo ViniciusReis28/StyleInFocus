@@ -738,9 +738,22 @@ a {
   background-color: #eaeaea;
 }
 
-.box-pagamento h3 {
-  margin: 0;
+.deixar-mais-bonito {
+  display: flex;
+  flex-direction: row;
 }
+
+.cartoes {
+  display: flex;
+  margin-left: auto;
+}
+
+.cartoes img {
+  height: 30px;
+  width: 50px;
+  
+}
+
 
 .form-detalhes {
   margin-top: 10px;

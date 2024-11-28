@@ -177,24 +177,54 @@
       <h1>Pagamento</h1>
       <div class="container-pagamento">
         <!-- Cartão de Crédito -->
-        <div class="box-pagamento" >
-          <h2 onclick="toggleBox('credito')">Cartão </h2>
+        <div class="box-pagamento">
+          <div class="deixar-mais-bonito">
+            <h2 onclick="toggleBox('credito')">Cartão</h2>
+            <div class="cartoes">
+              <img src="../../img/cartao-pre-pago-standard-1280x720.png" alt="">
+              <img src="../../img/gold-mastercard-1280x720.png" alt="">
+              <img src="../../img/tarjeta-black-credito-1280x720.png" alt="">
+            </div>
+          </div>
+          
           <div id="box-credito" class="form-detalhes" style="display: none;">
-            <h3>Número do cartão</h2>
-            <input type="text" placeholder="Número do Cartão" required />
-            <h3>Nome do títular</h2>
+            <h3>Número do cartão</h3>
+            <input 
+            id="numero-cartao" 
+            type="text" 
+            placeholder="Número do Cartão" 
+            maxlength="19" 
+            oninput="formatarNumeroCartao(this)" 
+            required 
+          />
+            <h3>Nome do titular</h3>
             <input type="text" placeholder="Nome no Cartão" required />
-            <div class="info-seguranca"> 
-              <input type="text" placeholder="Data de Validade (MM/AA)" required />
+            <h3>Informações de segurança</h3>
+            <div class="info-seguranca">
+              <input 
+                id="data-validade" 
+                type="text" 
+                placeholder="Data de Validade (MM/AA)" 
+                maxlength="5" 
+                oninput="formatarDataValidade(this)" 
+                required 
+              />
               <input type="text" placeholder="CVV" required />
             </div>
-            
           </div>
         </div>
+        
     
         <!-- Pix -->
         <div class="box-pagamento">
-          <h2  onclick="toggleBox('pix')">Pix</h2>
+          <div class="deixar-mais-bonito">
+            <h2  onclick="toggleBox('pix')">Pix</h2>
+            <div class="cartoes">
+              <img src="../../img/picpay.png" alt="" style="height: 35px; width: 55px;">
+              <img src="../../img/paypal.png" alt="" style="height: 45px; width: 55px;">
+            </div>
+          </div>
+          
           <div id="box-pix" class="form-detalhes" style="display: none;">
             <input type="text" placeholder="Nome Completo" required/>
             <input type="text" placeholder="CPF" required oninput="mascaraCPF(this)"/>
