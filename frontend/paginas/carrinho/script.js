@@ -32,11 +32,21 @@ function alterarQuantidade(index, delta) {
 }
 
 // Função para remover item do carrinho
-function removerItem(index) {
+function removerItem(key) {
   const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
-  carrinho.splice(index, 1); // Remove o item pelo índice
-  localStorage.setItem("carrinho", JSON.stringify(carrinho)); // Atualiza o carrinho no localStorage
-  carregarCarrinho(); // Recarrega o carrinho
+
+  // Encontra o índice baseado no key
+  const index = carrinho.findIndex(
+    (produto) => `${produto.id}-${produto.tamanho}` === key
+  );
+
+  if (index !== -1) {
+    carrinho.splice(index, 1); // Remove o item do array
+    localStorage.setItem("carrinho", JSON.stringify(carrinho)); // Atualiza o carrinho no localStorage
+    carregarCarrinho(); // Recarrega o carrinho
+  } else {
+    console.error("Item não encontrado para remoção.");
+  }
 }
 
 // Inicializa o carrinho ao carregar a página
@@ -119,11 +129,11 @@ function carregarCarrinho() {
             })}</p>
           </div>
           <div class="btn-produto">
-            <button class="remover-produto" data-id="${key}">
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-                <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
-              </svg>
-            </button>
+             <button class="remover-produto" onclick="removerItem('${key}')">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+          <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+        </svg>
+      </button>
           </div>
         </div>
       `;
@@ -131,9 +141,9 @@ function carregarCarrinho() {
       carrinhoItens.appendChild(itemDiv);
     }
   }
+// Adicionar o preço fixo da camisa personalizada ao total
+totalFinal += precoCamisaPersonalizada;
 
-  // Adicionar o preço fixo da camisa personalizada ao total
-  totalFinal += precoCamisaPersonalizada;
 // Adicionar a camisa personalizada ao carrinho
 const itemDiv = document.createElement("div");
 itemDiv.classList.add("carrinho-item");
@@ -146,22 +156,19 @@ if (customizationData) {
   itemDiv.innerHTML = `
     <div class="produto">
       <div class="produtoImg">
-        <img src="${customizationData.shirtImage !== 'SEM IMAGEM' ? customizationData.shirtImage: '../../frontend/img-produtos/camisa-personalizada.jpg'}" 
-             alt="Camisa Personalizada" 
-             style="height: 170px; width: 160px; border-radius: 2px;">
+        <img src="${customizationData.shirtImage !== 'SEM IMAGEM' ? customizationData.shirtImage : '../../frontend/img-produtos/camisa-personalizada.jpg'}" 
+             alt="Camisa Base" 
+             style="height: 187px; width: 160px; border-radius: 2px;">
       </div>
       <div class="produtoInfo">
-        <h2>Camisa Personalizada</h2>
-        <p>Cor: ${customizationData.shirtColor ? customizationData.shirtColor : 'Não selecionada'}</p>
+        <h2>Camiseta Personalizada</h2>
         <p>Tamanho: ${customizationData.shirtSize ? customizationData.shirtSize : 'Não selecionado'}</p>
-        <p>Posição da Imagem: ${customizationData.imagePosition}</p>
-        <p>Forma da Imagem: ${customizationData.imageShape}</p>
-        <p>Ícone: ${customizationData.icon !== 'SEM ÍCONE' ? customizationData.icon : 'Nenhum'}</p>
         <p>Quantidade: 1</p>
         <p>Preço: R$ ${precoCamisaPersonalizada.toLocaleString("pt-BR", {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2,
         })}</p>
+        <button class="glow-on-hover" data-id="camisa-personalizada">Ver mais detalhes</button>
       </div>
       <div class="btn-produto">
         <button class="remover-produto" data-id="camisa-personalizada">
@@ -171,11 +178,53 @@ if (customizationData) {
         </button>
       </div>
     </div>
-  `;
+  ` ;
+
+  // Adicionar o item ao carrinho
   carrinhoItens.appendChild(itemDiv);
+
+  // Adicionar o evento de clique no botão de remoção
+  const removerBotao = itemDiv.querySelector('.remover-produto');
+  removerBotao.addEventListener('click', () => {
+    // Remover o item do carrinho
+    itemDiv.remove();
+
+    // Atualizar o localStorage (remover a personalização da camisa)
+    localStorage.removeItem('customizationData');
+
+    // Atualizar o total (se necessário)
+    totalFinal -= precoCamisaPersonalizada;
+
+    // Opcionalmente, você pode atualizar o carrinho na tela para refletir as mudanças
+    // Você pode chamar uma função de atualização do carrinho aqui, se necessário
+  });
 } else {
   console.log('Nenhuma personalização foi feita.');
 }
+
+
+document.addEventListener("click", (event) => {
+  if (event.target.classList.contains("glow-on-hover")) {
+    const modal = document.getElementById("detalhes-modal");
+    const customizationData = JSON.parse(localStorage.getItem("customizationData"));
+
+    // Preencher os detalhes no modal
+    document.getElementById("modal-cor").textContent = customizationData.shirtColor || "Não selecionada";
+    document.getElementById("modal-posicao").textContent = customizationData.imagePosition || "Não definida";
+    document.getElementById("modal-forma").textContent = customizationData.imageShape || "Não definida";
+    document.getElementById("modal-icone").innerHTML = customizationData.icon !== "SEM ÍCONE"
+      ? `<img src="${customizationData.icon}" alt="Ícone" style="height: 40px; width: 40px;">`
+      : "Nenhum";
+    document.getElementById("modal-imagem").innerHTML = customizationData.customImage !== "SEM IMAGEM"
+      ? `<img src="${customizationData.customImage}" alt="Imagem Personalizada" style="height: 40px; width: 40px;">`
+      : "Nenhuma";
+
+    modal.classList.remove("hidden");
+  } else if (event.target.classList.contains("fechar-modal")) {
+    const modal = document.getElementById("detalhes-modal");
+    modal.classList.add("hidden");
+  }
+});
 
 
   // Atualizar o preço final na página
