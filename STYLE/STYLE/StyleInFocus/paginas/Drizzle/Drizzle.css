@@ -2,7 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
 /* Corpo da página */
-body {
+body ,html{
+    overflow-x: hidden;
     background-color: black;  /* Cor de fundo preta */
     color: white;  /* Cor do texto */
     margin: 0;
@@ -21,20 +22,21 @@ body {
     flex-direction: row; /* Alinha os itens lado a lado */
     justify-content: center;
     align-items: flex-start;
-    width: 90%;
+    width: 80%;
     padding: 20px;
+    margin-top: 100px
 }
 
 /* Imagem principal */
 .Drizzle {
     max-width: 311px;
     max-height: 177px;
-    margin-bottom: 20px; /* Espaço abaixo da imagem */
+    margin-bottom: 10px; /* Espaço abaixo da imagem */
 }
 
 /* Estilo do texto principal */
 .sobre {
-    font-size: 1.2em;
+    font-size: 1.36em;
     line-height: 1.6em;
     margin: 20px;
     background-color: #1a1a1a;
@@ -87,13 +89,14 @@ body {
 }
 
 .card-body h5 {
-    font-size: 1.1em;
+    font-size: 1.2em;
+    letter-spacing: 1px;
     color: #ffffff; /* Cor dourada para o título */
 }
 
 .card-body p {
-    font-family: "Playfair Display", serif;
-    font-size: 0.9em;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 1.2em;
     line-height: 1.4em;
 }
 
@@ -115,7 +118,7 @@ body {
 /* Efeito da chuva */
 .raindrop {
     position: absolute;
-    background-color: rgb(196, 185, 255);  /* Cor das gotas */
+    background-color: rgb(234, 231, 255);  /* Cor das gotas */
     width: 5px;
     height: 15px;
     opacity: 0.6;
@@ -127,7 +130,7 @@ body {
         transform: translateY(-150vh); /* Começa um pouco acima da tela */
     }
     100% {
-        transform: translateY(110vh); /* Vai até a parte inferior da tela */
+        transform: translateY(150vh); /* Vai até a parte inferior da tela */
     }
 }
 
@@ -164,7 +167,7 @@ body {
 }
 
 .coluna {
-    width: 23%;  /* Diminui um pouco a largura das colunas para que caibam melhor na tela */
+    width: 15%;  /* Diminui um pouco a largura das colunas para que caibam melhor na tela */
     padding: 10px;
     box-sizing: border-box;
     display: flex;
@@ -338,10 +341,11 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    padding: 5px;
     position: fixed; /* Torna a navbar fixa */
-    top: 40px; /* Deslocamento inicial */
-    left: 0; /* Alinha a navbar na esquerda da página */
+    padding-top: 0;
+    top: 0px; /* Deslocamento inicial */
+    left: 10; /* Alinha a navbar na esquerda da página */
     width: 100%; /* Faz a navbar ocupar toda a largura da página */
     z-index: 1000; /* Garante que a navbar fique acima de outros elementos */
     background-color: rgba(255, 255, 255, 0); /* Cor de fundo opaca */
