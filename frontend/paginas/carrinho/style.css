@@ -709,8 +709,15 @@ a {
   font-size: 22px;
 }
 
-
-
+#section-pagamento {
+  display: flex;
+  flex-direction: column; /* Garante alinhamento dos filhos na vertical */
+  align-items: center; /* Centraliza horizontalmente os filhos */
+  justify-content: center; /* Centraliza verticalmente */
+  width: 60%;
+  height: 100%; /* Ajuste se necessário */
+  margin: auto; /* Garante a centralização na horizontal */
+}
 
 .container-pagamento {
   display: flex;
@@ -749,6 +756,16 @@ a {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+.info-seguranca {
+  display: flex;
+  justify-content: space-between; /* Distribui os inputs deixando espaço entre eles */
+  gap: 20%; /* Define o espaço entre os inputs como 20% */
+}
+
+.info-seguranca input {
+  width: 40%; /* Ajusta o tamanho de cada input para manter o layout equilibrado */
 }
 
 #mensagemCompra {

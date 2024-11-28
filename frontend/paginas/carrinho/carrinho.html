@@ -178,23 +178,17 @@
       <div class="container-pagamento">
         <!-- Cartão de Crédito -->
         <div class="box-pagamento" >
-          <h2  onclick="toggleBox('credito')">Cartão de Crédito</h2>
+          <h2 onclick="toggleBox('credito')">Cartão </h2>
           <div id="box-credito" class="form-detalhes" style="display: none;">
+            <h3>Número do cartão</h2>
             <input type="text" placeholder="Número do Cartão" required />
+            <h3>Nome do títular</h2>
             <input type="text" placeholder="Nome no Cartão" required />
-            <input type="text" placeholder="Data de Validade (MM/AA)" required />
-            <input type="text" placeholder="CVV" required />
-          </div>
-        </div>
-    
-        <!-- Cartão de Débito -->
-        <div class="box-pagamento" >
-          <h2  onclick="toggleBox('debito')">Cartão de Débito</h2>
-          <div id="box-debito" class="form-detalhes" style="display: none;">
-            <input type="text" placeholder="Número do Cartão" required />
-            <input type="text" placeholder="Nome no Cartão" required />
-            <input type="text" placeholder="Data de Validade (MM/AA)" required />
-            <input type="text" placeholder="Banco Emissor" required />
+            <div class="info-seguranca"> 
+              <input type="text" placeholder="Data de Validade (MM/AA)" required />
+              <input type="text" placeholder="CVV" required />
+            </div>
+            
           </div>
         </div>
     
