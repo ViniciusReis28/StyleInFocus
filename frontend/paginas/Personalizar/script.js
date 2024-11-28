@@ -384,4 +384,4 @@ function addToCart() {
 }
 
 // Adicionar evento de clique ao botão "Adicionar ao Carrinho"
-document.querySelector('.add-to-cart').addEventListener('click', addToCart);})
+document.querySelector('.glow-on-hover-personalizar').addEventListener('click', addToCart);})

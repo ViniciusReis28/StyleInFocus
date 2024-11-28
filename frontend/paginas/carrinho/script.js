@@ -212,12 +212,16 @@ document.addEventListener("click", (event) => {
     document.getElementById("modal-cor").textContent = customizationData.shirtColor || "Não selecionada";
     document.getElementById("modal-posicao").textContent = customizationData.imagePosition || "Não definida";
     document.getElementById("modal-forma").textContent = customizationData.imageShape || "Não definida";
-    document.getElementById("modal-icone").innerHTML = customizationData.icon !== "SEM ÍCONE"
-      ? `<img src="${customizationData.icon}" alt="Ícone" style="height: 40px; width: 40px;">`
-      : "Nenhum";
-    document.getElementById("modal-imagem").innerHTML = customizationData.customImage !== "SEM IMAGEM"
-      ? `<img src="${customizationData.customImage}" alt="Imagem Personalizada" style="height: 40px; width: 40px;">`
-      : "Nenhuma";
+  // Para o ícone
+document.getElementById("modal-icone").innerHTML = customizationData.icon !== "SEM ÍCONE"
+? `<div class="detail-preview"><img src="${customizationData.icon}" alt="Ícone" style="height: 40px; width: 40px;"></div>`
+: `<div class="detail-preview"><span class="detail-value detail-value-sem">SEM</span></div>`;  // Adiciona a classe detail-value-sem quando não há ícone
+
+// Para a imagem personalizada
+document.getElementById("modal-imagem").innerHTML = customizationData.customImage !== "SEM IMAGEM"
+? `<div class="detail-preview"><img src="${customizationData.customImage}" alt="Imagem Personalizada" style="height: 40px; width: 40px;"></div>`
+: `<div class="detail-preview"><span class="detail-value detail-value-sem">SEM</span></div>`;  // Adiciona a classe detail-value-sem quando não há imagem
+
 
     modal.classList.remove("hidden");
   } else if (event.target.classList.contains("fechar-modal")) {

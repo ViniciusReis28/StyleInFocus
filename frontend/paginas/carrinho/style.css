@@ -960,6 +960,12 @@ a {
   color: #525252;
   font-style: italic;
 }
+.detail-value-sem {
+  font-family: 'Bebas Neue', sans-serif !important;
+  font-size: 22px !important;  /* Aumente o tamanho conforme necessário */
+  color: #ff0000 !important;
+}
+
 
 .detail-preview {
   height: 50px;
