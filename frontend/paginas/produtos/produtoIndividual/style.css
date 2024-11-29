@@ -1629,11 +1629,10 @@ a {
   flex-direction: column;
   margin-top: 20px;
   gap: 25px;
+}   
+#lista-comentarios .comentario-item:nth-child(n+2) {
+  display: none; /* Esconde todos os comentários após o primeiro */
 }
-#lista-comentarios .comentario-item:nth-child(n+4) {
-  display: none; /* Esconde comentários após o terceiro */
-}
-
 .comentario-item {
   padding: 10px;
   width: 360px;

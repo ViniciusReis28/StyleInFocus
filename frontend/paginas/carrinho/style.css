@@ -858,6 +858,12 @@ a {
   color: #333;
 }
 
+#contador {
+  font-size: 1.2em;
+  color: #ff0000;
+  margin-top: 10px;
+}
+
 
 
 

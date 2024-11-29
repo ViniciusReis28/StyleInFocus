@@ -531,19 +531,13 @@ function finalizarCompraAAAAA() {
     if (numeroCartao && nomeTitular && dataValidade && cvv) {
       mensagemCompra.style.display = "flex"; // Exibe a mensagem de compra
 
-      // Após 3 segundos, redireciona
       setTimeout(() => {
-        // Limpa o carrinho no localStorage
-        localStorage.removeItem('carrinho'); // Remove o carrinho do localStorage
-
-        // Limpa os campos do formulário
+        localStorage.removeItem("carrinho"); // Limpa o carrinho do localStorage
         document.getElementById("numero-cartao").value = "";
         creditoBox.querySelector("input[placeholder='Nome no Cartão']").value = "";
         document.getElementById("data-validade").value = "";
         creditoBox.querySelector("input[placeholder='CVV']").value = "";
-
-        // Redireciona para a página inicial
-        window.location.href = "../../../index.html";
+        window.location.href = "../../../index.html"; // Redireciona para a página inicial
       }, 3000);
     } else {
       alert("Por favor, preencha todos os campos do Cartão.");
@@ -554,25 +548,29 @@ function finalizarCompraAAAAA() {
 
     if (nomeCompleto && cpf) {
       qrcodeContainer.style.display = "flex"; // Exibe o QR Code
+      const contador = document.createElement("p");
+      contador.id = "contador";
+      contador.style.fontWeight = "bold";
+      qrcodeContainer.appendChild(contador);
 
-      // Após 3 segundos, oculta o QR Code e exibe a mensagem de compra
+      // Inicia o cronômetro com 1 hora (3600 segundos)
+      iniciarCronometro(3600, () => {
+        qrcodeContainer.style.display = "none"; // Oculta o QR Code
+        alert("O tempo para realizar o pagamento expirou. Por favor, tente novamente.");
+      });
+
       setTimeout(() => {
         qrcodeContainer.style.display = "none"; // Oculta o QR Code
         mensagemCompra.style.display = "flex"; // Exibe a mensagem de compra
 
-        // Após mais 3 segundos, limpa e redireciona
         setTimeout(() => {
-          // Limpa o carrinho no localStorage
-          localStorage.removeItem('carrinho'); // Remove o carrinho do localStorage
-
-          // Limpa os campos do formulário
+          localStorage.removeItem("carrinho"); // Limpa o carrinho no localStorage
           pixBox.querySelector("input[placeholder='Nome Completo']").value = "";
           pixBox.querySelector("input[placeholder='CPF']").value = "";
-
           mensagemCompra.style.display = "none"; // Esconde a mensagem de compra
           window.location.href = "../../../index.html"; // Redireciona para a página inicial
         }, 4000);
-      }, 8000);
+      }, 10000);
     } else {
       alert("Por favor, preencha todos os campos do Pix.");
     }
@@ -581,6 +579,29 @@ function finalizarCompraAAAAA() {
   }
 }
 
+function iniciarCronometro(duracaoEmSegundos, callbackExpiracao) {
+  const contador = document.getElementById("contador");
+  let tempoRestante = duracaoEmSegundos;
+
+  const interval = setInterval(() => {
+    const horas = Math.floor(tempoRestante / 3600);
+    const minutos = Math.floor((tempoRestante % 3600) / 60);
+    const segundos = tempoRestante % 60;
+
+    contador.textContent = `Tempo restante: ${horas
+      .toString()
+      .padStart(2, "0")}:${minutos
+      .toString()
+      .padStart(2, "0")}:${segundos.toString().padStart(2, "0")}`;
+
+    if (tempoRestante <= 0) {
+      clearInterval(interval);
+      callbackExpiracao(); // Chama a função de expiração
+    }
+
+    tempoRestante--;
+  }, 1000);
+}
 
 //FORMATAR ALGUNS INPUT E COISAS DIGITADAS 
 function formatarDataValidade(input) {

@@ -286,17 +286,24 @@ function carregarComentarios() {
     .then((response) => response.json())
     .then((comentarios) => {
       const listaComentarios = document.getElementById("lista-comentarios");
+      const btnVerMais = document.getElementById("btn-ver-mais");
       listaComentarios.innerHTML = ""; // Limpa os comentários atuais
 
       if (comentarios.length === 0) {
         listaComentarios.innerHTML = "<p>Seja o primeiro a comentar!</p>";
+        btnVerMais.style.display = "none"; // Oculta o botão se não houver comentários
         return;
       }
 
       // Exibir os comentários
-      comentarios.forEach((comentario) => {
+      comentarios.forEach((comentario, index) => {
         const divComentario = document.createElement("div");
         divComentario.classList.add("comentario-item");
+
+        // Oculta comentários após o terceiro
+        if (index >= 3) {
+          divComentario.style.display = "none";
+        }
 
         // Formatando a data
         const dataCriacao = new Date(comentario.data_criacao); // Criando o objeto Date
@@ -317,11 +324,19 @@ function carregarComentarios() {
         `;
         listaComentarios.appendChild(divComentario);
       });
+
+      // Exibe ou oculta o botão "Ver mais" com base na quantidade de comentários
+      if (comentarios.length > 1) {
+        btnVerMais.style.display = "block"; // Exibe o botão
+      } else {
+        btnVerMais.style.display = "none"; // Oculta o botão
+      }
     })
     .catch((error) => {
       console.error("Erro ao carregar comentários:", error);
     });
 }
+
 
 // Carregar os comentários ao abrir a página
 carregarComentarios();
@@ -410,34 +425,32 @@ document
       });
   });
 
-//funçao de mostrar mais ou menos comentarios
-document.getElementById("btn-ver-mais").addEventListener("click", function () {
-  let comentariosOcultos = document.querySelectorAll(
-    "#lista-comentarios .comentario-item:nth-child(n+4)"
-  );
-  const botao = document.getElementById("btn-ver-mais");
-
-  // Verifica se os comentários extras estão visíveis
-  if (
-    comentariosOcultos[0].style.display === "none" ||
-    comentariosOcultos[0].style.display === ""
-  ) {
-    // Exibe os comentários ocultos
-    comentariosOcultos.forEach((comentario) => {
-      comentario.style.display = "block"; // Exibe os comentários ocultos
-    });
-    botao.innerHTML =
-      'Ver Menos <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/></svg>'; // Muda o texto do botão e adiciona o ícone
-  } else {
-    // Esconde os comentários extras novamente
-    comentariosOcultos.forEach((comentario) => {
-      comentario.style.display = "none"; // Esconde os comentários extras
-    });
-    botao.innerHTML =
-      'Ver Mais <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>'; // Muda o texto do botão e adiciona o ícone
-  }
-});
-
+  document.getElementById("btn-ver-mais").addEventListener("click", function () {
+    const comentariosOcultos = document.querySelectorAll(
+      "#lista-comentarios .comentario-item:nth-child(n+2)"
+    );
+    const botao = document.getElementById("btn-ver-mais");
+  
+    // Verifica se os comentários ocultos estão visíveis
+    if (
+      comentariosOcultos[0].style.display === "none" ||
+      comentariosOcultos[0].style.display === ""
+    ) {
+      // Exibe os comentários ocultos
+      comentariosOcultos.forEach((comentario) => {
+        comentario.style.display = "block"; // Exibe os comentários
+      });
+      botao.innerHTML =
+        'Ver Menos <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/></svg>';
+    } else {
+      // Esconde novamente os comentários extras
+      comentariosOcultos.forEach((comentario) => {
+        comentario.style.display = "none"; // Esconde novamente
+      });
+      botao.innerHTML =
+        'Ver Mais <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>';
+    }
+  });
 // Função para exibir a mensagem de sucesso
 function mostrarMensagem(mensagem) {
   const mensagemElemento = document.getElementById("mensagem-sucesso");
