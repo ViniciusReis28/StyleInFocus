@@ -145,10 +145,10 @@ function carregarPerfilUsuario() {
 
         // Mantém os textos padrão
         loginTextElement.textContent = "ENTRE";
-        loginTextElement.href = "frontend/paginas/login/login.html";
+        loginTextElement.href = "../../../paginas/login/login.html";
 
         registerTextElement.textContent = "CADASTRE-SE";
-        registerTextElement.href = "frontend/paginas/login/register.html";
+        registerTextElement.href = "../../../paginas/login/register.html";
 
         separatorElement.style.display = "inline"; // Exibe "OU"
         return;

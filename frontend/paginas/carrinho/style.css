@@ -993,9 +993,11 @@ a {
   color: white;
   border: none;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 22px;
   cursor: pointer;
   text-align: center;
+  font-family: "Bebas Neue", sans-serif;
+
 }
 
 .modal-action:hover {

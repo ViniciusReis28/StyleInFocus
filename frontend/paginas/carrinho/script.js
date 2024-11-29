@@ -142,17 +142,14 @@ function carregarCarrinho() {
     }
   }
 // Adicionar o preço fixo da camisa personalizada ao total
-totalFinal += precoCamisaPersonalizada;
-
-// Adicionar a camisa personalizada ao carrinho
-const itemDiv = document.createElement("div");
-itemDiv.classList.add("carrinho-item");
-
-// Recuperar os dados do localStorage
 const customizationData = JSON.parse(localStorage.getItem('customizationData'));
 
-// Verificar se os dados de personalização existem
+// Verifique se a personalização existe antes de exibir e adicionar o preço da camisa personalizada
 if (customizationData) {
+  totalFinal += precoCamisaPersonalizada;
+
+  const itemDiv = document.createElement("div");
+  itemDiv.classList.add("carrinho-item");
   itemDiv.innerHTML = `
     <div class="produto">
       <div class="produtoImg">
@@ -224,7 +221,7 @@ document.getElementById("modal-imagem").innerHTML = customizationData.customImag
 
 
     modal.classList.remove("hidden");
-  } else if (event.target.classList.contains("fechar-modal")) {
+  } else if (event.target.classList.contains("modal-action")) {
     const modal = document.getElementById("detalhes-modal");
     modal.classList.add("hidden");
   }
@@ -238,6 +235,15 @@ document.getElementById("modal-imagem").innerHTML = customizationData.customImag
     maximumFractionDigits: 2,
   })}`;
 }
+
+
+
+
+
+
+
+
+
 
 // Carrega o carrinho ao iniciar a página
 document.addEventListener("DOMContentLoaded", carregarCarrinho);
