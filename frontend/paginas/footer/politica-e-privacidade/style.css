@@ -1,0 +1,1937 @@
+@import url('https://fonts.googleapis.com/css2?family=Freeman&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+
+
+
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*----------------------------------------------TELA DE CARREGAMENTO---------------------------------------------------*/
+
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  display: none;
+  /* Inicialmente escondido */
+}
+
+
+
+
+/*--------------------------------SLIDE BANNER DA PAGINA PRINCIPAL-----------------------------------*/
+
+/* Estilo do contêiner do texto */
+.slide-text {
+  font-family: "Bebas Neue", sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+  /* Certifica-se de que o texto fique acima da imagem */
+}
+
+.slide-link2 {
+  font-size: 35px;
+  text-decoration: none;
+  bottom: 50px;
+  right: 160px;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.slide-text2 {
+  font-family: "Bebas Neue", sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+  /* Certifica-se de que o texto fique acima da imagem */
+}
+
+.slide-link {
+  font-size: 70px;
+  color: white;
+  /* Altere a cor conforme necessário */
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.slide-text::after,
+.slide-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  /* Ajuste essa distância para alterar o espaço abaixo do texto */
+  width: 0;
+  height: 3px;
+  background-color: rgb(255, 255, 255);
+  transition: width 0.3s ease;
+}
+
+.slide-text:hover::after {
+  width: 100%;
+}
+
+section.slider {
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
+  padding: 0 !important;
+  overflow: hidden;
+
+}
+
+.slider-content {
+  margin-top: 0px;
+  width: 400%;
+  height: auto;
+  display: flex;
+}
+
+.slider-content input {
+  display: none;
+}
+
+.slide-box {
+  width: 25%;
+  height: auto;
+  position: relative;
+  text-align: center;
+  transition: 1s;
+}
+
+.slide-box img {
+  height: 100%;
+  width: 100%;
+}
+
+
+.nav-auto {
+  position: absolute;
+  bottom: -90px;
+  /* Posiciona 10px acima da parte inferior do contêiner */
+  right: 10px;
+  /* Posiciona 10px à esquerda do lado direito do contêiner */
+  display: flex;
+  justify-content: flex-end;
+  /* Alinha à direita */
+  gap: 5px;
+  /* Espaçamento entre os botões */
+}
+
+/* Estilo dos botões manuais e automáticos */
+.nav-manual .manual-btn,
+.nav-auto div {
+  border: 1px solid #ffffff;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.6s;
+}
+
+.nav-manual .manual-btn:not(:last-child),
+.nav-auto div:not(:last-child) {
+  margin-right: 10px;
+}
+
+.nav-manual .manual-btn:hover {
+  background-color: #f1eded;
+}
+
+#radio1:checked~.nav-auto .auto-btn1,
+#radio2:checked~.nav-auto .auto-btn2,
+#radio3:checked~.nav-auto .auto-btn3 {
+  background-color: #ffffffe2;
+}
+
+#radio1:checked~.primeiro {
+  margin-left: 0%;
+}
+
+#radio2:checked~.primeiro {
+  margin-left: -25%;
+}
+
+
+.text-container {
+  display: flex;
+  font-family: "Bebas Neue", sans-serif;
+  justify-content: space-around;
+  align-items: center;
+  margin: 20px auto;
+  width: 80%;
+  transition: transform 0.5s ease, box-shadow 0.3s ease;
+}
+
+.text-box {
+
+  font-size: 22px;
+  padding: 20px;
+  text-align: center;
+}
+
+.text-box svg {
+  margin-right: 10px;
+}
+
+.text-container:hover {
+  transform: scale(1.1);
+}
+
+.text-produtos-teste {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 50px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.circle-container-BolinhasDeProdutos {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 20px auto;
+  width: 90%;
+}
+
+.circle-produtos {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #353535;
+  box-shadow: 0 4px 8px rgb(0, 0, 0);
+  transition: transform 0.10s ease;
+}
+
+.circle-produtos img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.circle-produtos :hover {
+  transform: scale(1.1);
+}
+
+
+
+
+
+
+/*------------------------------------------------------------------SLIDE DA TELA INDEX DO PRODUTOS DESTAQUES ------------------------------------------------------------*/
+.h1-destaques {
+  text-align: center;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 50px;
+  margin-top: 150PX;
+}
+
+.carousel-wrapper {
+  position: relative;
+  width: 90%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
+
+.carousel-container {
+  width: 100%;
+  height: 800px;
+  overflow: hidden;
+  flex-grow: 1;
+}
+
+.carousel {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+  min-width: 33.33%;
+  /* Cada item terá 1/3 da largura do container para mostrar 3 de cada vez */
+  box-sizing: border-box;
+  margin-bottom: 30px;
+}
+
+.carousel-item div {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  width: 90%;
+  height: auto;
+  color: rgb(0, 0, 0);
+  box-shadow: 0 5px 15px rgba(115, 115, 115, 0);
+  padding: 20px;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 20px;
+
+}
+
+.carousel-item div img {
+  border-radius: 5px;
+  width: 420px;
+  height: 380px;
+  object-fit: cover;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.preçodoProduto-slide {
+  font-size: 25px;
+}
+
+
+.carousel-item div button {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 30px;
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  will-change: box-shadow, transform;
+  background: radial-gradient(100% 100% at 100% 0%, #000000 0%, #000000 100%);
+  box-shadow: 0px 0.01em 0.01em rgba(0, 0, 0, 0.4), 0px 0.3em 0.7em -0.01em rgba(0, 0, 0, 0.3), inset 0px -0.01em 0px rgba(0, 0, 0, 0.5);
+  padding: 0 2em;
+  border-radius: 0.3em;
+  color: #fff;
+  height: 50px;
+  width: 100%;
+  margin: 5px;
+  text-shadow: 0 1px 0 rgb(0 0 0 / 40%);
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.carousel-item div button:hover {
+  box-shadow: 0px 0.1em 0.2em rgba(0, 162, 255, 0.4), 0px 0.4em 0.7em -0.1em rgb(45 35 66 / 30%), inset 0px -0.1em 0px #000000;
+  transform: translateY(-0.1em);
+}
+
+.carousel-item div button:active {
+  box-shadow: inset 0px 0.1em 0.6em #04ff43;
+  transform: translateY(0em);
+}
+
+
+
+
+.carousel-item div button svg {
+  margin-right: 5px;
+  margin-top: 0px;
+}
+
+.carousel-button {
+  background-color: rgba(255, 255, 255, 0);
+  color: rgb(0, 0, 0);
+  font-size: 45px;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1;
+}
+
+.btn-icone {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.carousel-button:hover {
+  color: #9a9a9a;
+}
+
+.carousel-button#prev {
+  margin-right: 20px;
+  /* Espaçamento entre o botão e o carrossel */
+}
+
+.carousel-button#next {
+  margin-left: 20px;
+  /* Espaçamento entre o botão e o carrossel */
+}
+
+
+.image-hover {
+  border-radius: 5px;
+  position: absolute;
+  top: 15px;
+  left: 5;
+  margin: 5px;
+  width: 40%;
+  height: 380px;
+  object-fit: cover;
+  opacity: 0;
+}
+
+.carousel-item div:hover .image-hover {
+  opacity: 1;
+}
+
+.carousel-item div:hover .image-default {
+  opacity: 0;
+}
+
+
+
+
+/*--------------------------------------------------------SLIDE DO INDEX TEXT---------------------------------------------------*/
+
+/* Sobreposição preta para o efeito de escurecimento */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  /* Preto com alta opacidade */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 1;
+  /* Coloca a sobreposição acima da imagem */
+}
+
+/* Contêiner do slider */
+.slider-container-text {
+  position: absolute;
+  color: rgb(255, 255, 255);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  /* Ajuste conforme o tamanho necessário para os slides */
+  background: #050505;
+  overflow: hidden;
+  /* Oculta slides fora da área visível */
+  display: flex;
+  align-items: center;
+  z-index: 2;
+  /* Coloca o slider acima da imagem */
+}
+
+/* Slides */
+.slides-text {
+  display: flex;
+  flex-direction: column;
+  /* Organiza slides verticalmente */
+  transition: transform 0.5s ease-in-out;
+  /* Suaviza a transição */
+  width: 100%;
+  height: 80%;
+  /* Garante que os slides preencham o contêiner */
+}
+
+/* Estilo individual dos slides */
+.slide-text-index {
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  height: 100px;
+  /* Ajuste conforme necessário */
+  flex-shrink: 0;
+  /* Impede que o slide encolha */
+}
+
+.slide-text-index h2,
+.slide-text-index p {
+
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 24px;
+  margin: 0;
+  /* Remove margens */
+}
+
+/* Botões de navegação */
+.slider-container-text button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background-color: transparent;
+  /* Torna o fundo do botão transparente */
+  font-size: 24px;
+  cursor: pointer;
+  padding: 600px;
+  z-index: 3;
+  /* Garante que os botões estejam acima do conteúdo do slider */
+
+  /* Ajusta o padding para ficar apenas ao redor do texto */
+}
+
+.prev {
+  color: rgb(255, 255, 255);
+  left: 10px;
+}
+
+.next {
+  color: rgb(255, 255, 255);
+  right: 10px;
+}
+
+/*ICONE WATS*/
+.whats {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 9999px;
+}
+
+/* BARRA DE NAVEGAÇÃO DO SITE */
+nav { 
+  height: 100px;
+  font-family: "Bebas Neue", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  position: fixed; /* Torna a navbar fixa */
+  top: 40px; /* Deslocamento inicial */
+  left: 0; /* Alinha a navbar na esquerda da página */
+  width: 100%; /* Faz a navbar ocupar toda a largura da página */
+  z-index: 1000; /* Garante que a navbar fique acima de outros elementos */
+  background-color: rgb(255, 255, 255); /* Cor de fundo opaca */
+  transition: top 0.3s; /* Transição suave para a mudança de posição */
+  transition: background-color 0.3s, color 0.3s
+}
+
+
+nav.scrolled .center-section a::after,
+nav.scrolled .right-section a::after {
+  background-color: rgb(0, 0, 0);
+  /* Muda a cor da borda inferior para preto */
+}
+
+nav.scrolled {
+  top: 0;
+  /* Fixa o nav no topo quando rola para baixo */
+  background-color: white !important;
+  /* Cor de fundo após rolar */
+  color: black !important;
+  /* Cor do texto após rolar */
+}
+
+nav.scrolled a {
+  font-size: 25px;
+  color: black !important;
+  /* Cor dos links após rolar */
+}
+
+nav.scrolled .dropdown-menu a {
+  font-size: 18px;
+  /* Ajuste o tamanho da fonte quando rolado */
+  color: gray;
+  /* Ajuste a cor do texto quando rolado */
+}
+
+/*HOVERS NAV*/
+nav:hover {
+  background-color: #ffffff;
+}
+
+nav:hover a {
+  color: #000000;
+}
+
+nav:hover .profile-text .text-login {
+  color: #000000;
+}
+
+nav:hover .center-section .dropdown>a::after,
+nav:hover .right-section a::after {
+  background-color: rgb(0, 0, 0);
+  /* Muda a cor da borda inferior para preto */
+
+}
+
+nav:hover #logo {
+  content: url('../../../img/logopreta.png');
+  /* Substitui a imagem quando o mouse passa no <nav> */
+  transition: all 0.3s ease;
+  /* Transição suave */
+}
+
+
+a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-size: 25px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+  position: relative;
+}
+
+
+.right-section a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -21px;
+  /* Ajuste essa distância para alterar o espaço abaixo do texto */
+  width: 0;
+  height: 3px;
+  background-color: rgb(0, 0, 0);
+  transition: width 0.3s ease;
+}
+
+.center-section .dropdown>a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  /* Ajuste essa distância para alterar o espaço abaixo do texto */
+  width: 0;
+  height: 3px;
+  background-color: rgb(0, 0, 0);
+  transition: width 0.3s ease;
+}
+
+
+
+.center-section a:hover::after,
+.right-section a:hover::after {
+  width: 100%;
+}
+
+.center-section a,
+.right-section a {
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+
+.left-section,
+.center-section,
+.right-section {
+  display: flex;
+  align-items: center;
+}
+
+/* Garante que a center-section fique centralizada */
+.center-section {
+  left: 165px;
+  position: relative;
+  z-index: 1; /* Mantém acima de outros conteúdos, se necessário */
+}
+
+/* Right-section posicionada à direita */
+.right-section {
+  display: flex;
+  z-index: 2;
+}
+.center-section ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.center-section li {
+  margin: 0 15px; /* Espaçamento horizontal entre os itens */
+  position: relative; /* Para os dropdowns */
+
+}
+
+
+.center-section a {
+  display: flex; /* Isso permite que o link ocupe toda a área do item da lista */
+  align-items: center; /* Centraliza o texto verticalmente */
+  padding: 30px 15px; /* Ampla área de clique */
+  
+}
+
+.right-section a {
+  margin-left: 0px;
+  left: 250px;
+}
+
+.search-bar-container {
+  position: absolute;
+  top: 50%;
+  left: 83%;
+  transform: translate(-50%, -50%);
+}
+
+.group {
+  display: flex;
+  line-height: 28px;
+  align-items: center;
+  position: relative;
+  margin-right: -18px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  fill: #bdbecb;
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+.profile-text {
+  margin-left: 5px;
+  color: #ffffff; /* Change to match the color in your image */
+  font-weight: bold;
+}
+
+.profile-link::after {
+  content: none;
+}
+
+/* Estilo geral do link na seção de perfil */
+.profile-text .text-login {
+  position: relative;
+  padding: 5px;
+  border-radius: 5px;
+  color: #000000;
+  font-size: 20px; /* Adjust size as needed */
+  text-decoration: none;
+  
+}
+.profile-text .text-login:hover {
+  text-decoration: underline;
+}
+.text-login:hover {
+  color: #000000;
+  text-decoration: none;
+}
+
+.input {
+  font-family: "Montserrat", sans-serif;
+  width: 80%;
+  height: 35px;
+  padding-left: 2.5rem;
+  box-shadow: 0 0 0 1.5px #313131, 0 0 25px -17px #000;
+  border: 0;
+  border-radius: 12px;
+  background-color: #000000;
+  outline: none;
+  color: #ffffff;
+  transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  cursor: text;
+  z-index: 0;
+}
+
+.input::placeholder {
+  color: #bdbecb;
+}
+
+.input:hover {
+  box-shadow: 0 0 0 2.5px #2f303d, 0px 0px 25px -15px #000;
+}
+
+.input:active {
+  transform: scale(0.95);
+}
+
+.input:focus {
+  box-shadow: 0 0 0 2.5px #2f303d;
+}
+
+.suggestions-box {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  border: 1px solid #ccc;
+  background-color: #000;
+  /* Para combinar com a barra de pesquisa */
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  display: none;
+  /* Escondido por padrão */
+}
+
+.suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+  color: #ffffff;
+  /* Cor do texto para as sugestões */
+}
+
+.suggestion-item:hover {
+  background-color: #2f303d;
+  /* Cor do fundo ao passar o mouse */
+}
+
+
+
+/* Estilo para os itens do dropdown */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  /* Inicialmente oculto */
+  position: absolute;
+  /* Posiciona o menu dropdown em relação ao item */
+  width: 100%;
+  /* Define a largura como 100% da largura do item dropdown */
+  left: 0;
+  /* Alinha o menu dropdown com a borda esquerda do item dropdown */
+  top: 97px;
+  /* Ajusta a posição abaixo do nav */
+  background-color: #ffffff;
+  /* Fundo do menu dropdown */
+  z-index: 1000;
+  /* Garante que o menu fique acima de outros elementos */
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  /* Adiciona sombra para um efeito de destaque */
+}
+
+/* Links dentro do dropdown */
+.dropdown-menu a {
+  padding: 10px 15px;
+  font-size: 18px;
+  color: black;
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Suave transição */
+}
+
+/* Efeito hover ao passar o mouse sobre os links do dropdown */
+.dropdown-menu a:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Cor de fundo ao passar o mouse */
+  color: #7a7a7a; /* Cor do texto ao passar o mouse */
+}
+
+
+.dropdown:hover .dropdown-menu {
+  display: block; /* Exibe o dropdown ao passar o mouse */
+}
+
+.dropdown-items {
+  display: flex;
+  flex-direction: column;
+  /* Mantém os itens do dropdown empilhados */
+}
+
+/* banner Principal */
+.bannerzinho {
+  display: grid;
+  place-items: center;
+  height: 100%;
+}
+
+.bannerzinho img {
+  margin-top: 15px;
+  max-width: 80%;
+  height: auto;
+  border-radius: 40px;
+}
+
+.teste {
+  background-color: rgba(141, 141, 141, 0.464);
+  height: 40px;
+  margin: auto;
+}
+
+
+
+
+
+
+/*-------------------------------------------------------------------CSS DA PAGINAS DE PRODUTOs--------------------------------------------------------------------------*/
+.produtos-camisas-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  /* Ocupa toda a altura da viewport */
+  width: 100%;
+  /* Ocupa toda a largura da viewport */
+  background-color: #ffffff00;
+}
+
+/* A div de produtos fica centralizada com margem de 20% em cada lado */
+.produtos-camisas-masculino-meio-tela {
+  display: block;
+  width: 80%;
+  height: 100%;
+  margin-top: 50px;
+  margin-bottom: 250px;
+  background-color: #ffffff00;
+  gap: 10px;
+}
+
+.produtos-filtros {
+  width: 100%;
+  height: auto;
+  margin-bottom: 30px;
+  background-color: #ffffff00;
+}
+
+.filtros {
+  gap: 100px;
+  display: flex;
+  font-size: 14px;
+  font-family: "Bebas Neue", sans-serif;
+  cursor: pointer;
+}
+
+.filtros h1 {
+  transition: color 0.3s ease;
+  /* Adiciona uma transição suave para a cor */
+}
+
+.filtros h1:hover {
+  color: #222222cc;
+  /* Cor do texto quando o cursor passa sobre ele */
+}
+
+.produtos-camisas {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff00;
+  gap: 30px;
+  /* Espaço entre as caixas */
+}
+
+.box {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0px 15px rgba(0, 0, 0, 0.1);
+  border: #000;
+  padding: 20px;
+  flex: 1 1 calc(33.333% - 20px);
+  /* Tamanho da caixa para garantir três por linha */
+  box-sizing: border-box;
+  text-align: left;
+  /* Alinhamento à esquerda para o texto */
+  display: block;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.box img {
+  width: 92%;
+  /* Ajuste conforme necessário */
+  margin: auto;
+  /* Centraliza a imagem horizontalmente */
+}
+
+.box h1 {
+  font-family: "Nunito", sans-serif;
+  font-size: 20px;
+  margin: 10px 0;
+  align-self: flex-start;
+  /* Alinha o texto à esquerda */
+}
+
+.box h3 {
+  align-self: flex-start;
+  font-family: "Nunito", sans-serif;
+  font-size: 18px;
+}
+
+
+.box p {
+  font-family: "Nunito", sans-serif;
+  font-size: 14px;
+  color: #888;
+  align-self: flex-start;
+  /* Alinha o texto à esquerda */
+}
+
+.box button {
+  font-family: "Nunito", sans-serif;
+  font-size: 18px;
+  padding: 10px 20px;
+  color: white;
+  background-color: #000000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  /* Empurra o botão para o fundo da caixa */
+  align-self: center;
+  /* Alinha o botão à esquerda */
+}
+
+
+/*-------------------------------------------------------------- BOTÂO DO FILTRAR PAGINA DE PRODUTOS------------------------------------------------------*/
+.btn-filtrar {
+
+  padding: 15px 30px;
+  font-size: 18px;
+  font-family: "Nunito", sans-serif;
+  color: white;
+  background-color: #000000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+  /* Adiciona a transição suave */
+}
+
+.btn-filtrar:hover {
+  background-color: #131313e5;
+}
+
+
+
+/*SIDE BAR DE FILTRO*/
+.left-sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  background-color: #232323;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  font-family: "Nunito", sans-serif;
+}
+
+.closebtn-left {
+  border: none;
+  font-size: 50px;
+  background-color: #00000000;
+  color: rgb(255, 255, 255);
+}
+
+.closebtn-left svg {
+  margin: 30%;
+  transition: 0.3s;
+}
+
+.closebtn-left:hover svg {
+  color: #a2a2a2;
+}
+
+.left-sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.left-sidebar h1 {
+  color: white;
+  margin: 5px;
+}
+
+.left-sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.left-sidebar .closebtn-left {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.filter-section-left {
+  padding: 20px;
+  box-shadow: 0 1px 0px rgb(0, 0, 0);
+}
+
+.filter-section-left h3 {
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter-section-left ul {
+  list-style-type: none;
+  padding: 0;
+  display: none;
+}
+
+.filter-section-left li {
+  margin: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+  /* Exibir os elementos em linha */
+  /* Adicionar margem entre os elementos */
+}
+
+.filter-section-left label {
+  color: rgb(255, 255, 255);
+}
+
+.arrow {
+  font-size: 18px;
+  margin-left: 10px;
+  transition: transform 0.5s;
+}
+
+.arrow.up {
+  transform: rotate(180deg);
+}
+
+.dropdown-content {
+  display: none;
+}
+
+
+#tamanhosDropdown {
+  font-size: 20px;
+}
+
+
+#modelosDropdown {
+  font-size: 20px;
+}
+
+
+#priceRange {
+  width: 300px;
+}
+
+.price-values {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  color: white;
+}
+
+#minPrice,
+#maxPrice {
+  font-weight: bold;
+}
+
+.btn-filtrar-itens-loja {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.btn-filtrar-itens-loja button {
+  border: none;
+  border-radius: 10px;
+  height: 50px;
+  width: 200px;
+  background-color: #ffffffd6;
+  font-size: 20px;
+  color: rgb(0, 0, 0);
+}
+
+
+.color-button-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.color-button {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 2px solid transparent;
+  margin: 10px;
+  cursor: pointer;
+  box-shadow: 0 0 0 4px #ffffffe9, 0 0 0 8px #00000000;
+  /* Cor da borda */
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.color-button:hover {
+  transform: scale(1.1);
+}
+
+.color-button.selected {
+  box-shadow: 0 0 0 6px #fff, 0 0 0 8px #000;
+  /* Ajuste a cor conforme necessário */
+}
+
+/* SIDEBAR DA BARRA DE NAVEGAÇÃO DO SITE */
+.sidebar {
+  height: 100%;
+  width: 0px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: #000000;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  z-index: 2000;
+}
+
+.sidebar a {
+  text-align: right;
+  padding: 10px 15px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #ffffff;
+  display: block;
+  transition: 0.3s;
+  font-family: "Freeman", sans-serif;
+  margin-right: 10px;
+}
+
+.sidebar a:hover {
+  color: #b6b6b6;
+}
+
+.sidebar .close-btn {
+  position: absolute;
+  top: 0;
+  right: 0px;
+  font-size: 38px;
+}
+
+
+/* Overlay for the sidebar */
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.11);
+  overflow-x: hidden;
+  transition: 0.5s;
+  z-index: 1999;
+}
+
+
+
+
+
+/*FOOTER FIM DA PAGINA*/
+
+.footer {
+  background-color: #000;
+  height: 520px;
+  display: flex;
+  /* Define flexbox */
+  justify-content: center;
+  /* Centraliza horizontalmente */
+  font-family: "Nunito", sans-serif;
+  text-align: justify;
+  color: white;
+}
+
+.centroFooter {
+  width: 80%;
+  height: 100%;
+  /* Ocupa toda a altura do footer */
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* Alinha os itens no início do eixo principal */
+  position: relative;
+  /* Permite usar posicionamento absoluto dentro dela */
+}
+
+
+.Footer-main {
+  width: 90%;
+  height: 65%;
+  background-color: #000000;
+  position: relative;
+  top: 0%;
+  /* Ajuste este valor para posicionar mais acima ou mais abaixo */
+  display: flex;
+  /* Define flexbox para as colunas */
+  justify-content: space-between;
+  /* Distribui as colunas uniformemente */
+}
+
+.coluna {
+  width: 25%;
+  /* Cada coluna ocupa 30% da largura de .Footer-main */
+  background-color: #000000;
+  /* Cor de fundo para visualização */
+  padding: 10px;
+  box-sizing: border-box;
+  /* Inclui o padding na largura total */
+  display: flex;
+  flex-direction: column;
+}
+
+.coluna h2 {
+  margin-left: 15px;
+  font-size: 22px;
+}
+
+.coluna a {
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+  margin-bottom: -5px;
+}
+
+.coluna:last-child {
+  display: flex;
+  /* Define flexbox para a terceira coluna */
+  flex-direction: column;
+  /* Organiza as subcolunas verticalmente */
+  justify-content: space-between;
+  /* Distribui as subcolunas uniformemente */
+}
+
+.sub-coluna {
+  flex: 1;
+  /* Faz as subcolunas ocuparem a mesma quantidade de espaço */
+  background-color: #000000;
+  /* Cor de fundo para visualização */
+  margin-bottom: 10px;
+  /* Espaço entre as subcolunas */
+}
+
+.sub-coluna h3 {
+  margin-bottom: 15px
+}
+
+.sub-coluna:last-child {
+  margin-bottom: 0;
+  /* Remove o espaço após a última subcoluna */
+}
+
+.Footer-bottom {
+  width: 90%;
+  /* ocupa toda a largura da .centroFooter */
+  display: flex;
+  /* utiliza flexbox para alinhamento */
+  justify-content: space-between;
+  /* alinha um item em cada lado e outro no centro */
+  padding: 30px 0;
+  /* adicionar algum padding vertical */
+  position: relative;
+  /* Ajuste se necessário */
+}
+
+.Footer-item {
+  color: white;
+}
+
+.Footer-left {
+  margin-top: 10px;
+  text-align: left;
+  /* alinha texto à esquerda */
+}
+
+.Footer-left h3 {
+  font-size: 15px;
+}
+
+.Footer-left p {
+  font-size: 10px;
+}
+
+.Footer-center img {
+  width: 80px;
+  height: 80px;
+  margin-left: 50px;
+}
+
+.Footer-right {
+  margin-top: 5px;
+  text-align: right;
+  /* alinha texto à direita */
+}
+
+.Footer-right h3 {
+  font-size: 15px;
+}
+
+.Footer-right p {
+  font-size: 10px;
+}
+
+.div-between {
+  width: 90%;
+  border-top: 1px solid white;
+  /* Adicionando a linha */
+}
+
+
+/*Slide do banner CASO QUERIA 
+section.slider{
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+.slider-content{
+  width: 400%;
+  height: auto;
+  display: flex;
+}
+
+.slider-content input{
+  display: none;
+}
+
+.slide-box{
+  width: 25%;
+  height: auto;
+  position: relative;
+  text-align: center;
+  transition: 1s;
+}
+
+.slide-box img{
+  width: 100%;
+}
+
+.nav-manual, .nav-auto{
+  position: absolute;
+  width: 100%;
+  margin-top: 26%;  /** mudar caso as bolinhas estejam acima da imagem ou muito distante 
+  display: flex;
+  justify-content: center;
+}
+
+.nav-manual .manual-btn, .nav-auto div{
+  border: 1px solid #535353;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.6s;
+}
+
+.nav-manual .manual-btn:not(:last-child), .nav-auto div:not(:last-child){
+  margin-right: 10px;
+}
+
+.nav-manual .manual-btn:hover{
+  background-color: #1d1d1d;
+}
+
+#radio1:checked ~ .nav-auto .auto-btn1, #radio2:checked ~ .nav-auto .auto-btn2, #radio3:checked ~ .nav-auto .auto-btn3{
+  background-color: #1d1d1d;
+}
+
+#radio1:checked ~ .primeiro{
+  margin-left: 0%;
+}
+
+#radio2:checked ~ .primeiro{
+  margin-left: -25%;
+}
+
+#radio3:checked ~ .primeiro{
+  margin-left: -50%;
+}
+
+
+@keyframes animate {
+
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+    border-radius: 0;
+  }
+
+  100% {
+    transform: translateY(-1000px) rotate(720deg);
+    opacity: 0;
+    border-radius: 50%;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*----------------------------------------------------CSS DA PAGINA DO PRODUTO JA NA FASE DE COMPRAR--------------------------------------------------*/
+.main-produtos {
+  margin-top: 80px;
+}
+
+.container-produtos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100vh - 120px);
+  gap: 150px;
+}
+
+.left-produto {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.produtos-itens {
+  align-self: flex-end;
+}
+
+.select-img-produto {
+  max-width: 600px;
+}
+
+.select-img-produto img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+/*thubnails da pagina produtos*/
+
+.thumbnails {
+  display: flex;
+  justify-content: space-evenly;
+  max-width: 600px;
+  gap: 15px;
+}
+
+.thumbnail img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.righ-produto {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  font-family: "Nunito", sans-serif;
+}
+
+.content-produtos-descriçao {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.righ-produto h1 {
+  font-size: 70px;
+  color: #000;
+}
+
+.avaliaçao-produto {
+  margin-top: 20px;
+}
+
+
+
+.preço-valor {
+  margin-top: 180px;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}
+
+.Preço {
+  font-size: 40px;
+  font-weight: 700;
+  color: #222222;
+}
+
+.Off {
+  font-size: 16px;
+  color: #bdbdbd;
+}
+
+
+
+
+
+
+
+/* Estrela de avaliaçoes*/
+
+.rating {
+  margin-right: 370px;
+
+}
+
+.avaliaçao-link a {
+  font-size: 13px;
+}
+
+.rating:not(:checked)>input {
+  position: absolute;
+  appearance: none;
+}
+
+.rating:not(:checked)>label {
+  float: right;
+  cursor: pointer;
+  font-size: 30px;
+  color: #666;
+}
+
+.rating:not(:checked)>label:before {
+  content: '★';
+}
+
+.rating>input:checked+label:hover,
+.rating>input:checked+label:hover~label,
+.rating>input:checked~label:hover,
+.rating>input:checked~label:hover~label,
+.rating>label:hover~input:checked~label {
+  color: #e58e09;
+}
+
+.rating:not(:checked)>label:hover,
+.rating:not(:checked)>label:hover~label {
+  color: #ff9e0b;
+}
+
+.rating>input:checked~label {
+  color: #ffa723;
+}
+
+.opitions-produtos {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  margin-top: 40px;
+}
+
+
+.carinho-produto button {
+  height: 45px;
+  border-radius: 8px;
+  width: 340px;
+  background-color: #000;
+  transition: background-color 0.5s ease;
+}
+
+.carinho-produto:hover button {
+  background-color: #494949;
+}
+
+.carinho-produto a {
+  color: white;
+}
+
+.Comprar-produto button {
+  height: 45px;
+  width: 340px;
+  border-radius: 8px;
+  background-color: #000;
+  transition: background-color 0.5s ease;
+}
+
+.Comprar-produto:hover button {
+  background-color: #494949;
+}
+
+.Comprar-produto a {
+  color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*CSS QUEM SOMOS*/
+.container-quemsomos {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.painel-quemsomos {
+  color: #fff;
+  margin: auto;
+  background-color: rgb(30, 36, 56);
+  width: 300px;
+  height: 480px;
+  border-radius: 30px;
+  text-align: center;
+  padding-top: 45px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  border: #fff;
+
+}
+
+
+
+.header {
+  background-color: #ffffff;
+}
+
+.header2 {
+  background-color: #ffffff;
+
+}
+
+.titulo {
+  font-family: "Freeman", sans-serif;
+  text-align: center;
+  padding-top: 20px;
+  font-size: 100px;
+  color: rgb(0, 0, 0);
+}
+
+.dentro {
+  font-family: "Freeman", sans-serif;
+  text-align: center;
+  padding-bottom: 70px;
+  font-size: 100px;
+  color: rgb(0, 0, 0);
+}
+
+.example-element {
+  padding-left: 200px;
+  font-family: "Freeman", sans-serif;
+  text-align: justify;
+  font-size: 12px;
+  color: rgb(0, 0, 0);
+}
+
+
+
+
+/*--------------------------------------- POLITICA E PRIVACIDADE  ----------------------------------------------- */
+
+.body-politica {
+  font-family: 'Bebas Neue', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: #f4f4f9;
+}
+
+/* Cabeçalho com título mais atraente */
+.politica-header-completo {
+  background: linear-gradient(135deg, #111, #444, #000, #333);
+  background-size: 300% 300%;
+  animation: gradientMove 6s infinite;
+  color: #fff;
+  text-align: center;
+  padding: 100px 20px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 4px solid rgba(255, 255, 255, 0.2);
+}
+
+@keyframes gradientMove {
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
+}
+
+.politica-header-container-completo {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.politica-titulo-completo {
+  font-size: 5rem;
+  font-weight: bold;
+  background: linear-gradient(45deg, #ffffff, #d6d6d6, #000000);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+  position: relative;
+  animation: titleGlow 1.5s infinite alternate;
+}
+
+@keyframes titleGlow {
+  0% {
+      text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.6), 0 0 25px #444444, 0 0 50px #686868;
+  }
+  100% {
+      text-shadow: 2px 2px 15px rgb(0, 0, 0), 0 0 30px #4b4b4b, 0 0 60px #000000;
+  }
+}
+
+.politica-ultima-atualizacao-completo {
+  font-size: 1.5rem;
+  margin-top: 20px;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 300;
+  position: relative;
+}
+
+/* Efeito de partículas animadas no cabeçalho */
+.politica-header-completo::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 2%, transparent 2%);
+  background-size: 5px 5px;
+  opacity: 0.4;
+  animation: sparkle 3s linear infinite;
+  z-index: 0;
+}
+
+@keyframes sparkle {
+  0% {
+      transform: translate(0, 0);
+  }
+  100% {
+      transform: translate(10px, 10px);
+  }
+}
+
+/* Conteúdo */
+.politica-conteudo-completo {
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from {
+      border-color: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  to {
+      border-color: rgba(0, 0, 0, 0.4);
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Subtítulos */
+.politica-subtitulo-completo {
+  font-size: 2.5rem;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  padding-left: 15px;
+}
+
+.subtitulo-introducao-completo {
+  color: #111;
+}
+
+.subtitulo-informacoes-completo {
+  color: #333;
+}
+
+.subtitulo-seguranca-completo {
+  color: #555;
+}
+
+.subtitulo-cookies-completo {
+  color: #777;
+}
+
+.subtitulo-direitos-completo {
+  color: #999;
+}
+
+.subtitulo-contato-completo {
+  color: #bbb;
+}
+
+/* Parágrafos */
+p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+/* Lista */
+.politica-lista-completo {
+  margin: 20px 0;
+  padding-left: 20px;
+}
+
+.politica-lista-completo li {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  list-style: none;
+  position: relative;
+}
+
+/* Links */
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
