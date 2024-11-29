@@ -788,20 +788,75 @@ a {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: white; /* Fundo preto */
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+  z-index: 9999;           /* Para garantir que fique acima de outros elementos */
+}
+
+#mensagemCompra .conteudo {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999; /* Para garantir que fique acima de outros elementos */
+  flex-direction: column;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center;     /* Centraliza verticalmente */
+  text-align: center; /* Centraliza o texto dentro da div */
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);width: 100%;
+  height: 100%;
 }
 
 #mensagemCompra img {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   display: block;
   margin: 10px auto;
 }
 
+#mensagemCompra p {
+  margin-top: 10px;
+  font-size: 36px;
+  color: #333;
+}
+
+#qrcodeContainer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+  z-index: 9999;           /* Para garantir que fique acima de outros elementos */
+}
+
+
+#qrcodeContainer .conteudo{
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center;     /* Centraliza verticalmente */
+  text-align: center; /* Centraliza o texto dentro da div */
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);width: 100%;
+  height: 100%;
+}
+
+
+#qrcodeContainer img{
+  width: 150px;
+  height: 150px;
+  display: block;
+  margin: 10px auto;
+}
+
+
+#qrcodeContainer p {
+  margin-top: 10px;
+  font-size: 36px;
+  color: #333;
+}
 
 
 

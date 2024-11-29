@@ -359,23 +359,16 @@ function finalizarPedido() {
 
 function toggleBox(tipo) {
   const box = document.getElementById(`box-${tipo}`);
-  const parentBox = box.parentElement; // Pega o container da box
   
-  // Fechar todas as outras boxes antes de abrir a atual
+  // Fecha todas as boxes antes de abrir a selecionada
   document.querySelectorAll(".form-detalhes").forEach((form) => {
     if (form !== box) {
       form.style.display = "none";
     }
   });
 
-  // Alternar exibição da box atual
-  if (box.style.display === "none" || box.style.display === "") {
-    box.style.display = "block";
-    parentBox.classList.add("ativo"); // Adiciona a classe "ativo" à box selecionada
-  } else {
-    box.style.display = "none";
-    parentBox.classList.remove("ativo"); // Remove a classe "ativo" quando a box for fechada
-  }
+  // Alterna a exibição da box selecionada
+  box.style.display = box.style.display === "block" ? "none" : "block";
 }
 
 
@@ -522,36 +515,71 @@ function showNotification(message) {
   }, 3000);
 }
 
-
-function finalizarCompraaaaaaaaaa() {
+function finalizarCompraAAAAA() {
   const creditoBox = document.getElementById("box-credito");
-  const debitoBox = document.getElementById("box-debito");
   const pixBox = document.getElementById("box-pix");
 
   const mensagemCompra = document.getElementById("mensagemCompra");
   const qrcodeContainer = document.getElementById("qrcodeContainer");
 
-  // Verificar se o conteúdo do Cartão de Crédito ou Débito está visível
-  if (creditoBox.style.display === "block" || debitoBox.style.display === "block") {
-    // Para Cartão de Crédito ou Débito
-    mensagemCompra.style.display = "block";  // Exibir mensagem de compra realizada
-    qrcodeContainer.style.display = "none"; // Esconder o QR Code do Pix
+  if (creditoBox.style.display === "block") {
+    const numeroCartao = document.getElementById("numero-cartao").value;
+    const nomeTitular = creditoBox.querySelector("input[placeholder='Nome no Cartão']").value;
+    const dataValidade = document.getElementById("data-validade").value;
+    const cvv = creditoBox.querySelector("input[placeholder='CVV']").value;
 
-    // Redirecionar para o index após 3 segundos
-    setTimeout(() => {
-      window.location.href = "../../../index.html"; // Redireciona para o index
-    }, 3000); // 3 segundos
+    if (numeroCartao && nomeTitular && dataValidade && cvv) {
+      mensagemCompra.style.display = "flex"; // Exibe a mensagem de compra
+
+      // Após 3 segundos, redireciona
+      setTimeout(() => {
+        // Limpa o carrinho no localStorage
+        localStorage.removeItem('carrinho'); // Remove o carrinho do localStorage
+
+        // Limpa os campos do formulário
+        document.getElementById("numero-cartao").value = "";
+        creditoBox.querySelector("input[placeholder='Nome no Cartão']").value = "";
+        document.getElementById("data-validade").value = "";
+        creditoBox.querySelector("input[placeholder='CVV']").value = "";
+
+        // Redireciona para a página inicial
+        window.location.href = "../../../index.html";
+      }, 3000);
+    } else {
+      alert("Por favor, preencha todos os campos do Cartão.");
+    }
   } else if (pixBox.style.display === "block") {
-    // Para Pix
-    mensagemCompra.style.display = "none";  // Esconder a mensagem de compra realizada
-    qrcodeContainer.style.display = "block"; // Exibir o QR Code do Pix
+    const nomeCompleto = pixBox.querySelector("input[placeholder='Nome Completo']").value;
+    const cpf = pixBox.querySelector("input[placeholder='CPF']").value;
+
+    if (nomeCompleto && cpf) {
+      qrcodeContainer.style.display = "flex"; // Exibe o QR Code
+
+      // Após 3 segundos, oculta o QR Code e exibe a mensagem de compra
+      setTimeout(() => {
+        qrcodeContainer.style.display = "none"; // Oculta o QR Code
+        mensagemCompra.style.display = "flex"; // Exibe a mensagem de compra
+
+        // Após mais 3 segundos, limpa e redireciona
+        setTimeout(() => {
+          // Limpa o carrinho no localStorage
+          localStorage.removeItem('carrinho'); // Remove o carrinho do localStorage
+
+          // Limpa os campos do formulário
+          pixBox.querySelector("input[placeholder='Nome Completo']").value = "";
+          pixBox.querySelector("input[placeholder='CPF']").value = "";
+
+          mensagemCompra.style.display = "none"; // Esconde a mensagem de compra
+          window.location.href = "../../../index.html"; // Redireciona para a página inicial
+        }, 4000);
+      }, 8000);
+    } else {
+      alert("Por favor, preencha todos os campos do Pix.");
+    }
+  } else {
+    alert("Selecione um método de pagamento.");
   }
 }
-
-
-
-
-
 
 
 //FORMATAR ALGUNS INPUT E COISAS DIGITADAS 
