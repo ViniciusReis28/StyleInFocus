@@ -57,7 +57,7 @@ body ,html{
 .card-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 0px;
+    grid-gap: 7px;
     padding: 0px;
     justify-items: center; /* Centraliza os cartões dentro do grid */
     max-width: 1000px;
