@@ -32,21 +32,11 @@ function alterarQuantidade(index, delta) {
 }
 
 // Função para remover item do carrinho
-function removerItem(key) {
+function removerItem(index) {
   const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
-
-  // Encontra o índice baseado no key
-  const index = carrinho.findIndex(
-    (produto) => `${produto.id}-${produto.tamanho}` === key
-  );
-
-  if (index !== -1) {
-    carrinho.splice(index, 1); // Remove o item do array
-    localStorage.setItem("carrinho", JSON.stringify(carrinho)); // Atualiza o carrinho no localStorage
-    carregarCarrinho(); // Recarrega o carrinho
-  } else {
-    console.error("Item não encontrado para remoção.");
-  }
+  carrinho.splice(index, 1); // Remove o item pelo índice
+  localStorage.setItem("carrinho", JSON.stringify(carrinho)); // Atualiza o carrinho no localStorage
+  carregarCarrinho(); // Recarrega o carrinho
 }
 
 // Inicializa o carrinho ao carregar a página
@@ -91,9 +81,6 @@ function carregarCarrinho() {
 
   let totalFinal = 0;
 
-  // Definir o preço fixo da camisa personalizada
-  const precoCamisaPersonalizada = 75.00;  // Exemplo de valor fixo da camisa
-
   if (Object.keys(produtosAgrupados).length === 0) {
     // Se não há produtos, mostra a mensagem de carrinho vazio
     mensagemVazio.style.display = "block";
@@ -109,7 +96,7 @@ function carregarCarrinho() {
 
       const precoTotal = produto.preco * produto.quantidade;
 
-      totalFinal += precoTotal; // Adiciona o preço dos produtos
+      totalFinal += precoTotal;
 
       const itemDiv = document.createElement("div");
       itemDiv.classList.add("carrinho-item");
@@ -117,23 +104,27 @@ function carregarCarrinho() {
       itemDiv.innerHTML = `
         <div class="produto">
           <div class="produtoImg">
-            <img src="${produto.img}" alt="${produto.nome}" style="height: 170px; width: 160px; border-radius: 2px;">
+            <img src="${produto.img}" alt="${
+        produto.nome
+      }" style="height: 170px; width: 160px; border-radius: 2px;">
           </div>
           <div class="produtoInfo">
             <h2>${produto.nome}</h2>
             <p>Tamanho: ${produto.tamanho}</p>
-            <p>Quantidade: <span class="carrinho-quantidade">${produto.quantidade}</span></p>
+            <p>Quantidade: <span class="carrinho-quantidade">${
+              produto.quantidade
+            }</span></p>
             <p>Preço: R$ ${precoTotal.toLocaleString("pt-BR", {
               minimumFractionDigits: 2,
               maximumFractionDigits: 2,
             })}</p>
           </div>
           <div class="btn-produto">
-             <button class="remover-produto" onclick="removerItem('${key}')">
-        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-          <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
-        </svg>
-      </button>
+            <button class="remover-produto" data-id="${key}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+              </svg>
+            </button>
           </div>
         </div>
       `;
@@ -141,109 +132,32 @@ function carregarCarrinho() {
       carrinhoItens.appendChild(itemDiv);
     }
   }
-// Adicionar o preço fixo da camisa personalizada ao total
-const customizationData = JSON.parse(localStorage.getItem('customizationData'));
 
-// Verifique se a personalização existe antes de exibir e adicionar o preço da camisa personalizada
-if (customizationData) {
-  totalFinal += precoCamisaPersonalizada;
-
-  const itemDiv = document.createElement("div");
-  itemDiv.classList.add("carrinho-item");
-  itemDiv.innerHTML = `
-    <div class="produto">
-      <div class="produtoImg">
-        <img src="${customizationData.shirtImage !== 'SEM IMAGEM' ? customizationData.shirtImage : '../../frontend/img-produtos/camisa-personalizada.jpg'}" 
-             alt="Camisa Base" 
-             style="height: 187px; width: 160px; border-radius: 2px;">
-      </div>
-      <div class="produtoInfo">
-        <h2>Camiseta Personalizada</h2>
-        <p>Tamanho: ${customizationData.shirtSize ? customizationData.shirtSize : 'Não selecionado'}</p>
-        <p>Quantidade: 1</p>
-        <p>Preço: R$ ${precoCamisaPersonalizada.toLocaleString("pt-BR", {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-        })}</p>
-        <button class="glow-on-hover" data-id="camisa-personalizada">Ver mais detalhes</button>
-      </div>
-      <div class="btn-produto">
-        <button class="remover-produto" data-id="camisa-personalizada">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
-          </svg>
-        </button>
-      </div>
-    </div>
-  ` ;
-
-  // Adicionar o item ao carrinho
-  carrinhoItens.appendChild(itemDiv);
-
-  // Adicionar o evento de clique no botão de remoção
-  const removerBotao = itemDiv.querySelector('.remover-produto');
-  removerBotao.addEventListener('click', () => {
-    // Remover o item do carrinho
-    itemDiv.remove();
-
-    // Atualizar o localStorage (remover a personalização da camisa)
-    localStorage.removeItem('customizationData');
-
-    // Atualizar o total (se necessário)
-    totalFinal -= precoCamisaPersonalizada;
-
-    // Opcionalmente, você pode atualizar o carrinho na tela para refletir as mudanças
-    // Você pode chamar uma função de atualização do carrinho aqui, se necessário
-  });
-} else {
-  console.log('Nenhuma personalização foi feita.');
-}
-
-
-document.addEventListener("click", (event) => {
-  if (event.target.classList.contains("glow-on-hover")) {
-    const modal = document.getElementById("detalhes-modal");
-    const customizationData = JSON.parse(localStorage.getItem("customizationData"));
-
-    // Preencher os detalhes no modal
-    document.getElementById("modal-cor").textContent = customizationData.shirtColor || "Não selecionada";
-    document.getElementById("modal-posicao").textContent = customizationData.imagePosition || "Não definida";
-    document.getElementById("modal-forma").textContent = customizationData.imageShape || "Não definida";
-  // Para o ícone
-document.getElementById("modal-icone").innerHTML = customizationData.icon !== "SEM ÍCONE"
-? `<div class="detail-preview"><img src="${customizationData.icon}" alt="Ícone" style="height: 40px; width: 40px;"></div>`
-: `<div class="detail-preview"><span class="detail-value detail-value-sem">SEM</span></div>`;  // Adiciona a classe detail-value-sem quando não há ícone
-
-// Para a imagem personalizada
-document.getElementById("modal-imagem").innerHTML = customizationData.customImage !== "SEM IMAGEM"
-? `<div class="detail-preview"><img src="${customizationData.customImage}" alt="Imagem Personalizada" style="height: 40px; width: 40px;"></div>`
-: `<div class="detail-preview"><span class="detail-value detail-value-sem">SEM</span></div>`;  // Adiciona a classe detail-value-sem quando não há imagem
-
-
-    modal.classList.remove("hidden");
-  } else if (event.target.classList.contains("modal-action")) {
-    const modal = document.getElementById("detalhes-modal");
-    modal.classList.add("hidden");
-  }
-});
-
-
-  // Atualizar o preço final na página
   const finalPriceElement = document.getElementById("final-price");
   finalPriceElement.textContent = `R$ ${totalFinal.toLocaleString("pt-BR", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   })}`;
+
+  // Adiciona evento para remover produtos
+  const botoesRemover = document.querySelectorAll(".remover-produto");
+  botoesRemover.forEach((botao) => {
+    botao.addEventListener("click", () => {
+      const key = botao.getAttribute("data-id");
+
+      // Remover do carrinho no localStorage
+      const novoCarrinho = carrinho.filter((produto) => {
+        const produtoKey = `${produto.id}-${produto.tamanho}`;
+        return produtoKey !== key;
+      });
+
+      localStorage.setItem("carrinho", JSON.stringify(novoCarrinho));
+
+      // Recarregar o carrinho
+      carregarCarrinho();
+    });
+  });
 }
-
-
-
-
-
-
-
-
-
 
 // Carrega o carrinho ao iniciar a página
 document.addEventListener("DOMContentLoaded", carregarCarrinho);
@@ -354,7 +268,9 @@ function irParaConfirmacao() {
 
 function exibirConfirmacao(pedidoCompleto) {
   const divProdutos = document.querySelector(".pedido-produto-final");
-  const divIdentificacao = document.querySelector(".pedido-indentificacao-final");
+  const divIdentificacao = document.querySelector(
+    ".pedido-indentificacao-final"
+  );
 
   // Garantir que o preço do frete seja tratado como número
   const precoFrete = parseFloat(freteSelecionado.price);
@@ -362,25 +278,37 @@ function exibirConfirmacao(pedidoCompleto) {
   // Extrair dados do pedido
   const { dadosIdentificacao, produtos, total } = pedidoCompleto;
 
-  // Calcular o total final com o preço fixo da camisa personalizada e o frete
-  const totalComFrete = total + precoFrete + precoCamisaPersonalizada;
+
+  // Calcular o total final
+  const totalComFrete = total + precoFrete;
 
   // Formatar o valor total com frete
   const totalComFreteFormatado = totalComFrete.toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
   });
+
   // Gerar o HTML dos produtos
   let produtosHTML = "";
   for (const key in produtos) {
     const produto = produtos[key];
+    const precoProduto = parseFloat(produto.preco);
+    const qtdProduto = parseInt(produto.quantidade, 10);
+    const totalProduto = precoProduto * qtdProduto;
+
+    // Formatar o total do produto
+    const totalProdutoFormatado = totalProduto.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
     produtosHTML += `
       <div class="pedido-produto-final-por-produto">
         <img src="${produto.img}" alt="${produto.nome}"/>
           <div class="info-produto-final">
-            <p><strong>Nome:</strong> ${produto.nome}</p>
-            <p><strong>Tamanho:</strong> ${produto.tamanho}</p>
-            <p><strong>Quantidade:</strong> ${produto.quantidade}</p>
+            <p><strong>Nome : </strong> ${produto.nome}</p>
+            <p><strong>Tamanho : </strong> ${produto.tamanho}</p>
+            <p><strong>Quantidade : </strong> ${produto.quantidade}</p>
+            <p><strong>Preço : </strong> ${totalProdutoFormatado}</p>
           </div>
      </div>
     `;
@@ -388,22 +316,25 @@ function exibirConfirmacao(pedidoCompleto) {
 
   // Gerar o HTML das informações de identificação
   const identificacaoHTML = `
-    <h3>Informação do Pedido</h3>
-    <div></div>
-    <p><strong>Nome:</strong> ${dadosIdentificacao.nome}</p>
-    <p><strong>CPF:</strong> ${dadosIdentificacao.cpf}</p>
-    <p><strong>CEP:</strong> ${dadosIdentificacao.freteSelecionado}</p>
-    <p><strong>Email:</strong> ${dadosIdentificacao.email}</p>
-    <p><strong>Telefone:</strong> ${dadosIdentificacao.telefone}</p>
-    <p><strong>Endereço:</strong> ${dadosIdentificacao.endereco.rua}, ${
-    dadosIdentificacao.endereco.numero
-  }, ${dadosIdentificacao.endereco.cidade} - ${
-    dadosIdentificacao.endereco.estado
-  }</p>
-    <p><strong>Frete:</strong> R$ ${precoFrete.toLocaleString("pt-BR", {
-      minimumFractionDigits: 2,
-    })}</p>
-    <p><strong>Total com Frete:</strong> ${totalComFreteFormatado}</p>
+    <div class="container-info-produtos">
+      <h2>Informação Para Envio</h2>
+      <div class="info-nome-cpf">
+         <p><strong>Nome : </strong> ${dadosIdentificacao.nome}</p>
+         <p><strong>CPF : </strong> ${dadosIdentificacao.cpf}</p>
+      </div>
+      <div class="info-contato">
+        <p><strong>Email : </strong> ${dadosIdentificacao.email}</p>
+        <p><strong>Telefone : </strong> ${dadosIdentificacao.telefone}</p>
+      </div>
+      <div class="info-para-entrega-cliente">
+        <p><strong>Endereço : </strong> ${dadosIdentificacao.endereco.rua}, ${dadosIdentificacao.endereco.numero}, ${dadosIdentificacao.endereco.cidade} - ${dadosIdentificacao.endereco.estado}</p>
+        <p><strong>CEP : </strong> ${dadosIdentificacao.endereco.cep}</p>
+      </div>
+      <div class="valores-produtos">
+        <p><strong>Frete : </strong> R$ ${precoFrete.toLocaleString("pt-BR", {minimumFractionDigits: 2,})}</p>
+        <p><strong>Total : </strong> ${totalComFreteFormatado}</p>
+      </div>
+    </div>
   `;
 
   // Adicionar os conteúdos às respectivas divs
@@ -426,8 +357,57 @@ function finalizarPedido() {
   document.getElementById("section-pagamento").style.display = "block";
 }
 
+function toggleBox(tipo) {
+  const box = document.getElementById(`box-${tipo}`);
+  
+  // Fecha todas as boxes antes de abrir a selecionada
+  document.querySelectorAll(".form-detalhes").forEach((form) => {
+    if (form !== box) {
+      form.style.display = "none";
+    }
+  });
+
+  // Alterna a exibição da box selecionada
+  box.style.display = box.style.display === "block" ? "none" : "block";
+}
+
+
 // Carregar o carrinho ao abrir a página
 document.addEventListener("DOMContentLoaded", carregarCarrinho);
+
+
+function voltarParaPaginaConfirmaçao() {
+  // Atualizar o progresso removendo a classe 'completed' da etapa atual
+  document.getElementById("step-4").classList.remove("completed");
+  document.getElementById("step-3").classList.remove("completed");
+
+  // Atualizar as seções visíveis
+  document.getElementById("section-pagamento").style.display = "none";
+  document.getElementById("section-confirmacao").style.display = "block";
+}
+
+
+function voltarParaPaginaIndentificacao() {
+   // Atualizar o progresso removendo a classe 'completed' da etapa atual
+   document.getElementById("step-3").classList.remove("completed");
+   document.getElementById("step-2").classList.remove("completed");
+ 
+   // Atualizar as seções visíveis
+   document.getElementById("section-confirmacao").style.display = "none";
+   document.getElementById("section-identificacao").style.display = "block";
+}
+
+function voltarParaPaginaCarrinho() {
+  // Atualizar o progresso removendo a classe 'completed' da etapa atual
+  document.getElementById("step-2").classList.remove("completed");
+  document.getElementById("step-1").classList.remove("completed");
+
+  // Atualizar as seções visíveis
+  document.getElementById("section-identificacao").style.display = "none";
+  document.getElementById("section-carrinho").style.display = "block";
+}
+
+
 
 // Captura o botão de calcular frete e o input de CEP
 const calcularFreteBtn = document.getElementById("calcular-frete-btn");
@@ -520,23 +500,7 @@ function selecionarFrete(index) {
   console.log("Frete selecionado:", freteSelecionado);
 }
 
-// Máscara para CPF
-function mascaraCPF(cpf) {
-  cpf.value = cpf.value
-    .replace(/\D/g, "") // Remove caracteres não numéricos
-    .replace(/(\d{3})(\d)/, "$1.$2") // Adiciona o primeiro ponto
-    .replace(/(\d{3})(\d)/, "$1.$2") // Adiciona o segundo ponto
-    .replace(/(\d{3})(\d{1,2})$/, "$1-$2"); // Adiciona o traço
-}
 
-// Máscara para Telefone
-function mascaraTelefone(telefone) {
-  telefone.value = telefone.value
-    .replace(/\D/g, "") // Remove caracteres não numéricos
-    .replace(/(\d{2})(\d)/, "($1) $2") // Adiciona parênteses no DDD
-    .replace(/(\d{5})(\d)/, "$1-$2") // Adiciona o traço
-    .replace(/(-\d{4})\d+?$/, "$1"); // Limita o tamanho
-}
 
 function showNotification(message) {
   const notification = document.getElementById("notification");
@@ -551,6 +515,125 @@ function showNotification(message) {
   }, 3000);
 }
 
+function finalizarCompraAAAAA() {
+  const creditoBox = document.getElementById("box-credito");
+  const pixBox = document.getElementById("box-pix");
 
+  const mensagemCompra = document.getElementById("mensagemCompra");
+  const qrcodeContainer = document.getElementById("qrcodeContainer");
 
+  if (creditoBox.style.display === "block") {
+    const numeroCartao = document.getElementById("numero-cartao").value;
+    const nomeTitular = creditoBox.querySelector("input[placeholder='Nome no Cartão']").value;
+    const dataValidade = document.getElementById("data-validade").value;
+    const cvv = creditoBox.querySelector("input[placeholder='CVV']").value;
 
+    if (numeroCartao && nomeTitular && dataValidade && cvv) {
+      mensagemCompra.style.display = "flex"; // Exibe a mensagem de compra
+
+      setTimeout(() => {
+        localStorage.removeItem("carrinho"); // Limpa o carrinho do localStorage
+        document.getElementById("numero-cartao").value = "";
+        creditoBox.querySelector("input[placeholder='Nome no Cartão']").value = "";
+        document.getElementById("data-validade").value = "";
+        creditoBox.querySelector("input[placeholder='CVV']").value = "";
+        window.location.href = "../../../index.html"; // Redireciona para a página inicial
+      }, 3000);
+    } else {
+      alert("Por favor, preencha todos os campos do Cartão.");
+    }
+  } else if (pixBox.style.display === "block") {
+    const nomeCompleto = pixBox.querySelector("input[placeholder='Nome Completo']").value;
+    const cpf = pixBox.querySelector("input[placeholder='CPF']").value;
+
+    if (nomeCompleto && cpf) {
+      qrcodeContainer.style.display = "flex"; // Exibe o QR Code
+      const contador = document.createElement("p");
+      contador.id = "contador";
+      contador.style.fontWeight = "bold";
+      qrcodeContainer.appendChild(contador);
+
+      // Inicia o cronômetro com 1 hora (3600 segundos)
+      iniciarCronometro(3600, () => {
+        qrcodeContainer.style.display = "none"; // Oculta o QR Code
+        alert("O tempo para realizar o pagamento expirou. Por favor, tente novamente.");
+      });
+
+      setTimeout(() => {
+        qrcodeContainer.style.display = "none"; // Oculta o QR Code
+        mensagemCompra.style.display = "flex"; // Exibe a mensagem de compra
+
+        setTimeout(() => {
+          localStorage.removeItem("carrinho"); // Limpa o carrinho no localStorage
+          pixBox.querySelector("input[placeholder='Nome Completo']").value = "";
+          pixBox.querySelector("input[placeholder='CPF']").value = "";
+          mensagemCompra.style.display = "none"; // Esconde a mensagem de compra
+          window.location.href = "../../../index.html"; // Redireciona para a página inicial
+        }, 4000);
+      }, 10000);
+    } else {
+      alert("Por favor, preencha todos os campos do Pix.");
+    }
+  } else {
+    alert("Selecione um método de pagamento.");
+  }
+}
+
+function iniciarCronometro(duracaoEmSegundos, callbackExpiracao) {
+  const contador = document.getElementById("contador");
+  let tempoRestante = duracaoEmSegundos;
+
+  const interval = setInterval(() => {
+    const horas = Math.floor(tempoRestante / 3600);
+    const minutos = Math.floor((tempoRestante % 3600) / 60);
+    const segundos = tempoRestante % 60;
+
+    contador.textContent = `Tempo restante: ${horas
+      .toString()
+      .padStart(2, "0")}:${minutos
+      .toString()
+      .padStart(2, "0")}:${segundos.toString().padStart(2, "0")}`;
+
+    if (tempoRestante <= 0) {
+      clearInterval(interval);
+      callbackExpiracao(); // Chama a função de expiração
+    }
+
+    tempoRestante--;
+  }, 1000);
+}
+
+//FORMATAR ALGUNS INPUT E COISAS DIGITADAS 
+function formatarDataValidade(input) {
+  let valor = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+  if (valor.length >= 3) {
+    valor = valor.slice(0, 2) + '/' + valor.slice(2, 4);
+  }
+  input.value = valor;
+}
+
+function formatarNumeroCartao(input) {
+  let valor = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+  valor = valor.replace(/(\d{4})(?=\d)/g, '$1 '); // Adiciona espaço a cada 4 dígitos
+  input.value = valor.trim(); // Remove espaço extra no final, se houver
+}
+
+// Máscara para CPF
+function mascaraCPF(cpf) {
+  cpf.value = cpf.value
+    .replace(/\D/g, "") // Remove caracteres não numéricos
+    .slice(0, 11) // Limita o CPF a 11 números
+    .replace(/(\d{3})(\d)/, "$1.$2") // Adiciona o primeiro ponto
+    .replace(/(\d{3})(\d)/, "$1.$2") // Adiciona o segundo ponto
+    .replace(/(\d{3})(\d{1,2})$/, "$1-$2"); // Adiciona o traço
+}
+
+// Máscara para Telefone
+function mascaraTelefone(telefone) {
+  telefone.value = telefone.value
+    .replace(/\D/g, "") // Remove caracteres não numéricos
+    .slice(0, 11) // Limita o número a 11 dígitos
+    .replace(/(\d{2})(\d)/, "($1) $2") // Adiciona parênteses no DDD
+    .replace(/(\d{5})(\d)/, "$1-$2") // Adiciona o traço
+    .replace(/(-\d{4})\d+?$/, "$1"); // Limita o tamanho
+}

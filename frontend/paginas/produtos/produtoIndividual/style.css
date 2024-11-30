@@ -350,23 +350,31 @@ section.slider {
 }
 
 /* BARRA DE NAVEGAÇÃO DO SITE */
-nav { 
+nav {
   height: 100px;
   font-family: "Bebas Neue", sans-serif;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-  position: fixed; /* Torna a navbar fixa */
-  top: 40px; /* Deslocamento inicial */
-  left: 0; /* Alinha a navbar na esquerda da página */
-  width: 100%; /* Faz a navbar ocupar toda a largura da página */
-  z-index: 1000; /* Garante que a navbar fique acima de outros elementos */
-  background-color: rgba(255, 255, 255, 0); /* Cor de fundo opaca */
-  transition: top 0.3s; /* Transição suave para a mudança de posição */
-  transition: background-color 0.3s, color 0.3s
-}
+  position: fixed;
+  /* Torna a navbar fixa */
+  top: 40px;
+  /* Deslocamento inicial */
+  left: 0;
+  /* Alinha a navbar na esquerda da página */
+  width: 100%;
+  /* Faz a navbar ocupar toda a largura da página */
+  z-index: 1000;
+  /* Garante que a navbar fique acima de outros elementos */
+  background-color: rgb(255, 255, 255);
+  /* Cor de fundo opaca */
+  transition: top 0.3s;
+  /* Transição suave para a mudança de posição */
+  transition: background-color 0.3s, color 0.3s;
+  box-shadow: 2px 2px 5px rgba(2, 2, 2, 0.281);
 
+}
 
 nav.scrolled .center-section a::after,
 nav.scrolled .right-section a::after {
@@ -405,9 +413,7 @@ nav:hover a {
   color: #000000;
 }
 
-nav:hover .profile-text .text-login {
-  color: #000000;
-}
+
 
 nav:hover .center-section .dropdown>a::after,
 nav:hover .right-section a::after {
@@ -417,7 +423,7 @@ nav:hover .right-section a::after {
 }
 
 nav:hover #logo {
-  content: url('../../img/logopreta.png');
+  content: url('../../../img/logopreta.png');
   /* Substitui a imagem quando o mouse passa no <nav> */
   transition: all 0.3s ease;
   /* Transição suave */
@@ -426,7 +432,7 @@ nav:hover #logo {
 
 a {
   text-decoration: none;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   font-size: 25px;
   padding: 10px 15px;
   border-radius: 5px;
@@ -459,8 +465,6 @@ a {
   transition: width 0.3s ease;
 }
 
-
-
 .center-section a:hover::after,
 .right-section a:hover::after {
   width: 100%;
@@ -482,9 +486,10 @@ a {
 
 /* Garante que a center-section fique centralizada */
 .center-section {
-  left: 165px;
+  left: 190px;
   position: relative;
-  z-index: 1; /* Mantém acima de outros conteúdos, se necessário */
+  z-index: 1;
+  /* Mantém acima de outros conteúdos, se necessário */
 }
 
 /* Right-section posicionada à direita */
@@ -492,6 +497,7 @@ a {
   display: flex;
   z-index: 2;
 }
+
 .center-section ul {
   display: flex;
   list-style: none;
@@ -500,22 +506,27 @@ a {
 }
 
 .center-section li {
-  margin: 0 15px; /* Espaçamento horizontal entre os itens */
-  position: relative; /* Para os dropdowns */
+  margin: 0 15px;
+  /* Espaçamento horizontal entre os itens */
+  position: relative;
+  /* Para os dropdowns */
 
 }
 
 
 .center-section a {
-  display: flex; /* Isso permite que o link ocupe toda a área do item da lista */
-  align-items: center; /* Centraliza o texto verticalmente */
-  padding: 30px 15px; /* Ampla área de clique */
-  
+  display: flex;
+  /* Isso permite que o link ocupe toda a área do item da lista */
+  align-items: center;
+  /* Centraliza o texto verticalmente */
+  padding: 30px 15px;
+  /* Ampla área de clique */
+
 }
 
 .right-section a {
   margin-left: 0px;
-  left: 250px;
+  left: 300px;
 }
 
 .search-bar-container {
@@ -546,7 +557,8 @@ a {
 
 .profile-text {
   margin-left: 5px;
-  color: #ffffff; /* Change to match the color in your image */
+  color: #ffffff;
+  /* Change to match the color in your image */
   font-weight: bold;
 }
 
@@ -559,14 +571,17 @@ a {
   position: relative;
   padding: 5px;
   border-radius: 5px;
-  color: #ffffff;
-  font-size: 20px; /* Adjust size as needed */
+  color: #000000;
+  font-size: 20px;
+  /* Adjust size as needed */
   text-decoration: none;
-  
+
 }
+
 .profile-text .text-login:hover {
   text-decoration: underline;
 }
+
 .text-login:hover {
   color: #000000;
   text-decoration: none;
@@ -604,34 +619,6 @@ a {
   box-shadow: 0 0 0 2.5px #2f303d;
 }
 
-.suggestions-box {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  border: 1px solid #ccc;
-  background-color: #000;
-  /* Para combinar com a barra de pesquisa */
-  max-height: 200px;
-  overflow-y: auto;
-  z-index: 1000;
-  display: none;
-  /* Escondido por padrão */
-}
-
-.suggestion-item {
-  padding: 10px;
-  cursor: pointer;
-  color: #ffffff;
-  /* Cor do texto para as sugestões */
-}
-
-.suggestion-item:hover {
-  background-color: #2f303d;
-  /* Cor do fundo ao passar o mouse */
-}
-
-
 
 /* Estilo para os itens do dropdown */
 .dropdown {
@@ -665,18 +652,22 @@ a {
   display: block;
   width: 100%;
   text-decoration: none;
-  transition: background-color 0.3s ease, color 0.3s ease; /* Suave transição */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  /* Suave transição */
 }
 
 /* Efeito hover ao passar o mouse sobre os links do dropdown */
 .dropdown-menu a:hover {
-  background-color: rgba(0, 0, 0, 0.1); /* Cor de fundo ao passar o mouse */
-  color: #7a7a7a; /* Cor do texto ao passar o mouse */
+  background-color: rgba(0, 0, 0, 0.1);
+  /* Cor de fundo ao passar o mouse */
+  color: #7a7a7a;
+  /* Cor do texto ao passar o mouse */
 }
 
 
 .dropdown:hover .dropdown-menu {
-  display: block; /* Exibe o dropdown ao passar o mouse */
+  display: block;
+  /* Exibe o dropdown ao passar o mouse */
 }
 
 .dropdown-items {
@@ -684,6 +675,7 @@ a {
   flex-direction: column;
   /* Mantém os itens do dropdown empilhados */
 }
+
 
 /* banner Principal */
 .bannerzinho {
@@ -1283,33 +1275,33 @@ a {
 
 
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding-top: 50px;
-    padding-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 /* Bloco Principal */
 .block {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 80px;
-    width: 70%;
-    border-radius: 10px;
-    gap: 40px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 80px;
+  width: 70%;
+  border-radius: 10px;
+  gap: 40px;
 }
 
 /* Imagem do Produto */
 .spaceblock {
-    font-family: "Archivo", sans-serif;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 60%;
-    gap: 15px;
-    height: auto;
+  font-family: "Archivo", sans-serif;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  gap: 15px;
+  height: auto;
 }
 
 .descriçao {
@@ -1319,9 +1311,9 @@ a {
 }
 
 .spaceblock img {
-    border-radius: 5px;
-    width: 90%;
-    height: auto;
+  border-radius: 5px;
+  width: 90%;
+  height: auto;
 }
 
 .descriçao h3 {
@@ -1338,22 +1330,22 @@ a {
 
 /* Detalhes do Produto */
 .space {
-    font-family: "Bebas Neue", sans-serif;
-    padding: 30px;
-    width: 40%;
-    height: auto;
+  font-family: "Bebas Neue", sans-serif;
+  padding: 30px;
+  width: 40%;
+  height: auto;
 }
 
 .produto-nome {
-    margin-bottom: 10px;
-    font-size: 3em;
-    font-weight: bold;
-    color: #222;
+  margin-bottom: 10px;
+  font-size: 3em;
+  font-weight: bold;
+  color: #222;
 }
 
 .preco {
-    font-size: 2.5em;
-    color: #1f1f1f;
+  font-size: 2.5em;
+  color: #1f1f1f;
 }
 
 .precoComDesconto {
@@ -1363,14 +1355,16 @@ a {
 
 .tamanhos-container {
   display: flex;
-  flex-wrap: wrap; /* Permite que os botões se movam para a linha seguinte */
+  flex-wrap: wrap;
+  /* Permite que os botões se movam para a linha seguinte */
   gap: 10px;
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
 .tamanho-btn {
-  width: calc(45% - 5px); /* Cada botão ocupa 50% do espaço, menos metade do gap */
+  width: calc(45% - 5px);
+  /* Cada botão ocupa 50% do espaço, menos metade do gap */
   height: 55px;
   display: flex;
   align-items: center;
@@ -1380,12 +1374,14 @@ a {
   cursor: pointer;
   border-radius: 5px;
   font-weight: bold;
-  font-size: 16px; /* Tamanho da fonte ajustado */
+  font-size: 16px;
+  /* Tamanho da fonte ajustado */
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .tamanho-btn:hover {
-  background-color: #e0e0e0; /* Cor suave para o efeito hover */
+  background-color: #e0e0e0;
+  /* Cor suave para o efeito hover */
 }
 
 .tamanho-btn.active {
@@ -1394,7 +1390,8 @@ a {
 }
 
 .tamanho-btn.active:hover {
-  background-color: #333; /* Cor para quando o botão estiver ativo e o mouse estiver sobre ele */
+  background-color: #333;
+  /* Cor para quando o botão estiver ativo e o mouse estiver sobre ele */
 }
 
 
@@ -1422,18 +1419,18 @@ a {
 
 /* Botão de comprar */
 .comprar-btn {
-    padding: 15px;
-    font-size: 1.2em;
-    color: white;
-    background-color: #292929;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  padding: 15px;
+  font-size: 1.2em;
+  color: white;
+  background-color: #292929;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .comprar-btn:hover {
-    background-color: #363636;
+  background-color: #363636;
 }
 
 .quantidade-container {
@@ -1448,7 +1445,7 @@ a {
 }
 
 .quantidade-container:hover {
-   border-color: #000;
+  border-color: #000;
 }
 
 .quantidade-btn {
@@ -1471,22 +1468,23 @@ a {
   text-align: center;
   border: none;
   font-size: 18px;
-  pointer-events: none; /* Impede que o usuário edite diretamente */
+  pointer-events: none;
+  /* Impede que o usuário edite diretamente */
   background-color: #fff;
 }
 
 .salvarFovoritas-btn {
-    width: 365px;
-    height: 50px;
-    padding: 15px;
-    font-size: 1.0em;
-    color: rgb(0, 0, 0);
-    background-color: #00000000;
-    border: 2px solid #ddd;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.8s;
-    margin-bottom: 25px;
+  width: 365px;
+  height: 50px;
+  padding: 15px;
+  font-size: 1.0em;
+  color: rgb(0, 0, 0);
+  background-color: #00000000;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.8s;
+  margin-bottom: 25px;
 }
 
 .salvarFovoritas-btn:hover {
@@ -1519,7 +1517,8 @@ a {
   display: flex;
   flex-direction: row;
   margin-top: 40px;
-  gap: 15px; /* Espaço entre o input e o botão */
+  gap: 15px;
+  /* Espaço entre o input e o botão */
 }
 
 .freteReceber input {
@@ -1533,7 +1532,8 @@ a {
 
 .freteReceber input:focus {
   outline: none;
-  border-color: #757575; /* Cor do foco */
+  border-color: #757575;
+  /* Cor do foco */
 }
 
 .freteReceber button {
@@ -1541,15 +1541,18 @@ a {
   font-size: 16px;
   color: rgb(0, 0, 0);
   background-color: #00000000;
-  border: 2px solid transparent; /* Borda transparente inicialmente */
+  border: 2px solid transparent;
+  /* Borda transparente inicialmente */
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
 }
 
 .freteReceber button:hover {
-  transform: scale(0.95); /* Move o botão para cima */
-  border-color: #000; /* Borda preta */
+  transform: scale(0.95);
+  /* Move o botão para cima */
+  border-color: #000;
+  /* Borda preta */
 }
 
 .resultadoFrete {
@@ -1558,11 +1561,16 @@ a {
 }
 
 .frete-container {
-  margin-top: 10px; /* Adiciona um espaçamento entre as caixas */
-  background-color: #f9f9f9; /* Cor de fundo */
-  border: 1px solid #ddd; /* Borda sutil */
-  border-radius: 8px; /* Bordas arredondadas */
-  width: 350px; /* Largura fixa para as caixas */
+  margin-top: 10px;
+  /* Adiciona um espaçamento entre as caixas */
+  background-color: #f9f9f9;
+  /* Cor de fundo */
+  border: 1px solid #ddd;
+  /* Borda sutil */
+  border-radius: 8px;
+  /* Bordas arredondadas */
+  width: 350px;
+  /* Largura fixa para as caixas */
   height: 65px;
 }
 
@@ -1573,7 +1581,7 @@ a {
   align-items: center;
   height: 65px;
   font-family: Arial, sans-serif;
-  font-size: 14px;  
+  font-size: 14px;
   background-color: #ffffff00;
 }
 
@@ -1630,8 +1638,10 @@ a {
   margin-top: 20px;
   gap: 25px;
 }
+
 #lista-comentarios .comentario-item:nth-child(n+4) {
-  display: none; /* Esconde comentários após o terceiro */
+  display: none;
+  /* Esconde comentários após o terceiro */
 }
 
 .comentario-item {
@@ -1705,15 +1715,15 @@ a {
 
 /* Estilo para o modal */
 .modal {
-  display: none; 
+  display: none;
   position: fixed;
-  z-index: 1; 
+  z-index: 1;
   left: 0;
   top: 0;
   width: 100%;
   height: auto;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5); 
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 
@@ -1724,8 +1734,8 @@ a {
   padding: 20px;
   border-radius: 10px;
   border: 1px solid #888;
-  width: 40%; 
-  position: relative; 
+  width: 40%;
+  position: relative;
 }
 
 #comentario-form {
@@ -1740,40 +1750,40 @@ a {
   height: 40px;
   padding: 5px;
 }
-  
+
 
 .modal-content input:focus {
-  background-color: #f0f0f000; 
-  outline: none; 
+  background-color: #f0f0f000;
+  outline: none;
 }
 
 #comentario-texto {
   font-family: "Archivo", sans-serif;
-  resize: none; 
-  width: 100%; 
-  height: 100px; 
-  padding: 5px; 
-  font-size: 18px; 
+  resize: none;
+  width: 100%;
+  height: 100px;
+  padding: 5px;
+  font-size: 18px;
 }
 
 
 .recomenda {
   display: flex;
-  align-items: center; 
-  gap: 10px; 
+  align-items: center;
+  gap: 10px;
 }
 
 
 .opcoes {
   display: flex;
   margin-top: 2px;
-  gap: 10px; 
+  gap: 10px;
 }
 
 .recomenda label {
   display: flex;
-  align-items: center; 
-  gap: 5px; 
+  align-items: center;
+  gap: 5px;
 }
 
 .recomenda p {
@@ -1782,33 +1792,34 @@ a {
 }
 
 .recomenda input[type="radio"] {
-  appearance: none; 
+  appearance: none;
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  border: 1px solid #000000; 
-  background-color: white; 
+  border: 1px solid #000000;
+  background-color: white;
   cursor: pointer;
-  transition: background-color 0.6s, border-color 0.2s; 
+  transition: background-color 0.6s, border-color 0.2s;
 }
 
 
 .recomenda input[type="radio"]:checked {
-  background-color: black; 
-  border-color: rgb(255, 255, 255); 
+  background-color: black;
+  border-color: rgb(255, 255, 255);
 }
 
 
 .recomenda input[type="radio"]:focus {
-  outline: none; 
+  outline: none;
 }
 
 
 
 .button-container {
   display: flex;
-  justify-content: flex-end; 
+  justify-content: flex-end;
 }
+
 .button-container button {
   width: 250px;
   border: 1px solid #00000023;
@@ -1831,7 +1842,7 @@ a {
   font-size: 35px;
   position: absolute;
   top: 18px;
-  right: 25px; 
+  right: 25px;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -1840,7 +1851,7 @@ a {
 
 .fechar-modal:hover,
 .fechar-modal:focus {
-  color: #333; 
+  color: #333;
   text-decoration: none;
 }
 
@@ -1863,7 +1874,8 @@ a {
 
 /* Estilo da mensagem de sucesso */
 .mensagem-sucesso {
-  display: none; /* Inicialmente oculta */
+  display: none;
+  /* Inicialmente oculta */
   position: fixed;
   top: 12%;
   left: 50%;
@@ -1875,7 +1887,8 @@ a {
   border-radius: 5px;
   font-size: 16px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 1000; /* Garante que fique acima de outros elementos */
+  z-index: 1000;
+  /* Garante que fique acima de outros elementos */
   opacity: 0;
   transition: opacity 0.5s ease;
 }
@@ -1886,7 +1899,8 @@ a {
 }
 
 .mensagem-erro {
-  display: none; /* Inicialmente oculta */
+  display: none;
+  /* Inicialmente oculta */
   position: fixed;
   top: 12%;
   left: 50%;
@@ -1898,7 +1912,8 @@ a {
   border-radius: 5px;
   font-size: 16px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 1000; /* Garante que fique acima de outros elementos */
+  z-index: 1000;
+  /* Garante que fique acima de outros elementos */
   opacity: 0;
   transition: opacity 0.5s ease;
 }

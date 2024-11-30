@@ -63,48 +63,12 @@
       <h1>Carrinho de Compras</h1>
       <div id="carrinho-itens">
       </div>
-      <div id="cart-details">
-
-      </div>
-      <div id="detalhes-modal" class="modal hidden">
-        <div class="modal-content">
-          <h2 class="modal-title">Detalhes da Personalização</h2>
-          <div class="modal-details">
-            <div class="detail-item">
-              <strong>Cor:</strong>
-              <span id="modal-cor" class="detail-value"></span>
-            </div>
-            <div class="detail-item">
-              <strong>Imagem Personalizada:</strong>
-              <div id="modal-imagem" class="detail-preview"></div>
-            </div>
-            <div class="detail-item">
-              <strong>Posição da Imagem:</strong>
-              <span id="modal-posicao" class="detail-value"></span>
-            </div>
-            <div class="detail-item">
-              <strong>Forma da Imagem:</strong>
-              <span id="modal-forma" class="detail-value"></span>
-            </div>
-            <div class="detail-item">
-              <strong>Ícone:</strong>
-              <div id="modal-icone" class="detail-preview"></div>
-            </div>
-      
-          </div>
-          <button class="modal-action">Fechar</button>
-        </div>
-      </div>
-      
-
-      
       <div id="mensagem-vazio" style="display: none; text-align: center; font-size: 30px; color: gray; ">
         Seu Carrinho Está Vazio
       </div>
-      
       <div id="cart-summary" class="cart-summary">
         <div>
-          <span>Total Final:</span>
+          <span>Total :</span>
           <span id="final-price">R$ 0,00</span>
         </div>
         <div class="btn">
@@ -185,12 +149,13 @@
       </div>
       <div id="cart-summary" class="cart-summary">
         <div class="btn">
+          <button class="btn-voltar" onclick="voltarParaPaginaCarrinho()">Voltar</button>
           <button class="btn-finalizarCompra" onclick="irParaConfirmacao()">Finalizar Compra</button>
           <button class="btn-continuarComprando"><a href="../../../index.html">Continuar Comprando</a></button>
         </div>
       </div>
     </div>
-   
+
     <!-- Etapa 3: Confirmação -->
     <div id="section-confirmacao" class="teste" style="display: none">
       <h1>Confirmação do Pedido</h1>
@@ -200,7 +165,8 @@
       </div>
       <div id="cart-summary" class="cart-summary">
         <div class="btn">
-          <button onclick="finalizarPedido()">Ir para Pagamento</button>
+          <button class="btn-voltar" onclick="voltarParaPaginaIndentificacao()">Voltar</button>
+          <button class="btn-finalizarCompra" onclick="finalizarPedido()">Ir para Pagamento</button>
           <button class="btn-continuarComprando"><a href="../../../index.html">Continuar Comprando</a></button>
         </div>
       </div>
@@ -209,10 +175,77 @@
     <!-- Etapa 4: Pagamento -->
     <div id="section-pagamento" class="teste" style="display: none">
       <h1>Pagamento</h1>
-      <div id="informacoes-pagamento"></div>
-      <button onclick="finalizarCompra()">Finalizar Pagamento</button>
-    </div>
+      <div class="container-pagamento">
+        <!-- Cartão de Crédito -->
+        <div class="box-pagamento">
+          <div class="deixar-mais-bonito">
+            <h2 onclick="toggleBox('credito')">Cartão</h2>
+            <div class="cartoes">
+              <img src="../../img/cartao-pre-pago-standard-1280x720.png" alt="">
+              <img src="../../img/gold-mastercard-1280x720.png" alt="">
+              <img src="../../img/tarjeta-black-credito-1280x720.png" alt="">
+            </div>
+          </div>
 
+          <div id="box-credito" class="form-detalhes" style="display: none;">
+            <h3>Número do cartão</h3>
+            <input id="numero-cartao" type="text" placeholder="Número do Cartão" maxlength="19"
+              oninput="formatarNumeroCartao(this)" required />
+            <h3>Nome do titular</h3>
+            <input type="text" placeholder="Nome no Cartão" required />
+            <h3>Informações de segurança</h3>
+            <div class="info-seguranca">
+              <input id="data-validade" type="text" placeholder="Data de Validade (MM/AA)" maxlength="5"
+                oninput="formatarDataValidade(this)" required />
+              <input type="text" placeholder="CVV" required />
+            </div>
+          </div>
+        </div>
+
+        <!-- Pix -->
+        <div class="box-pagamento">
+          <div class="deixar-mais-bonito">
+            <h2 onclick="toggleBox('pix')">Pix</h2>
+            <div class="cartoes">
+              <img src="../../img/picpay.png" alt="" style="height: 35px; width: 55px;">
+              <img src="../../img/paypal.png" alt="" style="height: 35px; width: 75px;">
+            </div>
+          </div>
+
+          <div id="box-pix" class="form-detalhes" style="display: none;">
+            <input type="text" placeholder="Nome Completo" required />
+            <input type="text" placeholder="CPF" required oninput="mascaraCPF(this)" />
+          </div>
+        </div>
+      </div>
+
+      <div id="cart-summary" class="cart-summary">
+        <div class="btn">
+          <button class="btn-voltar" onclick="voltarParaPaginaIndentificacao()">Voltar</button>
+          <button class="btn-finalizarCompra" onclick="finalizarCompraAAAAA()">Ir para Pagamento</button>
+        </div>
+      </div>
+      <div id="mensagemCompra" style="display: none;">
+        <div class="conteudo">
+          <img src="../../img/compra_realizada_com_sucesso.png" alt="Compra Realizada" />
+          <p>Obrigado pela sua compra! Em breve você receberá os detalhes.</p>
+        </div>
+      </div>
+      <div id="qrcodeContainer">
+        <div class="conteudo">
+          <h2>Como pagar com o QRCODE?</h2>
+          <div class="etapas-de-pagamento">
+            <p><strong>Passo 1:</strong> Abra o seu banco para o pagamento.</p>
+            <p><strong>Passo 2:</strong> Vá até a opção "Pagar com QR Code".</p>
+            <p><strong>Passo 3:</strong> Escaneie o QR Code gerado e conclua o pagamento.</p>
+          </div>
+          <img src="../../img/unnamed.webp" alt="QR Code">
+          <h2>Escaneie o QR Code para finalizar o pagamento!</h2>
+          <p id="contador">Tempo restante: 01:00:00</p>
+          <p id="status"></p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="footer">

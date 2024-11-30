@@ -32,9 +32,9 @@
       
     
     
-      <nav>
+     <nav>
         <div class="left-section">
-          <a href="/../../../index.html">
+          <a href="../../../../index.html">
           <img src="../../img/logopreta.png" id="logo" style="height: 90px; width: 90px; margin: 5px; margin-top: 20px;">
           </a>
         </div>
@@ -43,41 +43,30 @@
             <li class="dropdown">
               <a href="">Coleções</a>
               <div class="dropdown-menu">
-                <a href="../../../colecoes/colecoes-travis/travis.html">Travis Scott</a>
-                <a href="">Opium</a>
-                <a href="">Japão</a>
+                <a href="../colecoes/colecoes-travis/travis.html">Travis Scott</a>
+                <a href="../colecoes/colecoes-travis/opium.html">Opium</a>
+                <a href="../colecoes/colecoes-travis/japao.html">Japão</a>
               </div>
             </li>
             <li class="dropdown">
               <a href="">Masculino</a>
               <div class="dropdown-menu">
-                <a href="../../paginas/produtos/camisetas/masculino-produtos-camisas.html">Camisa</a>
-                <a href="">Moletom</a>
-                <a href="">Calça</a>
+                <a href="../../paginas/produtos/produtoCamiseta/masculino-produtos-camisas.html">Camisa</a>
+                <a href="../colecoes/colecoes-travis/moletoes.html">Moletom</a>
               </div>
             </li>
             <li class="dropdown">
               <a href="">Feminino</a>
               <div class="dropdown-menu">
                 <a href="">Camisa</a>
-                <a href="">Cropped</a>
-                <a href="">Calça</a>
+                <a href="../colecoes/colecoes-travis/feminino.html">Cropped</a>
               </div>
             </li>
             <li class="dropdown">
-                <a href="">Acessorios</a>
-                <div class="dropdown-menu">
-                  <a href="">Camisa</a>
-                  <a href="">Cropped</a>
-                  <a href="">Calça</a>
-                </div>
-            </li>
-            <li class="dropdown">
-               <a href="../../Personalizar/Personalizar.html">Personalização</a>
+               <a href="../../paginas/Personalizar/Personalizar.html">Personalização</a>
             </li>
           </ul>
         </div>
-    
         <div class="search-bar-container">
           <div class="group">
             <svg viewBox="0 0 24 24" aria-hidden="true" class="search-icon">
@@ -87,17 +76,20 @@
                 </path>
               </g>
             </svg>
-            <input id="query" class="input" type="search" placeholder="Search..." name="searchbar" />
+            <input id="query" class="input" type="search" placeholder="Search..." name="searchbar" oninput="showSuggestions()" />
           </div>
+          <div id="suggestions" class="suggestions-box"></div>
         </div>
+        
         <div class="right-section">
-          <a href="#" class="cart-icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+          <a href="../../paginas/carrinho/carrinho.html" class="cart-icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
               class="bi bi-cart3" viewBox="0 0 16 16">
               <path
                 d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2">
               </path>
             </svg></a>
-            <a href="" id="profile-icon">
+            
+            <a id="profile-icon">
               <img id="profile-image" src="http://localhost:3000/usuarioDefault.jpg" alt="Foto de Perfil" style="display: none; width: 30px; height: 30px; border-radius: 50%;">
               <svg id="profile-svg" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"></path>
@@ -107,12 +99,14 @@
         </div>
     
         <div class="profile-text">
-          <a class="text-login" id="login-text" href="login.html" class="profile-link">ENTRE</a>
+          <a class="text-login" id="login-text" href="../login/login.html" class="profile-link">ENTRE</a>
           <a class="text-login" id="separator">OU</a>
           <br>
-          <a class="text-login" id="register-text" href="register.html" class="profile-link">CADASTRE-SE</a>
+          <a class="text-login" id="register-text" href="../login/register.html" class="profile-link">CADASTRE-SE</a>
         </div>  
-      </nav>
+    
+        
+      </nav> 
 
       
       <div class="container">
@@ -309,7 +303,8 @@
 
 
         <form id="editarPerfil" enctype="multipart/form-data">
-          
+          <div id="message" class="notification"></div>
+
                 <div class="foto-container">
                   <img id="fotoPerfil" src="http://localhost:3000/uploads/usuarioDefault.jpg" class="imagem-hover" alt="Foto de perfil">
                   <input type="file" id="inputFoto" name="profile_image" accept="image/*" style="display: none;">
@@ -492,6 +487,17 @@
       </div>
     
       <script>
+
+const displayMessage = (message, isError = false) => {
+    const messageElement = document.getElementById('message');
+    if (!messageElement) return;
+    messageElement.className = `notification ${isError ? 'error' : 'success'} show`;
+    messageElement.innerText = message;
+    setTimeout(() => {
+        messageElement.classList.remove('show');
+    }, 3000);
+};
+
      // Recupera o token armazenado no localStorage
 const token = localStorage.getItem('token');
 
@@ -542,10 +548,10 @@ function carregarPerfilUsuario() {
 
         // Mantém os textos padrão
         loginTextElement.textContent = "ENTRE";
-        loginTextElement.href = "frontend/paginas/login/login.html";
+        loginTextElement.href = "../login/login.html";
 
         registerTextElement.textContent = "CADASTRE-SE";
-        registerTextElement.href = "frontend/paginas/login/register.html";
+        registerTextElement.href = "../login/register.html";
 
         separatorElement.style.display = "inline"; // Exibe "OU"
         return;
@@ -566,11 +572,11 @@ function carregarPerfilUsuario() {
         })
         .then(data => {
             // Define a imagem de perfil (usa a padrão se não houver)
-            const profileImage = data.profile_image ? `http://localhost:3000/${data.profile_image}` : defaultImage;
+            const profileImage = data.profile_image ? `http://localhost:3000/${data.profile_image}` : null;
 
             // Atualiza a imagem de perfil
-            document.getElementById('fotoPerfilEmail').src = profileImage;
-            document.getElementById('fotoPerfil').src = profileImage;
+            document.getElementById('fotoPerfilEmail').src = data.profile_image ? `http://localhost:3000/${data.profile_image}` : defaultImage;
+            document.getElementById('fotoPerfil').src = data.profile_image ? `http://localhost:3000/${data.profile_image}` : defaultImage;
 
             if (profileImage) {
                 profileImageElement.src = profileImage;
@@ -613,13 +619,12 @@ function carregarPerfilUsuario() {
 // Carrega os dados do usuário ao carregar a página
 window.onload = carregarPerfilUsuario;
 
-
 document.getElementById('editarPerfil').addEventListener('submit', async (event) => {
     event.preventDefault(); // Impede o envio padrão do formulário
 
     const token = localStorage.getItem('token'); // Obtém o token armazenado
     if (!token) {
-        alert('Usuário não autenticado. Faça login novamente.');
+        displayMessage('Usuário não autenticado. Faça login novamente.', true);
         return;
     }
 
@@ -637,28 +642,20 @@ document.getElementById('editarPerfil').addEventListener('submit', async (event)
 
         const data = await response.json();
         if (response.ok) {
-            alert('Perfil atualizado com sucesso!');
+            displayMessage('Perfil atualizado com sucesso!');
+            setTimeout(() => {
+                window.location.reload(); // Recarrega a página após uma pequena pausa
+            }, 1000);
         } else {
-            alert(`Erro: ${data.message}`);
+            displayMessage(`Erro: ${data.message}`, true);
         }
     } catch (error) {
         console.error('Erro ao enviar a requisição:', error);
-        alert('Erro ao salvar as alterações.');
+        displayMessage('Erro ao salvar as alterações.', true);
     }
 });
 
-// Pré-visualização da imagem de perfil
-document.getElementById('inputFoto').addEventListener('change', function(event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            document.getElementById('fotoPerfil').src = e.target.result; // Atualiza a imagem da pré-visualização
-        };
-        reader.readAsDataURL(file);
-    }
-});
-
+// Logout com notificações
 const logout = async () => {
     const token = localStorage.getItem('token'); // Obtém o token armazenado
 
@@ -674,10 +671,12 @@ const logout = async () => {
 
     if (data.success) {
         localStorage.removeItem('token'); // Remove o token
-        alert(data.message);
-        window.location.href = '/index.html'; // Redireciona para login
+        displayMessage(data.message); // Notificação de sucesso
+        setTimeout(() => {
+            window.location.href = '/index.html'; // Redireciona para login
+        }, 1000);
     } else {
-        alert('Erro ao realizar logout.');
+        displayMessage('Erro ao realizar logout.', true); // Notificação de erro
     }
 };
 
