@@ -871,8 +871,8 @@ a {
 
 /* Estilo da imagem */
 #qrcodeContainer img {
-  width: 250px;
-  height: 250px;
+  width: 260px;
+  height: 280px;
   margin: 20px 0;
 }
 
