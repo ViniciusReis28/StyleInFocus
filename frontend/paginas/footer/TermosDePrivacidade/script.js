@@ -78,10 +78,10 @@ window.addEventListener('scroll', function() {
 
   if (window.scrollY > 50) { // Ajuste o valor conforme necessário
     nav.classList.add('scrolled'); // Adiciona a classe quando rola para baixo
-    logo.src = '../../../img/logopreta.png'; // Altera para a imagem preta
+    logo.src = '../../img/logopreta.png'; // Altera para a imagem preta
   } else {
     nav.classList.remove('scrolled'); // Remove a classe quando rola para cima
-    logo.src = '../../../img/logopreta.png'; // Retorna à imagem branca
+    logo.src = '../../img/logobranca.png'; // Retorna à imagem branca
   }
 });
 
@@ -103,8 +103,14 @@ window.addEventListener('scroll', function() {
   }
 });
 
-
-
+window.addEventListener('scroll', function() {
+  const spotify = document.querySelector('.Spotify'); // Corrige a seleção do elemento
+  if (window.scrollY > 50) { // Ajuste o valor conforme necessário
+    spotify.style.top = '0'; // Fixa o Spotify no topo quando rola para baixo
+  } else {
+    spotify.style.top = '52px'; // Retorna ao deslocamento inicial
+  }
+});
                                                                                 //SLIDE TEXT
                                                                                 
 document.addEventListener('DOMContentLoaded', function() {

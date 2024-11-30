@@ -2410,6 +2410,18 @@ section.slider{
   animation: titleGlow 1.5s infinite alternate;
 }
 
+.politica-e-privacidade2{
+  font-size: 40px;
+  font-weight: bold;
+  background: linear-gradient(45deg, #ffffff, #d6d6d6, #000000);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+  position: relative;
+  animation: titleGlow 1.5s infinite alternate;
+}
+
 @keyframes titleGlow {
   0% {
       text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.6), 0 0 25px #444444, 0 0 50px #686868;

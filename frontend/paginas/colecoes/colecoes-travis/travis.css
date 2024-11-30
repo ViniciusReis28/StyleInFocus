@@ -531,7 +531,7 @@ nav:hover .right-section a::after {
 }
 
 nav:hover #logo {
-  content: url('../../img/logopreta.png'); /* Substitui a imagem quando o mouse passa no <nav> */
+  content: url('../../../img/logopreta.png'); /* Substitui a imagem quando o mouse passa no <nav> */
   transition: all 0.3s ease; /* Transição suave */
 }
 
