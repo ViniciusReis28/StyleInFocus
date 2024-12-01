@@ -1,35 +1,18 @@
-document.getElementById("profile-icon").onclick = function () {
-  document.getElementById("sidebar").style.width = "350px";
-  document.getElementById("overlay").style.width = "100%";
-};
+// Função para alternar a visibilidade do texto nos contêineres
+function toggleText(id) {
+  const textElement = document.getElementById(id);
+  if (textElement.classList.contains('show')) {
+      textElement.classList.remove('show');
+  } else {
+      // Ocultar todos os outros textos
+      const allTextElements = document.querySelectorAll('.proposito-text');
+      allTextElements.forEach(element => element.classList.remove('show'));
 
-document.querySelector(".close-btn").onclick = function () {
-  document.getElementById("sidebar").style.width = "0";
-  document.getElementById("overlay").style.width = "0";
-};
-
-document.getElementById("overlay").onclick = function () {
-  document.getElementById("sidebar").style.width = "0";
-  document.getElementById("overlay").style.width = "0";
-};
-
-
-function openLeftSidebar() {
-  document.getElementById("leftSidebar").style.width = "380px";
-}
-
-function closeLeftSidebar() {
-  document.getElementById("leftSidebar").style.width = "0";
-}
-
-// Fechar o sidebar ao clicar fora dele
-document.addEventListener('click', function(event) {
-  var sidebar = document.getElementById('leftSidebar');
-  var btn = document.querySelector('.btn-filtrar');
-  if (sidebar.style.width === "380px" && !sidebar.contains(event.target) && event.target !== btn) {
-      closeLeftSidebar();
+      // Mostrar o texto clicado
+      textElement.classList.add('show');
   }
-});
+}
+
 
 function toggleDropdown(dropdownId) {
   const dropdown = document.getElementById(dropdownId);
@@ -85,26 +68,7 @@ window.addEventListener('scroll', function() {
   }
 });
 
-window.addEventListener('scroll', function() {
-  const nav = document.querySelector('nav');
-  if (window.scrollY > 50) { // Ajuste o valor conforme necessário
-    nav.classList.add('scrolled'); // Adiciona a classe quando rola para baixo
-  } else {
-    nav.classList.remove('scrolled'); // Remove a classe quando rola para cima
-  }
-});
-
-window.addEventListener('scroll', function() {
-  const nav = document.querySelector('nav');
-  if (window.scrollY > 50) { // Ajuste o valor conforme necessário
-    nav.classList.add('scrolled'); // Adiciona a classe quando rola para baixo
-  } else {
-    nav.classList.remove('scrolled'); // Remove a classe quando rola para cima
-  }
-});
-
-
-
+  
                                                                                 //SLIDE TEXT
                                                                                 
 document.addEventListener('DOMContentLoaded', function() {
@@ -247,193 +211,175 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+var radio = document.querySelector('.manual-btn')
+var cont = 1
+
+document.getElementById('radio1').checked = true
+
+setInterval(() => {
+    proximaimg()
+}, 4000)
+
+function proximaimg(){
+    cont++
+
+    if(cont > 3 ){
+        cont = 1
+    }
+
+    document.getElementById('radio'+cont).checked = true
+}
 
 
+// Simulação de produtos disponíveis com URLs
+const products = [
+  { name: "Camiseta personalizada", url: "/produtos/camiseta-personalizada" },
+  { name: "Camiseta preta", url: "/produtos/camiseta-preta" },
+  { name: "Camiseta branca", url: "/produtos/camiseta-branca" },
+  { name: "Camiseta azul", url: "/produtos/camiseta-azul" },
+  { name: "Camiseta vermelha", url: "/produtos/camiseta-vermelha" },
+  { name: "Camiseta listrada", url: "/produtos/camiseta-listrada" },
+  { name: "Camiseta de algodão", url: "/produtos/camiseta-algodao" },
+  { name: "Camiseta de manga longa", url: "/produtos/camiseta-manga-longa" }
+];
 
-
-
-                                             //Parte da Paginga de perfil 
-function mostrarConteudo(tipo) {
-  // Esconde todos os painéis
-  const panels = document.querySelectorAll('.right-panel');
-  panels.forEach(panel => panel.classList.remove('active'));
-
-  // Mostra o painel correto
-  const painelAtivo = document.getElementById(`conteudo-${tipo}`);
-  if (painelAtivo) {
-    painelAtivo.classList.add('active');
+function showSuggestions() {
+  const input = document.getElementById('query').value.toLowerCase();
+  const suggestionsBox = document.getElementById('suggestions');
+  
+  // Limpa sugestões anteriores
+  suggestionsBox.innerHTML = '';
+  
+  if (input) {
+      // Filtra produtos que correspondem ao texto digitado
+      const filteredProducts = products.filter(product => product.name.toLowerCase().includes(input));
+      
+      // Se houver resultados, mostra o dropdown
+      if (filteredProducts.length > 0) {
+          suggestionsBox.style.display = 'block';
+          filteredProducts.forEach(product => {
+              const suggestionItem = document.createElement('div');
+              suggestionItem.classList.add('suggestion-item');
+              suggestionItem.textContent = product.name;
+              
+              // Adiciona um evento de clique para redirecionar para a página do produto
+              suggestionItem.onclick = () => {
+                  window.location.href = product.url;
+              };
+              
+              suggestionsBox.appendChild(suggestionItem);
+          });
+      } else {
+          suggestionsBox.style.display = 'none';
+      }
+  } else {
+      suggestionsBox.style.display = 'none';
   }
 }
-//Parte de trocar a foto de usuario da Pagina de Perfil
-const inputFoto = document.getElementById('inputFoto');
-const fotoPerfil = document.getElementById('fotoPerfil');
 
-window.onload = function() {
-  const fotoArmazenada = localStorage.getItem('fotoPerfil');
-  if (fotoArmazenada) {
-      fotoPerfil.src = fotoArmazenada; // Atualiza a imagem do perfil
-      fotoPerfilEmail.src = fotoArmazenada; // Atualiza a imagem do email
+document.addEventListener('DOMContentLoaded', () => {
+  // Recupera o token armazenado no localStorage (ou sessionStorage, dependendo da sua escolha)
+  const token = localStorage.getItem('token');
+
+  // Se houver token, inclui ele no cabeçalho da requisição
+  fetch('/auth/check-session', {
+      method: 'GET',
+      headers: {
+          'Authorization': `Bearer ${token}`,  // Envia o token no cabeçalho
+      },
+  })
+  .then(response => response.json())
+  .then(data => {
+      const loginLink = document.getElementById('login-link');
+      const registerLink = document.getElementById('register-link');
+      const profileImageElement = document.getElementById('profile-image');
+      const profileSvgElement = document.getElementById('profile-svg');
+      const orText = document.getElementById('or-text'); // Seleciona o texto "OU"
+
+      if (loginLink && registerLink) {
+          if (data.authenticated) {
+              // Quando o usuário está autenticado
+              loginLink.textContent = data.user.username;  // Exibe o nome do usuário
+              registerLink.textContent = 'MINHA CONTA';  // Muda o texto de "Cadastrar-se" para "MINHA CONTA"
+              
+              // Altera o link de "MINHA CONTA" para o perfil do usuário
+              registerLink.href = '../login/profile.html';  // Link para o perfil do usuário
+
+              const profileImage = data.user.profileImage || '/paginas/login/uploads/usuarioDefault.jpg';
+
+              if (profileImageElement && profileSvgElement) {
+                  if (data.user.profileImage) {
+                      profileImageElement.src = profileImage;
+                      profileImageElement.style.display = 'inline';
+                      profileSvgElement.style.display = 'none';
+                  } else {
+                      profileSvgElement.style.display = 'inline';
+                      profileImageElement.style.display = 'none';
+                  }
+              }
+
+              // Esconde o texto "OU"
+              if (orText) {
+                  orText.style.display = 'none';
+              }
+          } else {
+              // Quando o usuário não está autenticado
+              loginLink.textContent = 'ENTRE';
+              registerLink.textContent = 'CADASTRE-SE';
+
+              // Alterando os links de login e registro
+              loginLink.href = '../login/login.html';  // Link para login
+              registerLink.href = '../login/register.html';  // Link para registro
+
+              // Exibe o texto "OU"
+              if (orText) {
+                  orText.style.display = 'inline';
+              }
+          }
+      }
+  })
+  .catch(error => {
+      console.error('Erro ao verificar a sessão:', error);
+      const loginLink = document.getElementById('login-link');
+      const registerLink = document.getElementById('register-link');
+      const orText = document.getElementById('or-text');
+      
+      if (loginLink && registerLink) {
+          loginLink.textContent = 'ENTRE';
+          registerLink.textContent = 'CADASTRE-SE';
+          
+          // Caso de erro, volta os links para login e registro
+          loginLink.href = '../login/login.html';
+          registerLink.href = '../login/register.html';
+
+          // Exibe o texto "OU" no caso de erro
+          if (orText) {
+              orText.style.display = 'inline';
+          }
+      }
+  });
+});
+
+
+window.addEventListener('scroll', function() {
+  const nav = document.querySelector('nav');
+  const logo = document.getElementById('logo');
+
+  if (window.scrollY > 50) { // Ajuste o valor conforme necessário
+    nav.classList.add('scrolled'); // Adiciona a classe quando rola para baixo
+    logo.src = '../../../img/logopreta.png'; // Altera para a imagem preta
+  } else {
+    nav.classList.remove('scrolled'); // Remove a classe quando rola para cima
+    logo.src = '../../../img/logopreta.png'; // Retorna à imagem branca
   }
-};
-
-inputFoto.addEventListener('change', function() {
-    const file = this.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(event) {
-            fotoPerfil.src = event.target.result; 
-            fotoPerfilEmail.src = event.target.result;
-            localStorage.setItem('fotoPerfil', event.target.result);
-        }
-        reader.readAsDataURL(file); // Lê a imagem como URL
-    }
 });
 
 
 
+  
 
 
-
-
-function editarCampo(campo) {
-  var textElement = document.getElementById(campo + 'Text');
-  var valorAtual = textElement.textContent;
-
-  // Substitui o texto atual por um campo de input
-  textElement.innerHTML = `<input type='text' id='input-${campo}' value='${valorAtual}' />`;
-
-  // Adiciona o listener para o evento de tecla (Enter)
-  var inputElement = document.getElementById('input-' + campo);
-  inputElement.focus(); // Coloca o foco no input automaticamente
-  inputElement.addEventListener('keydown', function(event) {
-      if (event.key === 'Enter') {
-          salvarCampo(campo);
-      }
-  });
-}
-
-function salvarCampo(campo) {
-  var inputElement = document.getElementById('input-' + campo);
-  var novoValor = inputElement.value.trim(); // Remove espaços em branco
-
-  // Verifica se o campo está vazio
-  if (novoValor === "") {
-      alert("O campo não pode ficar vazio. Por favor, insira um valor."); // Mensagem de erro
-      // Volta o campo de input para o valor anterior
-      var textElement = document.getElementById(campo + 'Text');
-      inputElement.value = textElement.textContent; // Restaura o valor anterior
-      return; // Interrompe a função
+  function toggleInfo(cardId) {
+    const extraInfo = document.getElementById(cardId);
+    extraInfo.classList.toggle("open"); // Alterna a exibição do card correspondente
   }
-
-  // Substitui o input pelo novo valor de texto
-  var textElement = document.getElementById(campo + 'Text');
-  textElement.textContent = novoValor;
-
-  // Atualiza o nome ou email dependendo do campo editado
-  if (campo === 'nome') {
-      atualizarNome(novoValor);
-  } else if (campo === 'email') {
-      atualizarEmail(novoValor);
-  }
-}
-function atualizarNome(novoNome) {
-  // Seleciona todos os elementos com a classe "nomeUsuario"
-  var nomes = document.querySelectorAll('.nomeUsuario');
-
-  // Atualiza o texto de cada elemento
-  nomes.forEach(function(nome) {
-      nome.textContent = novoNome;
-  });
-}
-
-function atualizarEmail(novoEmail) {
-  // Seleciona todos os elementos com a classe "emailUsuario"
-  var emails = document.querySelectorAll('.emailUsuario');
-
-  // Atualiza o texto de cada elemento
-  emails.forEach(function(email) {
-      email.textContent = novoEmail;
-  });
-}
-
-
-const token = localStorage.getItem('token'); // Obtém o token de autenticação
-
-function carregarPerfilUsuario() {
-    const profileImageElement = document.getElementById('profile-image');
-    const profileSvgElement = document.getElementById('profile-svg');
-    const loginTextElement = document.getElementById('login-text');
-    const registerTextElement = document.getElementById('register-text');
-    const separatorElement = document.getElementById('separator');
-
-    if (!token) {
-        // Usuário não está logado
-        console.log("Usuário não autenticado.");
-        
-        // Exibe o SVG
-        profileImageElement.style.display = "none";
-        profileSvgElement.style.display = "block";
-
-        // Mantém os textos padrão
-        loginTextElement.textContent = "ENTRE";
-        loginTextElement.href = "../../login/login.html";
-
-        registerTextElement.textContent = "CADASTRE-SE";
-        registerTextElement.href = "../../login/register.html";
-
-        separatorElement.style.display = "inline"; // Exibe "OU"
-        return;
-    }
-
-    // Se o token existe, tenta buscar os dados do usuário
-    fetch('http://localhost:3000/auth/api/user', {
-        method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro ao carregar os dados do usuário');
-            }
-            return response.json();
-        })
-        .then(data => {
-            // Define a imagem de perfil (usa o padrão se não houver)
-            const profileImage = data.profile_image 
-                ? `http://localhost:3000/${data.profile_image}` 
-                : null; // Não define imagem padrão se não existir no backend
-
-            if (profileImage) {
-                profileImageElement.src = profileImage;
-                profileImageElement.style.display = "block";
-                profileSvgElement.style.display = "none";
-            } else {
-                profileImageElement.style.display = "none";
-                profileSvgElement.style.display = "block"; // Exibe o SVG se não houver imagem
-            }
-
-            // Atualiza os textos
-            if (data.username) {
-                loginTextElement.textContent = data.username; // Altera "ENTRE" para o nome do usuário
-                loginTextElement.href = "#"; // Remove o link de login
-
-                registerTextElement.textContent = "MINHA CONTA"; // Altera "CADASTRE-SE" para "MINHA CONTA"
-                registerTextElement.href = "../../minhaConta/profile.html"; // Link para a página de perfil
-
-                separatorElement.style.display = "none"; // Remove "OU"
-            } else {
-                console.error("Nome de usuário não encontrado nos dados do servidor.");
-            }
-        })
-        .catch(error => {
-            console.error('Erro ao carregar os dados do usuário:', error);
-
-            // Em caso de erro, exibe o SVG
-            profileImageElement.style.display = "none";
-            profileSvgElement.style.display = "block";
-        });
-}
-
-// Carrega os dados do usuário ao carregar a página
-window.onload = carregarPerfilUsuario;
