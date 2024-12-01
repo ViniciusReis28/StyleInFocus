@@ -424,7 +424,7 @@ calcularFreteBtn.addEventListener("click", async () => {
   }
 
   try {
-    const response = await fetch("http://localhost:3000/frete/calcular-frete", {
+    const response = await fetch("https://styleinfocusbackend.onrender.com/frete/calcular-frete", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

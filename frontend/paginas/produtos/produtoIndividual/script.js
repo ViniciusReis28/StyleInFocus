@@ -95,7 +95,7 @@ const produtoId = urlParams.get("id");
 
 // Verifica se o ID do produto foi passado na URL
 if (produtoId) {
-  fetch(`http://localhost:3000/camisas/${produtoId}`)
+  fetch(`https://styleinfocusbackend.onrender.com/camisas/${produtoId}`)
     .then((response) => response.json())
     .then((data) => {
       const precoOriginal = parseFloat(data.preco);
@@ -217,7 +217,7 @@ calcularFreteBtn.addEventListener("click", async () => {
   try {
     // Envia a requisição para o back-end
     const response = await fetch(
-      "http://localhost:3000/frete/calcular-frete",
+      "https://styleinfocusbackend.onrender.com/frete/calcular-frete",
       {
         method: "POST",
         headers: {
@@ -281,7 +281,7 @@ calcularFreteBtn.addEventListener("click", async () => {
 // Função para carregar os comentários do produto
 function carregarComentarios() {
   fetch(
-    `http://localhost:3000/api/roupas/${produtoId}/comentarios`
+    `https://styleinfocusbackend.onrender.com/api/roupas/${produtoId}/comentarios`
   )
     .then((response) => response.json())
     .then((comentarios) => {
@@ -403,7 +403,7 @@ document
 
     // Enviar comentário ao backend
     fetch(
-      `http://localhost:3000/api/roupas/${produtoId}/comentarios`,
+      `https://styleinfocusbackend.onrender.com/api/roupas/${produtoId}/comentarios`,
       {
         method: "POST",
         headers: {
@@ -516,7 +516,7 @@ function carregarPerfilUsuario() {
     }
 
     // Se o token existe, tenta buscar os dados do usuário
-    fetch('http://localhost:3000/auth/api/user', {
+    fetch('https://styleinfocusbackend.onrender.com/auth/api/user', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`
@@ -531,7 +531,7 @@ function carregarPerfilUsuario() {
         .then(data => {
             // Define a imagem de perfil (usa o padrão se não houver)
             const profileImage = data.profile_image 
-                ? `http://localhost:3000/${data.profile_image}` 
+                ? `https://styleinfocusbackend.onrender.com/${data.profile_image}` 
                 : null; // Não define imagem padrão se não existir no backend
 
             if (profileImage) {
