@@ -379,7 +379,7 @@ document.addEventListener("DOMContentLoaded", carregarCarrinho);
 function voltarParaPaginaConfirmaçao() {
   // Atualizar o progresso removendo a classe 'completed' da etapa atual
   document.getElementById("step-4").classList.remove("completed");
-  document.getElementById("step-3").classList.remove("completed");
+  document.getElementById("step-3").classList.add("completed");
 
   // Atualizar as seções visíveis
   document.getElementById("section-pagamento").style.display = "none";
@@ -390,7 +390,7 @@ function voltarParaPaginaConfirmaçao() {
 function voltarParaPaginaIndentificacao() {
    // Atualizar o progresso removendo a classe 'completed' da etapa atual
    document.getElementById("step-3").classList.remove("completed");
-   document.getElementById("step-2").classList.remove("completed");
+   document.getElementById("step-2").classList.add("completed");
  
    // Atualizar as seções visíveis
    document.getElementById("section-confirmacao").style.display = "none";
@@ -400,7 +400,7 @@ function voltarParaPaginaIndentificacao() {
 function voltarParaPaginaCarrinho() {
   // Atualizar o progresso removendo a classe 'completed' da etapa atual
   document.getElementById("step-2").classList.remove("completed");
-  document.getElementById("step-1").classList.remove("completed");
+  document.getElementById("step-1").classList.add("completed");
 
   // Atualizar as seções visíveis
   document.getElementById("section-identificacao").style.display = "none";

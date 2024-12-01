@@ -444,6 +444,13 @@ a {
   font-size: 22px;
 }
 
+.btn-voltar {
+  border-radius: 8px;
+  background-color: #ffffff00;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+
 .btn {
   display: flex;
   gap: 15px;
@@ -717,6 +724,7 @@ a {
   width: 60%;
   height: 100%; /* Ajuste se necessário */
   margin: auto; /* Garante a centralização na horizontal */
+  position: relative;
 }
 
 .container-pagamento {
@@ -888,6 +896,11 @@ a {
   color: #ff0000;
   font-size: 1em;
   margin-top: 10px;
+}
+
+.btn-finalizar-compra-real {
+  position: absolute;
+  bottom: 10px; /* Distância do rodapé */
 }
 
 

@@ -301,7 +301,7 @@ function carregarComentarios() {
         divComentario.classList.add("comentario-item");
 
         // Oculta comentários após o terceiro
-        if (index >= 3) {
+        if (index >= 1) {
           divComentario.style.display = "none";
         }
 
