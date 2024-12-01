@@ -1,4 +1,27 @@
 
+// Seleciona o modal e os botões
+const modal = document.getElementById('sizeModal');
+const sizeButtons = document.querySelectorAll('.glow-on-hover-size');
+
+// Adiciona o evento de clique nos botões
+sizeButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const selectedSize = button.dataset.size;
+
+    // Opcional: Exibe o tamanho selecionado no console
+    console.log(`Tamanho selecionado: ${selectedSize}`);
+
+    // Fecha o modal
+    modal.style.display = 'none';
+  });
+});
+
+// Abre o modal automaticamente quando a página carrega
+window.addEventListener('load', () => {
+  modal.style.display = 'flex';
+});
+
+
 document.addEventListener('DOMContentLoaded', () => {
   const track = document.querySelector('.carousel-track');
   const prevBtn = document.querySelector('.prev-btn');
@@ -224,4 +247,141 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-//ZOOM
+document.addEventListener('DOMContentLoaded', () => {
+  let customizationData = {
+    shirtImage: '../../img-produtos/camisa-personalizada.jpg',
+    shirtColor: null, // Inicialmente sem cor
+    customImage: "SEM IMAGEM",
+    imagePosition: "padrão",
+    imageShape: "padrão",
+    icon: 'SEM ÍCONE',
+    shirtSize: null // Inicialmente sem tamanho
+  };
+
+  const shirtImg = document.getElementById('shirt-img');
+  const customImage = document.getElementById('custom-image');
+  const imageUpload = document.getElementById('image-upload');
+  const iconButtons = document.querySelectorAll('.icon-btn');
+  const positionButtons = document.querySelectorAll('.glow-on-hover');
+  const shapeButtons = document.querySelectorAll('.glow-on-hover-shape');
+  const sizeButtons = document.querySelectorAll('.glow-on-hover-size');
+// Mapeamento de classes para nomes de cores
+const colorMap = {
+  preta: 'preta',
+  red: 'vermelha',
+  blue: 'azul',
+  darkBlue: 'azul escuro',
+  green: 'verde',
+  yellow: 'amarela',
+  pink: 'rosa',
+  purple: 'roxa',
+  white: 'branca',
+  turquoise: 'turquesa'
+};
+
+// Mapeamento de classes para posições de imagem
+const positionMap = {
+  'center-center': 'centralizado',
+  'small-left': 'peito esquerdo',
+  'small-right': 'peito direito',
+ 
+};
+
+// Mapeamento de classes para formas da imagem
+const shapeMap = {
+  'round': 'redonda',
+  'square': 'quadrada',
+  'rounded': 'arredondada',
+  'triangle': 'triangular'
+};
+
+// Mudar a imagem da camisa e armazenar a cor da camisa
+const shirtButtons = document.querySelectorAll('.shirt-btn');
+shirtButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const imageUrl = button.getAttribute('data-image');
+    shirtImg.setAttribute('src', imageUrl);
+
+    for (let color in colorMap) {
+      if (button.classList.contains(color)) {
+        customizationData.shirtColor = colorMap[color]; // Define a cor selecionada
+        break;
+      }
+    }
+
+    console.log('Cor selecionada:', customizationData.shirtColor); // Log para depuração
+  });
+});
+
+sizeButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    // Remove a classe de seleção ativa dos outros botões
+    sizeButtons.forEach(btn => btn.classList.remove('active-size'));
+    
+    // Adiciona a classe ao botão clicado
+    button.classList.add('active-size');
+
+    // Armazena o tamanho selecionado
+    const size = button.getAttribute('data-size');
+    customizationData.shirtSize = size;
+
+    console.log('Tamanho selecionado:', customizationData.shirtSize); // Log para depuração
+  });
+});
+
+// Fazer upload de imagem personalizada e armazenar
+imageUpload.addEventListener('change', event => {
+  const file = event.target.files[0];
+  const reader = new FileReader();
+
+  reader.onload = function (e) {
+    customImage.setAttribute('src', e.target.result);
+    customImage.classList.remove('hidden');
+    customizationData.customImage = e.target.result;
+  };
+
+  if (file) {
+    reader.readAsDataURL(file);
+  }
+});
+
+positionButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const position = button.getAttribute('data-position');
+    customizationData.imagePosition = positionMap[position] || position; // Define a posição selecionada
+  });
+});
+
+shapeButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const shape = button.getAttribute('data-shape');
+    customImage.classList.remove('round', 'square', 'rounded', 'triangle');
+
+    if (shape) {
+      customImage.classList.add(shape);
+      customizationData.imageShape = shapeMap[shape] || shape; // Define a forma selecionada
+    }
+  });
+});
+
+iconButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const iconUrl = button.getAttribute('data-icon');
+    customizationData.icon = iconUrl;
+  });
+});
+
+// Função para adicionar ao carrinho
+function addToCart() {
+  if (!customizationData.shirtColor) {
+    alert('Por favor, selecione uma cor antes de adicionar ao carrinho.');
+    return;
+  }
+
+  // Armazena os dados no localStorage
+  localStorage.setItem('customizationData', JSON.stringify(customizationData));
+  alert('Sua personalização foi adicionada ao carrinho!');
+}
+
+// Adicionar evento de clique ao botão "Adicionar ao Carrinho"
+document.querySelector('.glow-on-hover-personalizar').addEventListener('click', addToCart);})

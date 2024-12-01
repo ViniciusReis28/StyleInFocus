@@ -465,7 +465,8 @@ section.slider {
   z-index: 9999px;
 }
 
-                                                             /* BARRA DE NAVEGAÇÃO DO SITE */
+             
+/* BARRA DE NAVEGAÇÃO DO SITE */
 nav { 
   height: 100px;
   font-family: "Bebas Neue", sans-serif;
@@ -521,7 +522,9 @@ nav:hover a {
   color: #000000;
 }
 
-
+nav:hover .profile-text .text-login {
+  color: #000000;
+}
 
 nav:hover .center-section .dropdown>a::after,
 nav:hover .right-section a::after {
@@ -594,6 +597,20 @@ a {
   align-items: center;
 }
 
+/* Garante que a center-section fique centralizada */
+
+/* Garante que a center-section fique centralizada */
+.center-section {
+  left: 190px;
+  position: relative;
+  z-index: 1; /* Mantém acima de outros conteúdos, se necessário */
+}
+
+/* Right-section posicionada à direita */
+.right-section {
+  display: flex;
+  z-index: 2;
+}
 .center-section ul {
   display: flex;
   list-style: none;
@@ -616,13 +633,14 @@ a {
 }
 
 .right-section a {
-  margin-left: 10px;
+  margin-left: 0px;
+  left: 300px;
 }
 
 .search-bar-container {
   position: absolute;
   top: 50%;
-  left: 87%;
+  left: 83%;
   transform: translate(-50%, -50%);
 }
 
@@ -642,6 +660,35 @@ a {
   height: 1rem;
   pointer-events: none;
   z-index: 1;
+}
+
+
+.profile-text {
+  margin-left: 5px;
+  color: #ffffff; /* Change to match the color in your image */
+  font-weight: bold;
+}
+
+.profile-link::after {
+  content: none;
+}
+
+/* Estilo geral do link na seção de perfil */
+.profile-text .text-login {
+  position: relative;
+  padding: 5px;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 20px; /* Adjust size as needed */
+  text-decoration: none;
+  
+}
+.profile-text .text-login:hover {
+  text-decoration: underline;
+}
+.text-login:hover {
+  color: #000000;
+  text-decoration: none;
 }
 
 .input {
@@ -756,7 +803,6 @@ a {
   flex-direction: column;
   /* Mantém os itens do dropdown empilhados */
 }
-
 
 /* banner Principal */
 .bannerzinho {
@@ -1860,3 +1906,21 @@ section.slider{
 }
 
 
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Faz o vídeo preencher o fundo sem distorção */
+  z-index: -1; /* Fica atrás de todos os outros elementos */
+}
+
+.content {
+  position: relative;
+  color: white;
+  text-align: center;
+  margin-top: 50vh;
+  transform: translateY(-50%);
+  font-family: Arial, sans-serif;
+}

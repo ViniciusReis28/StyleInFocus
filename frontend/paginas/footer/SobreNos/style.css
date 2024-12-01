@@ -332,21 +332,27 @@ section.slider {
   top: 0;
   left: 0;
   width: 100%;
-  height: 40px; /* Ajuste conforme o tamanho necessário para os slides */
+  height: 40px;
+  /* Ajuste conforme o tamanho necessário para os slides */
   background: #050505;
-  overflow: hidden; /* Oculta slides fora da área visível */
+  overflow: hidden;
+  /* Oculta slides fora da área visível */
   display: flex;
   align-items: center;
-  z-index: 2; /* Coloca o slider acima da imagem */
+  z-index: 2;
+  /* Coloca o slider acima da imagem */
 }
 
 /* Slides */
 .slides-text {
   display: flex;
-  flex-direction: column; /* Organiza slides verticalmente */
-  transition: transform 0.5s ease-in-out; /* Suaviza a transição */
+  flex-direction: column;
+  /* Organiza slides verticalmente */
+  transition: transform 0.5s ease-in-out;
+  /* Suaviza a transição */
   width: 100%;
-  height: 80%; /* Garante que os slides preencham o contêiner */
+  height: 80%;
+  /* Garante que os slides preencham o contêiner */
 }
 
 /* Estilo individual dos slides */
@@ -354,16 +360,19 @@ section.slider {
   width: 100%;
   box-sizing: border-box;
   text-align: center;
-  height: 100px; /* Ajuste conforme necessário */
-  flex-shrink: 0; /* Impede que o slide encolha */
+  height: 100px;
+  /* Ajuste conforme necessário */
+  flex-shrink: 0;
+  /* Impede que o slide encolha */
 }
 
 .slide-text-index h2,
 .slide-text-index p {
-  
+
   font-family: "Bebas Neue", sans-serif;
   font-size: 24px;
-  margin: 0; /* Remove margens */
+  margin: 0;
+  /* Remove margens */
 }
 
 /* Botões de navegação */
@@ -377,7 +386,8 @@ section.slider {
   font-size: 24px;
   cursor: pointer;
   padding: 600px;
-  z-index: 3; /* Garante que os botões estejam acima do conteúdo do slider */
+  z-index: 3;
+  /* Garante que os botões estejam acima do conteúdo do slider */
 
   /* Ajusta o padding para ficar apenas ao redor do texto */
 }
@@ -408,17 +418,23 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-  position: fixed; /* Torna a navbar fixa */
-  top: 40px; /* Deslocamento inicial */
-  left: 0; /* Alinha a navbar na esquerda da página */
-  width: 100%; /* Faz a navbar ocupar toda a largura da página */
-  z-index: 1000; /* Garante que a navbar fique acima de outros elementos */
-  background-color: rgb(255, 255, 255); /* Cor de fundo opaca */
-  transition: top 0.3s; /* Transição suave para a mudança de posição */
+  position: fixed;
+  /* Torna a navbar fixa */
+  top: 40px;
+  /* Deslocamento inicial */
+  left: 0;
+  /* Alinha a navbar na esquerda da página */
+  width: 100%;
+  /* Faz a navbar ocupar toda a largura da página */
+  z-index: 1000;
+  /* Garante que a navbar fique acima de outros elementos */
+  background-color: rgb(255, 255, 255);
+  /* Cor de fundo opaca */
+  transition: top 0.3s;
+  /* Transição suave para a mudança de posição */
   transition: background-color 0.3s, color 0.3s;
-  box-shadow: 2px 2px 5px rgba(2, 2, 2, 0.473);
-  
-  
+  box-shadow: 2px 2px 5px rgba(2, 2, 2, 0.281);
+
 }
 
 nav.scrolled .center-section a::after,
@@ -510,7 +526,6 @@ a {
   transition: width 0.3s ease;
 }
 
-
 .center-section a:hover::after,
 .right-section a:hover::after {
   width: 100%;
@@ -528,6 +543,20 @@ a {
 .right-section {
   display: flex;
   align-items: center;
+}
+
+/* Garante que a center-section fique centralizada */
+.center-section {
+  left: 190px;
+  position: relative;
+  z-index: 1;
+  /* Mantém acima de outros conteúdos, se necessário */
+}
+
+/* Right-section posicionada à direita */
+.right-section {
+  display: flex;
+  z-index: 2;
 }
 
 .center-section ul {
@@ -557,9 +586,16 @@ a {
 }
 
 .right-section a {
-  margin-left: 10px;
+  margin-left: 0px;
+  left: 300px;
 }
 
+.search-bar-container {
+  position: absolute;
+  top: 50%;
+  left: 83%;
+  transform: translate(-50%, -50%);
+}
 
 .group {
   display: flex;
@@ -567,6 +603,49 @@ a {
   align-items: center;
   position: relative;
   margin-right: -18px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  fill: #bdbecb;
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+.profile-text {
+  margin-left: 5px;
+  color: #ffffff;
+  /* Change to match the color in your image */
+  font-weight: bold;
+}
+
+.profile-link::after {
+  content: none;
+}
+
+/* Estilo geral do link na seção de perfil */
+.profile-text .text-login {
+  position: relative;
+  padding: 5px;
+  border-radius: 5px;
+  color: #000000;
+  font-size: 20px;
+  /* Adjust size as needed */
+  text-decoration: none;
+
+}
+
+.profile-text .text-login:hover {
+  text-decoration: underline;
+}
+
+.text-login:hover {
+  color: #000000;
+  text-decoration: none;
 }
 
 .input {
@@ -599,27 +678,6 @@ a {
 
 .input:focus {
   box-shadow: 0 0 0 2.5px #2f303d;
-}
-
-.search-icon {
-  position: absolute;
-  left: 1rem;
-  fill: #bdbecb;
-  width: 1rem;
-  height: 1rem;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.search-bar-container {
-  position: absolute;
-  /* Allows positioning it anywhere inside the nav */
-  top: 50%;
-  /* Adjust as necessary */
-  left: 87%;
-  /* Adjust as necessary */
-  transform: translate(-50%, -50%);
-  /* Centering */
 }
 
 
@@ -680,10 +738,6 @@ a {
 }
 
 
-
-
-
-
 /* banner Principal */
 .bannerzinho {
   display: grid;
@@ -695,7 +749,9 @@ a {
   margin-top: 15px;
   max-width: 80%;
   height: auto;
+  border-radius: 40px;
 }
+
 
 .teste {
   background-color: rgba(141, 141, 141, 0.464);

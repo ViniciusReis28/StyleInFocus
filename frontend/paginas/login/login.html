@@ -38,35 +38,28 @@
 <div class="header">
   <div class="inner-header flex">
       <div class="login-container2" style="margin-top: 110px;">
-          <a href="../../../index.html"><img src="../../img/logopreta.png" class="ImgLogin2" style="width: 190px; height: 200px; margin-bottom:30px;  margin-left: 25px; margin-top: -50px;"></a>
+          <a href="../../paginas/index/index.html"><img src="../../img/logopreta.png" class="ImgLogin2" style="width: 190px; height: 200px; margin-bottom:30px;  margin-left: 25px; margin-top: -50px;"></a>
           <p class="bemvindo">BEM-VINDO(A)</p>
           <p class="bemvindo2">Logue com sua conta!</p>
 
-          <div id="general-error" class="error-messages"></div> <!-- Div para mensagens de erro gerais -->
+          <div id="general-error" class="error-messages"></div>
 
-          <form id="login-form" action="/auth/login" method="post" >
+          <form id="login-form">
             <div>
+                
                 <div id="email-error" style="color: #ff0000; font-size: 12px; font-family: Freeman, sans-serif;"></div>
-                <input class="input-login" name="email" type="email" placeholder="Digite seu email:">
+                <input id="email" class="input-login" name="email" type="email" placeholder="Digite seu email:">
               </div>
               <div>
                 <div id="password-error" style="color: #ff0000; font-size: 12px; font-family: Freeman, sans-serif;"></div>
-                <input class="input-login" name="password" type="password" placeholder="Digite sua senha:">
+                <input id="password"class="input-login" name="password" type="password" placeholder="Digite sua senha:">
               </div>
               <button type="submit" class="glow-on-hover">LOGAR</button>
-              <br>
-              <br>
-              <button class="buttongo">
-                  <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" viewBox="0 0 256 262">
-                      <path fill="#4285F4" d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c24.659-22.774 38.875-56.282 38.875-96.027"></path>
-                      <path fill="#34A853" d="M130.55 261.1c35.248 0 64.839-11.605 86.453-31.622l-41.196-31.913c-11.024 7.688-25.82 13.055-45.257 13.055-34.523 0-63.824-22.773-74.269-54.25l-1.531.13-40.298 31.187-.527 1.465C35.393 231.798 79.49 261.1 130.55 261.1"></path>
-                      <path fill="#FBBC05" d="M56.281 156.37c-2.756-8.123-4.351-16.827-4.351-25.82 0-8.994 1.595-17.697 4.206-25.82l-.073-1.73L15.26 71.312l-1.335.635C5.077 89.644 0 109.517 0 130.55s5.077 40.905 13.925 58.602l42.356-32.782"></path>
-                      <path fill="#EB4335" d="M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0 79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251"></path>
-                  </svg>
-                  LOGAR COM GOOGLE
-              </button>
+              <div id="message" class="notification hidden"></div>
+            
+             
               <p class="signup-link">
-                <a href="/paginas/login/forgot-password.html">Esqueceu sua senha?</a>
+                <a href="forgot-password.html">Esqueceu sua senha?</a>
             </p>
               <p class="signup-link">
                   Sem conta?
@@ -79,51 +72,81 @@
 </div>
 </div>
 <script>
-document.getElementById('login-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Impede o envio padrão do formulário
+    document.addEventListener('DOMContentLoaded', () => {
+    // Remover token ao carregar a página de login
+    localStorage.removeItem('token');
 
-    const form = event.target;
-    const formData = {
-        email: form.email.value,
-        password: form.password.value
+    console.log('Token removido ao entrar na página de login.');
+});
+
+ document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.getElementById('login-form');
+    const messageElement = document.getElementById('message');
+
+    // Função para exibir mensagens
+    const displayMessage = (message, isError = false) => {
+    const messageElement = document.getElementById('message');
+    messageElement.className = `notification ${isError ? 'error' : 'success'} show`;
+    messageElement.innerText = message;
+
+    // Remove a notificação após 3 segundos
+    setTimeout(() => {
+        messageElement.classList.remove('show');
+    }, 3000);
+};
+
+
+    // Função para redirecionar se já estiver autenticado
+    const checkAuthentication = () => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            window.location.href = '/index.html'; // Ajuste a página de destino
+        }
     };
 
-    // Log dos dados enviados
-    console.log('Dados enviados:', formData);
+    // Chama a verificação ao carregar a página
+    checkAuthentication();
 
-    fetch('/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Limpa mensagens de erro anteriores
-        document.getElementById('email-error').textContent = '';
-        document.getElementById('password-error').textContent = '';
+    // Evento de envio do formulário
+    loginForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
 
-        // Log da resposta do servidor
-        console.log('Resposta do servidor:', data);
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
 
-        if (data.success) {
-            // Redireciona para a URL recebida do servidor
-            window.location.href = data.redirect;
-        } else {
-            // Se houver erros, exibe-os no formulário
-            if (data.errors) {
-                if (data.errors.email) {
-                    document.getElementById('email-error').textContent = data.errors.email;
-                }
-                if (data.errors.password) {
-                    document.getElementById('password-error').textContent = data.errors.password;
-                }
-            }
+        // Validação simples
+        if (!email || !password) {
+            displayMessage('Por favor, preencha todos os campos.', true);
+            return;
         }
-    })
-    .catch(error => {
-        console.error('Erro:', error);
-        // Exibe uma mensagem genérica de erro no formulário
-        document.getElementById('email-error').textContent = 'Ocorreu um erro ao fazer login.';
+
+        try {
+            // Requisição POST para login
+            const response = await fetch('http://localhost:3000/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                // Armazena o token no localStorage
+                localStorage.setItem('token', data.token);
+
+                // Mensagem de sucesso e redirecionamento
+                displayMessage('Login realizado com sucesso!');
+                setTimeout(() => {
+                    window.location.href = '/index.html'; // Ajuste a página de destino
+                }, 1000); // Espera um segundo para mostrar a mensagem
+            } else {
+                // Exibe mensagem de erro retornada pelo servidor
+                displayMessage(data.error || data.message, true);
+            }
+        } catch (error) {
+            console.error('Erro:', error);
+            displayMessage('Erro ao tentar conectar com o servidor.', true);
+        }
     });
 });
 

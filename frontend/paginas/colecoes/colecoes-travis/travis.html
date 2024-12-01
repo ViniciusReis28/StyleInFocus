@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travis Scott</title>
     <link rel="stylesheet" href="travis.css">
-    <link rel="shortcut icon" href="../../img/logopreta.png" type="image">
+    <link rel="shortcut icon" href="../../../img/logopreta.png" type="image">
 </head>
 <body>
     <div id="preloader">
@@ -42,32 +42,22 @@
               <div class="dropdown-menu">
                 <a href="travis.html">Travis Scott</a>
                 <a href="opium.html">Opium</a>
-                <a href="">Japão</a>
+                <a href="japao.html">Japão</a>
               </div>
             </li>
             <li class="dropdown">
               <a href="">Masculino</a>
               <div class="dropdown-menu">
-                <a href="../../produtos/produtoCamiseta/masculino-produtos-camisas.html">Camisa</a>
-                <a href="">Moletom</a>
-                <a href="">Calça</a>
+                <a href="../../../paginas/produtos/produtoCamiseta/masculino-produtos-camisas.html">Camisa</a>
+                <a href="../../../paginas/colecoes/colecoes-travis/moletoes.html">Moletom</a>
               </div>
             </li>
             <li class="dropdown">
               <a href="">Feminino</a>
               <div class="dropdown-menu">
                 <a href="">Camisa</a>
-                <a href="">Cropped</a>
-                <a href="">Calça</a>
+                <a href="../../../paginas/colecoes/colecoes-travis/feminino.html">Cropped</a>
               </div>
-            </li>
-            <li class="dropdown">
-                <a href="">Acessorios</a>
-                <div class="dropdown-menu">
-                  <a href="">Camisa</a>
-                  <a href="">Cropped</a>
-                  <a href="">Calça</a>
-                </div>
             </li>
             <li class="dropdown">
                <a href="../../../paginas/Personalizar/Personalizar.html">Personalização</a>
@@ -84,33 +74,39 @@
                 </path>
               </g>
             </svg>
-            <input id="query" class="input" type="search" placeholder="Search..." name="searchbar" />
+            <input id="query" class="input" type="search" placeholder="Search..." name="searchbar" oninput="showSuggestions()" />
           </div>
+          <div id="suggestions" class="suggestions-box"></div>
         </div>
+        
         <div class="right-section">
-          <a href="../../carrinho/carrinho.html"; class="cart-icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+          <a href="../../../paginas/carrinho/carrinho.html" class="cart-icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
               class="bi bi-cart3" viewBox="0 0 16 16">
               <path
                 d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2">
               </path>
-            </svg>
-            <span id="cart-count" style="background: red; color: white; border-radius: 50%; padding: 2px 5px; font-size: 12px; position: absolute; top: 0; right: 0;">0</span>
-          </a>
-          <a href="#" id="profile-icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-              class="bi bi-person-circle" viewBox="0 0 16 16">
-              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"></path>
-              <path fill-rule="evenodd"
-                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1">
-              </path>
             </svg></a>
+            
+            <a id="profile-icon">
+              <img id="profile-image" src="http://localhost:3000/usuarioDefault.jpg" alt="Foto de Perfil" style="display: none; width: 30px; height: 30px; border-radius: 50%;">
+              <svg id="profile-svg" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"></path>
+                  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"></path>
+              </svg>
+          </a>
         </div>
-      </nav>
-      <div id="stars-container">
-        <div id="stars"></div>
-        <div id="stars2"></div>
-        <div id="stars3"></div>
-
-
+    
+        <div class="profile-text">
+          <a class="text-login" id="login-text" href="../../../paginas/login/login.html" class="profile-link">ENTRE</a>
+          <a class="text-login" id="separator">OU</a>
+          <br>
+          <a class="text-login" id="register-text" href="../../../paginas/login/register.html" class="profile-link">CADASTRE-SE</a>
+        </div>  
+    
+        
+      </nav> 
+      <div class="video-background" autoplay loop muted>
+        <img src="TRAVIS.png">
       </div>
 <br>
 <br>
@@ -138,12 +134,12 @@
             </div>
             <div class="produtos-camisas">
                 <div class="box">
-                        <img src="../../../img-produtos/camisaTravis/camisa-travisscott-branca-chifre.jpg" alt="Camisa 1">
+                        <img src="../../../img-produtos/camisaTravis/CAMISA-1-TRAVIS.jpg" alt="Camisa 1">
                         <h1>BOYS DON'T CRY</h1>
                         <h3>R$ 79,90 no PIX</h3>
                         <p>R$ 110,90 no Cartão até 5x</p>
                         <button>Comprar</button>
-                        <button onclick="adicionarAoCarrinho('BOYS DON\'T CRY', '79.90', '../../img-produtos/camisaTravis/camisa-travisscott-branca-chifre.jpg')">
+                        <button onclick="">
                           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
                               <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"></path>
                           </svg> ADICIONAR AO CARRINHO</button>
@@ -151,12 +147,12 @@
                     </a>
                 </div>
                 <div class="box">
-                        <img src="../../../img-produtos/camisaTravis/camisa-travisscott-branca-caveira.jpg" alt="Camisa 2">
+                        <img src="../../../img-produtos/camisaTravis/CAMISA-TRAVIS-3.png" alt="Camisa 2">
                         <h1>TRAVI$</h1>
                         <h3>R$ 70,90 no PIX</h3>
                         <p>R$ 109,90 no Cartão até 5x</p>
                         <button>Comprar</button>
-                        <button onclick="adicionarAoCarrinho('TRAVI$', '70.90', '../../img-produtos/camisaTravis/camisa-travisscott-branca-caveira.jpg')">
+                        <button onclick="">
                           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
                               <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"></path>
                           </svg> ADICIONAR AO CARRINHO</button>
@@ -164,12 +160,12 @@
                     </a>
                 </div>
                 <div class="box">
-                        <img src="../../../img-produtos/camisaTravis/camisa-travisscott-branca-legendary-roxa.jpg" alt="Camisa 2">
+                        <img src="../../../img-produtos/camisaTravis/CAMISA-TRAVIS-5.jpg" alt="Camisa 2">
                         <h1>LEGENDARY</h1>
                         <h3>R$ 119,90 no PIX</h3>
                         <p>R$ 179,90 no Cartão até 5x</p>
                         <button>Comprar</button>
-                        <button onclick="adicionarAoCarrinho('LEGENDARY', '119.90', '../../img-produtos/camisaTravis/camisa-travisscott-branca-legendary-roxa.jpg')">
+                        <button onclick="">
                           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"  fill="currentColor"
               class="bi bi-cart3" viewBox="0 0 16 16">
               <path
@@ -180,12 +176,12 @@
                     </a>
                 </div>
                 <div class="box">
-                        <img src="../../../img-produtos/camisaTravis/camisa-travisscott-branca.jpg" alt="Camisa 2">
+                        <img src="../../../img-produtos/camisaTravis/CAMISAS-TRAVIS-8.jpg" alt="Camisa 2">
                         <h1>LOOK MOM, I CAN FLY</h1>
                         <h3>R$ 119,90 no PIX</h3>
                         <p>R$ 179,90 no Cartão até 5x</p>
                         <button>Comprar</button>
-                        <button onclick="adicionarAoCarrinho('LOOK MOM, I CAN FLY', '119.90', '../../img-produtos/camisaTravis/camisa-travisscott-branca.jpg')">
+                        <button onclick="">
                           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"  fill="currentColor"
                             class="bi bi-cart3" viewBox="0 0 16 16">
                             <path
@@ -196,12 +192,12 @@
                     </a>
                 </div>
                 <div class="box">
-                        <img src="../../../img-produtos/camisaTravis/camisa-travisscott-preta-logo-vermelha.jpg" alt="Camisa 2">
+                        <img src="../../../img-produtos/camisaTravis/CAMISA-TRAVIS-7.jpg" alt="Camisa 2">
                         <h1>MY EYES</h1>
                         <h3>R$ 79,90 no PIX</h3>
                         <p>R$ 119,90 no Cartão até 5x</p>
                         <button>Comprar</button>
-                        <button onclick="adicionarAoCarrinho('MY EYES', '79.90', '../../img-produtos/camisaTravis/camisa-travisscott-preta-logo-vermelha.jpg')">
+                        <button onclick="">
                           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"  fill="currentColor"
                             class="bi bi-cart3" viewBox="0 0 16 16">
                             <path
@@ -212,12 +208,12 @@
                     </a>
                 </div>
                 <div class="box">
-                        <img src="../../../img-produtos/camisaTravis/moletom-travisscott-branco-F!en.jpg" alt="Camisa 2">
+                        <img src="../../../img-produtos/camisaTravis/CAMISAS-TRAVIS-1.jpg" alt="Camisa 2">
                         <h1>FE!N</h1>
                         <h3>R$ 119,90 no PIX</h3>
                         <p>R$ 169,90 no Cartão até 5x</p>
                         <button>Comprar</button>
-                        <button onclick="adicionarAoCarrinho('FE!N', '119.90', '../../img-produtos/camisaTravis/moletom-travisscott-branco-F!en.jpg')">
+                        <button onclick="">
                           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"  fill="currentColor"
                             class="bi bi-cart3" viewBox="0 0 16 16">
                             <path
@@ -228,12 +224,12 @@
                     </a>
                 </div>
                 <div class="box">
-                        <img src="../../../img-produtos/camisaTravis/moletom-merda1.jpg" alt="Camisa 2">
+                        <img src="../../../img-produtos/camisaTravis/CAMISA-NOVO-MOCKUP.jpg" alt="Camisa 2">
                         <h1>KING</h1>
                         <h3>R$ 109,90 no PIX</h3>
                         <p>R$ 149,90 no Cartão até 5x</p>
                         <button>Comprar</button>
-                        <button onclick="adicionarAoCarrinho('KING', '109.90', '../../img-produtos/camisaTravis/moletom-merda1.jpg')">
+                        <button onclick="">
                           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"  fill="currentColor"
                             class="bi bi-cart3" viewBox="0 0 16 16">
                             <path
@@ -244,12 +240,12 @@
                     </a>
                 </div>
                 <div class="box">
-                        <img src="../../../img-produtos/camisaTravis/moletom-merda2.jpg" alt="Camisa 2">
+                        <img src="../../../img-produtos/camisaTravis/CAMISAS-TRAVIS-4.jpg" alt="Camisa 2">
                         <h1>What to do?</h1>
                         <h3>R$ 109,90 no PIX</h3>
                         <p>R$ 179,90 no Cartão até 5x</p>
                         <button>Comprar</button>
-                        <button onclick="adicionarAoCarrinho('What to do?', '109.90', '../../img-produtos/camisaTravis/moletom-merda2.jpg')">
+                        <button onclick="">
                           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"  fill="currentColor"
                             class="bi bi-cart3" viewBox="0 0 16 16">
                             <path
@@ -260,7 +256,7 @@
                     </a>
                 </div>
                 <div class="box">
-                        <img src="../../../img-produtos/camisaTravis/camisa-travisscott-branca-caveira.jpg" alt="Camisa 2">
+                        <img src="../../../img-produtos/camisaTravis/CAMISAS-TRAVIS-6.jpg" alt="Camisa 2">
                         <h1>TESTE</h1>
                         <h3>R$ 129,90 no PIX</h3>
                         <p>R$ 199,90 no Cartão até 5x</p>
@@ -423,29 +419,7 @@
         </div>
     </div>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('button').forEach(button => {
-            button.addEventListener('click', function(event) {
-                event.preventDefault(); // Para evitar comportamentos padrão
-                if (this.textContent.includes("ADICIONAR AO CARRINHO")) {
-                    const cartCount = document.getElementById('cart-count');
-                    let count = parseInt(cartCount.textContent);
-                    count++;
-                    cartCount.textContent = count;
-    
-                    // Adiciona a animação
-                    cartCount.classList.add('pulse');
-    
-                    // Remove a classe após a animação
-                    setTimeout(() => {
-                        cartCount.classList.remove('pulse');
-                    }, 600); // Duração da animação
-                }
-            });
-        });
-    });    
-      </script>
+  
     <script src="script.js"></script>
 </body>
 

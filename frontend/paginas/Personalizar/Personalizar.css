@@ -28,7 +28,7 @@ img {
   font-family: "Bebas Neue", sans-serif;
   font-size: 50px;
   padding-top: 20px;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   text-align: center;
 }
 
@@ -36,7 +36,7 @@ img {
   font-family: "Bebas Neue", sans-serif;
   font-size: 25px;
   padding-bottom: 20px;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   text-align: center;
 }
 
@@ -64,12 +64,15 @@ img {
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgb(252, 252, 252);
-  padding: 40px; /* Ajuste o padding conforme necessário */
+  padding: 40px;
+  /* Ajuste o padding conforme necessário */
   width: 800px;
-  height: 700px; /* Altura fixa */
+  height: 700px;
+  /* Altura fixa */
   margin: auto;
   margin-top: 180px;
-  overflow: hidden; /* Garante que o conteúdo não ultrapasse o tamanho do container */
+  overflow: hidden;
+  /* Garante que o conteúdo não ultrapasse o tamanho do container */
 }
 
 
@@ -79,12 +82,15 @@ img {
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgb(252, 252, 252);
-  padding: 40px; /* Ajuste o padding conforme necessário */
+  padding: 40px;
+  /* Ajuste o padding conforme necessário */
   width: 800px;
-  height: 700px; /* Altura fixa */
+  height: 700px;
+  /* Altura fixa */
   margin: auto;
   margin-top: 180px;
-  overflow: hidden; /* Garante que o conteúdo não ultrapasse o tamanho do container */
+  overflow: hidden;
+  /* Garante que o conteúdo não ultrapasse o tamanho do container */
 }
 
 .flex {
@@ -185,7 +191,7 @@ img {
 }
 
 .area {
-  background: linear-gradient(to right, #a7a7a7, #aaaaaa, #797979, #636363);
+  background: linear-gradient(to right, #242424, #1b1b1b, #0f0f0f, #000000);
   width: 100%;
   height: 100vh;
 }
@@ -376,7 +382,7 @@ img {
 .shirt-wrapper {
   position: relative;
   display: inline-block;
-  
+
 }
 
 #custom-image {
@@ -409,7 +415,7 @@ img {
   justify-content: center;
   gap: 10px;
   padding: 10px;
-  
+
 }
 
 .color-options {
@@ -417,7 +423,7 @@ img {
   justify-content: center;
   /* Alinha os botões à esquerda */
   gap: 10px;
-  
+
   padding: 10px;
 
 }
@@ -427,20 +433,25 @@ img {
   justify-content: center;
   align-items: center;
   position: relative;
-  overflow: hidden;  /* Aqui, aplicamos o overflow ao container */
+  overflow: hidden;
+  /* Aqui, aplicamos o overflow ao container */
   margin-top: -20px;
 
 }
 
 .carousel {
-  width: 80%; /* Garante que o carrossel ocupe toda a largura disponível */
+  width: 80%;
+  /* Garante que o carrossel ocupe toda a largura disponível */
   max-width: 100%;
-  height: 150px; /* Ajuste conforme necessário */
+  height: 150px;
+  /* Ajuste conforme necessário */
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* Alinha os ícones à esquerda */
+  justify-content: flex-start;
+  /* Alinha os ícones à esquerda */
   position: relative;
-  overflow: hidden; /* Impede que qualquer conteúdo ultrapasse o limite */
+  overflow: hidden;
+  /* Impede que qualquer conteúdo ultrapasse o limite */
   margin: 0 auto;
 }
 
@@ -463,19 +474,23 @@ img {
 
 .carousel-track {
   display: flex;
-  align-items: center; /* Alinha os ícones verticalmente */
-  gap: 10px; /* Espaçamento entre os ícones */
+  align-items: center;
+  /* Alinha os ícones verticalmente */
+  gap: 10px;
+  /* Espaçamento entre os ícones */
   transition: transform 0.3s ease-in-out;
 }
 
 
 
 .prev-btn {
-  left: 0px; /* Fora do carrossel à esquerda */
+  left: 0px;
+  /* Fora do carrossel à esquerda */
 }
 
 .next-btn {
-  right: 0px; /* Fora do carrossel à direita */
+  right: 0px;
+  /* Fora do carrossel à direita */
 }
 
 
@@ -491,40 +506,51 @@ img {
 }
 
 .shirt-btn:hover {
-  transform: scale(1.1); /* Aumenta o tamanho do ícone */
+  transform: scale(1.1);
+  /* Aumenta o tamanho do ícone */
 }
 
 
 .shirt-btn.preta {
   background-color: rgb(26, 26, 26);
 }
+
 .shirt-btn.blue {
   background-color: rgb(68, 118, 255);
 }
+
 .shirt-btn.purple {
   background-color: rgb(75, 0, 214);
 }
+
 .shirt-btn.green {
   background-color: rgb(1, 117, 1);
 }
+
 .shirt-btn.cyan {
   background-color: rgb(31, 71, 69);
 }
+
 .shirt-btn.turquoise {
   background-color: rgb(25, 185, 164);
 }
+
 .shirt-btn.darkBlue {
   background-color: rgb(24, 45, 100);
 }
+
 .shirt-btn.white {
   background-color: rgb(211, 211, 211);
 }
+
 .shirt-btn.pink {
   background-color: rgb(218, 19, 142);
 }
+
 .shirt-btn.red {
   background-color: rgb(121, 15, 15);
 }
+
 .shirt-btn.yellow {
   background-color: rgb(194, 185, 55);
 }
@@ -545,81 +571,83 @@ img {
 }
 
 .carousel-track .icon-btn {
-    min-width: 61px; /* Tamanho fixo para cada ícone */
-    height: 82px;
-    border: 2px solid black;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.3s ease, background-color 0.3s ease;
-    background-color: rgb(226, 226, 226);
-    padding-bottom: 40px;
-    position: relative;
-    z-index: 0;
+  min-width: 61px;
+  /* Tamanho fixo para cada ícone */
+  height: 82px;
+  border: 2px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.3s ease, background-color 0.3s ease;
+  background-color: rgb(226, 226, 226);
+  padding-bottom: 40px;
+  position: relative;
+  z-index: 0;
+}
+
+/* Efeito de brilho nos ícones */
+.icon-btn:before {
+  content: '';
+  background: linear-gradient(45deg, #8c00ff, #0004ff, #00f7ff, #00ff6a, #fffb00, #ff9100, #ff0800, #ff0095, #003cff);
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 5px;
+
+}
+
+.icon-btn:hover {
+  transform: scale(1.1);
+  /* Aumenta o tamanho do ícone */
+}
+
+.icon-btn:active:after {
+  background: transparent;
+}
+
+.icon-btn:hover:before {
+  opacity: 1;
+
+}
+
+.icon-btn:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(226, 226, 226);
+  left: 0;
+  top: 0;
+  border-radius: 5px;
+}
+
+/* Aplica o brilho ao passar o mouse */
+.icon-btn:hover:before {
+  opacity: 1;
+}
+
+/* Controla a animação do glow */
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
   }
 
-  /* Efeito de brilho nos ícones */
-  .icon-btn:before {
-    content: '';
-    background: linear-gradient(45deg, #8c00ff, #0004ff, #00f7ff, #00ff6a, #fffb00, #ff9100, #ff0800, #ff0095, #003cff);
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    background-size: 400%;
-    z-index: -1;
-    filter: blur(5px);
-    width: calc(100% + 4px);
-    height: calc(100% + 4px);
-    animation: glowing 20s linear infinite;
-    opacity: 0;
-    transition: opacity .3s ease-in-out;
-    border-radius: 5px;
-    
-  }
-  
-  .icon-btn:hover {
-    transform: scale(1.1); /* Aumenta o tamanho do ícone */
+  50% {
+    background-position: 400% 0;
   }
 
-  .icon-btn:active:after {
-    background: transparent;
+  100% {
+    background-position: 0 0;
   }
-  
-  .icon-btn:hover:before {
-    opacity: 1;
-    
-  }
-  
-  .icon-btn:after {
-    z-index: -1;
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(226, 226, 226);
-    left: 0;
-    top: 0;
-    border-radius: 5px;
-  }
-
-  /* Aplica o brilho ao passar o mouse */
-  .icon-btn:hover:before {
-    opacity: 1;
-  }
-  
-  /* Controla a animação do glow */
-  @keyframes glowing {
-    0% {
-      background-position: 0 0;
-    }
-  
-    50% {
-      background-position: 400% 0;
-    }
-  
-    100% {
-      background-position: 0 0;
-    }
-  }
+}
 
 
 
@@ -638,32 +666,40 @@ img {
 
 .dividir {
   display: flex;
-  /* Alinha os itens no início da linha */
-  padding: 10px;
-  /* Adiciona um espaço interno ao redor dos itens */
+  align-items: center;
+  /* Alinha os itens verticalmente no centro */
+  justify-content: center;
+  /* Alinha os itens horizontalmente no centro */
+  gap: 20px;
+  /* Adiciona um espaço entre a logo e o texto */
 }
 
 .logoPersonalizar {
   flex-shrink: 0;
-  /* Impede que a logo seja encolhida */
+  margin-left: 20px
 }
 
 .textoInicial {
-    flex: 1;
-  }
+  text-align: center;
+  margin-right: 130px;
+  flex: 1;
+}
 
 
 
 .options-container {
   display: flex;
-  gap: 20px; /* Espaçamento entre as divs */
-  justify-content: center; /* Centraliza o contêiner */
+  gap: 20px;
+  /* Espaçamento entre as divs */
+  justify-content: center;
+  /* Centraliza o contêiner */
   width: 100%;
 }
 
 .position-options {
   display: flex;
-  flex-direction: column; /* Mantém os botões em coluna */
+  flex-direction: column;
+  /* Mantém os botões em coluna */
   gap: 10px;
   align-items: center;
   margin-top: 20px;
@@ -671,7 +707,8 @@ img {
 
 .shape-options {
   display: flex;
-  flex-direction: row; /* Coloca os botões em linha */
+  flex-direction: row;
+  /* Coloca os botões em linha */
   gap: 10px;
   justify-content: center;
   margin-top: 20px;
@@ -684,10 +721,11 @@ img {
   color: white;
   border: none;
   border-radius: 5px;
-  width: 300px; /* Faz o botão ocupar toda a largura da coluna */
+  width: 300px;
+  /* Faz o botão ocupar toda a largura da coluna */
 }
 
-.shape-btn{
+.shape-btn {
   padding: 8px 12px;
   cursor: pointer;
   background-color: #333;
@@ -706,7 +744,8 @@ img {
   gap: 20px;
   align-items: flex-start;
   justify-content: center;
-  width: 100%; /* Remove o 81% ou ajuste para ocupar toda a largura */
+  width: 100%;
+  /* Remove o 81% ou ajuste para ocupar toda a largura */
 }
 
 
@@ -784,9 +823,18 @@ img {
 
 
 
-#custom-image.round { border-radius: 50%; }
-#custom-image.square { border-radius: 0; }
-#custom-image.rounded { border-radius: 15px; }
+#custom-image.round {
+  border-radius: 50%;
+}
+
+#custom-image.square {
+  border-radius: 0;
+}
+
+#custom-image.rounded {
+  border-radius: 15px;
+}
+
 #custom-image.triangle {
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
@@ -796,12 +844,12 @@ img {
 .upload-container {
   display: flex;
   align-items: center;
-  gap: 10px; 
+  gap: 10px;
   margin-top: -10px;
   justify-content: center;
 }
 
-                                /*LIMPAR IMAGEM BUTTON */
+/*LIMPAR IMAGEM BUTTON */
 
 .glow-on-hover-image-clear {
   font-family: "Bebas Neue", sans-serif;
@@ -819,7 +867,7 @@ img {
 }
 
 .glow-on-hover-image-clear:before {
-    
+
   content: '';
   background: linear-gradient(45deg, #ff0000, #ff0000, #570f0a, #ff0000, #ff4e4e, #ff4949, #ff0000, #ff0000, #ff2626);
   position: absolute;
@@ -870,20 +918,21 @@ img {
   }
 
   100% {
-    background-position: 0 0;
+    background-position: 0 0;
+  }
 }
-}
 
 
 
 
 
-                                                        /* POSIÇÕES BUTTONS */
+/* POSIÇÕES BUTTONS */
 
 .glow-on-hover {
   font-family: "Bebas Neue", sans-serif;
   font-size: 22px;
-  width: 300px; /* Faz o botão ocupar toda a largura da coluna */
+  width: 300px;
+  /* Faz o botão ocupar toda a largura da coluna */
   height: 35px;
   border: none;
   outline: none;
@@ -896,7 +945,7 @@ img {
 }
 
 .glow-on-hover:before {
-    
+
   content: '';
   background: linear-gradient(45deg, #2bff00, #15ff00, #54fc06, #78da64, #00ff2a, #01ff2b, #5eff00, #00ff37, #26ff93);
   position: absolute;
@@ -947,13 +996,40 @@ img {
   }
 
   100% {
-    background-position: 0 0;
+    background-position: 0 0;
+  }
 }
+
+
+#content {
+  position: relative;
+  z-index: 1;
+  /* Garante que o conteúdo fique sobre o fundo estrelado */
 }
 
 
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Faz o vídeo preencher o fundo sem distorção */
+  z-index: -1;
+  /* Fica atrás de todos os outros elementos */
+}
 
-                                                                      /* SHAPE BUTTONS */
+.content {
+  position: relative;
+  color: white;
+  text-align: center;
+  margin-top: 50vh;
+  transform: translateY(-50%);
+  font-family: Arial, sans-serif;
+}
+
+/* SHAPE BUTTONS */
 
 .glow-on-hover-shape {
   font-family: "Bebas Neue", sans-serif;
@@ -971,7 +1047,7 @@ img {
 }
 
 .glow-on-hover-shape:before {
-    
+
   content: '';
   background: linear-gradient(45deg, #73ff00, #00ff4c, #68e7ac, #00ff22, #a7e99e, #01ff2b, #5eff00, #00ff37, #26ff93);
   position: absolute;
@@ -1022,8 +1098,8 @@ img {
   }
 
   100% {
-    background-position: 0 0;
-}
+    background-position: 0 0;
+  }
 }
 
 
@@ -1032,11 +1108,13 @@ img {
 /*BACKGORUND DEFAULT*/
 
 .glow-on-hover-shape[data-shape="default"]:after {
-  
-  background-color: #585858; /* Cor de fundo personalizada para o botão default */
+
+  background-color: #585858;
+  /* Cor de fundo personalizada para o botão default */
 }
+
 .glow-on-hover-shape[data-shape="default"]:before {
-    
+
   background: linear-gradient(45deg, #ff0000, #ff0000, #e76868, #ff0000, #ff0000, #ff0101, #ff0000, #ff0000, #ff2626);
   position: absolute;
   top: -2px;
@@ -1086,16 +1164,17 @@ img {
   }
 
   100% {
-    background-position: 0 0;
-}
+    background-position: 0 0;
+  }
 }
 
 
-                                                                    /* CLEAR BUTTON */
+/* CLEAR BUTTON */
 .glow-on-hover-clear {
   font-family: "Bebas Neue", sans-serif;
   font-size: 24px;
-  width: 200px; /* Faz o botão ocupar toda a largura da coluna */
+  width: 200px;
+  /* Faz o botão ocupar toda a largura da coluna */
   height: 35px;
   border: none;
   outline: none;
@@ -1111,7 +1190,7 @@ img {
 }
 
 .glow-on-hover-clear:before {
-    
+
   content: '';
   background: linear-gradient(45deg, #003cff, #002fff, #0051ff, #0077ff, #00a2ff, #00aeff, #00ffff, #00ffff, #003cff);
   position: absolute;
@@ -1162,8 +1241,8 @@ img {
   }
 
   100% {
-    background-position: 0 0;
-}
+    background-position: 0 0;
+  }
 }
 
 
@@ -1181,16 +1260,201 @@ img {
 
 .zoom-box {
   position: absolute;
-  width: 100px;  /* Tamanho do quadrado de zoom */
-  height: 100px; /* Tamanho do quadrado de zoom */
-  border: 2px solid rgba(255, 255, 255, 0.5); /* Borda para o quadrado */
-  display: none;  /* Inicialmente invisível */
+  width: 100px;
+  /* Tamanho do quadrado de zoom */
+  height: 100px;
+  /* Tamanho do quadrado de zoom */
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  /* Borda para o quadrado */
+  display: none;
+  /* Inicialmente invisível */
   pointer-events: none;
-  background-color: rgba(255, 255, 255, 0.3); /* Cor de fundo do quadrado */
+  background-color: rgba(255, 255, 255, 0.3);
+  /* Cor de fundo do quadrado */
   background-repeat: no-repeat;
-  background-size: 200% 200%; /* Tamanho da área ampliada */
+  background-size: 200% 200%;
+  /* Tamanho da área ampliada */
 }
 
 .card:hover .zoom-box {
-  display: block; /* Exibe o quadrado quando o mouse passar por cima */
+  display: block;
+  /* Exibe o quadrado quando o mouse passar por cima */
+}
+
+/* Estilos do overlay (fundo escurecido) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Estilos da caixa de modal */
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  width: 500px;
+}
+
+.modal-content p {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+/*BOTAO DOS TAMANHOS*/
+.glow-on-hover-size {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 28px;
+  width: 100px;
+  /* Faz o botão ocupar toda a largura da coluna */
+  height: 55px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+}
+
+.glow-on-hover-size:before {
+
+  content: '';
+  background: linear-gradient(45deg, #2bff00, #15ff00, #54fc06, #78da64, #00ff2a, #01ff2b, #5eff00, #00ff37, #26ff93);
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 10px;
+}
+
+.glow-on-hover-size:active {
+  color: #ffffff
+}
+
+.glow-on-hover-size:active:after {
+  background: transparent;
+}
+
+.glow-on-hover-size:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover-size:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 400% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
+
+
+/* POSIÇÕES BUTTONS */
+
+.glow-on-hover-personalizar {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 22px;
+  width: 250px;
+  /* Faz o botão ocupar toda a largura da coluna */
+  height: 45px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+}
+
+.glow-on-hover-personalizar:before {
+
+  content: '';
+  background: linear-gradient(45deg, #2bff00, #15ff00, #54fc06, #78da64, #00ff2a, #01ff2b, #5eff00, #00ff37, #26ff93);
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 10px;
+}
+
+.glow-on-hover-personalizar:active {
+  color: #ffffff
+}
+
+.glow-on-hover-personalizar:active:after {
+  background: transparent;
+}
+
+.glow-on-hover-personalizar:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover-personalizar:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 400% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
 }

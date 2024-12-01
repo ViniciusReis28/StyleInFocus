@@ -21,6 +21,40 @@ a {
 }
 
 
+.notification {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 300px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-family: Freeman, sans-serif;
+  border-radius: 5px;
+  color: #fff;
+  text-align: center;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s, transform 0.5s, visibility 0.5s;
+}
+
+.notification.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.notification.error {
+  background-color: #ff4d4d;
+}
+
+.notification.success {
+  background-color: #4caf50;
+}
+
+
 
 /*LOGIN MT FODA*/
 .bemvindo {

@@ -399,261 +399,332 @@ section.slider{
   z-index: 9999px;
 }
 
-     /* BARRA DE NAVEGAÇÃO DO SITE */
-     nav {
-      height: 100px;
-      font-family: "Bebas Neue", sans-serif;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 20px;
-      position: fixed; /* Torna a navbar fixa */
-      top: 40px; /* Deslocamento inicial */
-      left: 0; /* Alinha a navbar na esquerda da página */
-      width: 100%; /* Faz a navbar ocupar toda a largura da página */
-      z-index: 1000; /* Garante que a navbar fique acima de outros elementos */
-      background-color: rgb(255, 255, 255); /* Cor de fundo opaca */
-      transition: top 0.3s; /* Transição suave para a mudança de posição */
-      transition: background-color 0.3s, color 0.3s;
-      box-shadow: 2px 2px 5px rgba(2, 2, 2, 0.281);
-      
-    }
-    
-    nav.scrolled .center-section a::after,
-    nav.scrolled .right-section a::after {
-      background-color: rgb(0, 0, 0); /* Muda a cor da borda inferior para preto */
-    }
-    
-    nav.scrolled {
-      top: 0; /* Fixa o nav no topo quando rola para baixo */
-      background-color: white !important; /* Cor de fundo após rolar */
-      color: black !important; /* Cor do texto após rolar */
-    }
-    nav.scrolled a {
-      font-size: 25px;
-      color: black !important; /* Cor dos links após rolar */
-    }
-    
-    nav.scrolled .dropdown-menu a {
-      font-size: 18px; /* Ajuste o tamanho da fonte quando rolado */
-      color: gray; /* Ajuste a cor do texto quando rolado */
-    }
-    
-                                                                            /*HOVERS NAV*/
-    nav:hover {
-      background-color: #ffffff;
-    }
-    nav:hover a {
-      color: #000000;
-    }
-    
-    
-    
-    nav:hover .center-section .dropdown > a::after,
-    nav:hover .right-section a::after {
-      background-color: rgb(0, 0, 0); /* Muda a cor da borda inferior para preto */
-      
-    }
-    
-    nav:hover #logo {
-      content: url('../../../img/logopreta.png'); /* Substitui a imagem quando o mouse passa no <nav> */
-      transition: all 0.3s ease; /* Transição suave */
-    }
-    
-    
-    a {
-      text-decoration: none;
-      color: rgb(0, 0, 0);
-      font-size: 25px;
-      padding: 10px 15px;
-      border-radius: 5px;
-      transition: background-color 0.3s, color 0.3s;
-      position: relative;
-    }
-    
-    
-    .right-section a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -21px;
-      /* Ajuste essa distância para alterar o espaço abaixo do texto */
-      width: 0;
-      height: 3px;
-      background-color: rgb(0, 0, 0);
-      transition: width 0.3s ease;
-    }
-    
-    .center-section .dropdown>a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -4px;
-      /* Ajuste essa distância para alterar o espaço abaixo do texto */
-      width: 0;
-      height: 3px;
-      background-color: rgb(0, 0, 0);
-      transition: width 0.3s ease;
-    }
-    
-    
-    .center-section a:hover::after,
-    .right-section a:hover::after {
-      width: 100%;
-    }
-    
-    .center-section a,
-    .right-section a {
-      padding: 10px 15px;
-      border-radius: 5px;
-    }
-    
-    
-    .left-section,
-    .center-section,
-    .right-section {
-      display: flex;
-      align-items: center;
-    }
-    
-    .center-section ul {
-      display: flex;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    
-    .center-section li {
-      margin: 0 15px; /* Espaçamento horizontal entre os itens */
-      position: relative; /* Para os dropdowns */
-    
-    }
-    
-    
-    .center-section a {
-      display: flex; /* Isso permite que o link ocupe toda a área do item da lista */
-      align-items: center; /* Centraliza o texto verticalmente */
-      padding: 30px 15px; /* Ampla área de clique */
-      
-    }
-    
-    .right-section a {
-      margin-left: 10px;
-    }
-    
-    .group {
-      display: flex;
-      line-height: 28px;
-      align-items: center;
-      position: relative;
-      margin-right: -18px;
-    }
-    
-    .input {
-      font-family: "Montserrat", sans-serif;
-      width: 80%;
-      height: 35px;
-      padding-left: 2.5rem;
-      box-shadow: 0 0 0 1.5px #313131, 0 0 25px -17px #000;
-      border: 0;
-      border-radius: 12px;
-      background-color: #000000;
-      outline: none;
-      color: #ffffff;
-      transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-      cursor: text;
-      z-index: 0;
-    }
-    
-    .input::placeholder {
-      color: #bdbecb;
-    }
-    
-    .input:hover {
-      box-shadow: 0 0 0 2.5px #2f303d, 0px 0px 25px -15px #000;
-    }
-    
-    .input:active {
-      transform: scale(0.95);
-    }
-    
-    .input:focus {
-      box-shadow: 0 0 0 2.5px #2f303d;
-    }
-    
-    .search-icon {
-      position: absolute;
-      left: 1rem;
-      fill: #bdbecb;
-      width: 1rem;
-      height: 1rem;
-      pointer-events: none;
-      z-index: 1;
-    }
-    
-    .search-bar-container {
-      position: absolute;
-      top: 50%;
-      left: 87%;
-      transform: translate(-50%, -50%);
-    }
-    
-    
-    /* Estilo para os itens do dropdown */
-    .dropdown {
-      position: relative;
-    }
-    
-    .dropdown-menu {
-      display: none;
-      /* Inicialmente oculto */
-      position: absolute;
-      /* Posiciona o menu dropdown em relação ao item */
-      width: 100%;
-      /* Define a largura como 100% da largura do item dropdown */
-      left: 0;
-      /* Alinha o menu dropdown com a borda esquerda do item dropdown */
-      top: 97px;
-      /* Ajusta a posição abaixo do nav */
-      background-color: #ffffff;
-      /* Fundo do menu dropdown */
-      z-index: 1000;
-      /* Garante que o menu fique acima de outros elementos */
-      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
-      /* Adiciona sombra para um efeito de destaque */
-    }
-    
-    /* Links dentro do dropdown */
-    .dropdown-menu a {
-      padding: 10px 15px;
-      font-size: 18px;
-      color: black;
-      display: block;
-      width: 100%;
-      text-decoration: none;
-      transition: background-color 0.3s ease, color 0.3s ease; /* Suave transição */
-    }
-    
-    /* Efeito hover ao passar o mouse sobre os links do dropdown */
-    .dropdown-menu a:hover {
-      background-color: rgba(0, 0, 0, 0.1); /* Cor de fundo ao passar o mouse */
-      color: #7a7a7a; /* Cor do texto ao passar o mouse */
-    }
-    
-    
-    .dropdown:hover .dropdown-menu {
-      display: block; /* Exibe o dropdown ao passar o mouse */
-    }
-    
-    .dropdown-items {
-      display: flex;
-      flex-direction: column;
-      /* Mantém os itens do dropdown empilhados */
-    }
+/* BARRA DE NAVEGAÇÃO DO SITE */
+nav {
+  height: 100px;
+  font-family: "Bebas Neue", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  position: fixed;
+  /* Torna a navbar fixa */
+  top: 40px;
+  /* Deslocamento inicial */
+  left: 0;
+  /* Alinha a navbar na esquerda da página */
+  width: 100%;
+  /* Faz a navbar ocupar toda a largura da página */
+  z-index: 1000;
+  /* Garante que a navbar fique acima de outros elementos */
+  background-color: rgb(255, 255, 255);
+  /* Cor de fundo opaca */
+  transition: top 0.3s;
+  /* Transição suave para a mudança de posição */
+  transition: background-color 0.3s, color 0.3s;
+  box-shadow: 2px 2px 5px rgba(2, 2, 2, 0.281);
+
+}
+
+nav.scrolled .center-section a::after,
+nav.scrolled .right-section a::after {
+  background-color: rgb(0, 0, 0);
+  /* Muda a cor da borda inferior para preto */
+}
+
+nav.scrolled {
+  top: 0;
+  /* Fixa o nav no topo quando rola para baixo */
+  background-color: white !important;
+  /* Cor de fundo após rolar */
+  color: black !important;
+  /* Cor do texto após rolar */
+}
+
+nav.scrolled a {
+  font-size: 25px;
+  color: black !important;
+  /* Cor dos links após rolar */
+}
+
+nav.scrolled .dropdown-menu a {
+  font-size: 18px;
+  /* Ajuste o tamanho da fonte quando rolado */
+  color: gray;
+  /* Ajuste a cor do texto quando rolado */
+}
+
+/*HOVERS NAV*/
+nav:hover {
+  background-color: #ffffff;
+}
+
+nav:hover a {
+  color: #000000;
+}
 
 
 
+nav:hover .center-section .dropdown>a::after,
+nav:hover .right-section a::after {
+  background-color: rgb(0, 0, 0);
+  /* Muda a cor da borda inferior para preto */
 
+}
+
+nav:hover #logo {
+  content: url('../../../img/logopreta.png');
+  /* Substitui a imagem quando o mouse passa no <nav> */
+  transition: all 0.3s ease;
+  /* Transição suave */
+}
+
+
+a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-size: 25px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+  position: relative;
+}
+
+
+.right-section a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -21px;
+  /* Ajuste essa distância para alterar o espaço abaixo do texto */
+  width: 0;
+  height: 3px;
+  background-color: rgb(0, 0, 0);
+  transition: width 0.3s ease;
+}
+
+.center-section .dropdown>a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  /* Ajuste essa distância para alterar o espaço abaixo do texto */
+  width: 0;
+  height: 3px;
+  background-color: rgb(0, 0, 0);
+  transition: width 0.3s ease;
+}
+
+.center-section a:hover::after,
+.right-section a:hover::after {
+  width: 100%;
+}
+
+.center-section a,
+.right-section a {
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+
+.left-section,
+.center-section,
+.right-section {
+  display: flex;
+  align-items: center;
+}
+
+/* Garante que a center-section fique centralizada */
+.center-section {
+  left: 190px;
+  position: relative;
+  z-index: 1;
+  /* Mantém acima de outros conteúdos, se necessário */
+}
+
+/* Right-section posicionada à direita */
+.right-section {
+  display: flex;
+  z-index: 2;
+}
+
+.center-section ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.center-section li {
+  margin: 0 15px;
+  /* Espaçamento horizontal entre os itens */
+  position: relative;
+  /* Para os dropdowns */
+
+}
+
+
+.center-section a {
+  display: flex;
+  /* Isso permite que o link ocupe toda a área do item da lista */
+  align-items: center;
+  /* Centraliza o texto verticalmente */
+  padding: 30px 15px;
+  /* Ampla área de clique */
+
+}
+
+.right-section a {
+  margin-left: 0px;
+  left: 300px;
+}
+
+.search-bar-container {
+  position: absolute;
+  top: 50%;
+  left: 83%;
+  transform: translate(-50%, -50%);
+}
+
+.group {
+  display: flex;
+  line-height: 28px;
+  align-items: center;
+  position: relative;
+  margin-right: -18px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  fill: #bdbecb;
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+.profile-text {
+  margin-left: 5px;
+  color: #ffffff;
+  /* Change to match the color in your image */
+  font-weight: bold;
+}
+
+.profile-link::after {
+  content: none;
+}
+
+/* Estilo geral do link na seção de perfil */
+.profile-text .text-login {
+  position: relative;
+  padding: 5px;
+  border-radius: 5px;
+  color: #000000;
+  font-size: 20px;
+  /* Adjust size as needed */
+  text-decoration: none;
+
+}
+
+.profile-text .text-login:hover {
+  text-decoration: underline;
+}
+
+.text-login:hover {
+  color: #000000;
+  text-decoration: none;
+}
+
+.input {
+  font-family: "Montserrat", sans-serif;
+  width: 80%;
+  height: 35px;
+  padding-left: 2.5rem;
+  box-shadow: 0 0 0 1.5px #313131, 0 0 25px -17px #000;
+  border: 0;
+  border-radius: 12px;
+  background-color: #000000;
+  outline: none;
+  color: #ffffff;
+  transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  cursor: text;
+  z-index: 0;
+}
+
+.input::placeholder {
+  color: #bdbecb;
+}
+
+.input:hover {
+  box-shadow: 0 0 0 2.5px #2f303d, 0px 0px 25px -15px #000;
+}
+
+.input:active {
+  transform: scale(0.95);
+}
+
+.input:focus {
+  box-shadow: 0 0 0 2.5px #2f303d;
+}
+
+
+/* Estilo para os itens do dropdown */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  /* Inicialmente oculto */
+  position: absolute;
+  /* Posiciona o menu dropdown em relação ao item */
+  width: 100%;
+  /* Define a largura como 100% da largura do item dropdown */
+  left: 0;
+  /* Alinha o menu dropdown com a borda esquerda do item dropdown */
+  top: 97px;
+  /* Ajusta a posição abaixo do nav */
+  background-color: #ffffff;
+  /* Fundo do menu dropdown */
+  z-index: 1000;
+  /* Garante que o menu fique acima de outros elementos */
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  /* Adiciona sombra para um efeito de destaque */
+}
+
+/* Links dentro do dropdown */
+.dropdown-menu a {
+  padding: 10px 15px;
+  font-size: 18px;
+  color: black;
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  /* Suave transição */
+}
+
+/* Efeito hover ao passar o mouse sobre os links do dropdown */
+.dropdown-menu a:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  /* Cor de fundo ao passar o mouse */
+  color: #7a7a7a;
+  /* Cor do texto ao passar o mouse */
+}
+
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+  /* Exibe o dropdown ao passar o mouse */
+}
+
+.dropdown-items {
+  display: flex;
+  flex-direction: column;
+  /* Mantém os itens do dropdown empilhados */
+}
 
 
 /* banner Principal */
@@ -669,6 +740,7 @@ section.slider{
   height: auto;
   border-radius: 40px;
 }
+
 
 .teste {
   background-color: rgba(141, 141, 141, 0.464);

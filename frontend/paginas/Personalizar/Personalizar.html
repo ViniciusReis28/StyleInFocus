@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="Personalizar.css">
-  <link rel="shortcut icon" href="img/logopreta.png" type="image">
+  <link rel="shortcut icon" href="../../img/logopreta.png" type="image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Freeman&display=swap" rel="stylesheet">
@@ -15,23 +15,23 @@
 
 <body>
   <!-- BACKGROUND -->
-  <div class="area">
+  <div class="area" >
     <ul class="circles">
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
 
     <div class="dividir">
       <div class="logoPersonalizar">
-        <a href="../../../index.html"><img src="../../img/logopreta.png" style="height: 100px; width: 100px; margin: 5px;"></a>
+        <a href="../../../index.html"><img src="../../img/logobranca.png" style="height: 100px; width: 100px; margin: 5px;"></a>
       </div>
 
       <div class="textoInicial">
@@ -47,7 +47,18 @@
           <div class="login-container2" style="margin-top: 40px;">
             <p class="bemvindo"> SUA CAMISA COMO VOCÊ QUISER!</p>
             <p class="bemvindo2">Atualização Instantaneamente!</p>
-
+            <div class="modal-overlay" id="sizeModal">
+              <div class="modal-content">
+                <p>Escolha um Tamanho:</p>
+                <div class="size-options">
+                  <button class="glow-on-hover-size" data-size="P">P</button>
+                  <button class="glow-on-hover-size" data-size="M">M</button>
+                  <button class="glow-on-hover-size" data-size="G">G</button>
+                  <button class="glow-on-hover-size" data-size="GG">GG</button>
+                </div>
+              </div>
+            </div>
+            
             <div class="color-options" id="color-options">
               <button class="shirt-btn preta" data-image="../../img-produtos/camisasLisas/camisaPreta.png"></button>
               <button class="shirt-btn blue" data-image="../../img-produtos/camisasLisas/camisaAzul.png"></button>
@@ -58,8 +69,7 @@
               <button class="shirt-btn white" data-image="../../img-produtos/camisasLisas/camisaBranca.png"></button>
               <button class="shirt-btn red" data-image="../../img-produtos/camisasLisas/camisaVermelha.png"></button>
               <button class="shirt-btn yellow" data-image="../../img-produtos/camisasLisas/camisaAmarela.png"></button>
-              <button class="shirt-btn turquoise"
-                data-image="../../img-produtos/camisasLisas/camisaTurqueza.png"></button>
+              <button class="shirt-btn turquoise" data-image="../../img-produtos/camisasLisas/camisaTurqueza.png"></button>
             </div>
 
 
@@ -152,7 +162,11 @@
                   <img src="../../img-produtos/camisasLisas/camisaPreta.png" alt="Camisa" id="shirt-img">
                   <img src="" alt="Ícone" id="shirt-icon" class="hidden">
                   <img src="" alt="Imagem Personalizada" id="custom-image" class="hidden">
+                  
                 </div>
+                <br>
+                <button class="glow-on-hover-personalizar">Adicionar ao Carrinho</button>
+
               </div>
               
             </div>
@@ -160,6 +174,7 @@
         </div>
       </div>
     </div>
+
 <script src="script.js"></script>
   
 

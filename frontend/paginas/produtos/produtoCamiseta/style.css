@@ -446,7 +446,7 @@ a {
 
 /* Garante que a center-section fique centralizada */
 .center-section {
-  left: 165px;
+  left: 190px;
   position: relative;
   z-index: 1; /* Mantém acima de outros conteúdos, se necessário */
 }
@@ -479,9 +479,8 @@ a {
 
 .right-section a {
   margin-left: 0px;
-  left: 250px;
+  left: 300px;
 }
-
 
 .search-bar-container {
   position: absolute;

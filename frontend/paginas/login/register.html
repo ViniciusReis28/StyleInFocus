@@ -39,7 +39,7 @@
 
           <div id="general-error" class="error-messages"></div> <!-- Div para mensagens de erro gerais -->
 
-          <form id="register-form" action="/auth/register" method="POST" enctype="multipart/form-data">
+          <form id="register-form" enctype="multipart/form-data">
             <div>
               <div id="username-error" style="color: #ff0000; font-size: 12px; font-family: Freeman, sans-serif;"></div>
               <input class="input-login" name="username" type="text" placeholder="Digite seu usuário:">
@@ -56,9 +56,11 @@
             </div>
 
             <button type="submit" class="glow-on-hover">CADASTRAR</button>
+            <div id="message" class="notification hidden"></div>
+
             <p class="signup-link">
               Já tem uma conta?
-              <a href="/paginas/login/login.html">Logar</a>
+              <a href="login.html">Logar</a>
             </p>
           </form>
         </div>
@@ -67,43 +69,66 @@
   </div>
 
 <script>
-
-
-document.getElementById('register-form').addEventListener('submit', function(event) {
+document.getElementById('register-form').addEventListener('submit', function (event) {
     event.preventDefault();
 
     const username = event.target.username.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
 
-    fetch('/auth/register', {
+    const displayMessage = (message, isError = false) => {
+        const messageElement = document.getElementById('message');
+        messageElement.className = `notification ${isError ? 'error' : 'success'} show`;
+        messageElement.innerText = message;
+
+        // Remove a notificação após 3 segundos
+        setTimeout(() => {
+            messageElement.classList.remove('show');
+        }, 3000);
+    };
+
+    fetch('http://localhost:3000/auth/register', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, email, password })
+        body: JSON.stringify({ username, email, password }),
     })
-    .then(response => response.json())
-    .then(data => {
-        // Limpa mensagens de erro anteriores
-        document.getElementById('username-error').textContent = '';
-        document.getElementById('email-error').textContent = '';
-        document.getElementById('password-error').textContent = '';
-        document.getElementById('general-error').textContent = '';
+        .then((response) => response.json())
+        .then((data) => {
+            // Limpa mensagens de erro anteriores
+            document.getElementById('username-error').textContent = '';
+            document.getElementById('email-error').textContent = '';
+            document.getElementById('password-error').textContent = '';
+            document.getElementById('general-error').textContent = '';
 
-        if (data.success) {
-            window.location.href = 'userCadastrado.html';
-        } else {
-            if (data.errors) {
-                // Exibir mensagens de erro conforme necessário
+            if (data.success) {
+                displayMessage('Cadastro realizado com sucesso!');
+                setTimeout(() => {
+                    window.location.href = './login.html';
+                }, 3000);
+            } else {
+                if (data.errors) {
+                    for (const error of data.errors) {
+                        if (error.field === 'username') {
+                            document.getElementById('username-error').textContent = error.message;
+                        } else if (error.field === 'email') {
+                            document.getElementById('email-error').textContent = error.message;
+                        } else if (error.field === 'password') {
+                            document.getElementById('password-error').textContent = error.message;
+                        }
+                    }
+                } else {
+                    displayMessage(data.message || 'Erro desconhecido.', true);
+                }
             }
-        }
-    })
-    .catch(error => {
-        console.error('Erro:', error);
-        document.getElementById('general-error').textContent = 'Erro ao registrar. Tente novamente mais tarde.';
-    });
+        })
+        .catch((error) => {
+            console.error('Erro:', error);
+            displayMessage('Erro ao registrar. Tente novamente mais tarde.', true);
+        });
 });
+
 
 </script>
 
