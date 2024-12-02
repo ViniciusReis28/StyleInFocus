@@ -343,3 +343,4 @@ function carregarPerfilUsuario() {
 
 // Carrega os dados do usuário ao carregar a página
 window.onload = carregarPerfilUsuario;
+new window.VLibras.Widget('https://vlibras.gov.br/app');
