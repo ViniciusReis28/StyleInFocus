@@ -725,12 +725,7 @@ a {
 /* Quando o nav for hoverado, aplica a cor no link */
 nav:hover .profile-text .text-login {
   color: #000000 !important;
-  text-decoration: none !important;
-}
-
-.text-login:hover {
-  color: #000000 !important;
-  text-decoration: none !important;
+  text-decoration: underline !important;
 }
 
 .input {
