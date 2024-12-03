@@ -271,7 +271,8 @@ function carregarPerfilUsuario() {
     const loginTextElement = document.getElementById('login-text');
     const registerTextElement = document.getElementById('register-text');
     const separatorElement = document.getElementById('separator');
-    loginTextElement.classList.add('text-login'); // Adiciona a classe 'text-login'
+    loginTextElement.classList.add('text-login'); 
+    loginTextElement.classList.add('text-login:hover'); 
 
     if (!token) {
         // Usuário não está logado
