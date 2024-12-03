@@ -262,7 +262,6 @@ function showSuggestions() {
       suggestionsBox.style.display = 'none';
   }
 }
-
 const token = localStorage.getItem('token'); // Obtém o token de autenticação
 
 function carregarPerfilUsuario() {
@@ -288,6 +287,10 @@ function carregarPerfilUsuario() {
         registerTextElement.href = "frontend/paginas/login/register.html";
 
         separatorElement.style.display = "inline"; // Exibe "OU"
+
+        // Altera o tamanho da fonte
+        loginTextElement.style.fontSize = "16px"; // Font-size para quando o usuário não está autenticado
+        registerTextElement.style.fontSize = "16px"; // Font-size padrão para o link de registro
         return;
     }
 
@@ -328,6 +331,10 @@ function carregarPerfilUsuario() {
                 registerTextElement.href = "frontend/paginas/minhaConta/profile.html"; // Link para a página de perfil
 
                 separatorElement.style.display = "none"; // Remove "OU"
+
+                // Altera o tamanho da fonte para quando o usuário está autenticado
+                loginTextElement.style.fontSize = "18px"; // Tamanho maior para o nome de usuário
+                registerTextElement.style.fontSize = "18px"; // Tamanho maior para o link de "Minha Conta"
             } else {
                 console.error("Nome de usuário não encontrado nos dados do servidor.");
             }
@@ -340,6 +347,7 @@ function carregarPerfilUsuario() {
             profileSvgElement.style.display = "block";
         });
 }
+
 
 // Carrega os dados do usuário ao carregar a página
 window.onload = carregarPerfilUsuario;
