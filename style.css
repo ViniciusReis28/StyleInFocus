@@ -595,7 +595,7 @@ a {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -21px;
+  bottom: -23px;
   /* Ajuste essa distância para alterar o espaço abaixo do texto */
   width: 0;
   height: 3px;
