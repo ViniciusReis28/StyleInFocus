@@ -726,7 +726,9 @@ a {
 nav:hover .profile-text .text-login {
   color: #000000 !important;
 }
-
+nav.scrolled .profile-text .text-login {
+  color: #000000 !important;
+}
 .input {
   font-family: "Montserrat", sans-serif;
   width: 80%;
