@@ -262,6 +262,8 @@ function showSuggestions() {
       suggestionsBox.style.display = 'none';
   }
 }
+
+
 const token = localStorage.getItem('token'); // Obtém o token de autenticação
 
 function carregarPerfilUsuario() {
@@ -348,7 +350,7 @@ function carregarPerfilUsuario() {
         });
 }
 
-
 // Carrega os dados do usuário ao carregar a página
 window.onload = carregarPerfilUsuario;
+
 new window.VLibras.Widget('https://vlibras.gov.br/app');
