@@ -754,7 +754,7 @@ a {
 
 .profile-text {
   margin-left: 5px;
-  color: #ffffff; /* Change to match the color in your image */
+  color: #000000; /* Change to match the color in your image */
   font-weight: bold;
 }
 
@@ -766,7 +766,7 @@ a {
   position: relative;
   padding: 5px;
   border-radius: 5px;
-  color: #ffffff !important;
+  color: #000000 !important;
   font-size: 20px;
   text-decoration: none !important;
 }
