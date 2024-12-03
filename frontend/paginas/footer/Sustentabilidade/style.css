@@ -702,7 +702,7 @@ a {
 
 .profile-text {
   margin-left: 5px;
-  color: #ffffff; /* Change to match the color in your image */
+  color: #000000; /* Change to match the color in your image */
   font-weight: bold;
 }
 
@@ -710,24 +710,25 @@ a {
   content: none;
 }
 
-/* Estilo geral do link na seção de perfil */
 .profile-text .text-login {
   position: relative;
   padding: 5px;
   border-radius: 5px;
-  color: #000000;
-  font-size: 20px; /* Adjust size as needed */
-  text-decoration: none;
-  
-}
-.profile-text .text-login:hover {
-  text-decoration: underline;
-}
-.text-login:hover {
-  color: #000000;
-  text-decoration: none;
+  color: #000000 !important;
+  font-size: 20px;
+  text-decoration: none !important;
 }
 
+.profile-text .text-login:hover {
+  text-decoration: underline !important;
+}
+/* Quando o nav for hoverado, aplica a cor no link */
+nav:hover .profile-text .text-login {
+  color: #000000 !important;
+}
+nav.scrolled .profile-text .text-login {
+  color: #000000 !important;
+}
 .input {
   font-family: "Montserrat", sans-serif;
   width: 80%;
