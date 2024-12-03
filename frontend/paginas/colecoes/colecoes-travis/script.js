@@ -119,7 +119,13 @@
   
   
   
+  
+  
+  
+  
+                                                      
 
+ 
 const token = localStorage.getItem('token'); // Obtém o token de autenticação
 
 function carregarPerfilUsuario() {
@@ -145,15 +151,11 @@ function carregarPerfilUsuario() {
         registerTextElement.href = "../../../paginas/login/register.html";
 
         separatorElement.style.display = "inline"; // Exibe "OU"
-
-        // Altera o tamanho da fonte
-        loginTextElement.style.fontSize = "20px"; // Font-size para quando o usuário não está autenticado
-        registerTextElement.style.fontSize = "20px"; // Font-size padrão para o link de registro
         return;
     }
 
     // Se o token existe, tenta buscar os dados do usuário
-    fetch('https://styleinfocusbackend.onrender.com/auth/api/user', {
+    fetch('http://localhost:3000/auth/api/user', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`
@@ -168,7 +170,7 @@ function carregarPerfilUsuario() {
         .then(data => {
             // Define a imagem de perfil (usa o padrão se não houver)
             const profileImage = data.profile_image 
-                ? `https://styleinfocusbackend.onrender.com/${data.profile_image}` 
+                ? `http://localhost:3000/${data.profile_image}` 
                 : null; // Não define imagem padrão se não existir no backend
 
             if (profileImage) {
@@ -189,10 +191,6 @@ function carregarPerfilUsuario() {
                 registerTextElement.href = "../../../paginas/minhaConta/profile.html"; // Link para a página de perfil
 
                 separatorElement.style.display = "none"; // Remove "OU"
-
-                // Altera o tamanho da fonte para quando o usuário está autenticado
-                loginTextElement.style.fontSize = "20px"; // Tamanho maior para o nome de usuário
-                registerTextElement.style.fontSize = "20px"; // Tamanho maior para o link de "Minha Conta"
             } else {
                 console.error("Nome de usuário não encontrado nos dados do servidor.");
             }
@@ -208,3 +206,4 @@ function carregarPerfilUsuario() {
 
 // Carrega os dados do usuário ao carregar a página
 window.onload = carregarPerfilUsuario;
+
