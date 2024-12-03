@@ -289,8 +289,8 @@ function carregarPerfilUsuario() {
         separatorElement.style.display = "inline"; // Exibe "OU"
 
         // Altera o tamanho da fonte
-        loginTextElement.style.fontSize = "16px"; // Font-size para quando o usuário não está autenticado
-        registerTextElement.style.fontSize = "16px"; // Font-size padrão para o link de registro
+        loginTextElement.style.fontSize = "20px"; // Font-size para quando o usuário não está autenticado
+        registerTextElement.style.fontSize = "20px"; // Font-size padrão para o link de registro
         return;
     }
 
@@ -333,8 +333,8 @@ function carregarPerfilUsuario() {
                 separatorElement.style.display = "none"; // Remove "OU"
 
                 // Altera o tamanho da fonte para quando o usuário está autenticado
-                loginTextElement.style.fontSize = "18px"; // Tamanho maior para o nome de usuário
-                registerTextElement.style.fontSize = "18px"; // Tamanho maior para o link de "Minha Conta"
+                loginTextElement.style.fontSize = "20px"; // Tamanho maior para o nome de usuário
+                registerTextElement.style.fontSize = "20px"; // Tamanho maior para o link de "Minha Conta"
             } else {
                 console.error("Nome de usuário não encontrado nos dados do servidor.");
             }
