@@ -155,7 +155,7 @@ function carregarPerfilUsuario() {
     }
 
     // Se o token existe, tenta buscar os dados do usuário
-    fetch('http://localhost:3000/auth/api/user', {
+    fetch('https://styleinfocusbackend.onrender.com/auth/api/user', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`
@@ -170,7 +170,7 @@ function carregarPerfilUsuario() {
         .then(data => {
             // Define a imagem de perfil (usa o padrão se não houver)
             const profileImage = data.profile_image 
-                ? `http://localhost:3000/${data.profile_image}` 
+                ? `https://styleinfocusbackend.onrender.com/${data.profile_image}` 
                 : null; // Não define imagem padrão se não existir no backend
 
             if (profileImage) {
