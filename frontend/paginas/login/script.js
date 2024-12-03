@@ -74,42 +74,4 @@ window.addEventListener('scroll', function() {
 
 
 
-                                                                                //SLIDE TEXT
-                                                                                
-document.addEventListener('DOMContentLoaded', function() {
-
-let currentSlide = 0;
-const slideInterval = 3000; // Intervalo de 3 segundos para troca de slides
-
-function nextSlide() {
-  const slides = document.querySelector('.slides-text');
-  const totalSlides = slides.children.length;
-
-  // Avançar para o próximo slide
-  currentSlide = (currentSlide + 1) % totalSlides;
-
-  // Atualizar a transformação do slide
-  slides.style.transform = `translateY(-${currentSlide * 310}%)`;
-}
-
-function prevSlide() {
-  const slides = document.querySelector('.slides-text');
-  const totalSlides = slides.children.length;
-
-  // Retroceder para o slide anterior
-  currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-
-  // Atualizar a transformação do slide
-  slides.style.transform = `translateY(-${currentSlide * 310}%)`;
-}
-
-// Intervalo automático para troca de slides
-setInterval(nextSlide, slideInterval);
-
-// Funções para os botões
-document.querySelector('.next').addEventListener('click', nextSlide);
-document.querySelector('.prev').addEventListener('click', prevSlide);
-});
-
-
-
+                                                                          
