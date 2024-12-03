@@ -282,10 +282,10 @@ function carregarPerfilUsuario() {
 
         // Mantém os textos padrão
         loginTextElement.textContent = "ENTRE";
-        loginTextElement.href = "frontend/paginas/login/login.html";
+        loginTextElement.href = "../../../paginas/login/login.html";
 
         registerTextElement.textContent = "CADASTRE-SE";
-        registerTextElement.href = "frontend/paginas/login/register.html";
+        registerTextElement.href = "../../../paginas/login/register.html";
 
         separatorElement.style.display = "inline"; // Exibe "OU"
         return;
@@ -325,7 +325,7 @@ function carregarPerfilUsuario() {
                 loginTextElement.href = "#"; // Remove o link de login
 
                 registerTextElement.textContent = "MINHA CONTA"; // Altera "CADASTRE-SE" para "MINHA CONTA"
-                registerTextElement.href = "frontend/paginas/minhaConta/profile.html"; // Link para a página de perfil
+                registerTextElement.href = "../../../paginas/minhaConta/profile.html"; // Link para a página de perfil
 
                 separatorElement.style.display = "none"; // Remove "OU"
             } else {
@@ -340,3 +340,7 @@ function carregarPerfilUsuario() {
             profileSvgElement.style.display = "block";
         });
 }
+
+// Carrega os dados do usuário ao carregar a página
+window.onload = carregarPerfilUsuario;
+
